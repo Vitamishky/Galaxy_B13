@@ -7,10 +7,10 @@ spaceShip::spaceShip() {
     spaceShip_x = spaceShip_y = 0.5f;
     spaceShipSpeed_x = 5.f / screen.getParametrizationScreen().first;
     spaceShipSpeed_y = 5.f / screen.getParametrizationScreen().second;
-    spaceShipWidth = 128.f;
-    spaceShipHeight = 128.f;
+    spaceShipWidth = 128;
+    spaceShipHeight = 128;
     
-    if (!textureShip.loadFromFile("spaceShip.png")) {
+    if (!textureShip.loadFromFile("image/spaceShip.png")) {
         exit(EXIT_FAILURE);
     }
 }

@@ -1,4 +1,3 @@
-#pragma
 #ifndef parametrizationScreen_hpp
 #define parametrizationScreen_hpp
 #include <iostream>
@@ -9,6 +8,7 @@
 using namespace std;
 //возвращает ширину и высоту экрана пользователя
 class parametrizationScreen {
+private:
 	unsigned int width;
 	unsigned int height;
 public:

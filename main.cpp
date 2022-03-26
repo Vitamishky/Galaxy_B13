@@ -18,14 +18,14 @@ int main()
 
     //Отрисовка иконки около названия окна
     sf::Image icon;
-    if (!icon.loadFromFile("spaceShip.png")) {
+    if (!icon.loadFromFile("image/spaceShip.png")) {
         return EXIT_FAILURE;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     //Отрисовка заднего фона
     sf::Texture texture;
-    if (!texture.loadFromFile("bg.png")) {
+    if (!texture.loadFromFile("image/bg.png")) {
         return EXIT_FAILURE;
     }
     sf::Sprite backWall(texture);
@@ -87,10 +87,6 @@ int main()
                 camera.unlockCamera();
             }
 
-            if (sf::Event::Resized) {
-                sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
-                window.setView(sf::View(visibleArea));
-            }
         }
 
         window.draw(backWall);
