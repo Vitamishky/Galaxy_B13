@@ -10,6 +10,7 @@ set(PROJECT_HEADERS
         parametrizationScreen.h
         camera.h
         functions.h
+        Planet.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -18,10 +19,12 @@ set(PROJECT_SOURCES
         parametrizationScreen.cpp
         camera.cpp
         functions.cpp
+        Planet.cpp
         )
 set(PROJECT_IMAGE
         space-shuttle.png
         spaceShip.png
+        spaceObjects.png
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

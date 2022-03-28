@@ -1,7 +1,3 @@
-//
-// Created by user on 22.03.2022.
-//
-
 #include "functions.h"
 #include <cmath>
 

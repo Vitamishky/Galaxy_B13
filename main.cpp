@@ -1,10 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
-#include "spaceObjects.h"
 #include "camera.h"
-#include "parametrizationScreen.h"
-#include <vector>
 
 int main()
 {
@@ -56,22 +53,22 @@ int main()
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                spaceship.moveShip(dt, 'l');
+                spaceship.move(dt, 'l');
                 camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                spaceship.moveShip(dt, 'r');
+                spaceship.move(dt, 'r');
                 camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                spaceship.moveShip(dt, 'u');
+                spaceship.move(dt, 'u');
                 camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                spaceship.moveShip(dt, 'd');
+                spaceship.move(dt, 'd');
                 camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
