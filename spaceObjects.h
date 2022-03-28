@@ -9,21 +9,23 @@
 using namespace std;
 
 class spaceObjects {
-private:
+protected:
     parametrizationScreen screen;
-    float spaceObjects_x, spaceObjects_y;
-    float spaceObjectsSpeed_x, spaceObjectsSpeed_y;
-    int spaceObjectsWidth, spaceObjectsHeight;
-    sf::Sprite spaceObjectsSprite;
-    sf::Texture textureObjects;
-    float spaceObjectsMasse = 1;
+    float x, y;
+    float xSpeed, ySpeed;
+    int Width, Height;
+    sf::Sprite Sprite;
+    sf::Texture texture;
+    float Masse = 1;
 public:
     spaceObjects();
-    ~spaceObjects();
-    void moveObjects(float, char);
-    void drawSprite(sf::RenderWindow&);
+    void move(float, char);
     pair<float, float> getCoordinates() const;
+    pair<float, float> getParametrization() const;
+    parametrizationScreen getScreen()const;
+    sf::Texture getTexture() const;
+    sf::Sprite getSprite() const;
     float getMasse() const;
 };
 
-#endif 
+#endif  
