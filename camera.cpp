@@ -42,4 +42,13 @@ void camera::resetView() {
 	view.reset(sf::FloatRect(0, 0, 1900, 1050));
 }
 
+void camera::zoomCamera(sf::Event scroll) {
+	if (scroll.mouseWheelScroll.delta < 0) {
+		view.zoom(1.1f);
+	}
+	else if (scroll.mouseWheelScroll.delta > 0) {
+		view.zoom(0.9f);
+	}
+}
+
 camera::~camera() {};

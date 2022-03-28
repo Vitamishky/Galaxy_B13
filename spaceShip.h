@@ -19,6 +19,7 @@ private:
     float spaceShipMasse = 1;
 public:
     spaceShip();
+    ~spaceShip();
     void moveShip(float, char);
     void drawSprite(sf::RenderWindow&);
     pair<float, float> getCoordinates() const;

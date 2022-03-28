@@ -19,6 +19,7 @@ public:
     void lockedCamera(float x, float y);
     void unlockCamera();
     void moveCamera(float x, float y);
+    void zoomCamera(sf::Event);
     sf::View getViewCamera();
     sf::View getCoordinatesForView(float x, float y);
 };

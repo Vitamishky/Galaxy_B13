@@ -11,7 +11,7 @@ spaceShip::spaceShip() {
     spaceShipHeight = 128.f;
     float spaceShipMasse = 1;
     
-    if (!textureShip.loadFromFile("spaceShip.png")) {
+    if (!textureShip.loadFromFile("image/spaceShip.png")) {
         exit(EXIT_FAILURE);
     }
 }
@@ -43,3 +43,5 @@ pair<float, float> spaceShip::getCoordinates() const {
 float spaceShip::getMasse() const {
     return spaceShipMasse;
 }
+
+spaceShip::~spaceShip() {}

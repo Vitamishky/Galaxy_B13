@@ -87,6 +87,9 @@ int main()
                 camera.unlockCamera();
             }
 
+            if (event.type == sf::Event::MouseWheelScrolled) {
+                camera.zoomCamera(event);
+            }
         }
 
         window.draw(backWall);
