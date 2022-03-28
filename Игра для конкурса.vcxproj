@@ -146,11 +146,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\User\Desktop\мфтишка\конкурс\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="parametrizationScreen.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="spaceObjects.cpp" />
     <ClCompile Include="spaceShip.cpp" />
   </ItemGroup>
@@ -158,8 +160,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="functions.h" />
     <ClInclude Include="parametrizationScreen.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="spaceObjects.h" />
     <ClInclude Include="spaceShip.h" />
   </ItemGroup>
