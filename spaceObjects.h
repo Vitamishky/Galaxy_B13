@@ -16,11 +16,14 @@ private:
     int spaceObjectsWidth, spaceObjectsHeight;
     sf::Sprite spaceObjectsSprite;
     sf::Texture textureObjects;
+    float spaceObjectsMasse = 1;
 public:
     spaceObjects();
     ~spaceObjects();
     void moveObjects(float, char);
     void drawSprite(sf::RenderWindow&);
+    pair<float, float> getCoordinates() const;
+    float getMasse() const;
 };
 
 #endif 

@@ -16,12 +16,13 @@ private:
     int spaceShipWidth, spaceShipHeight;
     sf::Sprite spaceShipSprite;
     sf::Texture textureShip;
+    float spaceShipMasse = 1;
 public:
     spaceShip();
-    ~spaceShip();
     void moveShip(float, char);
     void drawSprite(sf::RenderWindow&);
-    pair<float, float> getCoordinates();
+    pair<float, float> getCoordinates() const;
+    float getMasse() const;
 };
 
 #endif 
