@@ -10,7 +10,7 @@ spaceObjects::spaceObjects() {
     spaceObjectsWidth = 128;
     spaceObjectsHeight = 128;
 
-    if (!textureObjects.loadFromFile("image/spaceObjects.png")) {
+    if (!textureObjects.loadFromFile("spaceObjects.png")) {
         exit(EXIT_FAILURE);
     }
 }
@@ -32,5 +32,16 @@ void spaceObjects::moveObjects(float dt, char move) {
     case 'd': spaceObjects_y += dt * spaceObjectsSpeed_y; break;
     }
 }
+pair<float, float> spaceObjects::getCoordinates() const {
+    float x = spaceObjects_x;
+    float y = spaceObjects_y;
+    pair<float, float> result = make_pair(x, y);
+    return result;
+}
+float spaceObjects::getMasse() const{
+    return spaceObjectsMasse;
+}
 
 spaceObjects::~spaceObjects() {}
+
+
