@@ -2,9 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
 #include "camera.h"
+#include "drawAll.h"
 
 int main()
 {
+    drawAll drawObjects;
     parametrizationScreen screen;
     //Отрисовка окна
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
@@ -13,22 +15,9 @@ int main()
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
 
-    //Отрисовка иконки около названия окна
-    sf::Image icon;
-    if (!icon.loadFromFile("image/spaceShip.png")) {
-        return EXIT_FAILURE;
-    }
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    //Отрисовка иконки
+    drawObjects.drawIcon(window);
 
-    //Отрисовка заднего фона
-    sf::Texture textureBg;
-    if (!textureBg.loadFromFile("image/bg.png")) {
-        return EXIT_FAILURE;
-    }
-    float xBg = textureBg.getSize().x;
-    float yBg = textureBg.getSize().y;
-    sf::Sprite backWall(textureBg); 
-    backWall.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
     //Создание космического корабля
     spaceShip spaceship;
 
@@ -91,7 +80,7 @@ int main()
             }
         }
 
-        window.draw(backWall);
+        drawObjects.drawBg(window);
 
         window.setView(camera.getViewCamera());
 

@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="drawAll.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\User\Desktop\мфтишка\конкурс\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -160,6 +161,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="drawAll.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="parametrizationScreen.h" />
     <ClInclude Include="camera.h" />
