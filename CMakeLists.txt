@@ -9,6 +9,7 @@ set(PROJECT_HEADERS
         parametrizationScreen.h
         camera.h
         functions.h
+        Planet.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -17,6 +18,7 @@ set(PROJECT_SOURCES
         parametrizationScreen.cpp
         camera.cpp
         functions.cpp
+        Planet.cpp
         )
 set(PROJECT_IMAGE
         space-shuttle.png
