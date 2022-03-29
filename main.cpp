@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
 #include "camera.h"
+#include "startMenu.h"
 
 int main()
 {
@@ -13,6 +14,7 @@ int main()
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
 
+    menu menu;
     //Отрисовка иконки около названия окна
     sf::Image icon;
     if (!icon.loadFromFile("image/spaceShip.png")) {
@@ -37,6 +39,8 @@ int main()
     sf::Clock sf_clock;
 
     while (window.isOpen()) {
+
+        menu.drawMenu(window);
 
         sf::Event event;
 

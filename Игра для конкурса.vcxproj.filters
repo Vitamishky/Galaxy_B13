@@ -30,6 +30,9 @@
     <ClCompile Include="parametrizationScreen.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="startMenu.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -45,6 +48,9 @@
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
     <ClInclude Include="parametrizationScreen.h">
+      <Filter>Файлы ресурсов</Filter>
+    </ClInclude>
+    <ClInclude Include="startMenu.h">
       <Filter>Файлы ресурсов</Filter>
     </ClInclude>
   </ItemGroup>

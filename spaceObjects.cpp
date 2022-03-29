@@ -9,7 +9,7 @@ spaceObjects::spaceObjects() {
     Width = 128;
     Height = 128;
 
-    if (!texture.loadFromFile("spaceObjects.png")) {
+    if (!texture.loadFromFile("image/spaceObjects.png")) {
         exit(EXIT_FAILURE);
     }
 }

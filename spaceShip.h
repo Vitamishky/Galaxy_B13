@@ -12,7 +12,7 @@ using namespace std;
 class spaceShip : public spaceObjects {
 public:
     spaceShip();
-    void drawSprite(sf::RenderWindow& gameWindow);
+    void drawSprite(sf::RenderWindow&);
 };
 
 #endif 
