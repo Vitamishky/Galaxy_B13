@@ -12,13 +12,15 @@ private:
     sf::View view;
     sf::Vector2f position;
     bool locked;
+    float scale;
 public:
     camera(sf::RenderWindow&);
     ~camera();
-    void resetView();
+    void resetView(sf::RenderWindow&);
     void lockedCamera(float x, float y);
     void unlockCamera();
     void moveCamera(float x, float y);
+    void zoomCamera(sf::Event, sf::RenderWindow&);
     sf::View getViewCamera();
     sf::View getCoordinatesForView(float x, float y);
 };

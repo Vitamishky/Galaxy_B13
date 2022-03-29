@@ -5,23 +5,14 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include "parametrizationScreen.h"
+#include "spaceObjects.h"
 
 using namespace std;
 
-class spaceShip {
-private:
-    parametrizationScreen screen;
-    float spaceShip_x, spaceShip_y;
-    float spaceShipSpeed_x, spaceShipSpeed_y;
-    int spaceShipWidth, spaceShipHeight;
-    sf::Sprite spaceShipSprite;
-    sf::Texture textureShip;
+class spaceShip : public spaceObjects {
 public:
     spaceShip();
-    ~spaceShip();
-    void moveShip(float, char);
-    void drawSprite(sf::RenderWindow&);
-    pair<float, float> getCoordinates();
+    void drawSprite(sf::RenderWindow& gameWindow);
 };
 
 #endif 

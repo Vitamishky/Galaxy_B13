@@ -1,41 +1,29 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
-#include "spaceObjects.h"
 #include "camera.h"
-#include "parametrizationScreen.h"
-#include <vector>
+#include "drawAll.h"
 
 int main()
 {
+    drawAll drawObjects;
     parametrizationScreen screen;
     //Отрисовка окна
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
-                                          screen.getParametrizationScreen().second), "Galaxy-B03");
+                                          screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
     
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
 
-    //Отрисовка иконки около названия окна
-    sf::Image icon;
-    if (!icon.loadFromFile("image/spaceShip.png")) {
-        return EXIT_FAILURE;
-    }
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    //Отрисовка иконки
+    drawObjects.drawIcon(window);
 
-    //Отрисовка заднего фона
-    sf::Texture texture;
-    if (!texture.loadFromFile("image/bg.png")) {
-        return EXIT_FAILURE;
-    }
-    sf::Sprite backWall(texture);
-    
     //Создание космического корабля
     spaceShip spaceship;
 
     //Работа с камерой слежения
     camera camera(window);
-    camera.resetView();
+    camera.resetView(window);
 
     sf::Clock sf_clock;
 
@@ -56,23 +44,23 @@ int main()
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                spaceship.moveShip(dt, 'l');
-                camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
+                spaceship.move(dt, 'l');
+                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                spaceship.moveShip(dt, 'r');
-                camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
+                spaceship.move(dt, 'r');
+                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                spaceship.moveShip(dt, 'u');
-                camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
+                spaceship.move(dt, 'u');
+                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                spaceship.moveShip(dt, 'd');
-                camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
+                spaceship.move(dt, 'd');
+                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (event.type == sf::Event::MouseMoved) {
@@ -87,9 +75,12 @@ int main()
                 camera.unlockCamera();
             }
 
+            if (event.type == sf::Event::MouseWheelScrolled) {
+                camera.zoomCamera(event, window);
+            }
         }
 
-        window.draw(backWall);
+        drawObjects.drawBg(window);
 
         window.setView(camera.getViewCamera());
 
