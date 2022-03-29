@@ -10,6 +10,7 @@ set(PROJECT_HEADERS
         camera.h
         functions.h
         Planet.h
+        drawAll.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -19,6 +20,7 @@ set(PROJECT_SOURCES
         camera.cpp
         functions.cpp
         Planet.cpp
+        drawAll.cpp
         )
 set(PROJECT_IMAGE
         space-shuttle.png
