@@ -8,7 +8,7 @@ int main()
     parametrizationScreen screen;
     //Отрисовка окна
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
-                                          screen.getParametrizationScreen().second), "Galaxy-B03");
+                                          screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
     
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
@@ -21,18 +21,20 @@ int main()
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     //Отрисовка заднего фона
-    sf::Texture texture;
-    if (!texture.loadFromFile("image/bg.png")) {
+    sf::Texture textureBg;
+    if (!textureBg.loadFromFile("image/bg.png")) {
         return EXIT_FAILURE;
     }
-    sf::Sprite backWall(texture);
-    
+    float xBg = textureBg.getSize().x;
+    float yBg = textureBg.getSize().y;
+    sf::Sprite backWall(textureBg); 
+    backWall.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
     //Создание космического корабля
     spaceShip spaceship;
 
     //Работа с камерой слежения
     camera camera(window);
-    camera.resetView();
+    camera.resetView(window);
 
     sf::Clock sf_clock;
 
@@ -85,7 +87,7 @@ int main()
             }
 
             if (event.type == sf::Event::MouseWheelScrolled) {
-                camera.zoomCamera(event);
+                camera.zoomCamera(event, window);
             }
         }
 
