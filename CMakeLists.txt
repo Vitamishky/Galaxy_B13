@@ -1,42 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
-project(untitled11)
+project(Galaxy_B13)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(PROJECT_HEADERS
-        spaceObjects.h
-        spaceShip.h
-        parametrizationScreen.h
-        camera.h
-        functions.h
-        Planet.h
-        drawAll.h
-        startMenu.h
-        MODULE.h
-        )
-set(PROJECT_SOURCES
-        main.cpp
-        spaceObjects.cpp
-        spaceShip.cpp
-        parametrizationScreen.cpp
-        camera.cpp
-        functions.cpp
-        Planet.cpp
-        drawAll.cpp
-        startMenu.cpp
-        MODULE.cpp)
-set(PROJECT_IMAGE
-        space-shuttle.png
-        spaceShip.png
-        MODULE.cpp
-        )
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(camera.h drawAll.h functions.h parametrizationScreen.h spaceShip.h spaceObjects.h Planet.h)
 
-add_executable(untitled11 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
+find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 
-set(SFML_STATIC_LIBRARIES TRUE)
-set(SFML_DIR C:/Users/vladi/Documents/SFML-2.5.1/lib/cmake/SFML)
-find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
+add_executable(${PROJECT_NAME} main.cpp camera.cpp parametrizationScreen.cpp spaceObjects.cpp spaceShip.cpp drawAll.cpp Planet.cpp functions.cpp)
 
-include_directories(C:/Users/vladi/Documents/SFML-2.5.1/include)
-target_link_libraries(untitled11 sfml-system sfml-window sfml-graphics sfml-audio)
+target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio)
