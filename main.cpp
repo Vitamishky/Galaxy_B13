@@ -3,38 +3,27 @@
 #include "spaceShip.h"
 #include "camera.h"
 #include "startMenu.h"
+#include "drawAll.h"
 
 int main()
 {
+    drawAll drawObjects;
     parametrizationScreen screen;
-    //Отрисовка окна
+    //ГЋГІГ°ГЁГ±Г®ГўГЄГ  Г®ГЄГ­Г 
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
-                                          screen.getParametrizationScreen().second), "Galaxy-B03");
+                                          screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
     
     window.setFramerateLimit(30);
     window.setVerticalSyncEnabled(true);
 
-    menu menu;
-    //Отрисовка иконки около названия окна
-    sf::Image icon;
-    if (!icon.loadFromFile("image/spaceShip.png")) {
-        return EXIT_FAILURE;
-    }
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    drawObjects.drawIcon(window);
 
-    //Отрисовка заднего фона
-    sf::Texture texture;
-    if (!texture.loadFromFile("image/bg.png")) {
-        return EXIT_FAILURE;
-    }
-    sf::Sprite backWall(texture);
-    
-    //Создание космического корабля
+    //Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЄГ®Г±Г¬ГЁГ·ГҐГ±ГЄГ®ГЈГ® ГЄГ®Г°Г ГЎГ«Гї
     spaceShip spaceship;
 
-    //Работа с камерой слежения
+    //ГђГ ГЎГ®ГІГ  Г± ГЄГ Г¬ГҐГ°Г®Г© Г±Г«ГҐГ¦ГҐГ­ГЁГї
     camera camera(window);
-    camera.resetView();
+    camera.resetView(window);
 
     sf::Clock sf_clock;
 
@@ -89,11 +78,11 @@ int main()
             }
 
             if (event.type == sf::Event::MouseWheelScrolled) {
-                camera.zoomCamera(event);
+                camera.zoomCamera(event, window);
             }
         }
 
-        window.draw(backWall);
+        drawObjects.drawBg(window);
 
         window.setView(camera.getViewCamera());
 

@@ -10,7 +10,7 @@ pair<unsigned int, unsigned int> functions::attraction(const spaceShip& Slave, c
  * @return ускорение по x и по y
  */
 {
-    pair length = make_pair(abs(Slave.getCoordinates().first - Master.getCoordinates().first), abs(Slave.getCoordinates().second - Master.getCoordinates().second));
+    pair<unsigned int, unsigned int> length = make_pair(abs(Slave.getCoordinates().first - Master.getCoordinates().first), abs(Slave.getCoordinates().second - Master.getCoordinates().second));
     float distances = sqrtf(length.first * length.first + length.second * length.second);
     float a = float(G * Master.getMasse() / (distances * distances));
     return make_pair(a * length.first / distances,a * length.second / distances);

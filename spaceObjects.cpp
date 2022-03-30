@@ -8,10 +8,6 @@ spaceObjects::spaceObjects() {
     ySpeed = 5.f / float(screen.getParametrizationScreen().second);
     Width = 128;
     Height = 128;
-
-    if (!texture.loadFromFile("image/spaceObjects.png")) {
-        exit(EXIT_FAILURE);
-    }
 }
 
 void spaceObjects::move(float dt, char move) {
