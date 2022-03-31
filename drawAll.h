@@ -10,12 +10,10 @@ using namespace std;
 class drawAll {
 private:
 	sf::Texture texBg;
-	float xBg;
-	float yBg;
 	sf::Sprite sprBg;
 public:
 	drawAll();
-	void drawBg(sf::RenderWindow&);
+	void drawBg(sf::RenderWindow&, sf::View);
 	void drawIcon(sf::RenderWindow&);
 	~drawAll();
 };

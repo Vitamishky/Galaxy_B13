@@ -2,34 +2,33 @@
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
 #include "camera.h"
-#include "startMenu.h"
 #include "drawAll.h"
 
 int main()
 {
     drawAll drawObjects;
     parametrizationScreen screen;
-    //ГЋГІГ°ГЁГ±Г®ГўГЄГ  Г®ГЄГ­Г 
+    //Отрисовка окна
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
                                           screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
     
     window.setFramerateLimit(30);
+
     window.setVerticalSyncEnabled(true);
 
+    //Отрисовка иконки
     drawObjects.drawIcon(window);
 
-    //Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЄГ®Г±Г¬ГЁГ·ГҐГ±ГЄГ®ГЈГ® ГЄГ®Г°Г ГЎГ«Гї
+    //Создание космического корабля
     spaceShip spaceship;
 
-    //ГђГ ГЎГ®ГІГ  Г± ГЄГ Г¬ГҐГ°Г®Г© Г±Г«ГҐГ¦ГҐГ­ГЁГї
+    //Работа с камерой слежения
     camera camera(window);
     camera.resetView(window);
 
     sf::Clock sf_clock;
 
     while (window.isOpen()) {
-
-        menu.drawMenu(window);
 
         sf::Event event;
 
@@ -82,7 +81,7 @@ int main()
             }
         }
 
-        drawObjects.drawBg(window);
+        drawObjects.drawBg(window, camera.getViewCamera());
 
         window.setView(camera.getViewCamera());
 
