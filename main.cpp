@@ -3,6 +3,7 @@
 #include "spaceShip.h"
 #include "camera.h"
 #include "drawAll.h"
+#include "startMenu.h"
 
 int main()
 {
@@ -12,6 +13,8 @@ int main()
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
                                           screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
     
+    menu menu;
+
     window.setFramerateLimit(30);
 
     window.setVerticalSyncEnabled(true);
@@ -27,6 +30,8 @@ int main()
     camera.resetView(window);
 
     sf::Clock sf_clock;
+
+    menu.drawMenu(window);
 
     while (window.isOpen()) {
 

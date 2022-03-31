@@ -156,6 +156,7 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="spaceObjects.cpp" />
     <ClCompile Include="spaceShip.cpp" />
+    <ClCompile Include="startMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Planet.h" />
     <ClInclude Include="spaceObjects.h" />
     <ClInclude Include="spaceShip.h" />
+    <ClInclude Include="startMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
