@@ -273,6 +273,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+module_1.o: module_1.cpp.o
+.PHONY : module_1.o
+
+# target to build an object file
+module_1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/module_1.cpp.o
+.PHONY : module_1.cpp.o
+
+module_1.i: module_1.cpp.i
+.PHONY : module_1.i
+
+# target to preprocess a source file
+module_1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/module_1.cpp.i
+.PHONY : module_1.cpp.i
+
+module_1.s: module_1.cpp.s
+.PHONY : module_1.s
+
+# target to generate assembly for a file
+module_1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/module_1.cpp.s
+.PHONY : module_1.cpp.s
+
 parametrizationScreen.o: parametrizationScreen.cpp.o
 .PHONY : parametrizationScreen.o
 
@@ -372,6 +396,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... module_1.o"
+	@echo "... module_1.i"
+	@echo "... module_1.s"
 	@echo "... parametrizationScreen.o"
 	@echo "... parametrizationScreen.i"
 	@echo "... parametrizationScreen.s"

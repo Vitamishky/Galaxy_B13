@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/azamath/Repositories/Galaxy_B13/drawAll.cpp" "CMakeFiles/Galaxy_B13.dir/drawAll.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/drawAll.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/functions.cpp" "CMakeFiles/Galaxy_B13.dir/functions.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/functions.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/main.cpp" "CMakeFiles/Galaxy_B13.dir/main.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/main.cpp.o.d"
+  "/Users/azamath/Repositories/Galaxy_B13/module_1.cpp" "CMakeFiles/Galaxy_B13.dir/module_1.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/module_1.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.cpp" "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/spaceObjects.cpp" "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/spaceShip.cpp" "CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.o.d"

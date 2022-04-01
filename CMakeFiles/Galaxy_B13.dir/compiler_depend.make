@@ -1725,6 +1725,7 @@ CMakeFiles/Galaxy_B13.dir/main.cpp.o: main.cpp \
   /usr/local/Cellar/gcc/11.2.0_3/include/c++/11/istream \
   /usr/local/Cellar/gcc/11.2.0_3/include/c++/11/bits/istream.tcc \
   parametrizationScreen.h \
+  MODULE.h \
   spaceObjects.h \
   camera.h \
   drawAll.h
@@ -2755,6 +2756,8 @@ CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.o: spaceShip.cpp \
 
 
 parametrizationScreen.cpp:
+
+MODULE.h:
 
 main.cpp:
 

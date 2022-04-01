@@ -51,7 +51,8 @@
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/Planet.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE_2.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/module_1.h"/>
 					<Add directory="/Library/Frameworks/SFML.framework"/>
 				</Compiler>
 				<MakeCommands>
@@ -75,7 +76,8 @@
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/Planet.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE_2.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/module_1.h"/>
 					<Add directory="/Library/Frameworks/SFML.framework"/>
 				</Compiler>
 				<MakeCommands>
@@ -117,6 +119,12 @@
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/main.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/module_1.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/module_1.h">
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.cpp">
