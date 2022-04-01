@@ -25,10 +25,10 @@ int main()
     if (!textureBg.loadFromFile("image/bg.png")) {
         return EXIT_FAILURE;
     }
-    float xBg = textureBg.getSize().x;
-    float yBg = textureBg.getSize().y;
+    float xBg = float(textureBg.getSize().x);
+    float yBg = float(textureBg.getSize().y);
     sf::Sprite backWall(textureBg); 
-    backWall.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
+    backWall.setScale(float(window.getSize().x) / xBg, float(window.getSize().y) / yBg);
     //Создание космического корабля
     vector<MODULE> masivMODULE;
     spaceShip spaceship(masivMODULE);
@@ -41,7 +41,7 @@ int main()
 
     while (window.isOpen()) {
 
-        sf::Event event;
+        sf::Event event{};
 
         float dt = sf_clock.restart().asSeconds();
 
@@ -57,11 +57,11 @@ int main()
             }
 
             if (event.type == sf::Event::MouseMoved) {
-                camera.moveCamera(event.mouseMove.x, event.mouseMove.y);
+                camera.moveCamera(float(event.mouseMove.x), float(event.mouseMove.y));
             }
 
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                camera.lockedCamera(event.mouseButton.x, event.mouseButton.y);
+                camera.lockedCamera(float(event.mouseButton.x), float(event.mouseButton.y));
             }
             
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
@@ -77,7 +77,6 @@ int main()
 
         window.setView(camera.getViewCamera());
 
-        spaceship.drawSprite(window);
 
         window.display();
 

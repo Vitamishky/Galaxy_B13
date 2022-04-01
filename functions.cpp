@@ -3,7 +3,7 @@
 
 const float G = 1;
 
-pair<unsigned int, unsigned int> functions::attraction(const spaceShip& Slave, const spaceObjects& Master)
+pair<unsigned int, unsigned int> functions::attraction(const spaceObjects& Slave, const spaceObjects& Master)
 /**
  * @param Slave:  То что получает ускорение
  * @param Master:  То к чеу притягивается тело

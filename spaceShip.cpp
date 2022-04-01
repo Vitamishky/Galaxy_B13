@@ -51,3 +51,7 @@ void spaceShip::control() {
         }
     }
 }
+
+void spaceShip::draw(sf::RenderWindow window) {
+
+}

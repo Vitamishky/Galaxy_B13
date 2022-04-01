@@ -25,5 +25,7 @@ public:
     void move(float);
 
     void control();
+
+    void draw(sf::RenderWindow window);
 };
 #endif 
