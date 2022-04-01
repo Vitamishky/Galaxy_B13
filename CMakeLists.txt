@@ -11,6 +11,8 @@ set(PROJECT_HEADERS
         camera.h
         functions.h
         Planet.h
+        MODULE.h
+        module_1.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -20,11 +22,8 @@ set(PROJECT_SOURCES
         camera.cpp
         functions.cpp
         Planet.cpp
-        )
-set(PROJECT_IMAGE
-        space-shuttle.png
-        spaceShip.png
-        spaceObjects.png
+        MODULE.cpp
+        module_1.cpp
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

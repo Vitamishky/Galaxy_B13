@@ -5,14 +5,21 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include "parametrizationScreen.h"
-#include "spaceObjects.h"
+#include "MODULE.h."
 
 using namespace std;
 
-class spaceShip : public spaceObjects {
+class spaceShip{
+protected:
+    float length = 0, Mass = 0;
+    pair<float, float> velocity;
+    float angularVelocity;
+    float fuel, MomentOfInertia = 0;
+    pair<float, float> route;
+    float x, y;
 public:
-    spaceShip();
-    void drawSprite(sf::RenderWindow& gameWindow);
+    spaceShip( const vector<MODULE>& rocket);
+    void move(vector<MODULE>& rocket);
 };
 
 #endif 
