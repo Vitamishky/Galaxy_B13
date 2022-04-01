@@ -52,7 +52,7 @@ void spaceShip::control() {
     }
 }
 
-void spaceShip::draw(sf::RenderWindow window) {
+void spaceShip::draw(sf::RenderWindow &window) {
     for(auto & i : rocket){
         i.drawSprite(window);
     }

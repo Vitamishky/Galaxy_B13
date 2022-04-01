@@ -77,6 +77,7 @@ int main()
 
         window.setView(camera.getViewCamera());
 
+        spaceship.draw(window);
 
         window.display();
 

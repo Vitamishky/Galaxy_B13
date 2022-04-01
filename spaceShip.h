@@ -26,6 +26,6 @@ public:
 
     void control();
 
-    void draw(sf::RenderWindow window);
+    void draw(sf::RenderWindow&);
 };
 #endif 
