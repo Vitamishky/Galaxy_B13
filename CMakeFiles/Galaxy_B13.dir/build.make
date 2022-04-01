@@ -195,19 +195,19 @@ CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.s"
 	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/azamath/Repositories/Galaxy_B13/MODULE_2.cpp -o CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.s
 
-CMakeFiles/Galaxy_B13.dir/module_1.cpp.o: CMakeFiles/Galaxy_B13.dir/flags.make
-CMakeFiles/Galaxy_B13.dir/module_1.cpp.o: module_1.cpp
-CMakeFiles/Galaxy_B13.dir/module_1.cpp.o: CMakeFiles/Galaxy_B13.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/azamath/Repositories/Galaxy_B13/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Galaxy_B13.dir/module_1.cpp.o"
-	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Galaxy_B13.dir/module_1.cpp.o -MF CMakeFiles/Galaxy_B13.dir/module_1.cpp.o.d -o CMakeFiles/Galaxy_B13.dir/module_1.cpp.o -c /Users/azamath/Repositories/Galaxy_B13/module_1.cpp
+CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o: CMakeFiles/Galaxy_B13.dir/flags.make
+CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o: MODULE.cpp
+CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o: CMakeFiles/Galaxy_B13.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/azamath/Repositories/Galaxy_B13/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o"
+	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o -MF CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o.d -o CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o -c /Users/azamath/Repositories/Galaxy_B13/MODULE.cpp
 
-CMakeFiles/Galaxy_B13.dir/module_1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Galaxy_B13.dir/module_1.cpp.i"
-	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/azamath/Repositories/Galaxy_B13/module_1.cpp > CMakeFiles/Galaxy_B13.dir/module_1.cpp.i
+CMakeFiles/Galaxy_B13.dir/MODULE.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Galaxy_B13.dir/MODULE.cpp.i"
+	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/azamath/Repositories/Galaxy_B13/MODULE.cpp > CMakeFiles/Galaxy_B13.dir/MODULE.cpp.i
 
-CMakeFiles/Galaxy_B13.dir/module_1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Galaxy_B13.dir/module_1.cpp.s"
-	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/azamath/Repositories/Galaxy_B13/module_1.cpp -o CMakeFiles/Galaxy_B13.dir/module_1.cpp.s
+CMakeFiles/Galaxy_B13.dir/MODULE.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Galaxy_B13.dir/MODULE.cpp.s"
+	/usr/local/Cellar/gcc/11.2.0_3/bin/g++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/azamath/Repositories/Galaxy_B13/MODULE.cpp -o CMakeFiles/Galaxy_B13.dir/MODULE.cpp.s
 
 # Object files for target Galaxy_B13
 Galaxy_B13_OBJECTS = \
@@ -220,7 +220,7 @@ Galaxy_B13_OBJECTS = \
 "CMakeFiles/Galaxy_B13.dir/Planet.cpp.o" \
 "CMakeFiles/Galaxy_B13.dir/functions.cpp.o" \
 "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o" \
-"CMakeFiles/Galaxy_B13.dir/module_1.cpp.o"
+"CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o"
 
 # External object files for target Galaxy_B13
 Galaxy_B13_EXTERNAL_OBJECTS =
@@ -234,7 +234,7 @@ Galaxy_B13: CMakeFiles/Galaxy_B13.dir/drawAll.cpp.o
 Galaxy_B13: CMakeFiles/Galaxy_B13.dir/Planet.cpp.o
 Galaxy_B13: CMakeFiles/Galaxy_B13.dir/functions.cpp.o
 Galaxy_B13: CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o
-Galaxy_B13: CMakeFiles/Galaxy_B13.dir/module_1.cpp.o
+Galaxy_B13: CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o
 Galaxy_B13: CMakeFiles/Galaxy_B13.dir/build.make
 Galaxy_B13: /Library/Frameworks/./sfml-graphics.framework/Versions/2.5.1/sfml-graphics
 Galaxy_B13: /Library/Frameworks/./sfml-audio.framework/Versions/2.5.1/sfml-audio

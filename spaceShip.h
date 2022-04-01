@@ -7,6 +7,7 @@
 #include "parametrizationScreen.h"
 #include "MODULE.h"
 
+
 using namespace std;
 
 class spaceShip{
@@ -15,11 +16,12 @@ protected:
     pair<float, float> velocity;
     float angularVelocity;
     float fuel, MomentOfInertia = 0;
-    pair<float, float> route;
+    pair<float, float> route = make_pair(0,0);
     float x, y;
 public:
     spaceShip( const vector<MODULE>& rocket);
     void move(vector<MODULE>& rocket);
+    static void control(const vector<MODULE>& rocket);
 };
 
 #endif 

@@ -5,6 +5,14 @@ pair<float,float> MODULE::Acceleration() const{
     return acceleration;
 }
 
+void MODULE::EditAcceleration(pair<float, float> dop) {
+    acceleration.first += dop.first;
+    acceleration.second += dop.second;
+}
+
+float MODULE::PotAcceleration() const {
+    return potAcceleration;
+}
 
 
 void MODULE::draw(float x, float y, pair<float, float> direction) {

@@ -129,6 +129,30 @@ Galaxy_B13/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/build
 .PHONY : Galaxy_B13/fast
 
+MODULE.o: MODULE.cpp.o
+.PHONY : MODULE.o
+
+# target to build an object file
+MODULE.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o
+.PHONY : MODULE.cpp.o
+
+MODULE.i: MODULE.cpp.i
+.PHONY : MODULE.i
+
+# target to preprocess a source file
+MODULE.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE.cpp.i
+.PHONY : MODULE.cpp.i
+
+MODULE.s: MODULE.cpp.s
+.PHONY : MODULE.s
+
+# target to generate assembly for a file
+MODULE.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE.cpp.s
+.PHONY : MODULE.cpp.s
+
 MODULE_2.o: MODULE_2.cpp.o
 .PHONY : MODULE_2.o
 
@@ -273,30 +297,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-module_1.o: module_1.cpp.o
-.PHONY : module_1.o
-
-# target to build an object file
-module_1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/module_1.cpp.o
-.PHONY : module_1.cpp.o
-
-module_1.i: module_1.cpp.i
-.PHONY : module_1.i
-
-# target to preprocess a source file
-module_1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/module_1.cpp.i
-.PHONY : module_1.cpp.i
-
-module_1.s: module_1.cpp.s
-.PHONY : module_1.s
-
-# target to generate assembly for a file
-module_1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/module_1.cpp.s
-.PHONY : module_1.cpp.s
-
 parametrizationScreen.o: parametrizationScreen.cpp.o
 .PHONY : parametrizationScreen.o
 
@@ -378,6 +378,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Galaxy_B13"
+	@echo "... MODULE.o"
+	@echo "... MODULE.i"
+	@echo "... MODULE.s"
 	@echo "... MODULE_2.o"
 	@echo "... MODULE_2.i"
 	@echo "... MODULE_2.s"
@@ -396,9 +399,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... module_1.o"
-	@echo "... module_1.i"
-	@echo "... module_1.s"
 	@echo "... parametrizationScreen.o"
 	@echo "... parametrizationScreen.i"
 	@echo "... parametrizationScreen.s"

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o"
+  "CMakeFiles/Galaxy_B13.dir/MODULE.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o"
   "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/Planet.cpp.o"
@@ -11,8 +13,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Galaxy_B13.dir/functions.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/main.cpp.o"
   "CMakeFiles/Galaxy_B13.dir/main.cpp.o.d"
-  "CMakeFiles/Galaxy_B13.dir/module_1.cpp.o"
-  "CMakeFiles/Galaxy_B13.dir/module_1.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o"
   "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o"
