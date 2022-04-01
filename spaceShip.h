@@ -9,17 +9,21 @@
 
 using namespace std;
 
-class spaceShip{
+class spaceShip {
 private:
     float length = 0, Mass = 0;
     pair<float, float> velocity;
-    float angularVelocity=0;
-    float fuel=0, MomentOfInertia = 0;
+    float angularVelocity = 0;
+    float fuel = 0, MomentOfInertia = 0;
     pair<float, float> route;
-    float x=0, y=0;
-public:
-    spaceShip( const vector<MODULE>&);
-    void move(vector<MODULE>&);
-};
+    float x = 0, y = 0;
+    vector<MODULE> rocket;
 
+public:
+    spaceShip(const vector<MODULE> &rocket);
+
+    void move(float);
+
+    void control();
+};
 #endif 

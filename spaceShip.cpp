@@ -4,7 +4,7 @@
 #include <cmath>
 
 float cordCentreMass = 0;
-spaceShip::spaceShip(const vector<MODULE>& rocket) {
+spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
     for(const auto & i : rocket){
         Mass += i.getMasse();
         cordCentreMass += i.getMasse() * (i.getParametrization().second/ 2 + length) ;
@@ -19,11 +19,8 @@ spaceShip::spaceShip(const vector<MODULE>& rocket) {
     }
 }
 
-void spaceShip::move(vector<MODULE> &rocket) {
-    sf::Clock sf_clock;
-    float dt;
+void spaceShip::move(float dt) {
     for(const auto & i : rocket){
-        dt = sf_clock.restart().asSeconds();
         x+=velocity.first*dt + i.Acceleration().first*dt*dt/2;
         y+=velocity.second*dt + i.Acceleration().second*dt*dt/2;
 
@@ -38,4 +35,11 @@ void spaceShip::move(vector<MODULE> &rocket) {
 
     route.first *= cos(angularVelocity*dt);
     route.second *= sin(angularVelocity*dt);
+}
+void spaceShip::control() {
+    for(auto & i : rocket) {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && i.IsEngine) {
+            i.EditAcceleration(make_pair(0,0));
+        }
+    }
 }
