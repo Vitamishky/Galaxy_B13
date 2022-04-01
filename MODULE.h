@@ -13,6 +13,7 @@ public:
     pair<float,float> Acceleration() const;
     float PotAcceleration() const;
     void EditAcceleration(pair<float, float> dop);
+    void NewCord(float ,float);
 };
 
 #endif //GALAXY_B13_MODULE_H

@@ -11,7 +11,7 @@ using namespace std;
 
 class spaceShip {
 private:
-    float length = 0, Mass = 0;
+    float Mass = 0;
     pair<float, float> velocity;
     float angularVelocity = 0;
     float fuel = 0, MomentOfInertia = 0;

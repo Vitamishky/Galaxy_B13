@@ -5,6 +5,7 @@
 
 float cordCentreMass = 0;
 spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
+    float length=0;
     for(const auto & i : rocket){
         Mass += i.getMasse();
         cordCentreMass += i.getMasse() * (i.getParametrization().second/ 2 + length) ;
@@ -28,7 +29,7 @@ void spaceShip::move(float dt) {
         pair<float,float> pravo = make_pair(route.second, -route.first);
         float a_bokovoie = pravo.second * i.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
 
-        length=0;
+        float length=0;
         angularVelocity += i.getMasse()*a_bokovoie*(i.getParametrization().second/2+length-cordCentreMass);
         length += i.getParametrization().second;
     }
@@ -43,6 +44,12 @@ void spaceShip::move(float dt) {
 
     route.first *= cos(angularVelocity*dt);
     route.second *= sin(angularVelocity*dt);
+
+    float length=0;
+    for(auto & i : rocket){
+        i.NewCord(x + route.first*(i.getParametrization().first/2+length-MomentOfInertia),
+                  y + route.second*(i.getParametrization().first/2+length-MomentOfInertia));
+    }
 }
 void spaceShip::control() {
     for(auto & i : rocket) {
