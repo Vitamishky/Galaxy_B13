@@ -3,23 +3,23 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <stdio.h>
+#include <cstdio>
 #include "parametrizationScreen.h"
 #include "MODULE.h"
 
 using namespace std;
 
 class spaceShip{
-protected:
+private:
     float length = 0, Mass = 0;
     pair<float, float> velocity;
-    float angularVelocity;
-    float fuel, MomentOfInertia = 0;
+    float angularVelocity=0;
+    float fuel=0, MomentOfInertia = 0;
     pair<float, float> route;
-    float x, y;
+    float x=0, y=0;
 public:
-    spaceShip( const vector<MODULE>& rocket);
-    void move(vector<MODULE>& rocket);
+    spaceShip( const vector<MODULE>&);
+    void move(vector<MODULE>&);
 };
 
 #endif 

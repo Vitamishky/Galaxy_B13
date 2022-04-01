@@ -1,10 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
-#include <SFML/Graphics.hpp>
-#include "math.h"
-
-sf::Clock sf_clock;
+#include <cmath>
 
 float cordCentreMass = 0;
 spaceShip::spaceShip(const vector<MODULE>& rocket) {
@@ -23,6 +20,7 @@ spaceShip::spaceShip(const vector<MODULE>& rocket) {
 }
 
 void spaceShip::move(vector<MODULE> &rocket) {
+    sf::Clock sf_clock;
     float dt;
     for(const auto & i : rocket){
         dt = sf_clock.restart().asSeconds();
