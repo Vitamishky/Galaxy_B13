@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "Planet.h"
 #include "parametrizationScreen.h"
-#include "MODULE.h."
+#include "MODULE.h"
 
 using namespace std;
 
