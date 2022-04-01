@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include "parametrizationScreen.h"
-#include "MODULE.h."
+#include "MODULE.h"
 
 using namespace std;
 
