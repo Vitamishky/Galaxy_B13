@@ -3,7 +3,6 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <stdio.h>
 #include "parametrizationScreen.h"
 
 using namespace std;

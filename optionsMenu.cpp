@@ -4,14 +4,14 @@
 #include "drawAll.h"
 #include "optionsMenu.h"
 
-startMenu::startMenu() {
-	isMenu = 1;
-	menuNum = 0;
-	drawAll draw;
-	//optionsMenu optionsMainMenu;
+optionsMenu::optionsMenu() {
+	//isMenu = 1;
+	//menuNum = 0;
+	//drawAll draw;
+	//startMenu startMainMenu;
 }
-
-void startMenu::drawStartMenu(sf::RenderWindow& window) {
+/*
+void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	start = draw.getSpritePlay(window);
 	options = draw.getSpriteOptions(window);
 	exit = draw.getSpriteExit(window);
@@ -35,25 +35,27 @@ void startMenu::drawStartMenu(sf::RenderWindow& window) {
 		}
 		if (sf::IntRect((window.getSize().x - draw.xOp) / 2, window.getSize().y * 0.5f, draw.xOp, draw.yOp).contains(sf::Mouse::getPosition(window))) {
 			options.setColor(sf::Color::Blue);
-			menuNum = 2; 
+			menuNum = 2;
 		}
 		if (sf::IntRect((window.getSize().x - draw.xEx) / 2, window.getSize().y * 0.55f, draw.xEx, draw.yEx).contains(sf::Mouse::getPosition(window))) {
 			exit.setColor(sf::Color::Blue);
-			menuNum = 3; 
+			menuNum = 3;
 		}
 		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			//Если нажали кнопку
 			if (menuNum == 1) {
 				break;
 			}
-			if (menuNum == 2) { 
+			//Если нажали кнопку
+			if (menuNum == 2) {
 				draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
-				//optionsMainMenu.drawOptionsMenu(window);
 				break;
 			}
-			if (menuNum == 3) { 
-				window.close(); 
+			//Если нажали кнопку
+			if (menuNum == 3) {
+				window.close();
 				break;
 			}
 
@@ -62,27 +64,28 @@ void startMenu::drawStartMenu(sf::RenderWindow& window) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
-				window.close(); 
+				window.close();
 				isMenu = false;
 			}
 
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-				window.close(); 
+				window.close();
 				isMenu = false;
 			}
 		}
 
-	    window.draw(draw.getSpriteMenuBackground(window));
-		
+		window.draw(draw.getSpriteMenuBackground(window));
+
 		window.draw(start);
-		
+
 		window.draw(options);
-		
+
 		window.draw(exit);
-		
+
 		window.draw(about);
 
 		window.display();
 	}
 }
-startMenu::~startMenu() {}
+optionsMenu::~optionsMenu() {}
+*/

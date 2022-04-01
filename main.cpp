@@ -13,7 +13,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
                                           screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
     
-    menu menu;
+    startMenu menu;
 
     window.setFramerateLimit(30);
 
@@ -31,7 +31,7 @@ int main()
 
     sf::Clock sf_clock;
 
-    menu.drawMenu(window);
+    menu.drawStartMenu(window);
 
     while (window.isOpen()) {
 

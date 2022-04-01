@@ -1,15 +1,19 @@
-#include <iostream>
+#pragma
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <stdio.h>
-#include "parametrizationScreen.h"
+#include "drawAll.h"
+//#include "optionsMenu.h"
 
-class menu {
+class startMenu {
 private:
 	bool isMenu;
 	int menuNum;
+	drawAll draw;
+	//optionsMenu optionsMainMenu;
+	sf::Sprite start, options, exit, about;
+	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
 public:
-	menu();
-	void drawMenu(sf::RenderWindow&);
-	~menu();
+	startMenu();
+	void drawStartMenu(sf::RenderWindow&);
+	~startMenu();
 };
