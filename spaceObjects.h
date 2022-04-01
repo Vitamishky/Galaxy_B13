@@ -24,9 +24,6 @@ public:
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
     void drawSprite(sf::RenderWindow& gameWindow);
-    parametrizationScreen getScreen()const;
-    sf::Texture getTexture() const;
-    sf::Sprite getSprite() const;
     float getMasse() const;
 };
 
