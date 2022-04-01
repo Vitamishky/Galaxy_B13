@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/azamath/Repositories/Galaxy_B13/MODULE_2.cpp" "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/Planet.cpp" "CMakeFiles/Galaxy_B13.dir/Planet.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/Planet.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/camera.cpp" "CMakeFiles/Galaxy_B13.dir/camera.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/camera.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/drawAll.cpp" "CMakeFiles/Galaxy_B13.dir/drawAll.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/drawAll.cpp.o.d"

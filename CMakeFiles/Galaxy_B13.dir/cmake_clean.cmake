@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o"
+  "CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/Planet.cpp.o"
   "CMakeFiles/Galaxy_B13.dir/Planet.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/camera.cpp.o"

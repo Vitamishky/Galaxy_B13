@@ -129,6 +129,30 @@ Galaxy_B13/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/build
 .PHONY : Galaxy_B13/fast
 
+MODULE_2.o: MODULE_2.cpp.o
+.PHONY : MODULE_2.o
+
+# target to build an object file
+MODULE_2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.o
+.PHONY : MODULE_2.cpp.o
+
+MODULE_2.i: MODULE_2.cpp.i
+.PHONY : MODULE_2.i
+
+# target to preprocess a source file
+MODULE_2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.i
+.PHONY : MODULE_2.cpp.i
+
+MODULE_2.s: MODULE_2.cpp.s
+.PHONY : MODULE_2.s
+
+# target to generate assembly for a file
+MODULE_2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE_2.cpp.s
+.PHONY : MODULE_2.cpp.s
+
 Planet.o: Planet.cpp.o
 .PHONY : Planet.o
 
@@ -330,6 +354,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Galaxy_B13"
+	@echo "... MODULE_2.o"
+	@echo "... MODULE_2.i"
+	@echo "... MODULE_2.s"
 	@echo "... Planet.o"
 	@echo "... Planet.i"
 	@echo "... Planet.s"
