@@ -24,6 +24,7 @@ public:
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
     void drawSprite(sf::RenderWindow& gameWindow);
+    pair<float, float> route;
     float getMasse() const;
 };
 
