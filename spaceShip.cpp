@@ -12,6 +12,6 @@ void spaceShip::drawSprite(sf::RenderWindow& gameWindow) {
     Sprite = sf::Sprite(texture);
     Sprite.setOrigin(Width, Height);
     Sprite.setPosition(x * screen.getParametrizationScreen().first,
-        y * screen.getParametrizationScreen().second);
+                       y * screen.getParametrizationScreen().second);
     gameWindow.draw(Sprite);
 }
