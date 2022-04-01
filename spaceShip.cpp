@@ -34,6 +34,6 @@ void spaceShip::move(vector<MODULE> &rocket) {
 
 void spaceShip::planetAttraction(const Planet& planet) {
     for (auto& i : modules) {
-        i.editAcceleration(functions::attraction(i, planet).first, functions::attraction(i, planet).second);
+        i.editAcceleration(make_pair<float, float>(functions::attraction(i, planet).first, functions::attraction(i, planet).second));
     }
 }

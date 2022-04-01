@@ -9,7 +9,7 @@ public:
     MODULE();
     void draw(float x, float y, pair<float,float> direction);
     pair<float,float> Acceleration() const;
-    void editAcceleration(float, float);
+    void editAcceleration(pair<float, float>);
 };
 
 #endif //GALAXY_B13_MODULE_H
