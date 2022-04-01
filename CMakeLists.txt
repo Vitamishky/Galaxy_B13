@@ -11,6 +11,7 @@ set(PROJECT_HEADERS
         functions.h
         Planet.h
         drawAll.h
+        startMenu.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -21,6 +22,7 @@ set(PROJECT_SOURCES
         functions.cpp
         Planet.cpp
         drawAll.cpp
+        startMenu.cpp
         )
 set(PROJECT_IMAGE
         space-shuttle.png
@@ -31,8 +33,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(untitled11 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
 
 set(SFML_STATIC_LIBRARIES TRUE)
-set(SFML_DIR D:/SFML/lib/cmake/SFML)
+set(SFML_DIR C:/Users/vladi/Documents/SFML-2.5.1/lib/cmake/SFML)
 find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 
-include_directories(D:/SFML/include)
+include_directories(C:/Users/vladi/Documents/SFML-2.5.1/include)
 target_link_libraries(untitled11 sfml-system sfml-window sfml-graphics sfml-audio)
