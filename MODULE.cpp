@@ -5,9 +5,6 @@ pair<float,float> MODULE::Acceleration() const{
     return acceleration;
 }
 
-void MODULE::draw(float x, float y, pair<float, float> direction) {
-
-}
 void MODULE::EditAcceleration(pair<float, float> dop) {
     acceleration.first += dop.first;
     acceleration.second += dop.second;
