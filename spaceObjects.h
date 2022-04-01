@@ -16,6 +16,7 @@ protected:
     int Width, Height;
     sf::Sprite Sprite;
     sf::Texture texture;
+    pair<float,float> direction;
     float Masse = 1;
 public:
     spaceObjects();

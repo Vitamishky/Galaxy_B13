@@ -49,26 +49,6 @@ int main()
                 window.close();
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                spaceship.move(dt, 'l');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                spaceship.move(dt, 'r');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                spaceship.move(dt, 'u');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                spaceship.move(dt, 'd');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
             if (event.type == sf::Event::MouseMoved) {
                 camera.moveCamera(event.mouseMove.x, event.mouseMove.y);
             }

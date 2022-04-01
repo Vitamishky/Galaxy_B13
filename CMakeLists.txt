@@ -12,6 +12,7 @@ set(PROJECT_HEADERS
         Planet.h
         drawAll.h
         startMenu.h
+        MODULE.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -23,10 +24,11 @@ set(PROJECT_SOURCES
         Planet.cpp
         drawAll.cpp
         startMenu.cpp
-        )
+        MODULE.cpp)
 set(PROJECT_IMAGE
         space-shuttle.png
         spaceShip.png
+        MODULE.cpp
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
