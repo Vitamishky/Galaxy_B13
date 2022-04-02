@@ -48,6 +48,7 @@ int main()
 
         while (window.pollEvent(event)) {
             spaceship.move(dt);
+            spaceship.draw(window);
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 window.close();
@@ -73,8 +74,6 @@ int main()
                 camera.zoomCamera(event, window);
             }
 
-            spaceship.move(dt);
-            spaceship.draw(window);
         }
 
         window.draw(backWall);

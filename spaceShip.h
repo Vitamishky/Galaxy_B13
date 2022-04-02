@@ -24,6 +24,8 @@ public:
 
     void move(float);
 
+    float getMasse() const;
+
     void control();
 
     void draw(sf::RenderWindow&);
