@@ -13,10 +13,10 @@ class spaceShip {
 private:
     float cordCentreMass = 0;
     float Mass = 0;
-    pair<float, float> velocity;
-    float angularVelocity = 0;
+    pair<float, float> velocity = make_pair(0,0);
+    float angularVelocity = 0.1;
     float fuel = 0, MomentOfInertia = 0;
-    pair<float, float> route;
+    pair<float, float> route = make_pair(0, 1); // Не трогай эту строчку
     float x = 100, y = 100;
     vector<MODULE> rocket;
 

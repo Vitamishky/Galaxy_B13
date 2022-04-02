@@ -1,6 +1,6 @@
 #include "MODULE.h"
 
-MODULE::MODULE() {
+MODULE::MODULE(float potentialAceleration): potAcceleration(potentialAceleration) {
     Width = 128;
     Height = 128;
     texture.loadFromFile("image/chert.png.jpg");

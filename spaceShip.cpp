@@ -1,6 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
+#include "cmath"
 
 spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
     float length = 0;
@@ -22,17 +23,18 @@ spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
 }
 
 void spaceShip::move(float dt) {
-/** Закоменчкнно, чтобы посмотреть на отрисовку
- * float F_x =0,F_y =0;
+    float F_x =0,F_y =0;
+    float dAngularVelocity = 0;
     for(const auto & modul : rocket){
         F_x = modul.Acceleration().first*modul.getMasse();
         F_y = modul.Acceleration().second*modul.getMasse();
 
         pair<float,float> pravo = make_pair(route.second, -route.first);
+
         float a_bokovoie = pravo.second * modul.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
 
         float length=0;
-        angularVelocity += modul.getMasse()*a_bokovoie*(modul.getParametrization().second/2+length-cordCentreMass);
+        dAngularVelocity += modul.getMasse()*a_bokovoie*(modul.getParametrization().second/2+length-cordCentreMass);
         length += modul.getParametrization().second;
     }
 
@@ -42,11 +44,13 @@ void spaceShip::move(float dt) {
     velocity.first += F_x*dt/Mass;
     velocity.second += F_y*dt/Mass;
 
-    angularVelocity *= dt * MomentOfInertia/3;
+    dAngularVelocity *= dt * MomentOfInertia/3;
 
-    route.first *= cos(angularVelocity*dt);
-    route.second *= sin(angularVelocity*dt);
-**/
+    angularVelocity += dAngularVelocity;
+
+    route.first = route.first*cos(angularVelocity*dt) - route.second * sin(angularVelocity*dt) ;
+    route.second = route.first*sin(angularVelocity*dt) + route.second * cos(angularVelocity*dt);
+
     float length=0;
     //изменение корд модулей
     for(auto & i : rocket){
