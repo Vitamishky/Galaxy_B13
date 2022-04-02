@@ -5,18 +5,21 @@
 
 float cordCentreMass = 0;
 spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
-    float length=0;
-    for(const auto & i : rocket){
+    float length = 0;
+    for (const auto &i: rocket) {
         Mass += i.getMasse();
-        cordCentreMass += i.getMasse() * (i.getParametrization().second/ 2 + length) ;
+        cordCentreMass += i.getMasse() * (i.getParametrization().second / 2 + length);
         length += i.getParametrization().second;
     }
-    length=0;
+    length = 0;
     cordCentreMass /= Mass;
-    for(const auto & i : rocket){
-        MomentOfInertia += i.getMasse()*(i.getParametrization().second/2+length-cordCentreMass)*
-                (i.getParametrization().second/2+length-cordCentreMass);
+    for (const auto &i: rocket) {
+        MomentOfInertia += i.getMasse() * (i.getParametrization().second / 2 + length - cordCentreMass) *
+                           (i.getParametrization().second / 2 + length - cordCentreMass);
         length += i.getParametrization().second;
+
+
+        x = y = 0.5f;
     }
 }
 
@@ -63,4 +66,8 @@ void spaceShip::draw(sf::RenderWindow &window) {
     for(auto & i : rocket){
         i.drawSprite(window);
     }
+}
+
+float spaceShip::getMasse() const {
+    return Mass;
 }

@@ -72,13 +72,14 @@ int main()
             if (event.type == sf::Event::MouseWheelScrolled) {
                 camera.zoomCamera(event, window);
             }
+
+            spaceship.move(dt);
+            spaceship.draw(window);
         }
 
         window.draw(backWall);
 
         window.setView(camera.getViewCamera());
-
-        spaceship.draw(window);
 
         window.display();
 
