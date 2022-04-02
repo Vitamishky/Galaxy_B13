@@ -3,7 +3,7 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <stdio.h>
+#include <cstdio>
 #include "parametrizationScreen.h"
 
 using namespace std;
@@ -16,15 +16,14 @@ protected:
     int Width = 10, Height = 10;
     sf::Sprite Sprite;
     sf::Texture texture;
-    pair<float,float> direction;
+   float angle = 0;
     float Masse = 1;
 public:
     spaceObjects();
-    void move(float, char);
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
     void drawSprite(sf::RenderWindow&);
-    pair<float, float> route;
+    void newAngle(float);
     float getMasse() const;
 };
 

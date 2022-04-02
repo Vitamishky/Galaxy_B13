@@ -1,6 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceObjects.h"
+#include "cmath"
 
 spaceObjects::spaceObjects() {
     x = y = 0.5f;
@@ -10,17 +11,6 @@ spaceObjects::spaceObjects() {
     Height = 128;
     texture.loadFromFile("image/spaceShip.png");
     Sprite.setTexture(texture);
-}
-
-void spaceObjects::move(float dt, char move) {
-    switch (move)
-    {
-    case 'l': x -= dt * xSpeed; break;
-    case 'r': x += dt * xSpeed; break;
-    case 'u': y -= dt * ySpeed; break;
-    case 'd': y += dt * ySpeed; break;
-    default: break;
-    }
 }
 
 pair<float, float> spaceObjects::getCoordinates() const {
@@ -36,9 +26,13 @@ float spaceObjects::getMasse() const {
 }
 
 void spaceObjects::drawSprite(sf::RenderWindow& window) {
-    float angle =0;
     Sprite.setPosition(sf::Vector2f(x,y));
-    Sprite.setRotation(angle);
+    Sprite.setRotation(float(angle*180/M_PI));
     window.draw(Sprite);
 }
+
+void spaceObjects::newAngle(float injection){
+    this->angle = injection;
+}
+
 

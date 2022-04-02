@@ -29,7 +29,7 @@ void spaceShip::move(float dt) {
         F_x = modul.Acceleration().first*modul.getMasse();
         F_y = modul.Acceleration().second*modul.getMasse();
 
-        pair<float,float> pravo = make_pair(route.second, -route.first);
+        pair<float,float> pravo = make_pair(cos(angle), -sin(angle));
 
         float a_bokovoie = pravo.second * modul.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
 
@@ -48,16 +48,17 @@ void spaceShip::move(float dt) {
 
     angularVelocity += dAngularVelocity;
 
-    route.first = route.first*cos(angularVelocity*dt) - route.second * sin(angularVelocity*dt) ;
-    route.second = route.first*sin(angularVelocity*dt) + route.second * cos(angularVelocity*dt);
+    angle += angularVelocity*dt;
 
     float length=0;
     //изменение корд модулей
     for(auto & i : rocket){
-        i.NewCord(x + route.first*(i.getParametrization().first/2+length-cordCentreMass),
-                  y + route.second*(i.getParametrization().first/2+length-cordCentreMass));
+        i.newAngle(angle);
+        i.NewCord(x + sin(angle)*(i.getParametrization().first/2+length-cordCentreMass),
+                  y + cos(angle)*(i.getParametrization().first/2+length-cordCentreMass));
         length +=i.getParametrization().first;
     }
+    cout << endl;
 }
 
 void spaceShip::control() {

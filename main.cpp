@@ -72,10 +72,12 @@ int main()
         }
 
         window.draw(backWall);
-        spaceship.move(dt);
-        spaceship.draw(window);
-        window.setView(camera.getViewCamera());
 
+        spaceship.draw(window);
+
+        spaceship.move(dt);
+
+        window.setView(camera.getViewCamera());
 
         window.display();
 
