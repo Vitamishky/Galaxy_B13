@@ -30,8 +30,8 @@ int main()
     sf::Sprite backWall(textureBg); 
     backWall.setScale(float(window.getSize().x) / xBg, float(window.getSize().y) / yBg);
     //Создание космического корабля
-    MODULE m1, m2, m3, m4;
-    vector<MODULE> masivMODULE = {m1,m2,m3,m4};
+    MODULE m1, m2;
+    vector<MODULE> masivMODULE = {m1,m2};
     spaceShip spaceship(masivMODULE);
 
     //Работа с камерой слежения
@@ -47,14 +47,9 @@ int main()
         float dt = sf_clock.restart().asSeconds();
 
         while (window.pollEvent(event)) {
-            spaceship.move(dt);
-            spaceship.draw(window);
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                window.close();
-            }
-
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+            if (event.type == sf::Event::Closed ||
+            event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
             }
 
@@ -77,8 +72,10 @@ int main()
         }
 
         window.draw(backWall);
-
+        spaceship.move(dt);
+        spaceship.draw(window);
         window.setView(camera.getViewCamera());
+
 
         window.display();
 

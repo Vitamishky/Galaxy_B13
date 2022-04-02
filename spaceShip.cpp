@@ -1,9 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
-#include <cmath>
 
-float cordCentreMass = 0;
 spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
     float length = 0;
     for (const auto &i: rocket) {
@@ -24,17 +22,18 @@ spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
 }
 
 void spaceShip::move(float dt) {
-    float F_x =0,F_y =0;
-    for(const auto & i : rocket){
-        F_x = i.Acceleration().first*i.getMasse();
-        F_y = i.Acceleration().second*i.getMasse();
+/** Закоменчкнно, чтобы посмотреть на отрисовку
+ * float F_x =0,F_y =0;
+    for(const auto & modul : rocket){
+        F_x = modul.Acceleration().first*modul.getMasse();
+        F_y = modul.Acceleration().second*modul.getMasse();
 
         pair<float,float> pravo = make_pair(route.second, -route.first);
-        float a_bokovoie = pravo.second * i.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
+        float a_bokovoie = pravo.second * modul.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
 
         float length=0;
-        angularVelocity += i.getMasse()*a_bokovoie*(i.getParametrization().second/2+length-cordCentreMass);
-        length += i.getParametrization().second;
+        angularVelocity += modul.getMasse()*a_bokovoie*(modul.getParametrization().second/2+length-cordCentreMass);
+        length += modul.getParametrization().second;
     }
 
     x+=velocity.first*dt + F_x*dt*dt/(2*Mass);
@@ -47,13 +46,16 @@ void spaceShip::move(float dt) {
 
     route.first *= cos(angularVelocity*dt);
     route.second *= sin(angularVelocity*dt);
-
+**/
     float length=0;
+    //изменение корд модулей
     for(auto & i : rocket){
-        i.NewCord(x + route.first*(i.getParametrization().first/2+length-MomentOfInertia),
-                  y + route.second*(i.getParametrization().first/2+length-MomentOfInertia));
+        i.NewCord(x + route.first*(i.getParametrization().first/2+length-cordCentreMass),
+                  y + route.second*(i.getParametrization().first/2+length-cordCentreMass));
+        length +=i.getParametrization().first;
     }
 }
+
 void spaceShip::control() {
     for(auto & i : rocket) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && i.IsEngine) {
@@ -68,6 +70,3 @@ void spaceShip::draw(sf::RenderWindow &window) {
     }
 }
 
-float spaceShip::getMasse() const {
-    return Mass;
-}

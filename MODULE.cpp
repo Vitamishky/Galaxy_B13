@@ -1,5 +1,11 @@
 #include "MODULE.h"
 
+MODULE::MODULE() {
+    Width = 128;
+    Height = 128;
+    texture.loadFromFile("image/chert.png.jpg");
+    Sprite.setTexture(texture);
+}
 
 pair<float,float> MODULE::Acceleration() const{
     return acceleration;

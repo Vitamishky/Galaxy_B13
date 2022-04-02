@@ -12,8 +12,8 @@ class spaceObjects {
 protected:
     parametrizationScreen screen;
     float x, y;
-    float xSpeed, ySpeed;
-    int Width, Height;
+    float xSpeed=0, ySpeed=0;
+    int Width = 10, Height = 10;
     sf::Sprite Sprite;
     sf::Texture texture;
     pair<float,float> direction;
@@ -23,7 +23,7 @@ public:
     void move(float, char);
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
-    void drawSprite(sf::RenderWindow& gameWindow);
+    void drawSprite(sf::RenderWindow&);
     pair<float, float> route;
     float getMasse() const;
 };

@@ -11,20 +11,18 @@ using namespace std;
 
 class spaceShip {
 private:
+    float cordCentreMass = 0;
     float Mass = 0;
     pair<float, float> velocity;
     float angularVelocity = 0;
     float fuel = 0, MomentOfInertia = 0;
     pair<float, float> route;
-    float x = 0, y = 0;
+    float x = 100, y = 100;
     vector<MODULE> rocket;
 
 public:
     spaceShip(const vector<MODULE> &rocket);
-
     void move(float);
-
-    float getMasse() const;
 
     void control();
 

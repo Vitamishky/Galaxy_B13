@@ -8,6 +8,8 @@ spaceObjects::spaceObjects() {
     ySpeed = 5.f / float(screen.getParametrizationScreen().second);
     Width = 128;
     Height = 128;
+    texture.loadFromFile("image/spaceShip.png");
+    Sprite.setTexture(texture);
 }
 
 void spaceObjects::move(float dt, char move) {
@@ -33,11 +35,10 @@ float spaceObjects::getMasse() const {
     return Masse;
 }
 
-void spaceObjects::drawSprite(sf::RenderWindow &gameWindow) {
-    Sprite = sf::Sprite(texture);
-    Sprite.setOrigin(float(Width) / 4, float(Height) / 4);
-    Sprite.setPosition(x * float(screen.getParametrizationScreen().first),
-                       y * float(screen.getParametrizationScreen().second));
-    gameWindow.draw(Sprite);
+void spaceObjects::drawSprite(sf::RenderWindow& window) {
+    float angle =0;
+    Sprite.setPosition(sf::Vector2f(x,y));
+    Sprite.setRotation(angle);
+    window.draw(Sprite);
 }
 

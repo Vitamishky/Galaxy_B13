@@ -7,6 +7,7 @@ private:
     float potAcceleration;
     pair<float,float> acceleration = make_pair(0,0);
 public:
+    MODULE();
     bool IsController = false;
     bool IsEngine = false;
     bool IsTurner = false;
