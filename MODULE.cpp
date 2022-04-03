@@ -3,7 +3,7 @@
 MODULE::MODULE(float potentialAceleration, bool IsEngine, bool IsController, bool IsTurner): potAcceleration(potentialAceleration), IsTurner(IsTurner), IsController(IsController), IsEngine(IsEngine) {
     Width = 128;
     Height = 128;
-    texture.loadFromFile("image/chert.png.jpg");
+    texture.loadFromFile("image/chert.jpg");
     Sprite.setTexture(texture);
 }
 

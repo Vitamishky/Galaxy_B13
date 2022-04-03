@@ -34,7 +34,7 @@ int main()
     MODULE m2(0, false, true);
     MODULE m3(10, false, false, true);
     MODULE m4;
-    vector<MODULE> masivMODULE = {m1,m2, m3, m4};
+    vector<MODULE> masivMODULE = {m1, m2, m3, m4};
     spaceShip spaceship(masivMODULE);
 
     //Работа с камерой слежения

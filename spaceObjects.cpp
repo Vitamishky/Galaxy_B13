@@ -10,7 +10,6 @@ spaceObjects::spaceObjects() {
     Width = 128;
     Height = 128;
     texture.loadFromFile("image/spaceShip.png");
-    Sprite.setTexture(texture);
 }
 
 pair<float, float> spaceObjects::getCoordinates() const {
@@ -26,8 +25,10 @@ float spaceObjects::getMasse() const {
 }
 
 void spaceObjects::drawSprite(sf::RenderWindow& window) {
+    Sprite.setTexture(texture);
     float l = sqrtf(float (Height*Height+Width*Width))/2;
-    float b = acos(float (Height)/(2*l)) - angle;
+    float b = acos(float (Height)/(2*l)) + angle;
+    Sprite.setScale(float(Width)/float (texture.getSize().x), float (Height)/float (texture.getSize().y));
     Sprite.setPosition(sf::Vector2f(x - l *sin(b),y - l*cos(b)));
     Sprite.setRotation(float(-angle*180/M_PI));
     window.draw(Sprite);
