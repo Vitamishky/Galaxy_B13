@@ -7,10 +7,10 @@ private:
     float potAcceleration;
     pair<float,float> acceleration = make_pair(0,0);
 public:
-    MODULE(float);
-    bool IsController = false;
-    bool IsEngine = false;
-    bool IsTurner = false;
+    MODULE(float potentialAceleration=0, bool IsEngine = false, bool IsController = false, bool IsTurner = false);
+    bool IsController;
+    bool IsEngine;
+    bool IsTurner;
     pair<float,float> Acceleration() const;
     float PotAcceleration() const;
     void EditAcceleration(pair<float, float> dop);

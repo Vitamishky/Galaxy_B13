@@ -1,6 +1,6 @@
 #include "MODULE.h"
 
-MODULE::MODULE(float potentialAceleration): potAcceleration(potentialAceleration) {
+MODULE::MODULE(float potentialAceleration, bool IsEngine, bool IsController, bool IsTurner): potAcceleration(potentialAceleration), IsTurner(IsTurner), IsController(IsController), IsEngine(IsEngine) {
     Width = 128;
     Height = 128;
     texture.loadFromFile("image/chert.png.jpg");

@@ -30,7 +30,10 @@ int main()
     sf::Sprite backWall(textureBg); 
     backWall.setScale(float(window.getSize().x) / xBg, float(window.getSize().y) / yBg);
     //Создание космического корабля
-    MODULE m1(0), m2(0), m3(10), m4(100);
+    MODULE m1(20, true);
+    MODULE m2(0, false, true);
+    MODULE m3(10, false, false, true);
+    MODULE m4;
     vector<MODULE> masivMODULE = {m1,m2, m3, m4};
     spaceShip spaceship(masivMODULE);
 
