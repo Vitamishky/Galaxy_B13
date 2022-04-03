@@ -26,8 +26,10 @@ float spaceObjects::getMasse() const {
 }
 
 void spaceObjects::drawSprite(sf::RenderWindow& window) {
-    Sprite.setPosition(sf::Vector2f(x,y));
-    Sprite.setRotation(float(angle*180/M_PI));
+    float l = sqrtf(float (Height*Height+Width*Width))/2;
+    float b = acos(float (Height)/(2*l)) - angle;
+    Sprite.setPosition(sf::Vector2f(x - l *sin(b),y - l*cos(b)));
+    Sprite.setRotation(float(-angle*180/M_PI));
     window.draw(Sprite);
 }
 
