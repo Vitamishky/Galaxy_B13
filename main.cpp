@@ -92,6 +92,10 @@ int main()
 
         spaceship.drawSprite(window);
 
+        drawObjects.drawLeftInter(window, camera.getViewCamera());
+        drawObjects.drawRightInter(window, camera.getViewCamera());
+        drawObjects.drawFuel(window, camera.getViewCamera());
+
         window.display();
 
         window.clear();

@@ -5,6 +5,14 @@
 drawAll::drawAll() {
     texBg.loadFromFile("image/bg.png");
     sprBg.setTexture(texBg);
+	icon.loadFromFile("image/spaceShip.png");
+
+	texLeftInter.loadFromFile("image/spaceShip.png");
+	sprLeftInter.setTexture(texLeftInter);
+	texRightInter.loadFromFile("image/spaceShip.png");
+	sprRightInter.setTexture(texRightInter);
+	texFuel.loadFromFile("image/spaceShip.png");
+	sprFuel.setTexture(texFuel);
 	//отрисовка главного меню
 	buttonPlayFull.loadFromFile("image/buttons.png");
 	buttonOptionsFull.loadFromFile("image/buttons.png");
@@ -33,8 +41,8 @@ drawAll::drawAll() {
 }
 
 void drawAll::drawBg(sf::RenderWindow& window, sf::View view) {
-    float vSize_x = 2.0f * view.getSize().x;
-    float vSize_y = 2.0f * view.getSize().y;
+    float vSize_x = 1.5f * view.getSize().x;
+    float vSize_y = 1.5f * view.getSize().y;
     float xBg = sprBg.getLocalBounds().width;
     float yBg = sprBg.getLocalBounds().height;
     sprBg.setScale(vSize_x / xBg, vSize_y / yBg);
@@ -44,9 +52,37 @@ void drawAll::drawBg(sf::RenderWindow& window, sf::View view) {
 
 void drawAll::drawIcon(sf::RenderWindow& window) {
     //Отрисовка иконки около названия окна
-    sf::Image icon;
-    icon.loadFromFile("image/spaceShip.png");
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+}
+
+void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view) {
+	float vSize_x = 0.15f * view.getSize().x;
+	float vSize_y = 0.6f * view.getSize().y;
+	float xLeftInter = sprLeftInter.getLocalBounds().width;
+	float yLeftInter = sprLeftInter.getLocalBounds().height;
+	sprLeftInter.setScale(vSize_x / xLeftInter, vSize_y / yLeftInter);
+	sprLeftInter.setPosition(sf::Vector2f(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - vSize_y / 2));
+	window.draw(sprLeftInter);
+}
+
+void drawAll::drawRightInter(sf::RenderWindow& window, sf::View view) {
+	float vSize_x = 0.15f * view.getSize().x;
+	float vSize_y = 0.6f * view.getSize().y;
+	float xRightInter = sprRightInter.getLocalBounds().width;
+	float yRightInter = sprRightInter.getLocalBounds().height;
+	sprRightInter.setScale(vSize_x / xRightInter, vSize_y / yRightInter);
+	sprRightInter.setPosition(sf::Vector2f(view.getCenter().x + view.getSize().x / 2 - vSize_x, view.getCenter().y - vSize_y / 2));
+	window.draw(sprRightInter);
+}
+
+void drawAll::drawFuel(sf::RenderWindow& window, sf::View view) {
+	float vSize_x = 0.15f * view.getSize().x;
+	float vSize_y = 0.09f * view.getSize().y;
+	float xFuel = sprFuel.getLocalBounds().width;
+	float yFuel = sprFuel.getLocalBounds().height;
+	sprFuel.setScale(vSize_x / xFuel, vSize_y / yFuel);
+	sprFuel.setPosition(sf::Vector2f(view.getCenter().x - vSize_x / 2, view.getCenter().y - view.getSize().y / 2));
+	window.draw(sprFuel);
 }
 
 sf::Sprite drawAll::getSpritePlay(sf::RenderWindow& window) {
