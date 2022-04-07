@@ -95,6 +95,7 @@ int main()
         drawObjects.drawLeftInter(window, camera.getViewCamera());
         drawObjects.drawRightInter(window, camera.getViewCamera());
         drawObjects.drawFuel(window, camera.getViewCamera());
+        drawObjects.drawCompas(window, camera.getViewCamera());
 
         window.display();
 

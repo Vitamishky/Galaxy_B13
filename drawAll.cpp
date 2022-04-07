@@ -6,7 +6,9 @@ drawAll::drawAll() {
     texBg.loadFromFile("image/bg.png");
     sprBg.setTexture(texBg);
 	icon.loadFromFile("image/spaceShip.png");
-
+	// Отрисовка интерфейса
+	texCompas.loadFromFile("image/spaceShip.png");
+	shapeCompas.setTexture(&texCompas);
 	texLeftInter.loadFromFile("image/spaceShip.png");
 	sprLeftInter.setTexture(texLeftInter);
 	texRightInter.loadFromFile("image/spaceShip.png");
@@ -83,6 +85,14 @@ void drawAll::drawFuel(sf::RenderWindow& window, sf::View view) {
 	sprFuel.setScale(vSize_x / xFuel, vSize_y / yFuel);
 	sprFuel.setPosition(sf::Vector2f(view.getCenter().x - vSize_x / 2, view.getCenter().y - view.getSize().y / 2));
 	window.draw(sprFuel);
+}
+
+void drawAll::drawCompas(sf::RenderWindow& window, sf::View view) {
+	float vSize_x = 0.1f * view.getSize().x;
+	float xCompas = shapeCompas.getLocalBounds().width;
+	shapeCompas.setRadius(vSize_x);
+	shapeCompas.setPosition(view.getCenter().x - vSize_x, view.getCenter().y + view.getSize().y / 2 - vSize_x);
+	window.draw(shapeCompas);
 }
 
 sf::Sprite drawAll::getSpritePlay(sf::RenderWindow& window) {

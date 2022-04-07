@@ -13,8 +13,9 @@ private:
 	sf::Texture texBg;	
 	sf::Sprite sprBg;
 	//Отрисовка интерфейса
-	sf::Texture texLeftInter, texRightInter, texFuel;
+	sf::Texture texLeftInter, texRightInter, texFuel, texCompas;
 	sf::Sprite sprLeftInter, sprRightInter, sprFuel;
+	sf::CircleShape shapeCompas;
 	//Стартового меню
 	sf::Texture buttonPlayFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, menuBackground;
 	sf::Sprite buttonPlay, buttonOptions, buttonExit, aboutTexture;	
@@ -26,6 +27,7 @@ public:
 	void drawLeftInter(sf::RenderWindow&, sf::View);
 	void drawRightInter(sf::RenderWindow&, sf::View);
 	void drawFuel(sf::RenderWindow&, sf::View);
+	void drawCompas(sf::RenderWindow&, sf::View);
 	float xBg, yBg, xPl, yPl, xOp, yOp, xEx, yEx, xAb, yAb;
 	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
 	sf::Sprite getSpritePlay(sf::RenderWindow&);

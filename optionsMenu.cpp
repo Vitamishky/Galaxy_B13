@@ -1,29 +1,29 @@
+#pragma once
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "startMenu.h"
 #include "drawAll.h"
 #include "optionsMenu.h"
 
 optionsMenu::optionsMenu() {
-	//isMenu = 1;
-	//menuNum = 0;
-	//drawAll draw;
-	//startMenu startMainMenu;
+	isMenu = true;
+	menuNum = 0;
+	drawAll draw;
 }
-/*
+
 void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	start = draw.getSpritePlay(window);
 	options = draw.getSpriteOptions(window);
 	exit = draw.getSpriteExit(window);
 	about = draw.getSpriteAbout(window);
+	/*
 	vSStartMenu.push_back(start);
 	vSStartMenu.push_back(options);
 	vSStartMenu.push_back(exit);
 	vSOptionsMenu.push_back(about);
-	//vSOptionsMenu.push_back(start);
-	//vSOptionsMenu.push_back(start);
-	//optionsMenu = draw.drawOptionsMenu(window);
-	while (isMenu) {
+	vSOptionsMenu.push_back(start);
+	vSOptionsMenu.push_back(start);
+	*/
+	while (true) {
 		start.setColor(sf::Color::White);
 		options.setColor(sf::Color::White);
 		exit.setColor(sf::Color::White);
@@ -88,4 +88,3 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	}
 }
 optionsMenu::~optionsMenu() {}
-*/

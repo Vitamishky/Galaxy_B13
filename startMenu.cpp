@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "startMenu.h"
@@ -8,7 +9,7 @@ startMenu::startMenu() {
 	isMenu = 1;
 	menuNum = 0;
 	drawAll draw;
-	//optionsMenu optionsMainMenu;
+	optionsMenu optionsMainMenu;
 }
 
 void startMenu::drawStartMenu(sf::RenderWindow& window) {
@@ -16,13 +17,15 @@ void startMenu::drawStartMenu(sf::RenderWindow& window) {
 	options = draw.getSpriteOptions(window);
 	exit = draw.getSpriteExit(window);
 	about = draw.getSpriteAbout(window);
+	/*
 	vSStartMenu.push_back(start);
 	vSStartMenu.push_back(options);
 	vSStartMenu.push_back(exit);
 	vSOptionsMenu.push_back(about);
-	//vSOptionsMenu.push_back(start);
-	//vSOptionsMenu.push_back(start);
-	//optionsMenu = draw.drawOptionsMenu(window);
+	vSOptionsMenu.push_back(start);
+	vSOptionsMenu.push_back(start);
+	optionsMenu = draw.drawOptionsMenu(window);
+	*/
 	while (isMenu) {
 		start.setColor(sf::Color::White);
 		options.setColor(sf::Color::White);
@@ -48,8 +51,8 @@ void startMenu::drawStartMenu(sf::RenderWindow& window) {
 				break;
 			}
 			if (menuNum == 2) { 
-				draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
-				//optionsMainMenu.drawOptionsMenu(window);
+				//draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
+				optionsMainMenu.drawOptionsMenu(window);
 				break;
 			}
 			if (menuNum == 3) { 
