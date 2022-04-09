@@ -1,57 +1,92 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
-#include <SFML/Graphics.hpp>
-#include "math.h"
-#include "MODULE.h"
+#include "cmath"
 
-
-float dt = sf_clock.restart().asSeconds();
-
-sf::Clock sf_clock;
-#include <cmath>
-
-float cordCentreMass = 0;
 spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
-    for(const auto & i : rocket){
+    float length = 0;
+    for (const auto &i: rocket) {
         Mass += i.getMasse();
-        cordCentreMass += i.getMasse() * (i.getParametrization().second/ 2 + length) ;
+        cordCentreMass += i.getMasse() * (i.getParametrization().second / 2 + length);
         length += i.getParametrization().second;
     }
-    length=0;
+    length = 0;
     cordCentreMass /= Mass;
-    for(const auto & i : rocket){
-        MomentOfInertia += i.getMasse()*(i.getParametrization().second/2+length-cordCentreMass)*
-                (i.getParametrization().second/2+length-cordCentreMass);
+    for (const auto &i: rocket) {
+        MomentOfInertia += i.getMasse() * (i.getParametrization().second / 2 + length - cordCentreMass) *
+                           (i.getParametrization().second / 2 + length - cordCentreMass);
         length += i.getParametrization().second;
+
+
+        x = y = 0.5f;
     }
 }
 
 void spaceShip::move(float dt) {
-    for(const auto & i : rocket){
-        x+=velocity.first + i.Acceleration().first*dt*dt/2;
-        dt = sf_clock.restart().asSeconds();
-        x+=velocity.first*dt + i.Acceleration().first*dt*dt/2;
-        y+=velocity.second*dt + i.Acceleration().second*dt*dt/2;
+    float F_x =0,F_y =0;
+    float dAngularVelocity = 0;
+    for(const auto & modul : rocket){
+        F_x = modul.Acceleration().first*modul.getMasse();
+        F_y = modul.Acceleration().second*modul.getMasse();
 
-        pair<float,float> pravo = make_pair(route.second, -route.first);
-        float a_bokovoie = pravo.second * i.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
+        pair<float,float> pravo = make_pair(cos(angle), -sin(angle));
 
-        length=0;
-        angularVelocity += i.getMasse()*a_bokovoie*(i.getParametrization().second/2+length-cordCentreMass);
-        length += i.getParametrization().second;
+        float a_bokovoie = pravo.second * modul.Acceleration().second/ sqrtf(pravo.second*pravo.second +pravo.first*pravo.first);
+
+        float length=0;
+        dAngularVelocity += modul.getMasse()*a_bokovoie*(modul.getParametrization().second/2+length-cordCentreMass);
+        length += modul.getParametrization().second;
     }
-    angularVelocity *= dt * MomentOfInertia/3;
 
-    route.first *= cos(angularVelocity*dt);
-    route.second *= sin(angularVelocity*dt);
+    x+=velocity.first*dt + F_x*dt*dt/(2*Mass);
+    y+=velocity.second*dt + F_y*dt*dt/(2*Mass);
+
+    velocity.first += F_x*dt/Mass;
+    velocity.second += F_y*dt/Mass;
+
+    dAngularVelocity *= dt * MomentOfInertia/3;
+
+    angularVelocity += dAngularVelocity;
+
+    angle += angularVelocity*dt;
+
+    float length=0;
+    //????????? ???? ???????
+    for(auto & i : rocket){
+        i.newAngle(angle);
+        i.NewCord(x + sin(angle)*(i.getParametrization().first/2+length-cordCentreMass),
+                  y + cos(angle)*(i.getParametrization().first/2+length-cordCentreMass));
+        length +=i.getParametrization().first;
+    }
+    cout << endl;
 }
 
 void spaceShip::control() {
-    for(auto & i : rocket) {
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && i.IsEngine) {
-            i.EditAcceleration(i.PotAcceleration()* route.first/sqrt((route.first)*(route.first) + (route.second)*(route.second));
-
+    bool crutch = false;
+    float dfuel = 1;
+    float dair = 1;
+    for(auto & module : rocket) {
+        if(module.IsController) crutch = true;
+    }
+    if (crutch) {
+        for (auto &module: rocket) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration()/dfuel)) {
+                module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle),
+                                                      module.Forward_PotAcceleration() * cos(angle)));
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration()/dair)) {
+                module.EditAcceleration(make_pair(module.Side_PotAcceleration()*cos(angle), -module.Side_PotAcceleration()*sin(angle)));
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration()/dair)) {
+                module.EditAcceleration(make_pair(-module.Side_PotAcceleration()*cos(angle), module.Side_PotAcceleration()*sin(angle)));
+            }
         }
+    }
+}
+
+
+void spaceShip::draw(sf::RenderWindow &window) {
+    for(auto & i : rocket){
+        i.drawSprite(window);
     }
 }

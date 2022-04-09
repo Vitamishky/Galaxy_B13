@@ -1,6 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceObjects.h"
+#include "cmath"
 
 spaceObjects::spaceObjects() {
     x = y = 0.5f;
@@ -8,17 +9,7 @@ spaceObjects::spaceObjects() {
     ySpeed = 5.f / float(screen.getParametrizationScreen().second);
     Width = 128;
     Height = 128;
-}
-
-void spaceObjects::move(float dt, char move) {
-    switch (move)
-    {
-    case 'l': x -= dt * xSpeed; break;
-    case 'r': x += dt * xSpeed; break;
-    case 'u': y -= dt * ySpeed; break;
-    case 'd': y += dt * ySpeed; break;
-    default: break;
-    }
+    texture.loadFromFile("image/spaceShip.png");
 }
 
 pair<float, float> spaceObjects::getCoordinates() const {
@@ -32,14 +23,17 @@ pair<float, float> spaceObjects::getParametrization() const {
 float spaceObjects::getMasse() const {
     return Masse;
 }
-sf::Texture spaceObjects::getTexture() const {
-    return texture;
+
+void spaceObjects::drawSprite(sf::RenderWindow& window) {
+    Sprite.setTexture(texture);
+    float l = sqrtf(float (Height*Height+Width*Width))/2;
+    float b = acos(float (Height)/(2*l)) + angle;
+    Sprite.setScale(float(Width)/float (texture.getSize().x), float (Height)/float (texture.getSize().y));
+    Sprite.setPosition(sf::Vector2f(x - l *sin(b),y - l*cos(b)));
+    Sprite.setRotation(float(-angle*180/M_PI));
+    window.draw(Sprite);
 }
 
-sf::Sprite spaceObjects::getSprite() const {
-    return Sprite;
-}
-
-parametrizationScreen spaceObjects::getScreen() const {
-    return screen;
+void spaceObjects::newAngle(float injection){
+    this->angle = injection;
 }
