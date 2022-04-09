@@ -19,7 +19,8 @@ int main()
     drawObjects.drawIcon(window);
 
     //Создание космического корабля
-    spaceShip spaceship;
+    vector<MODULE> masivMODULE;
+    spaceShip spaceship(masivMODULE);
 
     //Работа с камерой слежения
     camera camera(window);
@@ -34,33 +35,14 @@ int main()
         float dt = sf_clock.restart().asSeconds();
 
         while (window.pollEvent(event)) {
+            spaceship.move(dt);
 
-            if (event.type == sf::Event::Closed) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
                 window.close();
             }
 
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                spaceship.move(dt, 'l');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                spaceship.move(dt, 'r');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                spaceship.move(dt, 'u');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                spaceship.move(dt, 'd');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (event.type == sf::Event::MouseMoved) {

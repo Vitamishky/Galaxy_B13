@@ -9,9 +9,10 @@
 float dt = sf_clock.restart().asSeconds();
 
 sf::Clock sf_clock;
+#include <cmath>
 
 float cordCentreMass = 0;
-spaceShip::spaceShip(const vector<MODULE>& rocket) {
+spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
     for(const auto & i : rocket){
         Mass += i.getMasse();
         cordCentreMass += i.getMasse() * (i.getParametrization().second/ 2 + length) ;
@@ -26,8 +27,7 @@ spaceShip::spaceShip(const vector<MODULE>& rocket) {
     }
 }
 
-void spaceShip::move(vector<MODULE> &rocket) {
-    float dt;
+void spaceShip::move(float dt) {
     for(const auto & i : rocket){
         x+=velocity.first + i.Acceleration().first*dt*dt/2;
         dt = sf_clock.restart().asSeconds();
@@ -47,13 +47,10 @@ void spaceShip::move(vector<MODULE> &rocket) {
     route.second *= sin(angularVelocity*dt);
 }
 
-
-void spaceShip::control(const vector<MODULE> &rocket) {
-    for(const auto & i : rocket) {
+void spaceShip::control() {
+    for(auto & i : rocket) {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && i.IsEngine) {
-            i.EditAcceleration(i.PotAcceleration()* route.first/sqrt((route.first)*(route.first) + (route.second)*(route.second)))
-        }
-        else {
+            i.EditAcceleration(i.PotAcceleration()* route.first/sqrt((route.first)*(route.first) + (route.second)*(route.second));
 
         }
     }
