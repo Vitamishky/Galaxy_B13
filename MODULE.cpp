@@ -47,3 +47,10 @@ void MODULE::NewCord(float x, float y){
     this->y = y;
 }
 
+void MODULE::NewAcceleration(pair<float, float> Na) {
+    acceleration.first=Na.first;
+    acceleration.second=Na.second;
+
+}
+
+
