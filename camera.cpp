@@ -4,15 +4,13 @@
 #include <stdio.h>
 #include "camera.h"
 
-using namespace std;
-
 camera::camera(sf::RenderWindow& window) {
 	locked = false;
 	view = window.getView();
 	scale = 2.0f;
 }
 
-void camera::lockedCamera(float x, float y) {
+void camera::lockedCamera(int x, int y) {
 	position.x = x;
 	position.y = y;
 	locked = true;
@@ -22,9 +20,9 @@ void camera::unlockCamera() {
 	locked = false;
 }
 
-void camera::moveCamera(float x, float y) {
+void camera::moveCamera(int x, int y) {
 	if (locked) {
-		view.move(position.x - x, position.y - y);
+		view.move((position.x - x) * 1.0f, (position.y - y) * 1.0f);
 		position.x = x;
 		position.y = y;
 	}
@@ -33,19 +31,19 @@ void camera::moveCamera(float x, float y) {
 sf::View camera::getViewCamera() {
 	return view;
 }
-
+/*
 sf::View camera::getCoordinatesForView(float x, float y) {
 	view.setCenter(x + 100, y);
 	return view;
 }
-
+*/
 void camera::resetView(sf::RenderWindow& window) {
-	view.reset(sf::FloatRect(0, 0, window.getSize().x, window.getSize().y));
+	view.reset(sf::FloatRect(0.0f, 0.0f, window.getSize().x * 1.0f, window.getSize().y * 1.0f));
 }
 
 void camera::zoomCamera(sf::Event scroll, sf::RenderWindow& window) {
-	float ws = window.getSize().x / 2 + window.getPosition().x;
-	float hs = window.getSize().y / 2 + window.getPosition().y;
+	float ws = window.getSize().x / 2.0f + window.getPosition().x;
+	float hs = window.getSize().y / 2.0f + window.getPosition().y;
 	sf::Vector2f raznica = sf::Vector2f(sf::Mouse::getPosition().x - ws, sf::Mouse::getPosition().y - hs);
 
 	if (scroll.mouseWheelScroll.delta < 0) {

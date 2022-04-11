@@ -8,13 +8,18 @@ using namespace std;
 
 class drawAll {
 private:
+	//Текст
+	sf::Font font;
+	sf::Text text;
+	vector<sf::Text> vLText;
+	//Иконка
 	sf::Image icon;
 	//Отрисовка заднего фона
 	sf::Texture texBg;	
 	sf::Sprite sprBg;
 	//Отрисовка интерфейса
-	sf::Texture texLeftInter, texRightInter, texFuel, texCompas;
-	sf::Sprite sprLeftInter, sprRightInter, sprFuel;
+	sf::Texture texLeftInter, texRightInter, texFuel, texCompasRadar, texArrow;
+	sf::Sprite sprLeftInter, sprRightInter, sprFuel, sprArrow;
 	sf::CircleShape shapeCompas;
 	//Стартового меню
 	sf::Texture buttonPlayFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, menuBackground;
@@ -28,6 +33,7 @@ public:
 	void drawRightInter(sf::RenderWindow&, sf::View);
 	void drawFuel(sf::RenderWindow&, sf::View);
 	void drawCompas(sf::RenderWindow&, sf::View);
+	void drawArrow(sf::RenderWindow&, sf::View);
 	float xBg, yBg, xPl, yPl, xOp, yOp, xEx, yEx, xAb, yAb;
 	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
 	sf::Sprite getSpritePlay(sf::RenderWindow&);

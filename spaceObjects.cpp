@@ -32,13 +32,6 @@ pair<float, float> spaceObjects::getParametrization() const {
 float spaceObjects::getMasse() const {
     return Masse;
 }
-sf::Texture spaceObjects::getTexture() const {
-    return texture;
-}
-
-sf::Sprite spaceObjects::getSprite() const {
-    return Sprite;
-}
 
 parametrizationScreen spaceObjects::getScreen() const {
     return screen;

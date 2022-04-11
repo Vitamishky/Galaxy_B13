@@ -1,5 +1,3 @@
-
-
 #ifndef GALAXY_B03_FUNCTIONS_H
 #define GALAXY_B03_FUNCTIONS_H
 #include <iostream>

@@ -7,14 +7,14 @@
 optionsMenu::optionsMenu() {
 	isMenu = true;
 	menuNum = 0;
-	drawAll draw;
+	drawAll *draw = new drawAll;
 }
 
 void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
-	start = draw.getSpritePlay(window);
-	options = draw.getSpriteOptions(window);
-	exit = draw.getSpriteExit(window);
-	about = draw.getSpriteAbout(window);
+	start = draw->getSpritePlay(window);
+	options = draw->getSpriteOptions(window);
+	exit = draw->getSpriteExit(window);
+	about = draw->getSpriteAbout(window);
 	/*
 	vSStartMenu.push_back(start);
 	vSStartMenu.push_back(options);
@@ -23,21 +23,21 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	vSOptionsMenu.push_back(start);
 	vSOptionsMenu.push_back(start);
 	*/
-	while (true) {
+	while (isMenu) {
 		start.setColor(sf::Color::White);
 		options.setColor(sf::Color::White);
 		exit.setColor(sf::Color::White);
 		menuNum = 0;
 
-		if (sf::IntRect((window.getSize().x - draw.xPl) / 2, window.getSize().y * 0.45f, draw.xPl, draw.yPl).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect((window.getSize().x - draw->xPl) / 2, window.getSize().y * 0.45f, draw->xPl, draw->yPl).contains(sf::Mouse::getPosition(window))) {
 			start.setColor(sf::Color::Blue);
 			menuNum = 1;
 		}
-		if (sf::IntRect((window.getSize().x - draw.xOp) / 2, window.getSize().y * 0.5f, draw.xOp, draw.yOp).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect((window.getSize().x - draw->xOp), window.getSize().y * 0.5f, draw->xOp, draw->yOp).contains(sf::Mouse::getPosition(window))) {
 			options.setColor(sf::Color::Blue);
 			menuNum = 2;
 		}
-		if (sf::IntRect((window.getSize().x - draw.xEx) / 2, window.getSize().y * 0.55f, draw.xEx, draw.yEx).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect((window.getSize().x - draw->xEx), window.getSize().y * 0.55f, draw->xEx, draw->yEx).contains(sf::Mouse::getPosition(window))) {
 			exit.setColor(sf::Color::Blue);
 			menuNum = 3;
 		}
@@ -50,12 +50,12 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 			}
 			//Если нажали кнопку
 			if (menuNum == 2) {
-				draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
+				//draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
 				break;
 			}
 			//Если нажали кнопку
 			if (menuNum == 3) {
-				window.close();
+				//window.close();
 				break;
 			}
 
@@ -74,7 +74,7 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 			}
 		}
 
-		window.draw(draw.getSpriteMenuBackground(window));
+		//window.draw(draw->getSpriteMenuBackground(window));
 
 		window.draw(start);
 

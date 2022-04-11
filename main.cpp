@@ -7,31 +7,34 @@
 
 int main()
 {
-    drawAll drawObjects;
-    parametrizationScreen screen;
-    //Отрисовка окна
-    sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
-                                          screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
+    parametrizationScreen *screen = new parametrizationScreen;
     
-    startMenu menu;
+    //Отрисовка окна
+    sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first, 
+                                          screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
+    
+    camera *Camera = new camera(window);
 
+    startMenu *menu = new startMenu();
+    drawAll *drawObjects = new drawAll;
+    
     window.setFramerateLimit(30);
 
     window.setVerticalSyncEnabled(true);
 
     //Отрисовка иконки
-    drawObjects.drawIcon(window);
+    drawObjects->drawIcon(window);
 
     //Создание космического корабля
-    spaceShip spaceship;
+    spaceShip *spaceship = new spaceShip;
 
     //Работа с камерой слежения
-    camera camera(window);
-    camera.resetView(window);
+    
+    Camera->resetView(window);
 
     sf::Clock sf_clock;
 
-    menu.drawStartMenu(window);
+    //menu->drawStartMenu(window);
 
     while (window.isOpen()) {
 
@@ -50,57 +53,63 @@ int main()
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                spaceship.move(dt, 'l');
+                spaceship->move(dt, 'l');
                 //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                spaceship.move(dt, 'r');
+                spaceship->move(dt, 'r');
                 //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                spaceship.move(dt, 'u');
+                spaceship->move(dt, 'u');
                 //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                spaceship.move(dt, 'd');
+                spaceship->move(dt, 'd');
                 //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (event.type == sf::Event::MouseMoved) {
-                camera.moveCamera(event.mouseMove.x, event.mouseMove.y);
+                Camera->moveCamera(event.mouseMove.x, event.mouseMove.y);
             }
 
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                camera.lockedCamera(event.mouseButton.x, event.mouseButton.y);
+                Camera->lockedCamera(event.mouseButton.x, event.mouseButton.y);
             }
             
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-                camera.unlockCamera();
+                Camera->unlockCamera();
             }
 
             if (event.type == sf::Event::MouseWheelScrolled) {
-                camera.zoomCamera(event, window);
+                Camera->zoomCamera(event, window);
             }
         }
 
-        drawObjects.drawBg(window, camera.getViewCamera());
+        drawObjects->drawBg(window, Camera->getViewCamera());
 
-        window.setView(camera.getViewCamera());
+        window.setView(Camera->getViewCamera());
 
-        spaceship.drawSprite(window);
+        spaceship->drawSprite(window);
 
-        drawObjects.drawLeftInter(window, camera.getViewCamera());
-        drawObjects.drawRightInter(window, camera.getViewCamera());
-        drawObjects.drawFuel(window, camera.getViewCamera());
-        drawObjects.drawCompas(window, camera.getViewCamera());
+        drawObjects->drawLeftInter(window, Camera->getViewCamera());
+        drawObjects->drawRightInter(window, Camera->getViewCamera());
+        drawObjects->drawFuel(window, Camera->getViewCamera());
+        drawObjects->drawCompas(window, Camera->getViewCamera());
+        drawObjects->drawArrow(window, Camera->getViewCamera());
 
         window.display();
 
         window.clear();
     }
+
+    delete spaceship;
+    delete drawObjects;
+    delete Camera;
+    delete menu;
 
     return EXIT_SUCCESS;
 }

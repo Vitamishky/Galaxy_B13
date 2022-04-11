@@ -7,7 +7,7 @@ class optionsMenu {
 private:
 	bool isMenu;
 	int menuNum;
-	drawAll draw;
+	drawAll *draw;
 	sf::Sprite start, options, exit, about;
 	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
 public:

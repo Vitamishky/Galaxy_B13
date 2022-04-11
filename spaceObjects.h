@@ -22,8 +22,6 @@ public:
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
     parametrizationScreen getScreen()const;
-    sf::Texture getTexture() const;
-    sf::Sprite getSprite() const;
     float getMasse() const;
 };
 
