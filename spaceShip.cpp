@@ -72,7 +72,7 @@ void spaceShip::control() {
     }
     if (crutch) {
         for (auto &module: rocket) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle), module.Forward_PotAcceleration() * cos(angle)));
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {

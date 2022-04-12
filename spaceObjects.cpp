@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceObjects.h"
@@ -30,7 +31,7 @@ void spaceObjects::drawSprite(sf::RenderWindow& window) {
     float b = acos(float(Height) / (2 * l)) + angle;
     Sprite.setScale(float(Width) / float(texture.getSize().x), float(Height) / float(texture.getSize().y));
     Sprite.setPosition(sf::Vector2f(x - l * sin(b), y - l * cos(b)));
-    Sprite.setRotation(float(-angle * 180 / 10));
+    Sprite.setRotation(float(-angle * 180 / M_PI));
     window.draw(Sprite);
 }
 

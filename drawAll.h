@@ -11,7 +11,7 @@ class drawAll {
 private:
 	//Текст
 	sf::Font font;
-	sf::Text text;
+	sf::Text text, textFuel, textAir, textSpeed, textSpace, textFuelConsumption, textAirConsumption;
 	vector<sf::Text> vLText;
 	//Иконка
 	sf::Image icon;
@@ -22,7 +22,7 @@ private:
 	sf::Texture texLeftInter, texRightInter, texFuel, texCompasRadar, texArrow;
 	sf::Sprite sprLeftInter, sprRightInter, sprFuel, sprArrow;
 	sf::CircleShape shapeCompas;
-	MODULE* module;
+	MODULE module;
 	//Стартового меню
 	sf::Texture buttonPlayFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, menuBackground;
 	sf::Sprite buttonPlay, buttonOptions, buttonExit, aboutTexture;	

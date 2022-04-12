@@ -5,6 +5,7 @@ MODULE::MODULE(float potentialAceleration, bool IsEngine, bool IsController, boo
     Height = 128;
     texture.loadFromFile("image/chert.jpg");
     Sprite.setTexture(texture);
+    fuel = 1000.f;
 }
 
 pair<float, float> MODULE::Acceleration() const {
@@ -44,6 +45,10 @@ float MODULE::getAir() {
 
 float MODULE::getFuel() {
     return fuel;
+}
+
+float MODULE::getAcceleration() {
+    return sqrt(pow(acceleration.first, 2) + pow(acceleration.second, 2));
 }
 
 float MODULE::Side_PotAcceleration() const {

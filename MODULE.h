@@ -7,7 +7,7 @@ private:
     float forward_potAcceleration = 1000;
     pair<float, float> acceleration = make_pair(0, 0);
     float side_potAcceleration = 100;
-    float fuel = 1000;
+    float fuel;
     float air = 1000;
 public:
     MODULE(float potentialAceleration = 0, bool IsEngine = false, bool IsController = false, bool IsTurner = false);
@@ -22,6 +22,7 @@ public:
     bool Use_Air(float);
     float getAir();
     float getFuel();
+    float getAcceleration();
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
 };

@@ -11,6 +11,8 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	text.setString("Fuel consumption");
 	vLText.push_back(text);
+	text.setString("Air consumption");
+	vLText.push_back(text);
 	text.setString("Mass");
 	vLText.push_back(text);
 	text.setString("Target distance");
@@ -18,7 +20,7 @@ drawAll::drawAll() {
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setFont(font);
 	}
-	MODULE* module = new MODULE(10, true);
+	MODULE module;
     texBg.loadFromFile("image/bg.png");
     sprBg.setTexture(texBg);
 	icon.loadFromFile("image/spaceShip.png");
@@ -83,13 +85,33 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view) {
 	sprLeftInter.setScale(vSize_x / xLeftInter, vSize_y / yLeftInter);
 	sprLeftInter.setPosition(sf::Vector2f(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - vSize_y / 2));
 	window.draw(sprLeftInter);
-	//text.setString(to_string(module->getAir()));
-	//window.draw(text);
+	textSpeed.setString(to_string(module.getAcceleration()));
+	textSpeed.setFont(font);
+	textSpeed.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
+	textSpeed.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.21f);
+	window.draw(textSpeed);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		textFuelConsumption.setString("1");
+	else
+		textFuelConsumption.setString("0");
+	textFuelConsumption.setFont(font);
+	textFuelConsumption.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
+	textFuelConsumption.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.33f);
+	window.draw(textFuelConsumption);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+		textAirConsumption.setString("1");
+	else
+		textAirConsumption.setString("0");
+	textAirConsumption.setFont(font);
+	textAirConsumption.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
+	textAirConsumption.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.45f);
+	window.draw(textAirConsumption);
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
 		vLText[i].setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * (0.15f + i * 0.12f));
 		window.draw(vLText[i]);
 	}
+
 }
 
 void drawAll::drawRightInter(sf::RenderWindow& window, sf::View view) {
@@ -100,6 +122,19 @@ void drawAll::drawRightInter(sf::RenderWindow& window, sf::View view) {
 	sprRightInter.setScale(vSize_x / xRightInter, vSize_y / yRightInter);
 	sprRightInter.setPosition(sf::Vector2f(view.getCenter().x + view.getSize().x / 2 - vSize_x, view.getCenter().y - vSize_y / 2));
 	window.draw(sprRightInter);
+	textSpace.setString(\
+"An open and violent space that`s been \n\
+around me for months. It seems like just \n\
+yesterday I was home, and now I`m \n\
+rushing into the unknown. What`s \n\
+next for me? Victory? Despair? Now it`s \n\
+up to you, my friend. Don`t let me down. \n\
+People from Earth believe in you, from \n\
+our ship, and I believe in you");
+	textSpace.setFont(font);
+	textSpace.setScale(vSize_x * 2.f / xRightInter, vSize_y * 2.f / yRightInter);
+	textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.1f);
+	window.draw(textSpace);
 }
 
 void drawAll::drawFuel(sf::RenderWindow& window, sf::View view) {
@@ -110,6 +145,16 @@ void drawAll::drawFuel(sf::RenderWindow& window, sf::View view) {
 	sprFuel.setScale(vSize_x / xFuel, vSize_y / yFuel);
 	sprFuel.setPosition(sf::Vector2f(view.getCenter().x - vSize_x / 2, view.getCenter().y - view.getSize().y / 2));
 	window.draw(sprFuel);
+	textFuel.setString(to_string(module.getFuel()));
+	textFuel.setFont(font);
+	textFuel.setScale(vSize_x * 4.f / xFuel, vSize_y * 3.f / yFuel);
+	textFuel.setPosition(view.getCenter().x - view.getSize().x * 0.07f, view.getCenter().y - view.getSize().y / 2);
+	window.draw(textFuel);
+	textAir.setString(to_string(module.getAir()));
+	textAir.setFont(font);
+	textAir.setScale(vSize_x * 4.f / xFuel, vSize_y * 3.f / yFuel);
+	textAir.setPosition(view.getCenter().x + view.getSize().x * 0.03f, view.getCenter().y - view.getSize().y / 2);
+	window.draw(textAir);
 }
 
 void drawAll::drawCompas(sf::RenderWindow& window, sf::View view) {
