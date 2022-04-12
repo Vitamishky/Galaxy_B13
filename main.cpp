@@ -1,4 +1,4 @@
-#include <SFML/Audio.hpp>
+п»ї#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
 #include "camera.h"
@@ -9,7 +9,7 @@ int main()
 {
     parametrizationScreen *screen = new parametrizationScreen;
     
-    //Отрисовка окна
+    //РћС‚СЂРёСЃРѕРІРєР° РѕРєРЅР°
     sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first, 
                                           screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
     
@@ -22,13 +22,18 @@ int main()
 
     window.setVerticalSyncEnabled(true);
 
-    //Отрисовка иконки
+    //РћС‚СЂРёСЃРѕРІРєР° РёРєРѕРЅРєРё
     drawObjects->drawIcon(window);
 
-    //Создание космического корабля
-    spaceShip *spaceship = new spaceShip;
+    //РЎРѕР·РґР°РЅРёРµ РєРѕСЃРјРёС‡РµСЃРєРѕРіРѕ РєРѕСЂР°Р±Р»СЏ
+    MODULE m1(20, true);
+    MODULE m2(0, false, true);
+    MODULE m3(10, false, false, true);
+    MODULE m4;
+    vector<MODULE> masivMODULE = {m1, m2, m3, m4};
+    spaceShip *spaceship = new spaceShip(masivMODULE);
 
-    //Работа с камерой слежения
+    //Р Р°Р±РѕС‚Р° СЃ РєР°РјРµСЂРѕР№ СЃР»РµР¶РµРЅРёСЏ
     
     Camera->resetView(window);
 
@@ -38,46 +43,23 @@ int main()
 
     while (window.isOpen()) {
 
-        sf::Event event;
+        sf::Event event{};
 
         float dt = sf_clock.restart().asSeconds();
 
         while (window.pollEvent(event)) {
 
-            if (event.type == sf::Event::Closed) {
+            if (event.type == sf::Event::Closed ||
+            event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
-            }
-
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-                window.close();
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                spaceship->move(dt, 'l');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                spaceship->move(dt, 'r');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                spaceship->move(dt, 'u');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-                spaceship->move(dt, 'd');
-                //camera.getCoordinatesForView(spaceship.getCoordinates().first, spaceship.getCoordinates().second);
             }
 
             if (event.type == sf::Event::MouseMoved) {
-                Camera->moveCamera(event.mouseMove.x, event.mouseMove.y);
+                Camera->moveCamera(float(event.mouseMove.x), float(event.mouseMove.y));
             }
 
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                Camera->lockedCamera(event.mouseButton.x, event.mouseButton.y);
+                Camera->lockedCamera(float(event.mouseButton.x), float(event.mouseButton.y));
             }
             
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
@@ -87,13 +69,18 @@ int main()
             if (event.type == sf::Event::MouseWheelScrolled) {
                 Camera->zoomCamera(event, window);
             }
+
         }
 
         drawObjects->drawBg(window, Camera->getViewCamera());
-
         window.setView(Camera->getViewCamera());
 
-        spaceship->drawSprite(window);
+        spaceship->draw(window);
+
+        spaceship->control();
+        spaceship->move(dt);
+
+        //spaceship->drawSprite(window);
 
         drawObjects->drawLeftInter(window, Camera->getViewCamera());
         drawObjects->drawRightInter(window, Camera->getViewCamera());

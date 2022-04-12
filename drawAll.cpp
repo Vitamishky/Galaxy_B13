@@ -1,6 +1,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <string>
 #include "drawAll.h"
+#include "MODULE.h"
+#include <cmath>
 
 drawAll::drawAll() {
 	font.loadFromFile("image/Impact.ttf");
@@ -15,7 +18,7 @@ drawAll::drawAll() {
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setFont(font);
 	}
-
+	MODULE* module = new MODULE(10, true);
     texBg.loadFromFile("image/bg.png");
     sprBg.setTexture(texBg);
 	icon.loadFromFile("image/spaceShip.png");
@@ -80,9 +83,11 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view) {
 	sprLeftInter.setScale(vSize_x / xLeftInter, vSize_y / yLeftInter);
 	sprLeftInter.setPosition(sf::Vector2f(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - vSize_y / 2));
 	window.draw(sprLeftInter);
+	//text.setString(to_string(module->getAir()));
+	//window.draw(text);
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
-		vLText[i].setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - vSize_y  / 2 + view.getCenter().y * (0.02f + i * 0.2f));
+		vLText[i].setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * (0.15f + i * 0.12f));
 		window.draw(vLText[i]);
 	}
 }
@@ -111,10 +116,11 @@ void drawAll::drawCompas(sf::RenderWindow& window, sf::View view) {
 	float vSize_x = 0.1f * view.getSize().x;
 	float xCompas = shapeCompas.getLocalBounds().width;
 	shapeCompas.setRadius(vSize_x);
-	//shapeCompas.setOrigin(view.getCenter().x, view.getCenter().y);
-	shapeCompas.setPosition(view.getCenter().x - vSize_x, view.getCenter().y + view.getSize().y / 2 - vSize_x);
-	//shapeCompas.rotate(-10);
+	shapeCompas.setPosition(view.getCenter().x, view.getCenter().y + view.getSize().y / 2);
+	shapeCompas.setOrigin(vSize_x, vSize_x);
+	shapeCompas.rotate(-10);
 	window.draw(shapeCompas);
+	
 }
 
 void drawAll::drawArrow(sf::RenderWindow& window, sf::View view) {

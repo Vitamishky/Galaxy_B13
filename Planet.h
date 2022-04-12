@@ -4,7 +4,6 @@
 
 class Planet : public spaceObjects{
 public:
-    void drawSprite(sf::RenderWindow& gameWindow);
 };
 
 #endif //GALAXY_B13_PLANET_H

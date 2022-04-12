@@ -3,6 +3,7 @@
 #define drawAll_hpp
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "MODULE.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ private:
 	sf::Texture texLeftInter, texRightInter, texFuel, texCompasRadar, texArrow;
 	sf::Sprite sprLeftInter, sprRightInter, sprFuel, sprArrow;
 	sf::CircleShape shapeCompas;
+	MODULE* module;
 	//Стартового меню
 	sf::Texture buttonPlayFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, menuBackground;
 	sf::Sprite buttonPlay, buttonOptions, buttonExit, aboutTexture;	

@@ -5,9 +5,9 @@
 #include "camera.h"
 
 camera::camera(sf::RenderWindow& window) {
-	locked = false;
-	view = window.getView();
-	scale = 2.0f;
+    locked = false;
+    view = window.getView();
+    scale = 2.0f;
 }
 
 void camera::lockedCamera(int x, int y) {
@@ -17,7 +17,7 @@ void camera::lockedCamera(int x, int y) {
 }
 
 void camera::unlockCamera() {
-	locked = false;
+    locked = false;
 }
 
 void camera::moveCamera(int x, int y) {
@@ -29,12 +29,12 @@ void camera::moveCamera(int x, int y) {
 }
 
 sf::View camera::getViewCamera() {
-	return view;
+    return view;
 }
 /*
 sf::View camera::getCoordinatesForView(float x, float y) {
-	view.setCenter(x + 100, y);
-	return view;
+    view.setCenter(x + 100, y);
+    return view;
 }
 */
 void camera::resetView(sf::RenderWindow& window) {
@@ -46,17 +46,17 @@ void camera::zoomCamera(sf::Event scroll, sf::RenderWindow& window) {
 	float hs = window.getSize().y / 2.0f + window.getPosition().y;
 	sf::Vector2f raznica = sf::Vector2f(sf::Mouse::getPosition().x - ws, sf::Mouse::getPosition().y - hs);
 
-	if (scroll.mouseWheelScroll.delta < 0) {
-		float addict = 0.1f * scale;
-		view.move(raznica * -addict);
-		scale += addict;
-	}
-	else if (scroll.mouseWheelScroll.delta > 0) {
-		float addict = -0.1f * scale;
-		view.move(raznica * -addict);
-		scale += addict;
-	}
-	view.setSize(window.getSize().x * scale, window.getSize().y * scale);
+    if (scroll.mouseWheelScroll.delta < 0) {
+        float addict = 0.1f * scale;
+        view.move(raznica * -addict);
+        scale += addict;
+    }
+    else if (scroll.mouseWheelScroll.delta > 0) {
+        float addict = -0.1f * scale;
+        view.move(raznica * -addict);
+        scale += addict;
+    }
+    view.setSize(window.getSize().x * scale, window.getSize().y * scale);
 }
 
 camera::~camera() {};
