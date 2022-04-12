@@ -93,6 +93,7 @@ float spaceShip::FUEL() {
     for (auto &module : rocket) {
         sum_fuel += module.getFuel();
     }
+    return sum_fuel;
 }
 
 float spaceShip::AIR() {
@@ -100,6 +101,7 @@ float spaceShip::AIR() {
     for(auto  &module : rocket) {
         sum_air += module.getAir();
     }
+    return sum_air;
 }
 
 float spaceShip::SPEED() const {

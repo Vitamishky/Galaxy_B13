@@ -4,7 +4,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "MODULE.h"
-
+#include "spaceShip.h"
 using namespace std;
 
 class drawAll {
@@ -31,9 +31,9 @@ public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
 	void drawIcon(sf::RenderWindow&);
-	void drawLeftInter(sf::RenderWindow&, sf::View);
+	void drawLeftInter(sf::RenderWindow&, sf::View, spaceShip);
 	void drawRightInter(sf::RenderWindow&, sf::View);
-	void drawFuel(sf::RenderWindow&, sf::View);
+	void drawFuel(sf::RenderWindow&, sf::View, spaceShip);
 	void drawCompas(sf::RenderWindow&, sf::View);
 	void drawArrow(sf::RenderWindow&, sf::View);
 	float xBg, yBg, xPl, yPl, xOp, yOp, xEx, yEx, xAb, yAb;

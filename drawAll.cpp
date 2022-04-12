@@ -4,6 +4,7 @@
 #include "drawAll.h"
 #include "MODULE.h"
 #include <cmath>
+#include "spaceShip.h"
 
 drawAll::drawAll() {
 	font.loadFromFile("image/Impact.ttf");
@@ -77,7 +78,7 @@ void drawAll::drawIcon(sf::RenderWindow& window) {
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
-void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view) {
+void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip ship) {
 	float vSize_x = 0.15f * view.getSize().x;
 	float vSize_y = 0.8f * view.getSize().y;
 	float xLeftInter = sprLeftInter.getLocalBounds().width;
@@ -85,7 +86,7 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view) {
 	sprLeftInter.setScale(vSize_x / xLeftInter, vSize_y / yLeftInter);
 	sprLeftInter.setPosition(sf::Vector2f(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - vSize_y / 2));
 	window.draw(sprLeftInter);
-	textSpeed.setString("slava loh");
+	textSpeed.setString(to_string(ship.SPEED()));
 	textSpeed.setFont(font);
 	textSpeed.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
 	textSpeed.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.21f);
@@ -137,7 +138,7 @@ our ship, and I believe in you");
 	window.draw(textSpace);
 }
 
-void drawAll::drawFuel(sf::RenderWindow& window, sf::View view) {
+void drawAll::drawFuel(sf::RenderWindow& window, sf::View view, spaceShip ship) {
 	float vSize_x = 0.2f * view.getSize().x;
 	float vSize_y = 0.07f * view.getSize().y;
 	float xFuel = sprFuel.getLocalBounds().width;
@@ -145,12 +146,12 @@ void drawAll::drawFuel(sf::RenderWindow& window, sf::View view) {
 	sprFuel.setScale(vSize_x / xFuel, vSize_y / yFuel);
 	sprFuel.setPosition(sf::Vector2f(view.getCenter().x - vSize_x / 2, view.getCenter().y - view.getSize().y / 2));
 	window.draw(sprFuel);
-	textFuel.setString(to_string(module.getFuel()));
+	textFuel.setString(to_string(ship.FUEL()));
 	textFuel.setFont(font);
 	textFuel.setScale(vSize_x * 4.f / xFuel, vSize_y * 3.f / yFuel);
 	textFuel.setPosition(view.getCenter().x - view.getSize().x * 0.07f, view.getCenter().y - view.getSize().y / 2);
 	window.draw(textFuel);
-	textAir.setString(to_string(module.getAir()));
+	textAir.setString(to_string(ship.AIR()));
 	textAir.setFont(font);
 	textAir.setScale(vSize_x * 4.f / xFuel, vSize_y * 3.f / yFuel);
 	textAir.setPosition(view.getCenter().x + view.getSize().x * 0.03f, view.getCenter().y - view.getSize().y / 2);

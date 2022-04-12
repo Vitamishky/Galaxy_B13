@@ -31,7 +31,7 @@ int main()
     MODULE m3(10, 130, 120, false, false, 0, 0, true, 1000, 1000);
     MODULE m4(100, 120, 130);
     vector<MODULE> masivMODULE = {m1, m2, m3, m4};
-    spaceShip *spaceship = new spaceShip(masivMODULE);
+    spaceShip spaceship = spaceShip(masivMODULE);
 
     //Работа с камерой слежения
     
@@ -75,16 +75,16 @@ int main()
         drawObjects->drawBg(window, Camera->getViewCamera());
         window.setView(Camera->getViewCamera());
 
-        spaceship->draw(window);
+        spaceship.draw(window);
 
-        spaceship->control();
-        spaceship->move(dt);
+        spaceship.control();
+        spaceship.move(dt);
 
         //spaceship->drawSprite(window);
 
-        drawObjects->drawLeftInter(window, Camera->getViewCamera());
+        drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawRightInter(window, Camera->getViewCamera());
-        drawObjects->drawFuel(window, Camera->getViewCamera());
+        drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawCompas(window, Camera->getViewCamera());
         drawObjects->drawArrow(window, Camera->getViewCamera());
 
@@ -93,7 +93,6 @@ int main()
         window.clear();
     }
 
-    delete spaceship;
     delete drawObjects;
     delete Camera;
     delete menu;
