@@ -105,7 +105,7 @@ float spaceShip::AIR() {
 }
 
 float spaceShip::SPEED() const {
-    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.first);
+    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.second);
 }
 
 void spaceShip::draw(sf::RenderWindow &window) {
