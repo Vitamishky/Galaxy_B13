@@ -8,6 +8,9 @@ MODULE::MODULE(float Masse, int Width, int Height, bool IsController,
                float Forward_PotAcceleration, float fuel): forward_potAcceleration(Forward_PotAcceleration),
                side_potAcceleration(Side_PotAcceleration), air(Air), IsTurner(IsTurner),
                IsController(IsController), IsEngine(IsEngine), fuel(fuel){
+    this->Masse = Masse;
+    this->Width = Width;
+    this->Height =Height;
     texture.loadFromFile("image/chert.jpg");
     Sprite.setTexture(texture);
 }

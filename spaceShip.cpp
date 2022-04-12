@@ -68,8 +68,8 @@ void spaceShip::move(float dt) {
 //&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
 void spaceShip::control() {
     bool crutch = false;
-    float dfuel = 100;
-    float dair = 10000;
+    float dfuel = 1000;
+    float dair = 1000;
     for(auto & module : rocket) {
         if(module.IsController) crutch = true;
     }
@@ -77,7 +77,6 @@ void spaceShip::control() {
         for (auto &module: rocket) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle), module.Forward_PotAcceleration() * cos(angle)));
-                cout << module.getFuel() << endl;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
                 module.EditAcceleration(make_pair(module.Side_PotAcceleration() * cos(angle), -module.Side_PotAcceleration() * sin(angle)));

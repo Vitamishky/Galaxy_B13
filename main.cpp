@@ -26,10 +26,10 @@ int main()
     drawObjects->drawIcon(window);
 
     //Создание космического корабля
-    MODULE m1(20, 10, 20, true);
-    MODULE m2(1, 20, 30, false, true, 10, 1000);
-    MODULE m3(10, 30, 20, false, false, 0, 0, true, 1000, 1000);
-    MODULE m4(1000);
+    MODULE m1(20, 120, 120, true);
+    MODULE m2(1, 120, 130, false, true, 1000, 1000);
+    MODULE m3(10, 130, 120, false, false, 0, 0, true, 1000, 1000);
+    MODULE m4(100, 120, 130);
     vector<MODULE> masivMODULE = {m1, m2, m3, m4};
     spaceShip *spaceship = new spaceShip(masivMODULE);
 

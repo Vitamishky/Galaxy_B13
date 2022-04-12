@@ -17,7 +17,7 @@ protected:
     sf::Sprite Sprite;
     sf::Texture texture;
     float angle = 0;
-    float Masse = 1;
+    float Masse;
 public:
     spaceObjects();
     pair<float, float> getCoordinates() const;
