@@ -13,6 +13,8 @@ set(PROJECT_HEADERS
         Planet.h
         MODULE.h
         drawAll.h
+        startMenu.h
+        optionsMenu.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -24,6 +26,8 @@ set(PROJECT_SOURCES
         Planet.cpp
         MODULE.cpp
         drawAll.cpp
+        startMenu.cpp
+        optionsMenu.cpp
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

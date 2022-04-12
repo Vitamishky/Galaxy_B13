@@ -24,6 +24,9 @@ public:
     void move(float);
 
     void control();
+    float FUEL();
+    float AIR();
+    float SPEED() const;
     void draw(sf::RenderWindow&);
 };
 #endif 

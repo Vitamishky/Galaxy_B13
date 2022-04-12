@@ -85,7 +85,7 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view) {
 	sprLeftInter.setScale(vSize_x / xLeftInter, vSize_y / yLeftInter);
 	sprLeftInter.setPosition(sf::Vector2f(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - vSize_y / 2));
 	window.draw(sprLeftInter);
-	textSpeed.setString(to_string(module.getAcceleration()));
+	textSpeed.setString("slava loh");
 	textSpeed.setFont(font);
 	textSpeed.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
 	textSpeed.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.21f);

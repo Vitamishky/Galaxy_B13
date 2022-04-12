@@ -3,6 +3,7 @@
 #include "spaceShip.h"
 #include "cmath"
 
+
 spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
     float length = 0;
     for (const auto &i: rocket) {
@@ -33,8 +34,9 @@ void spaceShip::move(float dt) {
         float a_bokovoie = modul.Acceleration().first*cos(angle)-modul.Acceleration().second*sin(angle);
 
         float length = 0;
-        dAngularVelocity +=modul.getMasse() * a_bokovoie * (modul.getParametrization().second / 2 + length - cordCentreMass)*
-                dt / MomentOfInertia;
+        dAngularVelocity += modul.getMasse() * a_bokovoie *
+                (modul.getParametrization().second / 2 + length - cordCentreMass)*dt
+                / MomentOfInertia;
         length += modul.getParametrization().second;
     }
 
@@ -60,20 +62,22 @@ void spaceShip::move(float dt) {
 
     for (auto &modul: rocket) {
         modul.NewAcceleration(make_pair(0,0));
+
     }
 }
-
+//&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
 void spaceShip::control() {
     bool crutch = false;
-    float dfuel = 1000;
+    float dfuel = 100;
     float dair = 10000;
     for(auto & module : rocket) {
         if(module.IsController) crutch = true;
     }
     if (crutch) {
         for (auto &module: rocket) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle), module.Forward_PotAcceleration() * cos(angle)));
+                cout << module.getFuel() << endl;
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
                 module.EditAcceleration(make_pair(module.Side_PotAcceleration() * cos(angle), -module.Side_PotAcceleration() * sin(angle)));
@@ -85,6 +89,23 @@ void spaceShip::control() {
     }
 }
 
+float spaceShip::FUEL() {
+    float sum_fuel = 0;
+    for (auto &module : rocket) {
+        sum_fuel += module.getFuel();
+    }
+}
+
+float spaceShip::AIR() {
+    float sum_air = 0;
+    for(auto  &module : rocket) {
+        sum_air += module.getAir();
+    }
+}
+
+float spaceShip::SPEED() const {
+    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.first);
+}
 
 void spaceShip::draw(sf::RenderWindow &window) {
     for(auto & i : rocket){
