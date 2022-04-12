@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <stdio.h>
 
 using namespace std;
 //возвращает ширину и высоту экрана пользователя

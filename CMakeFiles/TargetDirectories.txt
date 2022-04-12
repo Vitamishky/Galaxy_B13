@@ -1,0 +1,3 @@
+C:/Users/vladi/Documents/ClionProjects/C_C++/Galaxy_B13/CMakeFiles/edit_cache.dir
+C:/Users/vladi/Documents/ClionProjects/C_C++/Galaxy_B13/CMakeFiles/Galaxy_B13.dir
+C:/Users/vladi/Documents/ClionProjects/C_C++/Galaxy_B13/CMakeFiles/rebuild_cache.dir

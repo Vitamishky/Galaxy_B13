@@ -22,10 +22,11 @@ spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
     }
 }
 
-void spaceShip::move(float dt) {
+void spaceShip::move(float dt, vector<Planet>& planets) {
     float F_x = 0, F_y = 0;
     float dAngularVelocity = 0;
-    for (const auto &modul: rocket) {
+    for (auto &modul: rocket) {
+        modul.planetAttraction(planets);
         F_x += modul.Acceleration().first * modul.getMasse();
         F_y += modul.Acceleration().second * modul.getMasse();
 
@@ -66,25 +67,45 @@ void spaceShip::move(float dt) {
 void spaceShip::control() {
     bool crutch = false;
     float dfuel = 1000;
-    float dair = 10000;
+    float dair = 1000;
     for(auto & module : rocket) {
         if(module.IsController) crutch = true;
     }
     if (crutch) {
         for (auto &module: rocket) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
-                module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle), module.Forward_PotAcceleration() * cos(angle)));
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration()/dfuel)) {
+                module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle),
+                                                      module.Forward_PotAcceleration() * cos(angle)));
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
-                module.EditAcceleration(make_pair(module.Side_PotAcceleration() * cos(angle), -module.Side_PotAcceleration() * sin(angle)));
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration()/dair)) {
+                module.EditAcceleration(make_pair(module.Side_PotAcceleration()*cos(angle), -module.Side_PotAcceleration()*sin(angle)));
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
-                module.EditAcceleration(make_pair(-module.Side_PotAcceleration() * cos(angle), module.Side_PotAcceleration() * sin(angle)));
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration()/dair)) {
+                module.EditAcceleration(make_pair(-module.Side_PotAcceleration()*cos(angle), module.Side_PotAcceleration()*sin(angle)));
             }
         }
     }
 }
 
+float spaceShip::FUEL() {
+    float sum_fuel = 0;
+    for (auto &module : rocket) {
+        sum_fuel += module.getFuel();
+    }
+    return sum_fuel;
+}
+
+float spaceShip::AIR() {
+    float sum_air = 0;
+    for(auto  &module : rocket) {
+        sum_air += module.getAir();
+    }
+    return sum_air;
+}
+
+float spaceShip::SPEED() const {
+    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.first);
+}
 
 void spaceShip::draw(sf::RenderWindow &window) {
     for(auto & i : rocket){

@@ -152,13 +152,10 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\User\Desktop\мфтишка\конкурс\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="MODULE.cpp" />
-    <ClCompile Include="optionsMenu.cpp" />
     <ClCompile Include="parametrizationScreen.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="spaceObjects.cpp" />
     <ClCompile Include="spaceShip.cpp" />
-    <ClCompile Include="startMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -166,14 +163,11 @@
   <ItemGroup>
     <ClInclude Include="drawAll.h" />
     <ClInclude Include="functions.h" />
-    <ClInclude Include="MODULE.h" />
-    <ClInclude Include="optionsMenu.h" />
     <ClInclude Include="parametrizationScreen.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="spaceObjects.h" />
     <ClInclude Include="spaceShip.h" />
-    <ClInclude Include="startMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

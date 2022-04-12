@@ -1,45 +1,59 @@
-п»ї#include <SFML/Audio.hpp>
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceShip.h"
 #include "camera.h"
-#include "drawAll.h"
+#include "cmath"
 #include "startMenu.h"
+#include "drawAll.h"
+#include "spaceObjects.h"
 
 int main()
 {
-    parametrizationScreen *screen = new parametrizationScreen;
-    
-    //РћС‚СЂРёСЃРѕРІРєР° РѕРєРЅР°
-    sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first, 
-                                          screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
-    
+    parametrizationScreen screen;
+    //Отрисовка окна
+    sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
+                                          screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
+
     camera *Camera = new camera(window);
 
     startMenu *menu = new startMenu();
     drawAll *drawObjects = new drawAll;
-    
+
     window.setFramerateLimit(30);
 
     window.setVerticalSyncEnabled(true);
 
-    //РћС‚СЂРёСЃРѕРІРєР° РёРєРѕРЅРєРё
+    //Отрисовка иконки
     drawObjects->drawIcon(window);
 
-    //РЎРѕР·РґР°РЅРёРµ РєРѕСЃРјРёС‡РµСЃРєРѕРіРѕ РєРѕСЂР°Р±Р»СЏ
-    MODULE m1(20, true);
-    MODULE m2(0, false, true);
-    MODULE m3(10, false, false, true);
-    MODULE m4;
+    //Создание космического корабля
+    MODULE m1(20, 120, 120, true);
+    MODULE m2(1, 120, 130, false, true, 1000, 1000);
+    MODULE m3(10, 130, 120, false, false, 0, 0, true, 1000, 1000);
+    MODULE m4(100, 120, 130);
     vector<MODULE> masivMODULE = {m1, m2, m3, m4};
-    spaceShip *spaceship = new spaceShip(masivMODULE);
+    spaceShip spaceship = spaceShip(masivMODULE);
 
-    //Р Р°Р±РѕС‚Р° СЃ РєР°РјРµСЂРѕР№ СЃР»РµР¶РµРЅРёСЏ
-    
+    //Отрисовка заднего фона
+    sf::Texture textureBg;
+    if (!textureBg.loadFromFile("image/bg.png")) {
+        return EXIT_FAILURE;
+    }
+    float xBg = float(textureBg.getSize().x);
+    float yBg = float(textureBg.getSize().y);
+    sf::Sprite backWall(textureBg);
+    backWall.setScale(float(window.getSize().x) / xBg, float(window.getSize().y) / yBg);
+    //Создание планет на карте
+    vector<Planet> planets;
+    for (int i = 0; i < 8; ++i) {
+        Planet planet1 {(float)((rand() % 80000) * pow(-1, rand() / 23)), (float)((rand() % 80000) * pow(-1, rand() / 23)),
+                              (float)(rand() % 255 * 10000), 3000.f};
+        planets.push_back(planet1);
+    }
+    //Работа с камерой слежения
     Camera->resetView(window);
 
     sf::Clock sf_clock;
-
-    //menu->drawStartMenu(window);
 
     while (window.isOpen()) {
 
@@ -61,7 +75,7 @@ int main()
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 Camera->lockedCamera(float(event.mouseButton.x), float(event.mouseButton.y));
             }
-            
+
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
                 Camera->unlockCamera();
             }
@@ -75,16 +89,18 @@ int main()
         drawObjects->drawBg(window, Camera->getViewCamera());
         window.setView(Camera->getViewCamera());
 
-        spaceship->draw(window);
+        window.draw(backWall);
+        //Отрисовка планет
+        spaceship.draw(window);
+        for (auto& i : planets)
+            i.drawSprite(window);
 
-        spaceship->control();
-        spaceship->move(dt);
+        spaceship.control();
+        spaceship.move(dt, planets);
 
-        //spaceship->drawSprite(window);
-
-        drawObjects->drawLeftInter(window, Camera->getViewCamera());
+        drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawRightInter(window, Camera->getViewCamera());
-        drawObjects->drawFuel(window, Camera->getViewCamera());
+        drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawCompas(window, Camera->getViewCamera());
         drawObjects->drawArrow(window, Camera->getViewCamera());
 
@@ -92,8 +108,6 @@ int main()
 
         window.clear();
     }
-
-    delete spaceship;
     delete drawObjects;
     delete Camera;
     delete menu;

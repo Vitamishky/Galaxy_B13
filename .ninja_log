@@ -1,0 +1,13 @@
+# ninja log v5
+1	1173	6715031502177999	CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.obj	229ff01d22f88b04
+24	1181	6715031502340933	CMakeFiles/Galaxy_B13.dir/Planet.cpp.obj	881174ed9ffd6d25
+21	1183	6715031502228001	CMakeFiles/Galaxy_B13.dir/functions.cpp.obj	3bb875ac8d1db004
+28	1199	6715031502267992	CMakeFiles/Galaxy_B13.dir/camera.cpp.obj	a5e15515988eeb0c
+42	1207	6715031502510981	CMakeFiles/Galaxy_B13.dir/MODULE.cpp.obj	f4c4cee409f2d28
+54	1232	6715031502855872	CMakeFiles/Galaxy_B13.dir/optionsMenu.cpp.obj	9f698685cee56558
+15	1250	6715031503031765	CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.obj	4b0a8cc3f958194f
+33	1252	6715031503061768	CMakeFiles/Galaxy_B13.dir/startMenu.cpp.obj	d03f4ed2db98d15f
+18	1279	6715031503334420	CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.obj	59538d59769b5e9d
+50	1432	6715031504865391	CMakeFiles/Galaxy_B13.dir/main.cpp.obj	d6bc485ab31bf299
+45	1444	6715031504985416	CMakeFiles/Galaxy_B13.dir/drawAll.cpp.obj	cc3a0f00124013c3
+1444	2299	6715031513487270	Galaxy_B13.exe	8c3e64d2c8130152

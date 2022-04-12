@@ -5,13 +5,13 @@
 
 class optionsMenu {
 private:
-	bool isMenu;
-	int menuNum;
-	drawAll *draw;
-	sf::Sprite start, options, exit, about;
-	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
+    bool isMenu;
+    int menuNum;
+    drawAll *draw;
+    sf::Sprite start, options, exit, about;
+    vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
 public:
-	optionsMenu();
-	void drawOptionsMenu(sf::RenderWindow&);
-	~optionsMenu();
+    optionsMenu();
+    void drawOptionsMenu(sf::RenderWindow &);
+    ~optionsMenu();
 };

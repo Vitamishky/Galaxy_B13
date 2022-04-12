@@ -13,16 +13,17 @@ protected:
     parametrizationScreen screen;
     float x, y;
     float xSpeed=0, ySpeed=0;
-    int Width = 10, Height = 10;
+    int Width = 0, Height = 0;
     sf::Sprite Sprite;
     sf::Texture texture;
     float angle = 0;
-    float Masse = 1;
+    float Masse;
 public:
     spaceObjects();
+    spaceObjects(float, float, float, int, int);
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
-    void drawSprite(sf::RenderWindow&);
+    virtual void drawSprite(sf::RenderWindow&);
     void newAngle(float);
     float getMasse() const;
 };
