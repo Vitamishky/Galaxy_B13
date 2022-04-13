@@ -1,11 +1,16 @@
 #include "MODULE.h"
+#include "cmath"
 
-MODULE::MODULE(float potentialAceleration, bool IsEngine, bool IsController, bool IsTurner) : forward_potAcceleration(potentialAceleration), IsTurner(IsTurner), IsController(IsController), IsEngine(IsEngine) {
-    Width = 128;
-    Height = 128;
+MODULE::MODULE(float Masse, int Width, int Height, bool IsController,
+    bool IsTurner, float Side_PotAcceleration, float Air, bool IsEngine,
+    float Forward_PotAcceleration, float fuel) : forward_potAcceleration(Forward_PotAcceleration),
+    side_potAcceleration(Side_PotAcceleration), air(Air), IsTurner(IsTurner),
+    IsController(IsController), IsEngine(IsEngine), fuel(fuel) {
+    this->Masse = Masse;
+    this->Width = Width;
+    this->Height = Height;
     texture.loadFromFile("image/chert.jpg");
     Sprite.setTexture(texture);
-    fuel = 1000.f;
 }
 
 pair<float, float> MODULE::Acceleration() const {
@@ -45,10 +50,6 @@ float MODULE::getAir() {
 
 float MODULE::getFuel() {
     return fuel;
-}
-
-float MODULE::getAcceleration() {
-    return sqrt(pow(acceleration.first, 2) + pow(acceleration.second, 2));
 }
 
 float MODULE::Side_PotAcceleration() const {

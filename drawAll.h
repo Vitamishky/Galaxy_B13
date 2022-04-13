@@ -1,41 +1,40 @@
-#pragma 
-#ifndef drawAll_hpp
+п»ї#ifndef drawAll_hpp
 #define drawAll_hpp
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "MODULE.h"
-
+#include "spaceShip.h"
 using namespace std;
 
 class drawAll {
 private:
-	//Текст
+	//Г’ГҐГЄГ±ГІ
 	sf::Font font;
-	sf::Text text, textFuel, textAir, textSpeed, textSpace, textFuelConsumption, textAirConsumption;
+	sf::Text text, textSpeed, textSpace, textFuelConsumption, textAirConsumption, textMass;
 	vector<sf::Text> vLText;
-	//Иконка
+	//Г€ГЄГ®Г­ГЄГ 
 	sf::Image icon;
-	//Отрисовка заднего фона
-	sf::Texture texBg;	
-	sf::Sprite sprBg;
-	//Отрисовка интерфейса
+	//ГЋГІГ°ГЁГ±Г®ГўГЄГ  Г§Г Г¤Г­ГҐГЈГ® ГґГ®Г­Г 
+	sf::Texture texBg, texFuelPanel, texAirPanel;
+	sf::Sprite sprBg, sprFuelPanel, sprAirPanel;
+	//ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г 
 	sf::Texture texLeftInter, texRightInter, texFuel, texCompasRadar, texArrow;
 	sf::Sprite sprLeftInter, sprRightInter, sprFuel, sprArrow;
 	sf::CircleShape shapeCompas;
-	MODULE module;
-	//Стартового меню
+	//Г‘ГІГ Г°ГІГ®ГўГ®ГЈГ® Г¬ГҐГ­Гѕ
 	sf::Texture buttonPlayFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, menuBackground;
-	sf::Sprite buttonPlay, buttonOptions, buttonExit, aboutTexture;	
+	sf::Sprite buttonPlay, buttonOptions, buttonExit, aboutTexture;
 	sf::Sprite play, options, exit, about, menuBg;
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
 	void drawIcon(sf::RenderWindow&);
-	void drawLeftInter(sf::RenderWindow&, sf::View);
+	void drawLeftInter(sf::RenderWindow&, sf::View, spaceShip);
 	void drawRightInter(sf::RenderWindow&, sf::View);
-	void drawFuel(sf::RenderWindow&, sf::View);
-	void drawCompas(sf::RenderWindow&, sf::View);
+	void drawFuel(sf::RenderWindow&, sf::View, spaceShip);
+	void drawCompas(sf::RenderWindow&, sf::View, spaceShip);
 	void drawArrow(sf::RenderWindow&, sf::View);
+	void drawTextAboutAll(sf::RenderWindow&, sf::View, int);
 	float xBg, yBg, xPl, yPl, xOp, yOp, xEx, yEx, xAb, yAb;
 	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
 	sf::Sprite getSpritePlay(sf::RenderWindow&);

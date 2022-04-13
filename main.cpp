@@ -7,39 +7,39 @@
 
 int main()
 {
-    parametrizationScreen *screen = new parametrizationScreen;
-    
-    //Отрисовка окна
-    sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first, 
-                                          screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
-    
-    camera *Camera = new camera(window);
+    parametrizationScreen* screen = new parametrizationScreen;
 
-    startMenu *menu = new startMenu();
-    drawAll *drawObjects = new drawAll;
-    
+    //Отрисовка окна
+    sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first,
+        screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
+
+    camera* Camera = new camera(window);
+
+    startMenu menu;
+    drawAll* drawObjects = new drawAll;
+
     window.setFramerateLimit(30);
 
     window.setVerticalSyncEnabled(true);
 
     //Отрисовка иконки
     drawObjects->drawIcon(window);
-
+    int wereMouse = 0;
     //Создание космического корабля
-    MODULE m1(20, true);
-    MODULE m2(0, false, true);
-    MODULE m3(10, false, false, true);
-    MODULE m4;
-    vector<MODULE> masivMODULE = {m1, m2, m3, m4};
-    spaceShip *spaceship = new spaceShip(masivMODULE);
+    MODULE m1(20, 120, 120, true);
+    MODULE m2(1, 120, 130, false, true, 1000, 1000);
+    MODULE m3(10, 130, 120, false, false, 0, 0, true, 1000, 1000);
+    MODULE m4(100, 120, 130);
+    vector<MODULE> masivMODULE = { m1, m2, m3, m4 };
+    spaceShip spaceship = spaceShip(masivMODULE);
 
     //Работа с камерой слежения
-    
+
     Camera->resetView(window);
 
     sf::Clock sf_clock;
 
-    //menu->drawStartMenu(window);
+    menu.drawStartMenu(window);
 
     while (window.isOpen()) {
 
@@ -50,7 +50,7 @@ int main()
         while (window.pollEvent(event)) {
 
             if (event.type == sf::Event::Closed ||
-            event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
             }
 
@@ -61,7 +61,7 @@ int main()
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 Camera->lockedCamera(float(event.mouseButton.x), float(event.mouseButton.y));
             }
-            
+
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
                 Camera->unlockCamera();
             }
@@ -70,33 +70,35 @@ int main()
                 Camera->zoomCamera(event, window);
             }
 
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
+                Camera->backFromShip(window, spaceship);
+            }
         }
 
         drawObjects->drawBg(window, Camera->getViewCamera());
         window.setView(Camera->getViewCamera());
 
-        spaceship->draw(window);
+        spaceship.draw(window);
 
-        spaceship->control();
-        spaceship->move(dt);
+        spaceship.control();
+        spaceship.move(dt);
 
         //spaceship->drawSprite(window);
 
-        drawObjects->drawLeftInter(window, Camera->getViewCamera());
+        drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawRightInter(window, Camera->getViewCamera());
-        drawObjects->drawFuel(window, Camera->getViewCamera());
-        drawObjects->drawCompas(window, Camera->getViewCamera());
+        drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
+        drawObjects->drawCompas(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawArrow(window, Camera->getViewCamera());
+        drawObjects->drawTextAboutAll(window, Camera->getViewCamera(), wereMouse);
 
         window.display();
 
         window.clear();
     }
 
-    delete spaceship;
     delete drawObjects;
     delete Camera;
-    delete menu;
 
     return EXIT_SUCCESS;
 }

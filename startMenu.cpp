@@ -8,15 +8,15 @@
 startMenu::startMenu() {
 	isMenu = 1;
 	menuNum = 0;
-	drawAll *draw = new drawAll;
-	optionsMenu *optionsMainMenu = new optionsMenu;
+	drawAll draw;
+	optionsMenu optionsMainMenu;
 }
 
 void startMenu::drawStartMenu(sf::RenderWindow& window) {
-	start = draw->getSpritePlay(window);
-	options = draw->getSpriteOptions(window);
-	exit = draw->getSpriteExit(window);
-	about = draw->getSpriteAbout(window);
+	start = draw.getSpritePlay(window);
+	options = draw.getSpriteOptions(window);
+	exit = draw.getSpriteExit(window);
+	about = draw.getSpriteAbout(window);
 	
 	vSStartMenu.push_back(start);
 	vSStartMenu.push_back(options);
@@ -31,35 +31,21 @@ void startMenu::drawStartMenu(sf::RenderWindow& window) {
 		exit.setColor(sf::Color::White);
 		menuNum = 0;
 
-		if (sf::IntRect((window.getSize().x - draw->xPl) / 2, window.getSize().y * 0.45f, draw->xPl, draw->yPl).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect((window.getSize().x - draw.xPl) / 2, window.getSize().y * 0.45f, draw.xPl, draw.yPl).contains(sf::Mouse::getPosition(window))) {
 			start.setColor(sf::Color::Blue);
 			menuNum = 1;
 		}
-		if (sf::IntRect((window.getSize().x - draw->xOp) / 2, window.getSize().y * 0.5f, draw->xOp, draw->yOp).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect((window.getSize().x - draw.xOp) / 2, window.getSize().y * 0.5f, draw.xOp, draw.yOp).contains(sf::Mouse::getPosition(window))) {
 			options.setColor(sf::Color::Blue);
 			menuNum = 2; 
 		}
-		if (sf::IntRect((window.getSize().x - draw->xEx) / 2, window.getSize().y * 0.55f, draw->xEx, draw->yEx).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect((window.getSize().x - draw.xEx) / 2, window.getSize().y * 0.55f, draw.xEx, draw.yEx).contains(sf::Mouse::getPosition(window))) {
 			exit.setColor(sf::Color::Blue);
 			menuNum = 3; 
 		}
 		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			if (menuNum == 1) {
-				break;
-			}
-			if (menuNum == 2) { 
-				draw->moveMenu(window, vSStartMenu, vSOptionsMenu);
-				optionsMainMenu->drawOptionsMenu(window);
-				break;
-			}
-			if (menuNum == 3) { 
-				window.close(); 
-				break;
-			}
-
-		}
+		
 
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -73,18 +59,34 @@ void startMenu::drawStartMenu(sf::RenderWindow& window) {
 				isMenu = false;
 			}
 		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			if (menuNum == 1) {
+				break;
+			}
+			if (menuNum == 2) { 
 
-	    window.draw(draw->getSpriteMenuBackground(window));
-		
-		window.draw(start);
-		
-		window.draw(options);
-		
-		window.draw(exit);
-		
-		window.draw(about);
+				optionsMainMenu.drawOptionsMenu(window);
+				break;
+			}
+			if (menuNum == 3) { 
+				window.close(); 
+				break;
+			}
 
-		window.display();
+		}
+		else {
+			window.draw(draw.getSpriteMenuBackground(window));
+
+			window.draw(start);
+
+			window.draw(options);
+
+			window.draw(exit);
+
+			window.draw(about);
+
+			window.display();
+		}
 	}
 }
 startMenu::~startMenu() {}

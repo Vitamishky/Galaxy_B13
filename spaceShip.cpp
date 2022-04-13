@@ -3,18 +3,19 @@
 #include "spaceShip.h"
 #include "cmath"
 
-spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
+
+spaceShip::spaceShip(const vector<MODULE>& rocket) :rocket(rocket) {
     float length = 0;
-    for (const auto &i: rocket) {
+    for (const auto& i : rocket) {
         Mass += i.getMasse();
         cordCentreMass += i.getMasse() * (i.getParametrization().second / 2 + length);
         length += i.getParametrization().second;
     }
     length = 0;
     cordCentreMass /= Mass;
-    for (const auto &i: rocket) {
+    for (const auto& i : rocket) {
         MomentOfInertia += (i.getMasse() * (i.getParametrization().second / 2 + length - cordCentreMass) *
-                           (i.getParametrization().second / 2 + length - cordCentreMass))/3;
+            (i.getParametrization().second / 2 + length - cordCentreMass)) / 3;
         length += i.getParametrization().second;
 
 
@@ -25,16 +26,17 @@ spaceShip::spaceShip(const vector<MODULE>& rocket):rocket(rocket) {
 void spaceShip::move(float dt) {
     float F_x = 0, F_y = 0;
     float dAngularVelocity = 0;
-    for (const auto &modul: rocket) {
+    for (const auto& modul : rocket) {
         F_x += modul.Acceleration().first * modul.getMasse();
         F_y += modul.Acceleration().second * modul.getMasse();
 
 
-        float a_bokovoie = modul.Acceleration().first*cos(angle)-modul.Acceleration().second*sin(angle);
+        float a_bokovoie = modul.Acceleration().first * cos(angle) - modul.Acceleration().second * sin(angle);
 
         float length = 0;
-        dAngularVelocity +=modul.getMasse() * a_bokovoie * (modul.getParametrization().second / 2 + length - cordCentreMass)*
-                dt / MomentOfInertia;
+        dAngularVelocity += modul.getMasse() * a_bokovoie *
+            (modul.getParametrization().second / 2 + length - cordCentreMass) * dt
+            / MomentOfInertia;
         length += modul.getParametrization().second;
     }
 
@@ -51,28 +53,29 @@ void spaceShip::move(float dt) {
 
     float length = 0;
     //????????? ???? ???????
-    for (auto &i: rocket) {
+    for (auto& i : rocket) {
         i.newAngle(angle);
         i.NewCord(x + sin(angle) * (i.getParametrization().first / 2 + length - cordCentreMass),
-                  y + cos(angle) * (i.getParametrization().first / 2 + length - cordCentreMass));
+            y + cos(angle) * (i.getParametrization().first / 2 + length - cordCentreMass));
         length += i.getParametrization().first;
     }
 
-    for (auto &modul: rocket) {
-        modul.NewAcceleration(make_pair(0,0));
+    for (auto& modul : rocket) {
+        modul.NewAcceleration(make_pair(0, 0));
+
     }
 }
-
+//&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
 void spaceShip::control() {
     bool crutch = false;
     float dfuel = 1000;
-    float dair = 10000;
-    for(auto & module : rocket) {
-        if(module.IsController) crutch = true;
+    float dair = 1000;
+    for (auto& module : rocket) {
+        if (module.IsController) crutch = true;
     }
     if (crutch) {
-        for (auto &module: rocket) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
+        for (auto& module : rocket) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle), module.Forward_PotAcceleration() * cos(angle)));
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
@@ -85,9 +88,36 @@ void spaceShip::control() {
     }
 }
 
+float spaceShip::FUEL() {
+    float sum_fuel = 0;
+    for (auto& module : rocket) {
+        sum_fuel += module.getFuel();
+    }
+    return sum_fuel;
+}
 
-void spaceShip::draw(sf::RenderWindow &window) {
-    for(auto & i : rocket){
+float spaceShip::AIR() {
+    float sum_air = 0;
+    for (auto& module : rocket) {
+        sum_air += module.getAir();
+    }
+    return sum_air;
+}
+
+float spaceShip::ANGLE() {
+    return angle;
+}
+
+pair<float, float> spaceShip::getCoordinates() {
+    return make_pair(x, y);
+}
+
+int spaceShip::SPEED() const {
+    return sqrtf(velocity.first * velocity.first + velocity.second * velocity.second);
+}
+
+void spaceShip::draw(sf::RenderWindow& window) {
+    for (auto& i : rocket) {
         i.drawSprite(window);
     }
 }

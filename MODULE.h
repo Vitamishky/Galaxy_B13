@@ -4,13 +4,23 @@
 
 class MODULE : public spaceObjects {
 private:
-    float forward_potAcceleration = 1000;
+    float forward_potAcceleration;
     pair<float, float> acceleration = make_pair(0, 0);
-    float side_potAcceleration = 100;
+    float side_potAcceleration;
     float fuel;
-    float air = 1000;
+    float air;
 public:
-    MODULE(float potentialAceleration = 0, bool IsEngine = false, bool IsController = false, bool IsTurner = false);
+    MODULE(float Masse = 100,
+        int Width = 10,
+        int Height = 10,
+        bool IsController = false,
+        bool IsTurner = false,
+        float Side_PotAcceleration = 0,
+        float Air = 0,
+        bool IsEngine = false,
+        float Forward_PotAcceleration = 0,
+        float fuel = 0
+    );
     bool IsController;
     bool IsEngine;
     bool IsTurner;
