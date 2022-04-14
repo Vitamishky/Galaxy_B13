@@ -11,16 +11,16 @@ private:
     float air;
 public:
     MODULE(float Masse = 100,
-            int Width = 10,
-            int Height = 10,
-            bool IsController = false,
-           bool IsTurner = false,
-           float Side_PotAcceleration = 0,
-           float Air = 0,
-           bool IsEngine = false,
-           float Forward_PotAcceleration = 0,
-           float fuel = 0
-                   );
+        int Width = 10,
+        int Height = 10,
+        bool IsController = false,
+        bool IsTurner = false,
+        float Side_PotAcceleration = 0,
+        float Air = 0,
+        bool IsEngine = false,
+        float Forward_PotAcceleration = 0,
+        float fuel = 0
+    );
     bool IsController;
     bool IsEngine;
     bool IsTurner;
@@ -35,6 +35,7 @@ public:
     float getAcceleration();
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
+    sf::Sprite getSprite();
 };
 
 #endif //GALAXY_B13_MODULE_H

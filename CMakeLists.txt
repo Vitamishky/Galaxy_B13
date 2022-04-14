@@ -15,6 +15,7 @@ set(PROJECT_HEADERS
         drawAll.h
         startMenu.h
         optionsMenu.h
+        aboutMenu.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -28,6 +29,7 @@ set(PROJECT_SOURCES
         drawAll.cpp
         startMenu.cpp
         optionsMenu.cpp
+        aboutMenu.cpp
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

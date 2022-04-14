@@ -8,12 +8,10 @@ class startMenu {
 private:
 	bool isMenu;
 	int menuNum;
-	drawAll *draw;
-	optionsMenu *optionsMainMenu;
-	sf::Sprite start, options, exit, about;
-	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
+	drawAll draw;
+	sf::Sprite start, options, exit, about, startWithMouse, optionsWithMouse, exitWithMouse, aboutWithMouse;
 public:
 	startMenu();
-	void drawStartMenu(sf::RenderWindow&);
+	string drawStartMenu(sf::RenderWindow&);
 	~startMenu();
 };
