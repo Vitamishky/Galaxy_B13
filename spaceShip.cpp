@@ -7,12 +7,11 @@
 spaceShip::spaceShip(const vector<MODULE>& rocket) :rocket(rocket) {
     float length = 0;
     for (const auto& i : rocket) {
-        Mass += i.getMasse();
         cordCentreMass += i.getMasse() * (i.getParametrization().second / 2 + length);
         length += i.getParametrization().second;
     }
     length = 0;
-    cordCentreMass /= Mass;
+    cordCentreMass /= getMass();
     for (const auto& i : rocket) {
         MomentOfInertia += (i.getMasse() * (i.getParametrization().second / 2 + length - cordCentreMass) *
             (i.getParametrization().second / 2 + length - cordCentreMass)) / 3;
@@ -40,11 +39,11 @@ void spaceShip::move(float dt) {
         length += modul.getParametrization().second;
     }
 
-    x += velocity.first * dt + F_x * dt * dt / (2 * Mass);
-    y += velocity.second * dt + F_y * dt * dt / (2 * Mass);
+    x += velocity.first * dt + F_x * dt * dt / (2 * getMass());
+    y += velocity.second * dt + F_y * dt * dt / (2 * getMass());
 
-    velocity.first += F_x * dt / Mass;
-    velocity.second += F_y * dt / Mass;
+    velocity.first += F_x * dt / getMass();
+    velocity.second += F_y * dt / getMass();
 
 
     angularVelocity += dAngularVelocity;
@@ -149,4 +148,12 @@ bool spaceShip::Use_Fuel(float dFuel) {
         }
     }
     return false;
+}
+
+float spaceShip::getMass() {
+    float Mass = 0;
+    for (auto & i : rocket) {
+        Mass += i.getMasse() + 0.5 *  i.getFuel(); + 0.1 * i.getAir();
+    }
+    return Mass;
 }

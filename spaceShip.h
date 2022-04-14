@@ -11,7 +11,6 @@ using namespace std;
 class spaceShip {
 private:
     float cordCentreMass = 0;
-    float Mass = 0;
     pair<float, float> velocity = make_pair(0, 0);
     float angularVelocity = 0;
     float MomentOfInertia = 0;
@@ -27,6 +26,7 @@ public:
     void control();
     float FUEL();
     float AIR();
+    float getMass();
     int SPEED() const;
     float ANGLE();
     void draw(sf::RenderWindow&);
