@@ -1,7 +1,7 @@
 #include "MODULE.h"
 #include "cmath"
 
-MODULE::MODULE(float Masse, int Width, int Height, bool IsController,
+MODULE::MODULE(string image, float Masse, int Width, int Height, bool IsController,
     bool IsTurner, float Side_PotAcceleration, float Air, bool IsEngine,
     float Forward_PotAcceleration, float fuel) : forward_potAcceleration(Forward_PotAcceleration),
     side_potAcceleration(Side_PotAcceleration), air(Air), IsTurner(IsTurner),
@@ -9,7 +9,7 @@ MODULE::MODULE(float Masse, int Width, int Height, bool IsController,
     this->Masse = Masse;
     this->Width = Width;
     this->Height = Height;
-    texture.loadFromFile("image/chert.jpg");
+    texture.loadFromFile(image);
     Sprite.setTexture(texture);
     fuel = 1000.f;
 }

@@ -29,9 +29,9 @@ void spaceObjects::drawSprite(sf::RenderWindow& window) {
     Sprite.setTexture(texture);
     float l = sqrtf(float(Height * Height + Width * Width)) / 2;
     float b = acos(float(Height) / (2 * l)) + angle;
-    Sprite.setScale(float(Width) / float(texture.getSize().x), float(Height) / float(texture.getSize().y));
-    Sprite.setPosition(sf::Vector2f(x - l * sin(b), y - l * cos(b)));
-    Sprite.setRotation(float(-angle * 180 / M_PI));
+    Sprite.setScale(float(Width) / float(this->texture.getSize().x), float(Height) / float(this->texture.getSize().y));
+    Sprite.setPosition(sf::Vector2f(x + l * sin(b), y + l * cos(b)));
+    Sprite.setRotation(float(180-angle * 180 / M_PI));
     window.draw(Sprite);
 }
 

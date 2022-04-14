@@ -10,16 +10,17 @@ private:
     float fuel;
     float air;
 public:
-    MODULE(float Masse = 100,
-        int Width = 10,
-        int Height = 10,
-        bool IsController = false,
-        bool IsTurner = false,
-        float Side_PotAcceleration = 0,
-        float Air = 0,
-        bool IsEngine = false,
-        float Forward_PotAcceleration = 0,
-        float fuel = 0
+    MODULE(string image = "image/chert.jpg",
+           float Masse = 100,
+            int Width = 10,
+            int Height = 10,
+            bool IsController = false,
+            bool IsTurner = false,
+            float Side_PotAcceleration = 0,
+            float Air = 0,
+            bool IsEngine = false,
+            float Forward_PotAcceleration = 0,
+            float fuel = 0
     );
     bool IsController;
     bool IsEngine;
