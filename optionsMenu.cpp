@@ -16,14 +16,7 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	music = draw.getSpriteMusic(window);
 	back = draw.getSpriteBack(window);
 	about = draw.getSpriteAbout(window);
-	/*
-	vSStartMenu.push_back(start);
-	vSStartMenu.push_back(options);
-	vSStartMenu.push_back(exit);
-	vSOptionsMenu.push_back(about);
-	vSOptionsMenu.push_back(start);
-	vSOptionsMenu.push_back(start);
-	*/
+	
 	while (isOptionsMenu) {
 		settings.setColor(sf::Color::White);
 		music.setColor(sf::Color::White);
@@ -31,8 +24,9 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 		back.setColor(sf::Color::White);
 		layout.setColor(sf::Color::White);
 		menuNum = 0;
-
+		/*
 		if (sf::IntRect((window.getSize().x * 0.2f - draw.xLa), window.getSize().y * 0.45f, draw.xLa, draw.yLa).contains(sf::Mouse::getPosition(window))) {
+			start.setColor(sf::Color::Blue);
 			menuNum = 1;
 		}
 		if (sf::IntRect((window.getSize().x * 0.4f - draw.xSet), window.getSize().y * 0.3f, draw.xSet, draw.ySet).contains(sf::Mouse::getPosition(window))) {
@@ -45,7 +39,7 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 			menuNum = 4;
 		}
 		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
-
+		*/
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			//Если нажали кнопку
 			if (menuNum == 1) {
@@ -77,7 +71,7 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 			}
 		}
 
-		//window.draw(draw->getSpriteMenuBackground(window));
+		//window.draw(draw.getSpriteMenuBackground(window));
 
 		window.draw(settings);
 

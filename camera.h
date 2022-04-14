@@ -2,6 +2,7 @@
 #define camera_hpp
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "spaceShip.h"
 
 class camera {
 private:
@@ -17,6 +18,7 @@ public:
     void unlockCamera();
     void moveCamera(int x, int y);
     void zoomCamera(sf::Event, sf::RenderWindow&);
+    void backFromShip(sf::RenderWindow&, spaceShip);
     sf::View getViewCamera();
     //sf::View getCoordinatesForView(float x, float y);
 };

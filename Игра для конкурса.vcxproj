@@ -145,6 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aboutMenu.cpp" />
+    <ClCompile Include="buildRocket.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="drawAll.cpp" />
     <ClCompile Include="functions.cpp" />
@@ -164,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aboutMenu.h" />
+    <ClInclude Include="buildRocket.h" />
     <ClInclude Include="drawAll.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="MODULE.h" />

@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "drawAll.h"
+#include "startMenu.h"
 
 class optionsMenu {
 private:

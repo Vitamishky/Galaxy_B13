@@ -14,6 +14,6 @@ private:
 	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
 public:
 	startMenu();
-	void drawStartMenu(sf::RenderWindow&);
+	string drawStartMenu(sf::RenderWindow&);
 	~startMenu();
 };
