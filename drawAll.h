@@ -12,7 +12,7 @@ class drawAll {
 private:
 	//Òåêñò
 	sf::Font font;
-	sf::Text text, textSpeed, textSpace, textFuelConsumption, textAirConsumption, textMass;
+	sf::Text text, textSpeed, textSpace, textFuelConsumption, textAirConsumption, textMass, textAbout;
 	vector<sf::Text> vLText;
 	//Èêîíêà
 	sf::Image icon;
@@ -41,6 +41,7 @@ public:
 	void drawCompas(sf::RenderWindow&, sf::View, spaceShip);
 	void drawArrow(sf::RenderWindow&, sf::View);
 	void drawTextAboutAll(sf::RenderWindow&, sf::View, spaceShip);
+	sf::Text drawTextAbout(sf::RenderWindow&);
 	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb;
 
 

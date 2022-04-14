@@ -4,8 +4,29 @@
 
 aboutMenu::aboutMenu() {
 
+	drawAll draw;
 }
 
-void aboutMenu::drawAboutMenu(sf::RenderWindow& window) {
+string aboutMenu::drawAboutMenu(sf::RenderWindow& window) {
+	text = draw.drawTextAbout(window);
+	while (true) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				window.close();
+				break;
+			}
 
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+				window.close();
+				break;
+			}
+		}
+		window.draw(draw.getSpriteMenuBackground(window));
+
+		window.draw(text);
+
+		window.display();
+	}
+	return "back";
 }

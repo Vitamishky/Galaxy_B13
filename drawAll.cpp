@@ -21,6 +21,11 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	textMass.setString("4");
 	textMass.setFont(font);
+	textAbout.setString("Here’s the text we wanted to write to make the player better understand our game, \n\
+feel it fully. We would have written a wonderful description of our work on the game. How we found \n\
+mistakes, corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
+                 told me what to write here, so I decided to write from myself)");
+	textAbout.setFont(font);
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setFont(font);
 	}
@@ -234,10 +239,9 @@ void drawAll::drawArrow(sf::RenderWindow& window, sf::View view) {
 }
 
 sf::Sprite drawAll::getSpriteStart(sf::RenderWindow& window) {
-	start = buttonStart;
-	start.setScale(window.getSize().x / (10.0f * xSt), window.getSize().y / (ySt * 13.0f));
-	start.setPosition((window.getSize().x - (xSt / 5.0f)) / 2, window.getSize().y * 0.35f);
-	return start;
+	buttonStart.setScale(window.getSize().x / (10.0f * xSt), window.getSize().y / (ySt * 13.0f));
+	buttonStart.setPosition((window.getSize().x - (xSt / 5.0f)) / 2, window.getSize().y * 0.35f);
+	return buttonStart;
 }
 
 sf::Sprite drawAll::getSpriteStartWithMouse(sf::RenderWindow& window) {
@@ -247,30 +251,26 @@ sf::Sprite drawAll::getSpriteStartWithMouse(sf::RenderWindow& window) {
 }
 
 sf::Sprite drawAll::getSpriteOptions(sf::RenderWindow& window) {
-	options = buttonOptions;
-	options.setScale(window.getSize().x / (10.0f * xOp), window.getSize().y / (yOp * 13.0f));
-	options.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.45f);
-	return options;
+	buttonOptions.setScale(window.getSize().x / (10.0f * xOp), window.getSize().y / (yOp * 13.0f));
+	buttonOptions.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.45f);
+	return buttonOptions;
 }
 
 sf::Sprite drawAll::getSpriteOptionsWithMouse(sf::RenderWindow& window) {
-	options = buttonOptionsWithMouse;
-	options.setScale(window.getSize().x / (10.0f * xOp), window.getSize().y / (yOp * 13.0f));
-	options.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.45f);
-	return options;
+	buttonOptionsWithMouse.setScale(window.getSize().x / (10.0f * xOp), window.getSize().y / (yOp * 13.0f));
+	buttonOptionsWithMouse.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.45f);
+	return buttonOptionsWithMouse;
 }
 sf::Sprite drawAll::getSpriteExit(sf::RenderWindow& window) {
-	exit = buttonExit;
-	exit.setScale(window.getSize().x / (10.0f * xEx), window.getSize().y / (yEx * 13.0f));
-	exit.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.55f);
-	return exit;
+	buttonExit.setScale(window.getSize().x / (10.0f * xEx), window.getSize().y / (yEx * 13.0f));
+	buttonExit.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.55f);
+	return buttonExit;
 }
 
 sf::Sprite drawAll::getSpriteExitWithMouse(sf::RenderWindow& window) {
-	exit = buttonExitWithMouse;
-	exit.setScale(window.getSize().x / (10.0f * xEx), window.getSize().y / (yEx * 13.0f));
-	exit.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.55f);
-	return exit;
+	buttonExitWithMouse.setScale(window.getSize().x / (10.0f * xEx), window.getSize().y / (yEx * 13.0f));
+	buttonExitWithMouse.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.55f);
+	return buttonExitWithMouse;
 }
 
 sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
@@ -279,74 +279,58 @@ sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
 }
 
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {
-	about = aboutTexture;
-	about.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	about.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return about;
+	aboutTexture.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	aboutTexture.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return aboutTexture;
 }
 
 sf::Sprite drawAll::getSpriteAboutWithMouse(sf::RenderWindow& window) {
-	about = aboutTextureWithMouse;
-	about.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	about.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return about;
+	aboutTextureWithMouse.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	aboutTextureWithMouse.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return aboutTextureWithMouse;
 }
 
 //Спрайты для настроек
 sf::Sprite drawAll::getSpriteBackWithMouse(sf::RenderWindow& window) {
-	back = buttonBackWithMouse;
-	back.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	back.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return back;
+	buttonBackWithMouse.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	buttonBackWithMouse.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return buttonBackWithMouse;
 }
 
 sf::Sprite drawAll::getSpriteBack(sf::RenderWindow& window) {
-	back = buttonBack;
-	back.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	back.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return back;
+	buttonBack.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	buttonBack.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return buttonBack;
 }
 
 sf::Sprite drawAll::getSpriteSettings(sf::RenderWindow& window) {
-	settings = buttonSettings;
-	settings.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	settings.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return settings;
+	buttonSettings.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	buttonSettings.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return buttonSettings;
 }
 
 sf::Sprite drawAll::getSpriteMusic(sf::RenderWindow& window) {
-	music = buttonMusic;
-	music.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	music.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return music;
+	buttonMusic.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	buttonMusic.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return buttonMusic;
 }
 
 sf::Sprite drawAll::getSpriteBackground(sf::RenderWindow& window) {
-	background = buttonBackground;
-	background.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	background.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return background;
+	buttonBackground.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	buttonBackground.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return buttonBackground;
 }
 
 sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
-	layout = buttonLayout;
-	layout.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	layout.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
-	return layout;
+	buttonLayout.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	buttonLayout.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return buttonLayout;
 }
 
-void drawAll::moveMenu(sf::RenderWindow& window, vector<sf::Sprite> vS_out, vector<sf::Sprite> vS_cin) {
-	float tick = 0.005;
-	for (int j = 0; j < window.getSize().x; j++) {
-		for (int i = 0; i < vS_out.size(); i++) {
-			sf::Vector2f vout = vS_out[i].getPosition();
-			vS_out[i].setPosition(sf::Vector2f(vout.x - tick, vout.y));
-			window.draw(vS_out[i]);
-		}
-		for (int i = 0; i < vS_cin.size(); i++) {
-			sf::Vector2f vcin = vS_cin[i].getPosition();
-			vS_cin[i].setPosition(sf::Vector2f(vcin.x - tick, vcin.y));
-			window.draw(vS_cin[i]);
-		}
-	}
+sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
+	float xText = textAbout.getGlobalBounds().width;
+	float yText = textAbout.getGlobalBounds().height;
+	textAbout.setScale(window.getSize().x / xText * 0.5f, window.getSize().y / yText * 0.5f);
+	//textAbout.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	return textAbout;
 }
