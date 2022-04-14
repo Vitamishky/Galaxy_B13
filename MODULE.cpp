@@ -71,3 +71,9 @@ void MODULE::NewAcceleration(pair<float, float> Na) {
 sf::Sprite MODULE::getSprite() {
     return Sprite;
 }
+
+float MODULE::getMasse() const {
+    float fuelDensity = 0.5;
+    float fuelAir = 0.1;
+    return this->Masse + fuelDensity*this->fuel + fuelAir*this->air;
+}

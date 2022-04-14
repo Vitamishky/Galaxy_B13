@@ -31,11 +31,11 @@ int main()
     drawObjects->drawIcon(window);
 
     //Создание космического корабля
-    MODULE m1("image/module1.png", 2, 120, 120, true);
-    MODULE m2("image/module2.png",10, 120, 130);
-    MODULE m3("image/module3.png",1, 120, 130, false, true, 1000, 1000);
-    MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 1000, 1000);
-    vector<MODULE> masivMODULE = { m4, m2, m3, m2, m1 };
+    MODULE m1("image/module1.png", 500, 120, 120, true);
+    MODULE m2("image/module2.png",1000, 120, 130);
+    MODULE m3("image/module3.png",500, 120, 130, false, true, 1000, 1000);
+    MODULE m4("image/module4.png",1000, 130, 120, false, false, 0, 0, true, 1000, 1000);
+    vector<MODULE> masivMODULE = { m4, m3, m2, m2, m1 };
     spaceShip spaceship = spaceShip(masivMODULE);
 
     //Работа с камерой слежения

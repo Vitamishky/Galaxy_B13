@@ -24,6 +24,6 @@ public:
     pair<float, float> getParametrization() const;
     void drawSprite(sf::RenderWindow&);
     void newAngle(float);
-    float getMasse() const;
+    virtual float getMasse() const;
 };
 #endif

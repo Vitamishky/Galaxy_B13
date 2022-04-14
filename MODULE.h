@@ -33,7 +33,7 @@ public:
     bool Use_Air(float);
     float getAir();
     float getFuel();
-    float getAcceleration();
+    float getMasse() const override;
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
     sf::Sprite getSprite();
