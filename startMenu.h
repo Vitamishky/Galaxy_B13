@@ -9,7 +9,7 @@ private:
 	bool isMenu;
 	int menuNum;
 	drawAll draw;
-	sf::Sprite start, options, exit, about;
+	sf::Sprite start, options, exit, about, startWithMouse, optionsWithMouse, exitWithMouse, aboutWithMouse;
 public:
 	startMenu();
 	string drawStartMenu(sf::RenderWindow&);

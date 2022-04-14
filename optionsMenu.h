@@ -9,8 +9,7 @@ private:
 	bool isMenu;
 	int menuNum;
 	drawAll draw;
-	sf::Sprite start, options, exit, about;
-	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
+	sf::Sprite settings, music, back, background, layout, optionsBg, about;
 public:
 	optionsMenu();
 	void drawOptionsMenu(sf::RenderWindow&);

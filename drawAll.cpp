@@ -43,24 +43,46 @@ drawAll::drawAll() {
 	texAirPanel.loadFromFile("image/air.png");
 	sprAirPanel.setTexture(texAirPanel);
 	//îòðèñîâêà ãëàâíîãî ìåíþ
-	buttonPlayFull.loadFromFile("image/spaceShip.png");
-	buttonOptionsFull.loadFromFile("image/buttons.png");
-	buttonExitFull.loadFromFile("image/buttons.png");
-	aboutTextureFull.loadFromFile("image/buttons.png");
+	//отрисовка главного меню
+	buttonStartFull.loadFromFile("image/start1.png");
+	buttonOptionsFull.loadFromFile("image/options1.png");
+	buttonExitFull.loadFromFile("image/exit1.png");
+	aboutTextureFull.loadFromFile("image/about1.png");
 	menuBackground.loadFromFile("image/background.jpg");
-	buttonPlay.setTexture(buttonPlayFull);
+
+	buttonStartFull_1.loadFromFile("image/start2.png");
+	buttonOptionsFull_1.loadFromFile("image/options2.png");
+	buttonExitFull_1.loadFromFile("image/exit2.png");
+	aboutTextureFull_1.loadFromFile("image/about2.png");
+
+	buttonStartWithMouse.setTexture(buttonStartFull_1);
+	buttonOptionsWithMouse.setTexture(buttonOptionsFull_1);
+	buttonExitWithMouse.setTexture(buttonExitFull_1);
+	aboutTextureWithMouse.setTexture(aboutTextureFull_1);
+
+	buttonStart.setTexture(buttonStartFull);
 	buttonOptions.setTexture(buttonOptionsFull);
 	buttonExit.setTexture(buttonExitFull);
 	aboutTexture.setTexture(aboutTextureFull);
 	menuBg.setTexture(menuBackground);
-	buttonPlay.setTextureRect(sf::IntRect(34, 138, 50, 20));
-	buttonOptions.setTextureRect(sf::IntRect(253, 138, 50, 20));
-	buttonExit.setTextureRect(sf::IntRect(542, 138, 50, 20));
-	aboutTexture.setTextureRect(sf::IntRect(0, 138, 50, 20));
+
+	//отрисовка настроек
+	buttonSettingsFull.loadFromFile("image/settings.png");
+	buttonMusicFull.loadFromFile("image/music.png");
+	buttonBackgroundFull.loadFromFile("image/buttonBackground.png");
+	buttonBackFull.loadFromFile("image/back1.png");
+	buttonBackFull_1.loadFromFile("image/back2.png");
+
+	buttonSettings.setTexture(buttonSettingsFull);
+	buttonMusic.setTexture(buttonMusicFull);
+	buttonBack.setTexture(buttonBackFull);
+	buttonBackWithMouse.setTexture(buttonBackFull_1);
+	buttonBackground.setTexture(buttonBackgroundFull);
+
 	xBg = menuBackground.getSize().x;
 	yBg = menuBackground.getSize().y;
-	xPl = buttonPlay.getTextureRect().width;
-	yPl = buttonPlay.getTextureRect().height;
+	xSt = buttonStart.getTextureRect().width;
+	ySt = buttonStart.getTextureRect().height;
 	xOp = buttonOptions.getTextureRect().width;
 	yOp = buttonOptions.getTextureRect().height;
 	xEx = buttonExit.getTextureRect().width;
@@ -211,16 +233,44 @@ void drawAll::drawArrow(sf::RenderWindow& window, sf::View view) {
 	window.draw(sprArrow);
 }
 
-sf::Sprite drawAll::getSpritePlay(sf::RenderWindow& window) {
-	play = buttonPlay;
-	play.setPosition((window.getSize().x - xPl) / 2, window.getSize().y * 0.45f);
-	return play;
+sf::Sprite drawAll::getSpriteStart(sf::RenderWindow& window) {
+	start = buttonStart;
+	start.setScale(window.getSize().x / (10.0f * xSt), window.getSize().y / (ySt * 13.0f));
+	start.setPosition((window.getSize().x - (xSt / 5.0f)) / 2, window.getSize().y * 0.35f);
+	return start;
+}
+
+sf::Sprite drawAll::getSpriteStartWithMouse(sf::RenderWindow& window) {
+	buttonStartWithMouse.setScale(window.getSize().x / (10.0f * xSt), window.getSize().y / (ySt * 13.0f));
+	buttonStartWithMouse.setPosition((window.getSize().x - (xSt / 5.0f)) / 2, window.getSize().y * 0.35f);
+	return buttonStartWithMouse;
 }
 
 sf::Sprite drawAll::getSpriteOptions(sf::RenderWindow& window) {
 	options = buttonOptions;
-	options.setPosition((window.getSize().x - xOp) / 2, window.getSize().y * 0.5f);
+	options.setScale(window.getSize().x / (10.0f * xOp), window.getSize().y / (yOp * 13.0f));
+	options.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.45f);
 	return options;
+}
+
+sf::Sprite drawAll::getSpriteOptionsWithMouse(sf::RenderWindow& window) {
+	options = buttonOptionsWithMouse;
+	options.setScale(window.getSize().x / (10.0f * xOp), window.getSize().y / (yOp * 13.0f));
+	options.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.45f);
+	return options;
+}
+sf::Sprite drawAll::getSpriteExit(sf::RenderWindow& window) {
+	exit = buttonExit;
+	exit.setScale(window.getSize().x / (10.0f * xEx), window.getSize().y / (yEx * 13.0f));
+	exit.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.55f);
+	return exit;
+}
+
+sf::Sprite drawAll::getSpriteExitWithMouse(sf::RenderWindow& window) {
+	exit = buttonExitWithMouse;
+	exit.setScale(window.getSize().x / (10.0f * xEx), window.getSize().y / (yEx * 13.0f));
+	exit.setPosition((window.getSize().x - (xOp / 5.0f)) / 2, window.getSize().y * 0.55f);
+	return exit;
 }
 
 sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
@@ -230,14 +280,59 @@ sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
 
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {
 	about = aboutTexture;
-	about.setPosition(window.getSize().x * 0.8f, window.getSize().y * 0.8f);
+	about.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	about.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
 	return about;
 }
 
-sf::Sprite drawAll::getSpriteExit(sf::RenderWindow& window) {
-	exit = buttonExit;
-	exit.setPosition((window.getSize().x - xEx) / 2, window.getSize().y * 0.55f);
-	return exit;
+sf::Sprite drawAll::getSpriteAboutWithMouse(sf::RenderWindow& window) {
+	about = aboutTextureWithMouse;
+	about.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	about.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return about;
+}
+
+//Спрайты для настроек
+sf::Sprite drawAll::getSpriteBackWithMouse(sf::RenderWindow& window) {
+	back = buttonBackWithMouse;
+	back.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	back.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return back;
+}
+
+sf::Sprite drawAll::getSpriteBack(sf::RenderWindow& window) {
+	back = buttonBack;
+	back.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	back.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return back;
+}
+
+sf::Sprite drawAll::getSpriteSettings(sf::RenderWindow& window) {
+	settings = buttonSettings;
+	settings.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	settings.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return settings;
+}
+
+sf::Sprite drawAll::getSpriteMusic(sf::RenderWindow& window) {
+	music = buttonMusic;
+	music.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	music.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return music;
+}
+
+sf::Sprite drawAll::getSpriteBackground(sf::RenderWindow& window) {
+	background = buttonBackground;
+	background.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	background.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return background;
+}
+
+sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
+	layout = buttonLayout;
+	layout.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
+	layout.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.9f - (xAb / 10.0f));
+	return layout;
 }
 
 void drawAll::moveMenu(sf::RenderWindow& window, vector<sf::Sprite> vS_out, vector<sf::Sprite> vS_cin) {
