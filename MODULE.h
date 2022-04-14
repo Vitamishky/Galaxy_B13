@@ -35,6 +35,7 @@ public:
     float getAcceleration();
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
+    sf::Sprite getSprite();
 };
 
 #endif //GALAXY_B13_MODULE_H

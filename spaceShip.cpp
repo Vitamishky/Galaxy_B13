@@ -108,6 +108,14 @@ float spaceShip::ANGLE() {
     return angle;
 }
 
+vector<sf::Sprite> spaceShip::getSprite() {
+    vector<sf::Sprite> v;
+    for (auto& module : rocket) {
+        v.push_back(module.getSprite());
+    }
+    return v;
+}
+
 pair<float, float> spaceShip::getCoordinates() {
     return make_pair(x, y);
 }

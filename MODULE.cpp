@@ -66,3 +66,7 @@ void MODULE::NewAcceleration(pair<float, float> Na) {
     acceleration.second = Na.second;
 
 }
+
+sf::Sprite MODULE::getSprite() {
+    return Sprite;
+}

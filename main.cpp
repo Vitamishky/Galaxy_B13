@@ -24,7 +24,7 @@ int main()
 
     //Отрисовка иконки
     drawObjects->drawIcon(window);
-    int wereMouse = 0;
+
     //Создание космического корабля
     MODULE m1(20, 120, 120, true);
     MODULE m2(1, 120, 130, false, true, 1000, 1000);
@@ -39,7 +39,27 @@ int main()
 
     sf::Clock sf_clock;
 
-    menu.drawStartMenu(window);
+    string nameMenu = "main";
+
+    while (nameMenu != "go") {
+        if (nameMenu == "main") {
+            nameMenu = menu.drawStartMenu(window);
+        }
+        if (nameMenu == "start") {
+            //nameMenu = buildrocket.drawBuildRocket(window);
+            if (nameMenu == "back") {
+                //menu.drawStartMenu(window);
+            }
+            //else
+                //nameMenu = "go";
+        }
+        if (nameMenu == "options") {
+            //nameMenu = options.drawOptionsMenu(window);
+        }
+        if (nameMenu == "about") {
+            //nameMenu = about.drawAboutMenu(window);
+        }
+    }
 
     while (window.isOpen()) {
 
@@ -83,14 +103,12 @@ int main()
         spaceship.control();
         spaceship.move(dt);
 
-        //spaceship->drawSprite(window);
-
         drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawRightInter(window, Camera->getViewCamera());
         drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawCompas(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawArrow(window, Camera->getViewCamera());
-        drawObjects->drawTextAboutAll(window, Camera->getViewCamera(), wereMouse);
+        drawObjects->drawTextAboutAll(window, Camera->getViewCamera(), spaceship);
 
         window.display();
 
@@ -99,6 +117,7 @@ int main()
 
     delete drawObjects;
     delete Camera;
+    delete screen;
 
     return EXIT_SUCCESS;
 }

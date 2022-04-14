@@ -99,7 +99,7 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip s
 	textFuelConsumption.setFont(font);
 	textFuelConsumption.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
 	textFuelConsumption.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.33f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && ship.FUEL() != 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && ship.FUEL() != 0)
 		textFuelConsumption.setString("1");
 	else
 		textFuelConsumption.setString("0");
@@ -123,31 +123,42 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip s
 
 }
 
-void drawAll::drawTextAboutAll(sf::RenderWindow& window, sf::View view, int num) {
+void drawAll::drawTextAboutAll(sf::RenderWindow& window, sf::View view, spaceShip ship) {
 	float vSize_x = 0.15f * view.getSize().x;
 	float vSize_y = 0.8f * view.getSize().y;
 	float xRightInter = sprRightInter.getLocalBounds().width;
 	float yRightInter = sprRightInter.getLocalBounds().height;
-	if (num == 0) {
+	sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+	sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
+	if (ship.getSprite()[0].getGlobalBounds().contains(pos.x, pos.y) ||
+		ship.getSprite()[1].getGlobalBounds().contains(pos.x, pos.y) ||
+		ship.getSprite()[2].getGlobalBounds().contains(pos.x, pos.y) ||
+		ship.getSprite()[3].getGlobalBounds().contains(pos.x, pos.y)) {
 		textSpace.setString(\
-			"An open and violent space that`s been \n\
-around me for months. It seems like just \n\
-yesterday I was home, and now I`m \n\
-rushing into the unknown. What`s \n\
-next for me? Victory? Despair? Now it`s \n\
-up to you, my friend. Don`t let me down. \n\
-People from Earth believe in you, from \n\
-our ship, and I believe in you");
-	}
-	else if (num == 1) {
-
+			"This is our ship, our home. We used to \n\
+fly in weightlessness, eat from a tube \n\
+and look at the stars from the porthole. \n\
+Our captain, John, likes to cook, so \n\
+we`re letting him in the fuel module. \n\
+We`re a spaceship, not a missile. But \n\
+we respect him, because no one but him \n\
+could have built a rocket like that in \n\
+a month from improvesed materials");
 	}
 	else {
-
+		textSpace.setString(\
+			"An open and violent space that`s been \n\
+around me for months. It seems like \n\
+just yesterday I was home, and now \n\
+I`m rushing into the unknown. What`s \n\
+next? Victory? Defeat? Now it`s \n\
+up to you, my friend. Don`t let me down. \n\
+People from Earth, from our ship, and I \n\
+believe in you");
 	}
 	textSpace.setFont(font);
-	textSpace.setScale(vSize_x * 2.f / xRightInter, vSize_y * 2.f / yRightInter);
-	textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.1f);
+	textSpace.setScale(vSize_x * 1.88f / xRightInter, vSize_y * 2.f / yRightInter);
+	textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.08f);
 	window.draw(textSpace);
 }
 
@@ -244,5 +255,3 @@ void drawAll::moveMenu(sf::RenderWindow& window, vector<sf::Sprite> vS_out, vect
 		}
 	}
 }
-
-drawAll::~drawAll() {}

@@ -22,6 +22,7 @@ private:
 public:
     spaceShip(const vector<MODULE>& rocket);
     void move(float);
+    vector<sf::Sprite> getSprite();
     pair<float, float> getCoordinates();
     void control();
     float FUEL();
