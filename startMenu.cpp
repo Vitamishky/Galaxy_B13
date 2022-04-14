@@ -64,8 +64,7 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			if (menuNum == 1) {
-				return "go";
-				break; 
+				return "go"; 
 			}
 			if (menuNum == 2) { 
 				for (int i = 0; i < 100; i++) {
@@ -87,11 +86,13 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.display();
 				}
 				return "options";
-				break;
 			}
-			if (menuNum == 3) { 
-				window.close(); 
-				break;
+			if (menuNum == 3) {
+				window.close();
+				return "exit";
+			}
+			if (menuNum == 4) {
+				return "about";
 			}
 
 		}

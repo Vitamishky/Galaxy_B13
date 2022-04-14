@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "drawAll.h"
+<<<<<<< HEAD
 #include "startMenu.h"
 
 
@@ -20,3 +21,14 @@ public:
 	~aboutMenu();
 };
 
+=======
+
+class aboutMenu {
+private:
+	sf::Text text;
+	drawAll draw;
+public:
+	aboutMenu();
+	string drawAboutMenu(sf::RenderWindow&);
+};
+>>>>>>> abd34c38fac046cb155eeca84ee22256f46301c1
