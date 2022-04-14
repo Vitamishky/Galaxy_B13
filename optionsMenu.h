@@ -5,10 +5,10 @@
 
 class optionsMenu {
 private:
-	bool isMenu;
+	bool isOptionsMenu;
 	int menuNum;
-	drawAll *draw;
-	sf::Sprite start, options, exit, about;
+	drawAll draw;
+	sf::Sprite settings, music, back, background, layout, optionsBg, about;
 	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
 public:
 	optionsMenu();

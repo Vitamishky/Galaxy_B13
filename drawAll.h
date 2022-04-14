@@ -24,9 +24,14 @@ private:
 	sf::CircleShape shapeCompas;
 	MODULE module;
 	//Стартового меню
-	sf::Texture buttonPlayFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, menuBackground;
-	sf::Sprite buttonPlay, buttonOptions, buttonExit, aboutTexture;	
-	sf::Sprite play, options, exit, about, menuBg;
+	sf::Texture buttonStartFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, buttonStartFull_1, buttonOptionsFull_1, buttonExitFull_1, aboutTextureFull_1, menuBackground;
+	sf::Sprite buttonStart, buttonOptions, buttonExit, aboutTexture, buttonStartWithMouse, buttonOptionsWithMouse, buttonExitWithMouse, aboutTextureWithMouse;
+	sf::Sprite start, options, exit, about, menuBg;
+	//меню в настройках
+	sf::Sprite buttonSettingsFull, buttonMusicFull, buttonBackFull, buttonBackFull_1, buttonBackgroundFull, buttonLayoutFull;
+	sf::Sprite buttonSettings, buttonMusic, buttonBack, buttonBackWithMouse, buttonBackground, buttonLayout;
+	sf::Sprite settings, music, back, background, layout, optionsBg;
+
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -36,12 +41,28 @@ public:
 	void drawFuel(sf::RenderWindow&, sf::View);
 	void drawCompas(sf::RenderWindow&, sf::View);
 	void drawArrow(sf::RenderWindow&, sf::View);
-	float xBg, yBg, xPl, yPl, xOp, yOp, xEx, yEx, xAb, yAb;
+	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb;
+	
+	//Спрайты для основного меню
 	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
-	sf::Sprite getSpritePlay(sf::RenderWindow&);
+	sf::Sprite getSpriteStart(sf::RenderWindow&);
 	sf::Sprite getSpriteOptions(sf::RenderWindow&);
 	sf::Sprite getSpriteExit(sf::RenderWindow&);
 	sf::Sprite getSpriteAbout(sf::RenderWindow&);
+	
+	sf::Sprite getSpriteStartWithMouse(sf::RenderWindow&);
+	sf::Sprite getSpriteOptionsWithMouse(sf::RenderWindow&);
+	sf::Sprite getSpriteExitWithMouse(sf::RenderWindow&);
+	sf::Sprite getSpriteAboutWithMouse(sf::RenderWindow&);
+	
+	//Спрайты для настроек
+	sf::Sprite getSpriteSettings(sf::RenderWindow&);
+	sf::Sprite getSpriteMusic(sf::RenderWindow&);
+	sf::Sprite getSpriteBackground(sf::RenderWindow&);
+	sf::Sprite getSpriteLayout(sf::RenderWindow&);
+	sf::Sprite getSpriteBack(sf::RenderWindow&);
+	sf::Sprite getSpriteBackWithMouse(sf::RenderWindow&);
+	
 	void moveMenu(sf::RenderWindow&, vector<sf::Sprite>, vector<sf::Sprite>);
 	~drawAll();
 };

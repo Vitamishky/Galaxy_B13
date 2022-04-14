@@ -8,9 +8,9 @@ class startMenu {
 private:
 	bool isMenu;
 	int menuNum;
-	drawAll *draw;
-	optionsMenu *optionsMainMenu;
-	sf::Sprite start, options, exit, about;
+	drawAll draw;
+	optionsMenu optionsMainMenu;
+	sf::Sprite start, options, exit, about, startWithMouse, optionsWithMouse, exitWithMouse, aboutWithMouse;
 	vector<sf::Sprite> vSStartMenu, vSOptionsMenu;
 public:
 	startMenu();

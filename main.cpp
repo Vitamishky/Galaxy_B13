@@ -15,7 +15,7 @@ int main()
     
     camera *Camera = new camera(window);
 
-    startMenu *menu = new startMenu();
+    startMenu *menu = new startMenu;
     drawAll *drawObjects = new drawAll;
     
     window.setFramerateLimit(30);
@@ -38,11 +38,9 @@ int main()
     Camera->resetView(window);
 
     sf::Clock sf_clock;
-
-    //menu->drawStartMenu(window);
-
+    menu->drawStartMenu(window);
     while (window.isOpen()) {
-
+        
         sf::Event event{};
 
         float dt = sf_clock.restart().asSeconds();

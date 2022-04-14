@@ -5,16 +5,17 @@
 #include "optionsMenu.h"
 
 optionsMenu::optionsMenu() {
-	isMenu = true;
+	isOptionsMenu = true;
 	menuNum = 0;
-	drawAll *draw = new drawAll;
+	drawAll draw;
 }
 
 void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
-	start = draw->getSpritePlay(window);
-	options = draw->getSpriteOptions(window);
-	exit = draw->getSpriteExit(window);
-	about = draw->getSpriteAbout(window);
+	settings = draw.getSpriteSettings(window);
+	background = draw.getSpriteMenuBackground(window);
+	music = draw.getSpriteMusic(window);
+	back = draw.getSpriteBack(window);
+	about = draw.getSpriteAbout(window);
 	/*
 	vSStartMenu.push_back(start);
 	vSStartMenu.push_back(options);
@@ -23,23 +24,25 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	vSOptionsMenu.push_back(start);
 	vSOptionsMenu.push_back(start);
 	*/
-	while (isMenu) {
-		start.setColor(sf::Color::White);
-		options.setColor(sf::Color::White);
-		exit.setColor(sf::Color::White);
+	while (isOptionsMenu) {
+		settings.setColor(sf::Color::White);
+		music.setColor(sf::Color::White);
+		background.setColor(sf::Color::White);
+		back.setColor(sf::Color::White);
+		layout.setColor(sf::Color::White);
 		menuNum = 0;
 
-		if (sf::IntRect((window.getSize().x - draw->xPl) / 2, window.getSize().y * 0.45f, draw->xPl, draw->yPl).contains(sf::Mouse::getPosition(window))) {
-			start.setColor(sf::Color::Blue);
+		if (sf::IntRect((window.getSize().x * 0.2f - draw.xLa), window.getSize().y * 0.45f, draw.xLa, draw.yLa).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 1;
 		}
-		if (sf::IntRect((window.getSize().x - draw->xOp), window.getSize().y * 0.5f, draw->xOp, draw->yOp).contains(sf::Mouse::getPosition(window))) {
-			options.setColor(sf::Color::Blue);
+		if (sf::IntRect((window.getSize().x * 0.4f - draw.xSet), window.getSize().y * 0.3f, draw.xSet, draw.ySet).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 2;
 		}
-		if (sf::IntRect((window.getSize().x - draw->xEx), window.getSize().y * 0.55f, draw->xEx, draw->yEx).contains(sf::Mouse::getPosition(window))) {
-			exit.setColor(sf::Color::Blue);
+		if (sf::IntRect((window.getSize().x * 0.6f - draw.xMu), window.getSize().y * 0.3f, draw.xMu, draw.yMu).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 3;
+		}
+		if (sf::IntRect((window.getSize().x * 0.8f - draw.xBag), window.getSize().y * 0.3f, draw.xBag, draw.yBag).contains(sf::Mouse::getPosition(window))) {
+			menuNum = 4;
 		}
 		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
 
@@ -65,24 +68,24 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
-				isMenu = false;
+				isOptionsMenu = false;
 			}
 
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 				window.close();
-				isMenu = false;
+				isOptionsMenu = false;
 			}
 		}
 
 		//window.draw(draw->getSpriteMenuBackground(window));
 
-		window.draw(start);
+		window.draw(settings);
 
-		window.draw(options);
+		window.draw(music);
 
-		window.draw(exit);
+		window.draw(background);
 
-		window.draw(about);
+		window.draw(layout);
 
 		window.display();
 	}
