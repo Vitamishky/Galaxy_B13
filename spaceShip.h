@@ -30,5 +30,7 @@ public:
     int SPEED() const;
     float ANGLE();
     void draw(sf::RenderWindow&);
+    bool Use_Air(float);
+    bool Use_Fuel(float);
 };
 #endif 
