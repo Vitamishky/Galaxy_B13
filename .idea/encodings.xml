@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+<<<<<<< HEAD
+=======
+    <file url="file://$PROJECT_DIR$/main.cpp" charset="windows-1251" />
+>>>>>>> 43395a574f42e11e5dea85adb6e8f0d24b4de70f
     <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>
