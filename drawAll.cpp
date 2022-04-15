@@ -21,9 +21,9 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	textMass.setString("4");
 	textMass.setFont(font);
-	textAbout.setString("Here’s the text we wanted to write to make the player better understand our game, \n\
-feel it fully. We would have written a wonderful description of our work on the game. How we found \n\
-mistakes, corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
+	textAbout.setString("Here`s the text we wanted to write to make the player better understand our game, feel it fully. \n\
+We would have written a wonderful description of our work on the game. How we found mistakes, \n\
+corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
                  told me what to write here, so I decided to write from myself)");
 	textAbout.setFont(font);
 	for (int i = 0; i < vLText.size(); i++) {
@@ -330,7 +330,9 @@ sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
 sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
 	float xText = textAbout.getGlobalBounds().width;
 	float yText = textAbout.getGlobalBounds().height;
-	textAbout.setScale(window.getSize().x / xText * 0.5f, window.getSize().y / yText * 0.5f);
-	//textAbout.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	textAbout.setScale(window.getSize().x / xText * 0.8f, window.getSize().y / yText * 0.5f);
+	xText = textAbout.getGlobalBounds().width;
+	yText = textAbout.getGlobalBounds().height;
+	textAbout.setPosition((window.getSize().x - xText) / 2, (window.getSize().y - yText) / 2.f);
 	return textAbout;
 }
