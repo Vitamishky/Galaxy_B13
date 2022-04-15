@@ -22,6 +22,7 @@ int main()
     optionsMenu options;
     aboutMenu* about = new aboutMenu;
     drawAll* drawObjects = new drawAll;
+    buildRocket buildrocket;
 
     window.setFramerateLimit(30);
 
@@ -35,7 +36,7 @@ int main()
     MODULE m2("image/module2.png",100, 120, 130);
     MODULE m3("image/module3.png",50, 120, 130, false, true, 1000, 1000);
     MODULE m4("image/module4.png",100, 130, 120, false, false, 0, 0, true, 100000, 100000);
-    vector<MODULE> masivMODULE = { m4, m3, m2, m2, m1 };
+    vector<MODULE> masivMODULE = { m4, m3, m3, m3, m3, m3, m2, m2, m1 };
     spaceShip spaceship = spaceShip(masivMODULE);
 
     //Работа с камерой слежения
@@ -52,10 +53,10 @@ int main()
             window.clear();
         }
         if (nameMenu == "start") {
-            //nameMenu = buildrocket.drawBuildRocket(window);
-            if (nameMenu == "back") {
+            nameMenu = buildrocket.drawBuildRocket(window);
+            //if (nameMenu == "back") {
                 //menu.drawStartMenu(window);
-            }
+            //}
             //else
                 //nameMenu = "go";
         }

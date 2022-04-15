@@ -45,7 +45,6 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 			}
 			//Если нажали кнопку
 			if (menuNum == 2) {
-				//draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
 				break;
 			}
 			//Если нажали кнопку

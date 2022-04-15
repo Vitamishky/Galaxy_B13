@@ -64,7 +64,26 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			if (menuNum == 1) {
-				return "go"; 
+				for (int i = 0; i < 100; i++) {
+					options.setColor(sf::Color::White);
+
+					start.move(10.f, 10.f);
+					options.move(-10.f, -10.f);
+					exit.move(-10.f, 10.f);
+					window.draw(draw.getSpriteMenuBackground(window));
+
+					window.draw(start);
+
+					window.draw(options);
+
+					window.draw(exit);
+
+					window.draw(about);
+
+					window.display();
+				}
+				window.clear();
+				return "start"; 
 			}
 			if (menuNum == 2) { 
 				for (int i = 0; i < 100; i++) {
@@ -88,10 +107,46 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				return "options";
 			}
 			if (menuNum == 3) {
+				for (int i = 0; i < 100; i++) {
+					options.setColor(sf::Color::White);
+
+					start.move(10.f, 10.f);
+					options.move(-10.f, -10.f);
+					exit.move(-10.f, 10.f);
+					window.draw(draw.getSpriteMenuBackground(window));
+
+					window.draw(start);
+
+					window.draw(options);
+
+					window.draw(exit);
+
+					window.draw(about);
+
+					window.display();
+				}
 				window.close();
 				return "exit";
 			}
 			if (menuNum == 4) {
+				for (int i = 0; i < 100; i++) {
+					options.setColor(sf::Color::White);
+
+					start.move(10.f, 10.f);
+					options.move(-10.f, -10.f);
+					exit.move(-10.f, 10.f);
+					window.draw(draw.getSpriteMenuBackground(window));
+
+					window.draw(start);
+
+					window.draw(options);
+
+					window.draw(exit);
+
+					window.draw(about);
+
+					window.display();
+				}
 				return "about";
 			}
 
