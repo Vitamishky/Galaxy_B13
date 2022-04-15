@@ -9,9 +9,9 @@ private:
 	bool isMenu;
 	int menuNum;
 	drawAll draw;
-	sf::Sprite settings, music, back, background, layout, optionsBg, about;
+	sf::Sprite music, back, backWithMouse, background, layout, changeBg, about;
 public:
 	optionsMenu();
-	void drawOptionsMenu(sf::RenderWindow&);
+	string drawOptionsMenu(sf::RenderWindow&);
 	~optionsMenu();
 };

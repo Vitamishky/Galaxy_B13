@@ -28,9 +28,9 @@ private:
 	sf::Sprite buttonStart, buttonOptions, buttonExit, aboutTexture, buttonStartWithMouse, buttonOptionsWithMouse, buttonExitWithMouse, aboutTextureWithMouse;
 	sf::Sprite start, options, exit, about, menuBg;
 	//меню в настройках
-	sf::Texture buttonSettingsFull, buttonMusicFull, buttonBackFull, buttonBackFull_1, buttonBackgroundFull, buttonLayoutFull;
-	sf::Sprite buttonSettings, buttonMusic, buttonBack, buttonBackWithMouse, buttonBackground, buttonLayout;
-	sf::Sprite settings, music, back, background, layout, optionsBg;
+	sf::Texture buttonMusicFull, buttonBackFull, buttonBackFull_1, buttonBackgroundFull, buttonLayoutFull;
+	sf::Sprite buttonMusic, buttonBack, buttonBackWithMouse, buttonBackground, buttonLayout;
+	sf::Sprite music, back, background, layout, optionsBg;
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -42,7 +42,7 @@ public:
 	void drawArrow(sf::RenderWindow&, sf::View);
 	void drawTextAboutAll(sf::RenderWindow&, sf::View, spaceShip);
 	sf::Text drawTextAbout(sf::RenderWindow&);
-	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb;
+	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb, xBag, yBag, xMu, yMu, xBack, yBack, xLa, yLa;
 
 
 	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
@@ -57,7 +57,6 @@ public:
 	sf::Sprite getSpriteAboutWithMouse(sf::RenderWindow&);
 
 	//Спрайты для настроек
-	sf::Sprite getSpriteSettings(sf::RenderWindow&);
 	sf::Sprite getSpriteMusic(sf::RenderWindow&);
 	sf::Sprite getSpriteBackground(sf::RenderWindow&);
 	sf::Sprite getSpriteLayout(sf::RenderWindow&);
