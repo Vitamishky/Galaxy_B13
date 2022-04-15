@@ -7,12 +7,11 @@
 spaceShip::spaceShip(const vector<MODULE>& rocket) :rocket(rocket) {
     float length = 0;
     for (const auto& i : rocket) {
-        Mass += i.getMasse();
         cordCentreMass += i.getMasse() * (i.getParametrization().second / 2 + length);
         length += i.getParametrization().second;
     }
     length = 0;
-    cordCentreMass /= Mass;
+    cordCentreMass /= getMass();
     for (const auto& i : rocket) {
         MomentOfInertia += (i.getMasse() * (i.getParametrization().second / 2 + length - cordCentreMass) *
             (i.getParametrization().second / 2 + length - cordCentreMass)) / 3;
@@ -40,11 +39,11 @@ void spaceShip::move(float dt) {
         length += modul.getParametrization().second;
     }
 
-    x += velocity.first * dt + F_x * dt * dt / (2 * Mass);
-    y += velocity.second * dt + F_y * dt * dt / (2 * Mass);
+    x += velocity.first * dt + F_x * dt * dt / (2 * getMass());
+    y += velocity.second * dt + F_y * dt * dt / (2 * getMass());
 
-    velocity.first += F_x * dt / Mass;
-    velocity.second += F_y * dt / Mass;
+    velocity.first += F_x * dt / getMass();
+    velocity.second += F_y * dt / getMass();
 
 
     angularVelocity += dAngularVelocity;
@@ -68,21 +67,24 @@ void spaceShip::move(float dt) {
 //&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
 void spaceShip::control() {
     bool crutch = false;
-    float dfuel = 1000;
+    float dfuel = 100000;
     float dair = 1000;
     for (auto& module : rocket) {
         if (module.IsController) crutch = true;
     }
     if (crutch) {
         for (auto& module : rocket) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration() / dfuel)) {
-                module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle), module.Forward_PotAcceleration() * cos(angle)));
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && this->Use_Fuel(module.Forward_PotForce()/ dfuel)) {
+                module.EditAcceleration(make_pair(module.Forward_PotForce() * sin(angle)/ module.getMasse()
+                                                  , module.Forward_PotForce() * cos(angle)/ module.getMasse()));
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
-                module.EditAcceleration(make_pair(module.Side_PotAcceleration() * cos(angle), -module.Side_PotAcceleration() * sin(angle)));
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
+                module.EditAcceleration(make_pair(module.Side_PotForce() * cos(angle) / module.getMasse(),
+                                                  -module.Side_PotForce() * sin(angle)/ module.getMasse()));
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration() / dair)) {
-                module.EditAcceleration(make_pair(-module.Side_PotAcceleration() * cos(angle), module.Side_PotAcceleration() * sin(angle)));
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
+                module.EditAcceleration(make_pair(-module.Side_PotForce() * cos(angle)/ module.getMasse()
+                                                  , module.Side_PotForce() * sin(angle)/ module.getMasse()));
             }
         }
     }
@@ -128,4 +130,30 @@ void spaceShip::draw(sf::RenderWindow& window) {
     for (auto& i : rocket) {
         i.drawSprite(window);
     }
+}
+
+bool spaceShip::Use_Air(float dAir) {
+    for (auto & i : rocket) {
+        if (i.Use_Air(dAir)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool spaceShip::Use_Fuel(float dFuel) {
+    for (auto & i : rocket) {
+        if (i.Use_Fuel(dFuel)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+float spaceShip::getMass() {
+    float Mass = 0;
+    for (auto & i : rocket) {
+        Mass += i.getMasse() + 0.5 *  i.getFuel(); + 0.1 * i.getAir();
+    }
+    return Mass;
 }
