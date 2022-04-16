@@ -4,8 +4,10 @@
 #include "cmath"
 
 
-spaceShip::spaceShip(const vector<MODULE>& rocket) :rocket(rocket) {
+spaceShip::spaceShip(const vector<MODULE>& rocket, float x, float y) :rocket(rocket) {
     float length = 0;
+    this->x = x;
+    this->y = y;
     for (const auto& module : rocket) {
         cordCentreMass += module.getMasse() * (module.getParametrization().second / 2 + length);
         length += module.getParametrization().second;

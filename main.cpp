@@ -38,7 +38,7 @@ int main()
     MODULE m3("image/module3.png",5, 120, 130, false, true, 1000, 1000);
     MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 10000, 1000);
     vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
-    spaceShip spaceship = spaceShip(masivMODULE);
+    spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
 
     //Работа с камерой слежения
 

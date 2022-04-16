@@ -15,12 +15,12 @@ private:
     float angularVelocity = 0;
     float MomentOfInertia = 0;
     float angle = 0;
-    float x = 500, y = 500;
+    float x, y;
     float maxFuel = 0, maxAir = 0;
     vector<MODULE> rocket;
 
 public:
-    spaceShip(const vector<MODULE>& rocket);
+    spaceShip(const vector<MODULE>& rocket, float, float);
     void move(float);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
