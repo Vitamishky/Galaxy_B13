@@ -58,12 +58,12 @@ bool MODULE::Use_Air(float dAir) {
     return false;
 }
 
-float MODULE::getAir() {
-    return air;
+float MODULE::getAir() const{
+    return this->air;
 }
 
-float MODULE::getFuel() {
-    return fuel;
+float MODULE::getFuel() const{
+    return this->fuel;
 }
 
 float MODULE::Side_PotForce() const {
@@ -81,6 +81,6 @@ void MODULE::NewAcceleration(pair<float, float> Na) {
 
 }
 
-sf::Sprite MODULE::getSprite() {
+sf::Sprite MODULE::getSprite() const{
     return Sprite;
 }
