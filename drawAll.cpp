@@ -209,7 +209,7 @@ void drawAll::drawFuel(sf::RenderWindow& window, sf::View view, spaceShip ship) 
 	sprFuel.setScale(vSize_x / xFuel, vSize_y / yFuel);
 	sprFuel.setPosition(sf::Vector2f(view.getCenter().x - vSize_x / 2, view.getCenter().y - view.getSize().y / 2));
 	window.draw(sprFuel);
-	sprFuelPanel.setScale(vSize_x * ship.FUEL()/ (xFuel * 1000), vSize_y / yFuel);
+	sprFuelPanel.setScale(vSize_x * ship.FUEL()/ (xFuel * 1000000), vSize_y / yFuel);
 	sprFuelPanel.setPosition(view.getCenter().x - view.getSize().x * 0.086f, view.getCenter().y - view.getSize().y * 0.481f);
 	window.draw(sprFuelPanel);
 	sprAirPanel.setScale(vSize_x * ship.AIR()/ (xFuel * 1000), vSize_y / yFuel);

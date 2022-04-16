@@ -83,7 +83,7 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.display();
 				}
 				window.clear();
-				return "start"; 
+				return "go"; 
 			}
 			if (menuNum == 2) { 
 				for (int i = 0; i < 100; i++) {
