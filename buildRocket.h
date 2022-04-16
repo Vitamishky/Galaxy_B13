@@ -4,8 +4,9 @@
 
 class buildRocket {
 private:
-
+	sf::Texture texBackground;
+	sf::Sprite sprBackground;
 public:
 	buildRocket();
-	void drawBuildRocket(sf::RenderWindow&);
+	std::string drawBuildRocket(sf::RenderWindow&);
 };

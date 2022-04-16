@@ -21,9 +21,9 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	textMass.setString("4");
 	textMass.setFont(font);
-	textAbout.setString("Here’s the text we wanted to write to make the player better understand our game, \n\
-feel it fully. We would have written a wonderful description of our work on the game. How we found \n\
-mistakes, corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
+	textAbout.setString("Here`s the text we wanted to write to make the player better understand our game, feel it fully. \n\
+We would have written a wonderful description of our work on the game. How we found mistakes, \n\
+corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
                  told me what to write here, so I decided to write from myself)");
 	textAbout.setFont(font);
 	for (int i = 0; i < vLText.size(); i++) {
@@ -83,10 +83,22 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonBackground.setTexture(buttonBackgroundFull);
 	buttonLayout.setTexture(buttonLayoutFull);
 
-	textMusic1.setString("Name of the first song");
-	textMusic1.setString("Name of the second song");
-	textMusic1.setString("Name of the third song");
+	textMusic3.setFont(font);
+	textMusic2.setFont(font);
+	textMusic1.setFont(font);
+	textLayout.setFont(font);
 
+	textMusic1.setString("Name of the first song");
+	textMusic2.setString("Name of the second song");
+	textMusic3.setString("Name of the third song");
+
+	textLayout.setString("SPACE - acceleration \n\
+B(pressed) - tracking \n\
+B - move camera to rocket \n\
+Z - clockwise rotation \n\
+X - counterclockwise rotation \n\
+mouse wheel - scrolling \n\
+mouse 1 - move camera");
 
 	xBg = menuBackground.getSize().x;
 	yBg = menuBackground.getSize().y;
@@ -292,40 +304,40 @@ sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
 }
 
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {
-	aboutTexture.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	aboutTexture.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.88f - (xAb / 10.0f));
+	aboutTexture.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
+	aboutTexture.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
 	return aboutTexture;
 }
 
 sf::Sprite drawAll::getSpriteAboutWithMouse(sf::RenderWindow& window) {
-	aboutTextureWithMouse.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	aboutTextureWithMouse.setPosition(window.getSize().x * 0.95f - (xAb / 10.0f), window.getSize().y * 0.88f - (xAb / 10.0f));
+	aboutTextureWithMouse.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
+	aboutTextureWithMouse.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
 	return aboutTextureWithMouse;
 }
 
 //Спрайты для настроек
 sf::Sprite drawAll::getSpriteBackWithMouse(sf::RenderWindow& window) {
-	buttonBackWithMouse.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	buttonBackWithMouse.setPosition(window.getSize().x * 0.05f - (xBack / 10.0f), window.getSize().y * 0.88f - (xBack / 10.0f));
+	buttonBackWithMouse.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
+	buttonBackWithMouse.setPosition(window.getSize().x * 0.05f - (xBack / 10.0f), window.getSize().y * 0.92f - (xBack / 10.0f));
 	return buttonBackWithMouse;
 }
 
 sf::Sprite drawAll::getSpriteBack(sf::RenderWindow& window) {
-	buttonBack.setScale(window.getSize().x / (13.0f * xAb), window.getSize().x / (yAb * 13.0f));
-	buttonBack.setPosition(window.getSize().x * 0.05f - (xBack / 10.0f), window.getSize().y * 0.88f - (xBack / 10.0f));
+	buttonBack.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
+	buttonBack.setPosition(window.getSize().x * 0.05f - (xBack / 10.0f), window.getSize().y * 0.92f - (xBack / 10.0f));
 	return buttonBack;
 }
 
 
 sf::Sprite drawAll::getSpriteMusic(sf::RenderWindow& window) {
 	buttonMusic.setScale(window.getSize().x / (10.0f * xMu), window.getSize().y / (yMu * 13.0f));
-	buttonMusic.setPosition(window.getSize().x * 0.25f - (xMu / 10.0f), window.getSize().y * 0.3f);
+	buttonMusic.setPosition(window.getSize().x * 0.2f - (xMu / 10.0f), window.getSize().y * 0.3f);
 	return buttonMusic;
 }
 
 sf::Sprite drawAll::getSpriteBackground(sf::RenderWindow& window) {
 	buttonBackground.setScale(window.getSize().x / (10.0f * xBag), window.getSize().y / (yBag * 13.0f));
-	buttonBackground.setPosition(window.getSize().x * 0.75f - (xBag / 10.0f), window.getSize().y * 0.3f);
+	buttonBackground.setPosition(window.getSize().x * 0.8f - (xBag / 10.0f), window.getSize().y * 0.3f);
 	return buttonBackground;
 }
 
@@ -338,31 +350,42 @@ sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
 sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
 	float xText = textAbout.getGlobalBounds().width;
 	float yText = textAbout.getGlobalBounds().height;
-	textAbout.setScale(window.getSize().x / xText * 0.5f, window.getSize().y / yText * 0.5f);
-	//textAbout.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	textAbout.setScale(window.getSize().x / xText * 0.8f, window.getSize().y / yText * 0.5f);
+	xText = textAbout.getGlobalBounds().width;
+	yText = textAbout.getGlobalBounds().height;
+	textAbout.setPosition((window.getSize().x - xText) / 2, (window.getSize().y - yText) / 2.f);
 	return textAbout;
 }
 
 sf::Text drawAll::drawTextMusic1(sf::RenderWindow& window) {
-	float xText = textMusic1.getGlobalBounds().width;
-	float yText = textMusic1.getGlobalBounds().height;
-	textMusic1.setScale(window.getSize().x / xText * 0.5f, window.getSize().y / yText * 0.5f);
-	textMusic1.setPosition(window.getSize().x * 0.2f, window.getSize().y * 0.4f);
+	//float xText = textMusic1.getGlobalBounds().width;
+	//float yText = textMusic1.getGlobalBounds().height;
+	textMusic1.setFont(font);
+	textMusic1.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.4f);
 	return textMusic1;
 }
 
 sf::Text drawAll::drawTextMusic2(sf::RenderWindow& window) {
-	float xText = textMusic2.getGlobalBounds().width;
-	float yText = textMusic2.getGlobalBounds().height;
-	textMusic2.setScale(window.getSize().x / xText * 0.5f, window.getSize().y / yText * 0.5f);
-	textMusic2.setPosition(window.getSize().x * 0.2f, window.getSize().y * 0.5f);
+	//float xText = textMusic2.getGlobalBounds().width;
+	//float yText = textMusic2.getGlobalBounds().height;
+	textMusic2.setFont(font);
+	textMusic2.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.5f);
 	return textMusic2;
 }
 
 sf::Text drawAll::drawTextMusic3(sf::RenderWindow& window) {
-	float xText = textMusic3.getGlobalBounds().width;
-	float yText = textMusic3.getGlobalBounds().height;
-	textMusic3.setScale(window.getSize().x / xText * 0.5f, window.getSize().y / yText * 0.5f);
-	textMusic3.setPosition(window.getSize().x * 0.2f, window.getSize().y * 0.6f);
+	//float xText = textMusic3.getGlobalBounds().width;
+	//float yText = textMusic3.getGlobalBounds().height;
+	textMusic3.setFont(font);
+	textMusic3.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.6f);
 	return textMusic3;
 }
+
+sf::Text drawAll::drawTextLayout(sf::RenderWindow& window) {
+	float xText = textLayout.getGlobalBounds().width;
+	float yText = textLayout.getGlobalBounds().height;
+	textLayout.setFont(font);
+	textLayout.setPosition(window.getSize().x * 0.4f, window.getSize().y * 0.4f);
+	return textLayout;
+}
+

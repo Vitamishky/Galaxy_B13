@@ -45,11 +45,10 @@
     <ClCompile Include="MODULE.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="aboutMenu.cpp">
-=======
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
     <ClCompile Include="buildRocket.cpp">
->>>>>>> 3d4445aa4f450c632c114cbcc8779e78c6faa9f0
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,12 +85,9 @@
     </ClInclude>
     <ClInclude Include="aboutMenu.h">
       <Filter>Файлы ресурсов</Filter>
-<<<<<<< HEAD
-=======
     </ClInclude>
     <ClInclude Include="buildRocket.h">
       <Filter>Файлы ресурсов</Filter>
->>>>>>> 3d4445aa4f450c632c114cbcc8779e78c6faa9f0
     </ClInclude>
   </ItemGroup>
 </Project>

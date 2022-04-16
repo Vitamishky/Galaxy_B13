@@ -3,7 +3,6 @@
 #include "aboutMenu.h"
 
 aboutMenu::aboutMenu() {
-
 	drawAll draw;
 }
 

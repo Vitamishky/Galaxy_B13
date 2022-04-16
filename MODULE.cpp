@@ -1,16 +1,30 @@
 #include "MODULE.h"
 #include "cmath"
 
-MODULE::MODULE(float Masse, int Width, int Height, bool IsController,
-    bool IsTurner, float Side_PotAcceleration, float Air, bool IsEngine,
-    float Forward_PotAcceleration, float fuel) : forward_potAcceleration(Forward_PotAcceleration),
-    side_potAcceleration(Side_PotAcceleration), air(Air), IsTurner(IsTurner),
-    IsController(IsController), IsEngine(IsEngine), fuel(fuel) {
+MODULE::MODULE(string image,
+               float Masse,
+               int Width,
+               int Height,
+               bool IsController,
+               bool IsTurner,
+               float Side_PotForce,
+               float Air,
+               bool IsEngine,
+               float Forward_PotForce,
+               float fuel
+               ): forward_potForce(Forward_PotForce),
+               side_potForce(Side_PotForce),
+               air(Air),
+               IsTurner(IsTurner),
+               IsController(IsController),
+               IsEngine(IsEngine),
+               fuel(fuel){
     this->Masse = Masse;
     this->Width = Width;
     this->Height = Height;
-    texture.loadFromFile("image/chert.jpg");
+    texture.loadFromFile(image);
     Sprite.setTexture(texture);
+    fuel = 1000.f;
 }
 
 pair<float, float> MODULE::Acceleration() const {
@@ -22,8 +36,8 @@ void MODULE::EditAcceleration(pair<float, float> dop) {
     acceleration.second += dop.second;
 }
 
-float MODULE::Forward_PotAcceleration() const {
-    return forward_potAcceleration;
+float MODULE::Forward_PotForce() const {
+    return forward_potForce;
 }
 
 bool MODULE::Use_Fuel(float dFuel) {
@@ -52,8 +66,8 @@ float MODULE::getFuel() {
     return fuel;
 }
 
-float MODULE::Side_PotAcceleration() const {
-    return side_potAcceleration;
+float MODULE::Side_PotForce() const {
+    return side_potForce;
 }
 
 void MODULE::NewCord(float x, float y) {

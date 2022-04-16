@@ -10,7 +10,7 @@ private:
 	int menuNum;
 	drawAll draw;
 	sf::Sprite music, back, backWithMouse, background, layout, changeBg, about;
-	sf::Text music1, music2, music3;
+	sf::Text music1, music2, music3, textLayout;
 public:
 	optionsMenu();
 	string drawOptionsMenu(sf::RenderWindow&);
