@@ -4,8 +4,7 @@
 #include "spaceObjects.h"
 #include "cmath"
 
-spaceObjects::spaceObjects() {
-    x = y = 0.5f;
+spaceObjects::spaceObjects(float x, float y, float angel): x(x), y(y), angle(angel) {
     xSpeed = 5.f / float(screen.getParametrizationScreen().first);
     ySpeed = 5.f / float(screen.getParametrizationScreen().second);
     Width = 128;

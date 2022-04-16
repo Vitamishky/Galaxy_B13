@@ -19,7 +19,7 @@ protected:
     float angle = 0;
     float Masse;
 public:
-    spaceObjects();
+    spaceObjects(float,float,float);
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
     void drawSprite(sf::RenderWindow&);

@@ -169,3 +169,9 @@ float spaceShip::getMaxFuel() const{
 float spaceShip::getMaxAir() const {
     return this->maxAir;
 }
+
+void spaceShip::newCoordinate(float X, float Y, float A) {
+    this->x = X;
+    this->y = Y;
+    this->angle = A;
+}

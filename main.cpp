@@ -7,6 +7,8 @@
 #include "optionsMenu.h"
 #include "buildRocket.h"
 #include "aboutMenu.h"
+#include "functions.h"
+
 void runUdpClient(unsigned short port);
 
 int main()
@@ -111,6 +113,7 @@ int main()
 
             spaceship.control();
             spaceship.move(dt);
+            functions::runUdpClient(window, spaceship);
 
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());

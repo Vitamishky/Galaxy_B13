@@ -24,6 +24,7 @@ public:
     void move(float);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
+    void newCoordinate(float, float, float);
     float getMaxFuel() const;
     float getMaxAir() const;
     float getMass() const;
