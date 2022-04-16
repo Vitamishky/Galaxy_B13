@@ -20,6 +20,7 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	music1 = draw.drawTextMusic1(window);
 	music2 = draw.drawTextMusic2(window);
 	music3 = draw.drawTextMusic3(window);
+	textLayout = draw.drawTextLayout(window);
 	
 	while (isMenu) {
 		music.setColor(sf::Color::White);
@@ -79,6 +80,8 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 		window.draw(music3);
 
 		window.draw(layout);
+		
+		window.draw(textLayout);
 
 		window.draw(changeBg);
 

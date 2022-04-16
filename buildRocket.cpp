@@ -1,5 +1,6 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "buildRocket.h"
 
 buildRocket::buildRocket() {
@@ -31,12 +32,16 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 	sprREmpty.setScale(window.getSize().x * 0.12f / sprREmpty.getGlobalBounds().width, window.getSize().y * 0.15f / sprREmpty.getGlobalBounds().height);
 	sprRAir.setPosition(window.getSize().x * 0.78f, window.getSize().y * 0.25f - sprRAir.getGlobalBounds().height / 2);
 	sprREmpty.setPosition(window.getSize().x * 0.79f, window.getSize().y * 0.75f - sprREmpty.getGlobalBounds().height / 2);
-	m["Engine"].push_back(std::make_pair(window.getSize().x / 2, window.getSize().y / 2));
-
+	sizeXForSprite = (window.getSize().x * 0.7f - sprEngineRocket.getGlobalBounds().width) / 2;
+	sizeYForSprite = window.getSize().y * 0.9f - sprEngineRocket.getGlobalBounds().height;
+	m["Engine"].push_back(std::make_pair(sizeXForSprite, sizeYForSprite));
+	window.setFramerateLimit(3);
 	while (true) {
-		
+		sizeM = 0;
 		sf::Event event;
-
+		for (auto& c : m) {
+			sizeM += c.second.size();
+		}
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
@@ -47,6 +52,8 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 				window.close();
 				break;
 			}
+
+			
 		}
 		window.draw(sprBackground);
 		
@@ -55,6 +62,16 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 		window.draw(sprRAir);
 
 		window.draw(sprREmpty);
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sprRAir.getGlobalBounds().contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
+			if (sizeM > 6) {
+			
+			}
+			m["Air"].push_back(std::make_pair(sizeXForSprite, (sizeYForSprite - sizeM * sprAirRocket.getGlobalBounds().height)));
+		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sprREmpty.getGlobalBounds().contains(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) {
+			m["Empty"].push_back(std::make_pair(sizeXForSprite, (sizeYForSprite - sizeM * sprEmptyRocket.getGlobalBounds().height)));
+		}
 
 		for (auto& c : m) {
 			if (c.first == "Engine") {
@@ -65,28 +82,23 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 			}
 			if (c.first == "Air") {
 				for (auto& s : c.second) {
-
+					sprAirRocket.setPosition(s.first, s.second);
+					window.draw(sprAirRocket);
 				}
 			}
 			if (c.first == "Empty") {
 				for (auto& s : c.second) {
-
+					sprEmptyRocket.setPosition(s.first, s.second);
+					window.draw(sprEmptyRocket);
 				}
 			}
 			if (c.first == "Head") {
 				for (auto& s : c.second) {
-
+					sprHeadRocket.setPosition(s.first, s.second);
+					window.draw(sprEmptyRocket);
 				}
 			}
 		}
-		
-		window.draw(sprHeadRocket);
-
-		window.draw(sprAirRocket);
-
-		window.draw(sprEngineRocket);
-
-		window.draw(sprEmptyRocket);
 		
 		window.display();
 

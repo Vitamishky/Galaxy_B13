@@ -32,7 +32,7 @@ private:
 	sf::Texture buttonMusicFull, buttonBackFull, buttonBackFull_1, buttonBackgroundFull, buttonLayoutFull;
 	sf::Sprite buttonMusic, buttonBack, buttonBackWithMouse, buttonBackground, buttonLayout;
 	sf::Sprite music, back, background, layout, optionsBg;
-	sf::Text textMusic1, textMusic2, textMusic3;
+	sf::Text textMusic1, textMusic2, textMusic3, textLayout;
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -47,6 +47,7 @@ public:
 	sf::Text drawTextMusic1(sf::RenderWindow&);
 	sf::Text drawTextMusic2(sf::RenderWindow&);
 	sf::Text drawTextMusic3(sf::RenderWindow&);
+	sf::Text drawTextLayout(sf::RenderWindow&);
 	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb, xBag, yBag, xMu, yMu, xBack, yBack, xLa, yLa;
 
 

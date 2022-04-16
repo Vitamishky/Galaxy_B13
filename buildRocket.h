@@ -11,6 +11,8 @@ private:
 	sf::Sprite sprREmpty, sprRAir;
 	float xRightInter, yRightInter;
 	std::map<std::string, std::vector<std::pair<float, float>>> m;
+	int sizeM;
+	float sizeXForSprite, sizeYForSprite;
 public:
 	buildRocket();
 	std::string drawBuildRocket(sf::RenderWindow&);
