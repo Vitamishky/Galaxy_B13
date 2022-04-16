@@ -43,7 +43,7 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 			menuNum = 3;
 		}
 
-		if (sf::IntRect(window.getSize().x * 0.95f - (draw.xAb / 10.0f), window.getSize().y * 0.9f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect(window.getSize().x * 0.95f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 4;
 		}
 		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
@@ -86,12 +86,13 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				return "go"; 
 			}
 			if (menuNum == 2) { 
-				for (int i = 0; i < 100; i++) {
+				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
 					start.move(10.f, 10.f);
 					options.move(-10.f, -10.f);
 					exit.move(-10.f, 10.f);
+					about.move(0, -15.f);
 					window.draw(draw.getSpriteMenuBackground(window));
 
 					window.draw(start);

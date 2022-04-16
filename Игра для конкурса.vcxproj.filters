@@ -89,10 +89,10 @@
     <ClInclude Include="MODULE.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="buildRocket.h">
+    <ClInclude Include="aboutMenu.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="aboutMenu.h">
+    <ClInclude Include="buildRocket.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

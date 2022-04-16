@@ -9,49 +9,45 @@ optionsMenu::optionsMenu() {
 	drawAll draw;
 }
 
-void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
-	settings = draw.getSpriteSettings(window);
+string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	background = draw.getSpriteMenuBackground(window);
+	backWithMouse = draw.getSpriteBackWithMouse(window);
 	music = draw.getSpriteMusic(window);
 	back = draw.getSpriteBack(window);
-	about = draw.getSpriteAbout(window);
+	layout = draw.getSpriteLayout(window);
+	changeBg = draw.getSpriteBackground(window);
+
+	music1 = draw.drawTextMusic1(window);
+	music2 = draw.drawTextMusic2(window);
+	music3 = draw.drawTextMusic3(window);
 	
 	while (isMenu) {
-		settings.setColor(sf::Color::White);
 		music.setColor(sf::Color::White);
 		background.setColor(sf::Color::White);
 		back.setColor(sf::Color::White);
 		layout.setColor(sf::Color::White);
 		menuNum = 0;
-		/*
-		if (sf::IntRect((window.getSize().x * 0.2f - draw.xLa), window.getSize().y * 0.45f, draw.xLa, draw.yLa).contains(sf::Mouse::getPosition(window))) {
+
+		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 1;
 		}
-		if (sf::IntRect((window.getSize().x * 0.4f - draw.xSet), window.getSize().y * 0.3f, draw.xSet, draw.ySet).contains(sf::Mouse::getPosition(window))) {
-			menuNum = 2;
-		}
-		if (sf::IntRect((window.getSize().x * 0.6f - draw.xMu), window.getSize().y * 0.3f, draw.xMu, draw.yMu).contains(sf::Mouse::getPosition(window))) {
-			menuNum = 3;
-		}
-		if (sf::IntRect((window.getSize().x * 0.8f - draw.xBag), window.getSize().y * 0.3f, draw.xBag, draw.yBag).contains(sf::Mouse::getPosition(window))) {
-			menuNum = 4;
-		}
+
 		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
-		*/
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			//Если нажали кнопку
 			if (menuNum == 1) {
 				break;
 			}
-			//Если нажали кнопку
-			if (menuNum == 2) {
-				break;
-			}
-			//Если нажали кнопку
-			if (menuNum == 3) {
-				//window.close();
-				break;
-			}
+			////Если нажали кнопку
+			//if (menuNum == 2) {
+			//	//draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
+			//	break;
+			//}
+			////Если нажали кнопку
+			//if (menuNum == 3) {
+			//	//window.close();
+			//	break;
+			//}
 
 		}
 
@@ -70,15 +66,27 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 
 		//window.draw(draw.getSpriteMenuBackground(window));
 
-		window.draw(settings);
+		window.draw(background);
+		
+		window.draw(back);
 
 		window.draw(music);
+		
+		window.draw(music1);
 
-		window.draw(background);
+		window.draw(music2);
+
+		window.draw(music3);
 
 		window.draw(layout);
 
+		window.draw(changeBg);
+
+		if (menuNum == 1)
+			window.draw(backWithMouse);
+
 		window.display();
 	}
+	return "main";
 }
 optionsMenu::~optionsMenu() {}
