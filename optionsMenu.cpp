@@ -16,6 +16,10 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	back = draw.getSpriteBack(window);
 	layout = draw.getSpriteLayout(window);
 	changeBg = draw.getSpriteBackground(window);
+
+	music1 = draw.drawTextMusic1(window);
+	music2 = draw.drawTextMusic2(window);
+	music3 = draw.drawTextMusic3(window);
 	
 	while (isMenu) {
 		music.setColor(sf::Color::White);
@@ -67,6 +71,12 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 		window.draw(back);
 
 		window.draw(music);
+		
+		window.draw(music1);
+
+		window.draw(music2);
+
+		window.draw(music3);
 
 		window.draw(layout);
 
