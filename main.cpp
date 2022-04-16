@@ -13,7 +13,13 @@ void runUdpClient(unsigned short port);
 
 int main()
 {
-    std::cout << "Press enter to exit..." << std::endl;
+    sf::IpAddress server;
+    std::cout << "Enter server IP: ";
+    std::cin >> server;
+
+    std::string client_name;
+    std::cout << std::endl << "Enter you name: ";
+    std::cin >> client_name;
     parametrizationScreen* screen = new parametrizationScreen;
 
     //Отрисовка окна
@@ -72,7 +78,7 @@ int main()
         }
     }
     if (nameMenu != "exit") {
-        while (window.isOpen()) {
+        for(int q = 1;window.isOpen(); ++q) {
 
             sf::Event event{};
 
@@ -113,8 +119,10 @@ int main()
 
             spaceship.control();
             spaceship.move(dt);
-            functions::runUdpClient(window, spaceship);
-
+            if(q == 20) {
+                functions::runUdpClient(window, server, client_name, spaceship);
+                q = 0;
+            }
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());
             drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);

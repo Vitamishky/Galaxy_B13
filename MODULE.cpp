@@ -18,7 +18,8 @@ MODULE::MODULE(string image,
                IsTurner(IsTurner),
                IsController(IsController),
                IsEngine(IsEngine),
-               fuel(fuel){
+               fuel(fuel)
+               {
     this->Masse = Masse;
     this->Width = Width;
     this->Height = Height;

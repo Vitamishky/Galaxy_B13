@@ -1,6 +1,5 @@
 #include "functions.h"
 #include <cmath>
-#include <SFML/Network.hpp>
 #include "spaceObjects.h"
 
 
@@ -19,18 +18,9 @@ pair<unsigned int, unsigned int> functions::attraction(const spaceObjects& Slave
     return make_pair(a * length.first / distances,a * length.second / distances);
 }
 
-[[noreturn]] void runUdpClient(sf::RenderWindow& window, spaceShip ship, unsigned short port) {
-    std::string client_name;
-    sf::IpAddress server;
-
-    std::cout << "Enter server IP: ";
-    std::cin >> server;
-    std::cout << std::endl << "Enter you name: ";
-    std::cin >> client_name;
-
+void functions::runUdpClient(sf::RenderWindow &window, sf::IpAddress server, std::string client_name, spaceShip ship, unsigned short port) {
 
     sf::UdpSocket socket;
-
 
     sf::Packet packet1;
     packet1 << client_name << ship.getCoordinates().first << ship.getCoordinates().second
@@ -42,18 +32,23 @@ pair<unsigned int, unsigned int> functions::attraction(const spaceObjects& Slave
     socket.receive(packet2, server, port);
 
     int n;
-    packet2 >> n;
-
-    for (int i = 0; i != n; ++i) {
-        sf::Packet packet3;
+    std::string name;
+    float x, y, angel;
+    sf::Packet packet3;
+    for (int i = 0;; ++i) {
         socket.receive(packet3, server, port);
 
-        std::string name;
-        float x, y, angel;
+        packet3 >> n >> x >> y >> angel >> name;
+        packet3.clear();
 
-        packet2 >> name >> x >> y >> angel;
+        if(name != client_name){
+            spaceObjects s;
+            s.setPosition(x,y,angel);
+            s.drawSprite(window);
+        }
 
-        spaceObjects s(x, y, angel);
-        s.drawSprite(window);
+        if(n <= i){
+            break;
+        }
     }
 }

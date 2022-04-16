@@ -4,7 +4,7 @@
 #include "spaceObjects.h"
 #include "cmath"
 
-spaceObjects::spaceObjects(float x, float y, float angel): x(x), y(y), angle(angel) {
+spaceObjects::spaceObjects() {
     xSpeed = 5.f / float(screen.getParametrizationScreen().first);
     ySpeed = 5.f / float(screen.getParametrizationScreen().second);
     Width = 128;
@@ -36,4 +36,10 @@ void spaceObjects::drawSprite(sf::RenderWindow& window) {
 
 void spaceObjects::newAngle(float injection){
     this->angle = injection;
+}
+
+void spaceObjects::setPosition(float x, float y, float angel){
+    this->x = x;
+    this->y = y;
+    this->angle = angel;
 }
