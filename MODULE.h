@@ -31,11 +31,11 @@ public:
     float Side_PotForce() const;
     bool Use_Fuel(float);
     bool Use_Air(float);
-    float getAir();
-    float getFuel();
+    float getAir() const;
+    float getFuel() const;
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
-    sf::Sprite getSprite();
+    sf::Sprite getSprite() const;
 };
 
 #endif //GALAXY_B13_MODULE_H

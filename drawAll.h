@@ -33,6 +33,11 @@ private:
 	sf::Sprite buttonMusic, buttonBack, buttonBackWithMouse, buttonBackground, buttonLayout;
 	sf::Sprite music, back, background, layout, optionsBg;
 	sf::Text textMusic1, textMusic2, textMusic3, textLayout;
+
+	//BuildRocket
+	sf::Sprite buttonPlay, buttonPlayWithMouse;
+	sf::Sprite play, playWithMouse;
+
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -69,7 +74,8 @@ public:
 	sf::Sprite getSpriteBack(sf::RenderWindow&);
 	sf::Sprite getSpriteBackWithMouse(sf::RenderWindow&);
 
-	void moveMenu(sf::RenderWindow&, vector<sf::Sprite>, vector<sf::Sprite>);
+	sf::Sprite getSpritePlay(sf::RenderWindow&);
+	sf::Sprite getSpritePlayWithMouse(sf::RenderWindow&);
 };
 
 #endif

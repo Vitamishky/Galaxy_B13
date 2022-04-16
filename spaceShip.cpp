@@ -4,18 +4,22 @@
 #include "cmath"
 
 
-spaceShip::spaceShip(const vector<MODULE>& rocket) :rocket(rocket) {
+spaceShip::spaceShip(const vector<MODULE>& rocket, float x, float y) :rocket(rocket) {
     float length = 0;
-    for (const auto& i : rocket) {
-        cordCentreMass += i.getMasse() * (i.getParametrization().second / 2 + length);
-        length += i.getParametrization().second;
+    this->x = x;
+    this->y = y;
+    for (const auto& module : rocket) {
+        cordCentreMass += module.getMasse() * (module.getParametrization().second / 2 + length);
+        length += module.getParametrization().second;
+        maxFuel += module.getFuel();
+        maxAir += module.getAir();
     }
     length = 0;
     cordCentreMass /= getMass();
-    for (const auto& i : rocket) {
-        MomentOfInertia += (i.getMasse() * (i.getParametrization().second / 2 + length - cordCentreMass) *
-            (i.getParametrization().second / 2 + length - cordCentreMass)) / 3;
-        length += i.getParametrization().second;
+    for (const auto& module : rocket) {
+        MomentOfInertia += (module.getMasse() * (module.getParametrization().second / 2 + length - cordCentreMass) *
+            (module.getParametrization().second / 2 + length - cordCentreMass)) / 3;
+        length += module.getParametrization().second;
 
 
         x = y = 0.5f;
@@ -110,7 +114,7 @@ float spaceShip::ANGLE() {
     return angle;
 }
 
-vector<sf::Sprite> spaceShip::getSprite() {
+vector<sf::Sprite> spaceShip::getSprite() const{
     vector<sf::Sprite> v;
     for (auto& module : rocket) {
         v.push_back(module.getSprite());
@@ -118,11 +122,11 @@ vector<sf::Sprite> spaceShip::getSprite() {
     return v;
 }
 
-pair<float, float> spaceShip::getCoordinates() {
+pair<float, float> spaceShip::getCoordinates() const{
     return make_pair(x, y);
 }
 
-int spaceShip::SPEED() const {
+float spaceShip::SPEED() const {
     return sqrtf(velocity.first * velocity.first + velocity.second * velocity.second);
 }
 
@@ -150,10 +154,18 @@ bool spaceShip::Use_Fuel(float dFuel) {
     return false;
 }
 
-float spaceShip::getMass() {
+float spaceShip::getMass() const{
     float Mass = 0;
     for (auto & i : rocket) {
-        Mass += i.getMasse() + 0.5 *  i.getFuel(); + 0.1 * i.getAir();
+        Mass += i.getMasse() + 0.5 *  i.getFuel() + 0.1 * i.getAir();
     }
     return Mass;
+}
+
+float spaceShip::getMaxFuel() const{
+    return this->maxFuel;
+}
+
+float spaceShip::getMaxAir() const {
+    return this->maxAir;
 }

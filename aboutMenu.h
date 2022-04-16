@@ -5,7 +5,9 @@
 
 class aboutMenu {
 private:
+	int menuNum;
 	sf::Text text;
+	sf::Sprite back, backWithMouse;
 	drawAll draw;
 public:
 	aboutMenu();

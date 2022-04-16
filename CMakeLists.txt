@@ -40,4 +40,4 @@ set(SFML_DIR D:/SFML/lib/cmake/SFML)
 find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 
 include_directories(D:/SFML/include)
-target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio)
+target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
