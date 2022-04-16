@@ -67,8 +67,6 @@ public:
 	sf::Sprite getSpriteLayout(sf::RenderWindow&);
 	sf::Sprite getSpriteBack(sf::RenderWindow&);
 	sf::Sprite getSpriteBackWithMouse(sf::RenderWindow&);
-
-	void moveMenu(sf::RenderWindow&, vector<sf::Sprite>, vector<sf::Sprite>);
 };
 
 #endif

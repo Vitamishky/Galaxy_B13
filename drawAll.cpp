@@ -19,11 +19,9 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	text.setString("Target distance");
 	vLText.push_back(text);
-	textMass.setString("4");
-	textMass.setFont(font);
-	textAbout.setString("Here`s the text we wanted to write to make the player better understand our game, feel it fully. \n\
-We would have written a wonderful description of our work on the game. How we found mistakes, \n\
-corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
+	textAbout.setString("Here’s the text we wanted to write to make the player better understand our game, \n\
+feel it fully. We would have written a wonderful description of our work on the game. How we found \n\
+mistakes, corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
                  told me what to write here, so I decided to write from myself)");
 	textAbout.setFont(font);
 	for (int i = 0; i < vLText.size(); i++) {
@@ -152,6 +150,8 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip s
 	textAirConsumption.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
 	textAirConsumption.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.45f);
 	window.draw(textAirConsumption);
+    textMass.setString(to_string(ship.getMass()));
+    textMass.setFont(font);
 	textMass.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
 	textMass.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.57f);
 	window.draw(textMass);
@@ -222,10 +222,10 @@ void drawAll::drawFuel(sf::RenderWindow& window, sf::View view, spaceShip ship) 
 	sprFuel.setScale(vSize_x / xFuel, vSize_y / yFuel);
 	sprFuel.setPosition(sf::Vector2f(view.getCenter().x - vSize_x / 2, view.getCenter().y - view.getSize().y / 2));
 	window.draw(sprFuel);
-	sprFuelPanel.setScale(vSize_x * ship.FUEL()/ (xFuel * 1000000), vSize_y / yFuel);
+	sprFuelPanel.setScale(vSize_x * ship.FUEL()/ (xFuel * ship.getMaxFuel()), vSize_y / yFuel);
 	sprFuelPanel.setPosition(view.getCenter().x - view.getSize().x * 0.086f, view.getCenter().y - view.getSize().y * 0.481f);
 	window.draw(sprFuelPanel);
-	sprAirPanel.setScale(vSize_x * ship.AIR()/ (xFuel * 1000), vSize_y / yFuel);
+	sprAirPanel.setScale(vSize_x * ship.AIR()/ (xFuel * ship.getMaxAir()), vSize_y / yFuel);
 	sprAirPanel.setPosition(view.getCenter().x + view.getSize().x * 0.0136f, view.getCenter().y - view.getSize().y * 0.481f);
 	window.draw(sprAirPanel);
 }
