@@ -6,16 +6,21 @@
 optionsMenu::optionsMenu() {
 	isMenu = true;
 	menuNum = 0;
+	musicNum = 1;
+	backgroundNum = 1;
+	soundValue = 5;
 	drawAll draw;
 }
 
-string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
+std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
+	std::vector <int> v;
 	background = draw.getSpriteMenuBackground(window);
 	backWithMouse = draw.getSpriteBackWithMouse(window);
 	music = draw.getSpriteMusic(window);
 	back = draw.getSpriteBack(window);
 	layout = draw.getSpriteLayout(window);
 	changeBg = draw.getSpriteBackground(window);
+	changeBg2 = draw.getSpriteBackgroundCat(window);
 
 	music1 = draw.drawTextMusic1(window);
 	music2 = draw.drawTextMusic2(window);
@@ -25,6 +30,8 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 	while (isMenu) {
 		music.setColor(sf::Color::White);
 		background.setColor(sf::Color::White);
+		changeBg.setColor(sf::Color::White);
+		changeBg2.setColor(sf::Color::White);
 		back.setColor(sf::Color::White);
 		layout.setColor(sf::Color::White);
 		menuNum = 0;
@@ -37,29 +44,43 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 		}
 		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.4f, music1.getGlobalBounds().width + 0.04f, music1.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
 			music1.setFillColor(sf::Color::Blue);
-
 		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.5f, music2.getGlobalBounds().width + 0.04f, music2.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
 			music2.setFillColor(sf::Color::Blue);
 		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.6f, music3.getGlobalBounds().width + 0.04f, music3.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
 			music3.setFillColor(sf::Color::Blue);
 		
+		if (sf::IntRect(window.getSize().x * 0.8f - (draw.xBgCat / 10.0f), window.getSize().y * 0.4f, changeBg2.getGlobalBounds().width , changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window)))
+			changeBg2.setColor(sf::Color::Green);
 		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			//Если нажали кнопку
 			if (menuNum == 1) {
 				break;
 			}
-			////Если нажали кнопку
-			//if (menuNum == 2) {
-			//	//draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
-			//	break;
-			//}
-			////Если нажали кнопку
-			//if (menuNum == 3) {
-			//	//window.close();
-			//	break;
-			//}
+			//Если нажали кнопку
+			if (menuNum == 2) {
+				musicNum = 1;
+			}
+			//Если нажали кнопку
+			if (menuNum == 3) {
+				musicNum = 2;
+			}
+			if (menuNum == 4) {
+				musicNum = 3;
+			}
+			v.push_back(musicNum);
 
+			if (menuNum == 5) {
+				backgroundNum = 1;
+			}
+			if (menuNum == 6) {
+				backgroundNum = 3;
+			}
+			if (menuNum == 7) {
+				backgroundNum = 3;
+			}
+			v.push_back(backgroundNum);
+			v.push_back(soundValue);
 		}
 
 		sf::Event event;
@@ -95,11 +116,14 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 
 		window.draw(changeBg);
 
+
+		window.draw(changeBg2);
+
 		if (menuNum == 1)
 			window.draw(backWithMouse);
 
 		window.display();
 	}
-	return "main";
+	return std::make_pair("main", v); 
 }
 optionsMenu::~optionsMenu() {}

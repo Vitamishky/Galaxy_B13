@@ -51,6 +51,7 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonExitFull.loadFromFile("image/exit1.png");
 	aboutTextureFull.loadFromFile("image/about1.png");
 	menuBackground.loadFromFile("image/background.jpg");
+	menuBackgroundCat.loadFromFile("image/backgroundCat.jpeg");
 
 	buttonStartFull_1.loadFromFile("image/start2.png");
 	buttonOptionsFull_1.loadFromFile("image/options2.png");
@@ -67,6 +68,7 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonExit.setTexture(buttonExitFull);
 	aboutTexture.setTexture(aboutTextureFull);
 	menuBg.setTexture(menuBackground);
+	menuBgCat.setTexture(menuBackgroundCat);
 
 	//отрисовка настроек
 	buttonLayoutFull.loadFromFile("image/layout.png");
@@ -112,6 +114,12 @@ mouse 1 - move camera");
 	xAb = aboutTexture.getTextureRect().width;
 	yAb = aboutTexture.getTextureRect().height;
 
+	xBgCat = menuBackgroundCat.getSize().x;
+	yBgCat = menuBackgroundCat.getSize().y;
+
+	//xBgSpace = menuBackgroundSpace.getSize().x;
+	//yBgSpace = menuBackgroundSpace.getSize().y;
+
 	xBag = buttonBackground.getTextureRect().width;
 	yBag = buttonBackground.getTextureRect().height;
 	xMu = buttonMusic.getTextureRect().width;
@@ -121,6 +129,7 @@ mouse 1 - move camera");
 	xLa = buttonLayout.getTextureRect().width;
 	yLa = buttonLayout.getTextureRect().height;
 }
+
 
 void drawAll::drawBg(sf::RenderWindow& window, sf::View view) {
 	float vSize_x = 1.5f * view.getSize().x;
@@ -306,6 +315,12 @@ sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
 	return menuBg;
 }
 
+sf::Sprite drawAll::getSpriteBackgroundCat(sf::RenderWindow& window) {
+	menuBgCat.setScale(window.getSize().x / (5.0f * xBgCat), window.getSize().y / (5.0f * yBgCat));
+	menuBgCat.setPosition(window.getSize().x * 0.8f - (menuBackgroundCat.getSize().x / 10.0f), window.getSize().y * 0.4f);
+	return menuBgCat;
+}
+
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {
 	aboutTexture.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
 	aboutTexture.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
@@ -349,6 +364,8 @@ sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
 	buttonLayout.setPosition(window.getSize().x * 0.5f - (xLa / 10.0f), window.getSize().y * 0.3f);
 	return buttonLayout;
 }
+
+
 
 sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
 	float xText = textAbout.getGlobalBounds().width;

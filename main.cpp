@@ -63,7 +63,7 @@ int main()
                 //nameMenu = "go";
         }
         if (nameMenu == "options") {
-            nameMenu = options.drawOptionsMenu(window);
+            nameMenu = options.drawOptionsMenu(window).first;
         }
         if (nameMenu == "about") {
             window.clear();
