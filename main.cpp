@@ -116,11 +116,13 @@ int main()
             window.setView(Camera->getViewCamera());
 
             spaceship.draw(window);
+            spaceship.control();
+            spaceship.move(dt);
 
-            if(q == 1) {
-                functions::runUdpClient(window, server, client_name, spaceship , &base);
+            /*if(q == 1) {
+                functions::mainUdpClient(server, client_name, spaceship , base);
                 q = 0;
-            }
+            }*/
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());
             drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
