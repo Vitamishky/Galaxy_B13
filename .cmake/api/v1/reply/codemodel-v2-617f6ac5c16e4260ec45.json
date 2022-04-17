@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.20"
@@ -19,7 +19,7 @@
 					]
 				}
 			],
-			"name" : "",
+			"name" : "Debug",
 			"projects" : 
 			[
 				{
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Galaxy_B13::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Galaxy_B13-67436ca6df278fb55f33.json",
+					"jsonFile" : "target-Galaxy_B13-Debug-0aa5361e99536f27e675.json",
 					"name" : "Galaxy_B13",
 					"projectIndex" : 0
 				}
