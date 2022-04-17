@@ -41,11 +41,11 @@ void functions::mainUdpClient(sf::IpAddress server, std::string client_name, spa
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
 
         packet >> n;
-        for (int j = 0; j != n; j++) {
+        for (int j = 0; j < n; j++) {
             float n1;
             packet >> name >> x >> y >> angel >> n1;
             vector<ClientModule> modules;
-            for (int i = 0; i != n1; ++i) {
+            for (int i = 0; i < n1; ++i) {
                 packet >> image >> width >> hight;
                 modules.push_back({image, width, hight});
             }
