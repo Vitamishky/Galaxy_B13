@@ -20,18 +20,24 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 	back = draw.getSpriteBack(window);
 	layout = draw.getSpriteLayout(window);
 	changeBg = draw.getSpriteBackground(window);
+	changeBg1 = draw.getSpriteBackgroundMain(window);	
 	changeBg2 = draw.getSpriteBackgroundCat(window);
+	changeBg3 = draw.getSpriteBackgroundSpace(window);
+	changeBg4 = draw.getSpriteBackgroundSpace2(window);
 
 	music1 = draw.drawTextMusic1(window);
 	music2 = draw.drawTextMusic2(window);
 	music3 = draw.drawTextMusic3(window);
 	textLayout = draw.drawTextLayout(window);
-	
+
 	while (isMenu) {
 		music.setColor(sf::Color::White);
 		background.setColor(sf::Color::White);
 		changeBg.setColor(sf::Color::White);
+		changeBg1.setColor(sf::Color::White);
 		changeBg2.setColor(sf::Color::White);
+		changeBg3.setColor(sf::Color::White);
+		changeBg4.setColor(sf::Color::White);
 		back.setColor(sf::Color::White);
 		layout.setColor(sf::Color::White);
 		menuNum = 0;
@@ -42,16 +48,35 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 1;
 		}
-		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.4f, music1.getGlobalBounds().width + 0.04f, music1.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
+		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.4f, music1.getGlobalBounds().width + 0.04f, music1.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window))) {
 			music1.setFillColor(sf::Color::Blue);
-		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.5f, music2.getGlobalBounds().width + 0.04f, music2.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
+			menuNum = 2;
+		}
+		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.5f, music2.getGlobalBounds().width + 0.04f, music2.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window))) {
 			music2.setFillColor(sf::Color::Blue);
-		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.6f, music3.getGlobalBounds().width + 0.04f, music3.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
+			menuNum = 3;
+		}
+		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.6f, music3.getGlobalBounds().width + 0.04f, music3.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window))) {
 			music3.setFillColor(sf::Color::Blue);
-		
-		if (sf::IntRect(window.getSize().x * 0.8f - (draw.xBgCat / 10.0f), window.getSize().y * 0.4f, changeBg2.getGlobalBounds().width , changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window)))
+			menuNum = 4;
+		}
+		if (sf::IntRect(window.getSize().x * 0.75f - (draw.xBgCat / 10.0f), window.getSize().y * 0.6f, changeBg3.getGlobalBounds().width, changeBg3.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+			changeBg3.setColor(sf::Color::Red);
+			menuNum = 7;
+		}
+		if (sf::IntRect(window.getSize().x * 0.75f - (draw.xBgCat / 10.0f), window.getSize().y * 0.4f, changeBg2.getGlobalBounds().width, changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
 			changeBg2.setColor(sf::Color::Green);
-		
+			menuNum = 6;
+		}
+		if (sf::IntRect(window.getSize().x * 0.9f - (draw.xBgCat / 10.0f), window.getSize().y * 0.4f, changeBg4.getGlobalBounds().width, changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+			changeBg4.setColor(sf::Color::Magenta);
+			menuNum = 8;
+		}
+		if (sf::IntRect(window.getSize().x * 0.9f - (draw.xBgCat / 10.0f), window.getSize().y * 0.6f, changeBg1.getGlobalBounds().width, changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+			changeBg1.setColor(sf::Color::Yellow);
+			menuNum = 5;
+		}
+
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			//Если нажали кнопку
 			if (menuNum == 1) {
@@ -72,12 +97,19 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 
 			if (menuNum == 5) {
 				backgroundNum = 1;
+			//основной фон
 			}
 			if (menuNum == 6) {
-				backgroundNum = 3;
+				backgroundNum = 2;
+			// котик
 			}
 			if (menuNum == 7) {
 				backgroundNum = 3;
+			// космос
+			}
+			if (menuNum == 8) {
+				backgroundNum = 4;
+			// космос2 (с планетой)
 			}
 			v.push_back(backgroundNum);
 			v.push_back(soundValue);
@@ -116,8 +148,13 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 
 		window.draw(changeBg);
 
+		window.draw(changeBg1);
 
 		window.draw(changeBg2);
+
+		window.draw(changeBg3);
+		
+		window.draw(changeBg4);
 
 		if (menuNum == 1)
 			window.draw(backWithMouse);

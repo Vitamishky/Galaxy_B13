@@ -19,10 +19,10 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	text.setString("Target distance");
 	vLText.push_back(text);
-	textAbout.setString("Here’s the text we wanted to write to make the player better understand our game, \n\
+	textAbout.setString("Here is the text we wanted to write to make the player better understand our game, \n\
 feel it fully. We would have written a wonderful description of our work on the game. How we found \n\
-mistakes, corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
-                 told me what to write here, so I decided to write from myself)");
+mistakes, corrected them. This fleeting and inspiring feeling of creating something new. But no one \n\
+                 told me what to write here, so I decided to write from myself :-)");
 	textAbout.setFont(font);
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setFont(font);
@@ -52,6 +52,8 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	aboutTextureFull.loadFromFile("image/about1.png");
 	menuBackground.loadFromFile("image/background.jpg");
 	menuBackgroundCat.loadFromFile("image/backgroundCat.jpeg");
+	menuBackgroundSpace.loadFromFile("image/backgroundSpace.jpg");
+	menuBackgroundSpace2.loadFromFile("image/backgroundSpace2.jpg");
 
 	buttonStartFull_1.loadFromFile("image/start2.png");
 	buttonOptionsFull_1.loadFromFile("image/options2.png");
@@ -69,6 +71,9 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	aboutTexture.setTexture(aboutTextureFull);
 	menuBg.setTexture(menuBackground);
 	menuBgCat.setTexture(menuBackgroundCat);
+	menuBgSpace.setTexture(menuBackgroundSpace);
+	menuBgSpace2.setTexture(menuBackgroundSpace2);
+	menuBgMain.setTexture(menuBackground);
 
 	//отрисовка настроек
 	buttonLayoutFull.loadFromFile("image/layout.png");
@@ -116,9 +121,10 @@ mouse 1 - move camera");
 
 	xBgCat = menuBackgroundCat.getSize().x;
 	yBgCat = menuBackgroundCat.getSize().y;
-
-	//xBgSpace = menuBackgroundSpace.getSize().x;
-	//yBgSpace = menuBackgroundSpace.getSize().y;
+	xBgSpace = menuBackgroundSpace.getSize().x;
+	yBgSpace = menuBackgroundSpace.getSize().y;
+	xBgSpace2 = menuBackgroundSpace2.getSize().x;
+	yBgSpace2 = menuBackgroundSpace2.getSize().y;
 
 	xBag = buttonBackground.getTextureRect().width;
 	yBag = buttonBackground.getTextureRect().height;
@@ -316,9 +322,27 @@ sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
 }
 
 sf::Sprite drawAll::getSpriteBackgroundCat(sf::RenderWindow& window) {
-	menuBgCat.setScale(window.getSize().x / (5.0f * xBgCat), window.getSize().y / (5.0f * yBgCat));
-	menuBgCat.setPosition(window.getSize().x * 0.8f - (menuBackgroundCat.getSize().x / 10.0f), window.getSize().y * 0.4f);
+	menuBgCat.setScale(window.getSize().x / (10.0f * xBgCat), window.getSize().y / (10.0f * yBgCat));
+	menuBgCat.setPosition(window.getSize().x * 0.75f - (xBgCat / 10.0f), window.getSize().y * 0.4f);
 	return menuBgCat;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundSpace(sf::RenderWindow& window) {
+	menuBgSpace.setScale(window.getSize().x / (10.0f * xBgSpace), window.getSize().y / (10.0f * yBgSpace));
+	menuBgSpace.setPosition(window.getSize().x * 0.75f - (xBgCat / 10.0f), window.getSize().y * 0.6f);
+	return menuBgSpace;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundSpace2(sf::RenderWindow& window) {
+	menuBgSpace2.setScale(window.getSize().x / (10.0f * xBgSpace2), window.getSize().y / (10.0f * yBgSpace2));
+	menuBgSpace2.setPosition(window.getSize().x * 0.9f - (xBgCat / 10.0f), window.getSize().y * 0.4f);
+	return menuBgSpace2;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundMain(sf::RenderWindow& window) {
+	menuBgMain.setScale(window.getSize().x / (10.0f * xBg), window.getSize().y / (10.0f * yBg));
+	menuBgMain.setPosition(window.getSize().x * 0.9f - (xBgCat / 10.0f), window.getSize().y * 0.6f);
+	return menuBgMain;
 }
 
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {
