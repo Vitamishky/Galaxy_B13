@@ -3,6 +3,7 @@
 #include <iostream>
 #include "spaceObjects.h"
 #include "spaceShip.h"
+#include "Planet.h"
 #include <SFML/Network.hpp>
 
 using namespace std;
@@ -35,6 +36,7 @@ struct ClientPlayer{
 
 class functions {
 public:
+    bool collision(spaceShip, Planet);
     static pair<unsigned int, unsigned int> attraction(const spaceObjects& Slave, const spaceObjects& Master) ;
     static void mainUdpClient(sf::IpAddress server, std::string, spaceShip,
                              vector<ClientPlayer>&, unsigned short port = 50001);

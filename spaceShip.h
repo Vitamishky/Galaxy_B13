@@ -35,6 +35,6 @@ public:
     void draw(sf::RenderWindow&);
     bool Use_Air(float);
     bool Use_Fuel(float);
-    __int16 getAmountOfModules() const;
+    int getAmountOfModules() const;
 };
 #endif 

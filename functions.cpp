@@ -68,6 +68,15 @@ void functions::loopUdpClient(sf::RenderWindow &window, sf::IpAddress server, st
     packet << left << right << forward;
     socket.send(packet, server, port);
 
+
+
+}
+
+bool functions::collision(spaceShip ship, Planet planet) {
+    if((ship.getCoordinates().first-planet.getCoordinates().first)*(ship.getCoordinates().first-planet.getCoordinates().first)+
+            (ship.getCoordinates().second-planet.getCoordinates().second)*(ship.getCoordinates().second-planet.getCoordinates().second)
+            <= planet.getParametrization().first*planet.getParametrization().first/4)
+    return false;
 }
 /*
 void functions::runUdpServer(unsigned short port) {
