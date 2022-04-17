@@ -11,7 +11,7 @@ struct ServerModule {
     string image;
     float forward_potForce,side_potForce, Masse, fuel, air;
     bool IsController, IsTurner, IsEngine;
-    __int16 width, hight;
+    float width, hight;
 };
 
 struct ServerPlayer{
@@ -23,7 +23,7 @@ struct ServerPlayer{
 
 struct ClientModule {
     string image;
-    __int16 width, hight;
+    float width, hight;
 };
 
 struct ClientPlayer{

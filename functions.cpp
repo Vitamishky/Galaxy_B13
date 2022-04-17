@@ -24,7 +24,7 @@ void functions::mainUdpClient(sf::IpAddress server, std::string client_name, spa
 
     packet << client_name << ship.getCoordinates().first << ship.getCoordinates().second
            << ship.ANGLE() << ship.getAmountOfModules();
-    for (int i = 0; i != ship.getAmountOfModules(); ++i) {
+    for (int i = 0; i < ship.getAmountOfModules(); ++i) {
         packet << ship.rocket[i].getPlaceOfImage() << ship.rocket[i].Forward_PotForce() <<
                ship.rocket[i].Side_PotForce() << ship.rocket[i].getMasse() << ship.rocket[i].getFuel()
                << ship.rocket[i].getAir();
@@ -33,25 +33,26 @@ void functions::mainUdpClient(sf::IpAddress server, std::string client_name, spa
 
     packet.clear();
     std::string name;
-    __int16 n;
+    float n;
     float x, y, angel;
     string image;
-    __int16 width, hight;
+    float width, hight;
     spaceObjects s;
-
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
 
         packet >> n;
         for (int j = 0; j != n; j++) {
-            __int16 n1;
+            float n1;
             packet >> name >> x >> y >> angel >> n1;
             vector<ClientModule> modules;
             for (int i = 0; i != n1; ++i) {
                 packet >> image >> width >> hight;
                 modules.push_back({image, width, hight});
             }
-            base[j] = {x, y, angel, name, modules};
+            base.push_back({x, y, angel, name, modules});
         }
+    }
+    for(auto& b : base) {
     }
 }
 void functions::loopUdpClient(sf::RenderWindow &window, sf::IpAddress server, std::string, spaceShip,

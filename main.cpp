@@ -47,6 +47,8 @@ int main()
     MODULE m4("image/module4.png",130, 120, 8, false, false, 0, 0, true, 10000, 1000);
     vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
     spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
+    functions::mainUdpClient(server, client_name, spaceship , base);
+
 
     //Работа с камерой слежения
 
@@ -119,10 +121,6 @@ int main()
             spaceship.control();
             spaceship.move(dt);
 
-            /*if(q == 1) {
-                functions::mainUdpClient(server, client_name, spaceship , base);
-                q = 0;
-            }*/
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());
             drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
