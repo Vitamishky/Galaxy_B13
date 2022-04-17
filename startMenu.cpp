@@ -83,6 +83,8 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+
+					window.clear();
 				}
 				window.clear();
 				return "start"; 

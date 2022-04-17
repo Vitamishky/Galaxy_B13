@@ -93,7 +93,7 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 			if (menuNum == 4) {
 				musicNum = 3;
 			}
-			v.push_back(musicNum);
+			v[0] = (musicNum);
 
 			if (menuNum == 5) {
 				backgroundNum = 1;
@@ -111,8 +111,8 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 				backgroundNum = 4;
 			// космос2 (с планетой)
 			}
-			v.push_back(backgroundNum);
-			v.push_back(soundValue);
+			v[1] = (backgroundNum);
+			v[2] = (soundValue);
 		}
 
 		sf::Event event;
