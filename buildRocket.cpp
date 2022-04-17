@@ -47,11 +47,11 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 		
 		sf::Event event;
 
-		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 18.0f, window.getSize().x / 10.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 1;
 		}
 
-		if (sf::IntRect(window.getSize().x * 0.95f - (draw.xSt / 10.0f), window.getSize().y * 0.88f - (draw.xSt / 10.0f), window.getSize().x / 10.0f, window.getSize().y / 13.0f).contains(sf::Mouse::getPosition(window))) {
+		if (sf::IntRect(window.getSize().x * 0.97f - (draw.xAb / 10.0f), window.getSize().y * 0.92f - (draw.xAb / 10.0f), window.getSize().x / 18.0f, window.getSize().y / 10.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 2;
 		}
 

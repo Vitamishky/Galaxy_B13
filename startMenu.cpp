@@ -67,10 +67,11 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0.0f, -15.0f);
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
+
 					window.draw(draw.getSpriteMenuBackground(window));
 
 					window.draw(start);
@@ -90,10 +91,11 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0, -15.f);
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
+
 					window.draw(draw.getSpriteMenuBackground(window));
 
 					window.draw(start);
@@ -112,11 +114,10 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0.0f, -15.0f);
-					window.draw(draw.getSpriteMenuBackground(window));
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
 
 					window.draw(start);
 
@@ -135,10 +136,10 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0.0f, -15.0f);
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
 
 					window.draw(draw.getSpriteMenuBackground(window));
 

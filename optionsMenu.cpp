@@ -28,12 +28,22 @@ string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
 		back.setColor(sf::Color::White);
 		layout.setColor(sf::Color::White);
 		menuNum = 0;
+		music1.setFillColor(sf::Color::White);
+		music2.setFillColor(sf::Color::White);
+		music3.setFillColor(sf::Color::White);
 
 		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 1;
 		}
+		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.4f, music1.getGlobalBounds().width + 0.04f, music1.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
+			music1.setFillColor(sf::Color::Blue);
 
-		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
+		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.5f, music2.getGlobalBounds().width + 0.04f, music2.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
+			music2.setFillColor(sf::Color::Blue);
+		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.6f, music3.getGlobalBounds().width + 0.04f, music3.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window)))
+			music3.setFillColor(sf::Color::Blue);
+		
+		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			//Если нажали кнопку
 			if (menuNum == 1) {

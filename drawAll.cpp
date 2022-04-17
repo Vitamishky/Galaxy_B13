@@ -402,7 +402,7 @@ sf::Sprite drawAll::getSpritePlay(sf::RenderWindow& window) {
 sf::Sprite drawAll::getSpritePlayWithMouse(sf::RenderWindow& window) {
 	buttonPlayWithMouse.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
 	buttonPlayWithMouse.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
-	return buttonStartWithMouse;
+	return buttonPlayWithMouse;
 }
 
 
