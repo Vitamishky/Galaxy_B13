@@ -50,11 +50,8 @@
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/Planet.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/buildRocket.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/startMenu.h"/>
 					<Add directory="/Library/Frameworks/SFML.framework"/>
 				</Compiler>
 				<MakeCommands>
@@ -77,11 +74,8 @@
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/Planet.h"/>
 					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/buildRocket.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.h"/>
-					<Add directory="/Users/azamath/Repositories/Galaxy_B13/startMenu.h"/>
 					<Add directory="/Library/Frameworks/SFML.framework"/>
 				</Compiler>
 				<MakeCommands>
@@ -92,25 +86,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/Client.cpp">
-			<Option target="Galaxy_B13"/>
-		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/MODULE.cpp">
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/MODULE.h">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.cpp">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.h">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/buildRocket.cpp">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/buildRocket.h">
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/camera.cpp">
@@ -134,12 +113,6 @@
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/main.cpp">
 			<Option target="Galaxy_B13"/>
 		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.cpp">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.h">
-			<Option target="Galaxy_B13"/>
-		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.cpp">
 			<Option target="Galaxy_B13"/>
 		</Unit>
@@ -156,12 +129,6 @@
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/startMenu.cpp">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/startMenu.h">
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/CMakeLists.txt">

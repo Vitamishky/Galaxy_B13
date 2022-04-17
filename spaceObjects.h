@@ -20,6 +20,7 @@ protected:
     float Masse;
 public:
     spaceObjects();
+    void setPosition(float, float, float);
     pair<float, float> getCoordinates() const;
     pair<float, float> getParametrization() const;
     void drawSprite(sf::RenderWindow&);

@@ -11,24 +11,30 @@ using namespace std;
 class spaceShip {
 private:
     float cordCentreMass = 0;
-    float Mass = 0;
     pair<float, float> velocity = make_pair(0, 0);
     float angularVelocity = 0;
     float MomentOfInertia = 0;
     float angle = 0;
-    float x = 0, y = 0;
-    vector<MODULE> rocket;
-
+    float x, y;
+    float maxFuel = 0, maxAir = 0;
 public:
-    spaceShip(const vector<MODULE>& rocket);
+    vector<MODULE> rocket;
+    spaceShip(const vector<MODULE>& rocket, float, float);
     void move(float);
-    vector<sf::Sprite> getSprite();
-    pair<float, float> getCoordinates();
+    vector<sf::Sprite> getSprite() const;
+    pair<float, float> getCoordinates() const;
+    void newCoordinate(float, float, float);
+    float getMaxFuel() const;
+    float getMaxAir() const;
+    float getMass() const;
     void control();
     float FUEL();
     float AIR();
-    int SPEED() const;
+    float SPEED() const;
     float ANGLE();
     void draw(sf::RenderWindow&);
+    bool Use_Air(float);
+    bool Use_Fuel(float);
+    __int16 getAmountOfModules() const;
 };
 #endif 

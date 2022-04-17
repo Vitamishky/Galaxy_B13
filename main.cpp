@@ -7,9 +7,19 @@
 #include "optionsMenu.h"
 #include "buildRocket.h"
 #include "aboutMenu.h"
+#include "functions.h"
+
+vector<ClientPlayer> base;
 
 int main()
 {
+    sf::IpAddress server;
+    std::cout << "Enter server IP: ";
+    std::cin >> server;
+
+    std::string client_name;
+    std::cout << std::endl << "Enter you name: ";
+    std::cin >> client_name;
     parametrizationScreen* screen = new parametrizationScreen;
 
     //Отрисовка окна
@@ -31,12 +41,14 @@ int main()
     drawObjects->drawIcon(window);
 
     //Создание космического корабля
-    MODULE m1(20, 120, 120, true);
-    MODULE m2(1, 120, 130, false, true, 1000, 1000);
-    MODULE m3(10, 130, 120, false, false, 0, 0, true, 1000, 1000);
-    MODULE m4(100, 120, 130);
-    vector<MODULE> masivMODULE = { m1, m2, m3, m4 };
-    spaceShip spaceship = spaceShip(masivMODULE);
+    MODULE m1("image/cabine.png", 120, 120, 5, true);
+    MODULE m2("image/module2.png",120, 130, 20);
+    MODULE m3("image/module3.png",120, 130, 7, false, true, 1000, 1000);
+    MODULE m4("image/module4.png",130, 120, 8, false, false, 0, 0, true, 10000, 1000);
+    vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
+    spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
+    functions::mainUdpClient(server, client_name, spaceship , base);
+
 
     //Работа с камерой слежения
 
@@ -68,7 +80,7 @@ int main()
         }
     }
     if (nameMenu != "exit") {
-        while (window.isOpen()) {
+        for(int q = 0;window.isOpen();++q) {
 
             sf::Event event{};
 
@@ -106,7 +118,6 @@ int main()
             window.setView(Camera->getViewCamera());
 
             spaceship.draw(window);
-
             spaceship.control();
             spaceship.move(dt);
 
