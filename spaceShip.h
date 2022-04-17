@@ -19,7 +19,7 @@ private:
     float maxFuel = 0, maxAir = 0;
 public:
     vector<MODULE> rocket;
-    spaceShip(const vector<MODULE>& rocket, float, float);
+    spaceShip(const vector<MODULE>& rocket, float, float, float);
     void move(float);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
@@ -35,6 +35,6 @@ public:
     void draw(sf::RenderWindow&);
     bool Use_Air(float);
     bool Use_Fuel(float);
-    __int16 getAmountOfModules() const;
+    int getAmountOfModules() const;
 };
 #endif 
