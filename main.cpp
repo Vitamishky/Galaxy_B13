@@ -9,17 +9,18 @@
 #include "aboutMenu.h"
 #include "functions.h"
 
-vector<ClientPlayer> ClientBase;
+std::map <sf::IpAddress, ServerPlayer> ServerBase;
+std::map <string, spaceShip*> ClientBase;
 
-int main()
-{
-    sf::IpAddress server;
-    std::cout << "Enter server IP: ";
-    std::cin >> server;
-
+int main(){
     std::string client_name;
     std::cout << std::endl << "Enter you name: ";
     std::cin >> client_name;
+
+    char s_c;
+    std::cout << std::endl << "Enter if you want to server (s) or client (c): ";
+    std::cin >> s_c;
+
     parametrizationScreen* screen = new parametrizationScreen;
 
     //Отрисовка окна
@@ -46,7 +47,16 @@ int main()
     MODULE m3("image/module3.png",120, 130, 7, false, true, 1000, 1000);
     MODULE m4("image/module4.png",130, 120, 8, false, false, 0, 0, true, 10000, 1000);
     vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
-    spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
+    spaceShip spaceship = spaceShip(masivMODULE, 800, 150, 45);
+
+    sf::IpAddress server;
+    if(s_c == 's') functions::mainUdpServer(50001, ServerBase);
+    else {
+        std::cout << "Enter server IP: ";
+        std::cin >> server;
+        functions::mainUdpClient(server, client_name, spaceship , ClientBase);
+    }
+
 
 
     //Работа с камерой слежения
@@ -117,8 +127,9 @@ int main()
             window.setView(Camera->getViewCamera());
 
             spaceship.draw(window);
-            spaceship.control();
-            spaceship.move(dt);
+
+            if(s_c == 's') functions::loopUdpServer(50001, ServerBase);
+            else functions::loopUdpClient(window, server, ClientBase, 50001);
 
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());

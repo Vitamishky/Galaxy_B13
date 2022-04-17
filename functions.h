@@ -3,46 +3,25 @@
 #include <iostream>
 #include "spaceObjects.h"
 #include "spaceShip.h"
-#include "Planet.h"
 #include <SFML/Network.hpp>
 
 using namespace std;
 
-struct ServerModule {
-    string image;
-    float forward_potForce,side_potForce, Masse, fuel, air;
-    bool IsController, IsTurner, IsEngine;
-    float width, hight;
-};
-
 struct ServerPlayer{
-    float x, y, angel;
+    std::string client_name;
+    spaceShip* ship;
     unsigned short senderPort;
-    std::string client_name;
-    std::vector<ServerModule> modules;
-};
-
-struct ClientModule {
-    string image;
-    float width, hight;
-};
-
-struct ClientPlayer{
-    float x, y, angel;
-    std::string client_name;
-    std::vector<ClientModule> modules;
-//    float Masse, fuel, air; Надо добавить
 };
 
 class functions {
 public:
-    bool collision(spaceShip, Planet);
     static pair<unsigned int, unsigned int> attraction(const spaceObjects& Slave, const spaceObjects& Master) ;
     static void mainUdpClient(sf::IpAddress server, std::string, spaceShip,
-                             vector<ClientPlayer>&, unsigned short port = 50001);
-    static void loopUdpClient(sf::RenderWindow& window, sf::IpAddress server, std::string, spaceShip,
-                              vector<ClientPlayer>&, unsigned short port = 50001);
-    void runUdpServer(unsigned short port);
+                              std::map<string, spaceShip*> ClientBase, unsigned short port = 50001);
+    static void loopUdpClient(sf::RenderWindow& window, sf::IpAddress server,
+                              std::map <string, spaceShip*>, unsigned short port = 50001);
+    static void mainUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer> ServerBase);
+    static void loopUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer>& ServerBase);
 };
 
 #endif //GALAXY_B03_FUNCTIONS_H

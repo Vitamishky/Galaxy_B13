@@ -7,7 +7,7 @@ aboutMenu::aboutMenu() {
 	drawAll draw;
 }
 
-string aboutMenu::drawAboutMenu(sf::RenderWindow& window) {
+[[noreturn]] string aboutMenu::drawAboutMenu(sf::RenderWindow& window) {
 	text = draw.drawTextAbout(window);
 	while (true) {
 		sf::Event event;

@@ -9,5 +9,6 @@ private:
 	drawAll draw;
 public:
 	aboutMenu();
-	string drawAboutMenu(sf::RenderWindow&);
+
+    [[noreturn]] string drawAboutMenu(sf::RenderWindow&);
 };

@@ -10,12 +10,12 @@ set(PROJECT_HEADERS
         parametrizationScreen.h
         camera.h
         functions.h
-        Planet.h
         MODULE.h
         drawAll.h
-        startMenu.h
-        optionsMenu.h
+        buildRocket.h
         aboutMenu.h
+        optionsMenu.h
+        startMenu.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -24,12 +24,14 @@ set(PROJECT_SOURCES
         parametrizationScreen.cpp
         camera.cpp
         functions.cpp
-        Planet.cpp
         MODULE.cpp
         drawAll.cpp
-        startMenu.cpp
-        optionsMenu.cpp
+        buildRocket.cpp
         aboutMenu.cpp
+        optionsMenu.cpp
+        startMenu.cpp
+
+
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

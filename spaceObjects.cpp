@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceObjects.h"
