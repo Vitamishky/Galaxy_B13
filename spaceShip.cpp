@@ -175,3 +175,7 @@ void spaceShip::newCoordinate(float X, float Y, float A) {
     this->y = Y;
     this->angle = A;
 }
+
+__int16 spaceShip::getAmountOfModules() const{
+    return rocket.size();
+}

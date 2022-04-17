@@ -9,7 +9,7 @@
 #include "aboutMenu.h"
 #include "functions.h"
 
-void runUdpClient(unsigned short port);
+vector<ClientPlayer> base;
 
 int main()
 {
@@ -78,7 +78,7 @@ int main()
         }
     }
     if (nameMenu != "exit") {
-        for(int q = 1;window.isOpen(); ++q) {
+        for(int q = 0;window.isOpen();++q) {
 
             sf::Event event{};
 
@@ -117,10 +117,8 @@ int main()
 
             spaceship.draw(window);
 
-            spaceship.control();
-            spaceship.move(dt);
-            if(q == 20) {
-                functions::runUdpClient(window, server, client_name, spaceship);
+            if(q == 1) {
+                functions::runUdpClient(window, server, client_name, spaceship , &base);
                 q = 0;
             }
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);

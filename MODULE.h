@@ -9,11 +9,12 @@ private:
     float side_potForce;
     float fuel;
     float air;
+    string image;
 public:
     MODULE(string image = "image/chert.jpg",
-           float Masse = 100,
             int Width = 10,
             int Height = 10,
+           float Masse = 100,
             bool IsController = false,
             bool IsTurner = false,
             float Side_PotForce = 0,
@@ -33,6 +34,8 @@ public:
     bool Use_Air(float);
     float getAir() const;
     float getFuel() const;
+    float getMasse() const;
+    string getPlaceOfImage() const;
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
     sf::Sprite getSprite() const;

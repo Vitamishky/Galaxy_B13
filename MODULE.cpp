@@ -2,9 +2,9 @@
 #include "cmath"
 
 MODULE::MODULE(string image,
-               float Masse,
                int Width,
                int Height,
+               float Masse,
                bool IsController,
                bool IsTurner,
                float Side_PotForce,
@@ -18,7 +18,8 @@ MODULE::MODULE(string image,
                IsTurner(IsTurner),
                IsController(IsController),
                IsEngine(IsEngine),
-               fuel(fuel)
+               fuel(fuel),
+               image(image)
                {
     this->Masse = Masse;
     this->Width = Width;
@@ -84,4 +85,12 @@ void MODULE::NewAcceleration(pair<float, float> Na) {
 
 sf::Sprite MODULE::getSprite() const{
     return Sprite;
+}
+
+string MODULE::getPlaceOfImage() const {
+    return image;
+}
+
+float MODULE::getMasse() const {
+    return Masse;
 }
