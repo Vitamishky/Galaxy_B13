@@ -50,7 +50,7 @@ int main(){
     spaceShip spaceship = spaceShip(masivMODULE, 800, 150, 45);
 
     sf::IpAddress server;
-    if(s_c == 's') functions::mainUdpServer(50001, ServerBase);
+    if(s_c == 's') functions::mainUdpServer(1, 50001, client_name, spaceship, ServerBase);
     else {
         std::cout << "Enter server IP: ";
         std::cin >> server;

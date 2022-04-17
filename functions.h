@@ -20,7 +20,7 @@ public:
                               std::map<string, spaceShip*> ClientBase, unsigned short port = 50001);
     static void loopUdpClient(sf::RenderWindow& window, sf::IpAddress server,
                               std::map <string, spaceShip*>, unsigned short port = 50001);
-    static void mainUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer> ServerBase);
+    static void mainUdpServer(int, unsigned short port, std::string client_name, spaceShip ship, std::map <sf::IpAddress, ServerPlayer> ServerBase);
     static void loopUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer>& ServerBase);
 };
 

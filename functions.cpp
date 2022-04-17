@@ -83,62 +83,70 @@ void functions::loopUdpClient(sf::RenderWindow &window, sf::IpAddress server,
 
 }
 
-void functions::mainUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer> ServerBase) {
-    sf::UdpSocket socket;
-    std::string client_name;
-    // Listen to messages on the specified port
-    if (socket.bind(port) != sf::Socket::Done)
-        return;
-    std::cout << "Server is listening to port " << port << ", waiting for a message... " << std::endl;
+void functions::mainUdpServer(int temp, unsigned short port, std::string my_name,
+                              spaceShip my_ship, std::map <sf::IpAddress, ServerPlayer> ServerBase) {
+    ServerBase["127.0.0.1"] = {my_name, &my_ship, 50001};
+    for (int k = 1; k < temp; k++) {
+        sf::UdpSocket socket;
+        std::string client_name;
+        // Listen to messages on the specified port
+        if (socket.bind(port) != sf::Socket::Done)
+            return;
+        std::cout << "Server is listening to port " << port << ", waiting for a message... " << std::endl;
 
-    float angel, x, y;
+        float angel, x, y;
 
-    sf::IpAddress sender;
-    unsigned short senderPort;
-    sf::Packet response;
-    std::string image;
-    float forward_potForce, side_potForce, Masse, fuel, air;
-    bool IsController, IsTurner, IsEngine;
-    float width, hight, n;
+        sf::IpAddress sender;
+        unsigned short senderPort;
+        sf::Packet response;
+        std::string image;
+        float forward_potForce, side_potForce, Masse, fuel, air;
+        bool IsController, IsTurner, IsEngine;
+        float width, hight, n;
 
-    if (socket.receive(response, sender, senderPort) == sf::Socket::Done) {
-        response >> client_name >> x >> y >> angel >> n;
-        std::vector <MODULE> modules;
-        for (int i = 0; i < n; ++i) {
-            response >> image >> forward_potForce >> side_potForce >> Masse >> fuel >> air;
-            MODULE module(image, int(width), int(hight), Masse, IsController, IsTurner, side_potForce,
-                          air, IsEngine, forward_potForce, fuel);
-            modules.push_back(module);
+        if (socket.receive(response, sender, senderPort) == sf::Socket::Done) {
+            response >> client_name >> x >> y >> angel >> n;
+            std::vector<MODULE> modules;
+            for (int i = 0; i < n; ++i) {
+                response >> image >> forward_potForce >> side_potForce >> Masse >> fuel >> air;
+                MODULE module(image, int(width), int(hight), Masse, IsController, IsTurner, side_potForce,
+                              air, IsEngine, forward_potForce, fuel);
+                modules.push_back(module);
+            }
+            spaceShip ship(modules, x, y, angel);
+            ServerBase[sender] = {client_name, &ship, senderPort};
+
         }
-        spaceShip ship(modules, x, y, angel);
-        ServerBase[sender] = {client_name, &ship, senderPort};
-
-    }
-    n = ServerBase.size();
-    sf::Packet allPackets;
-    allPackets << n;
-    for (auto &p: ServerBase) {
-        float n1 = p.second.ship->rocket.size();
-        allPackets << p.second.client_name << p.second.ship->getCoordinates().first << p.second.ship->getCoordinates().second << p.second.ship->ANGLE() <<
-                   n1;
-        for (auto &m : p.second.ship->rocket) {
-            allPackets << m.getPlaceOfImage() << m.getParametrization().first << m.getParametrization().second;
+        n = ServerBase.size();
+        sf::Packet allPackets;
+        allPackets << n;
+        for (auto &p: ServerBase) {
+            float n1 = p.second.ship->rocket.size();
+            allPackets << p.second.client_name << p.second.ship->getCoordinates().first
+                       << p.second.ship->getCoordinates().second << p.second.ship->ANGLE() <<
+                       n1;
+            for (auto &m: p.second.ship->rocket) {
+                allPackets << m.getPlaceOfImage() << m.getParametrization().first << m.getParametrization().second;
+            }
         }
-    }
-    for (auto &g: ServerBase) {
-        if (socket.send(allPackets, g.first, g.second.senderPort) == sf::Socket::Done) {
+        for (auto &g: ServerBase) {
+            if (socket.send(allPackets, g.first, g.second.senderPort) == sf::Socket::Done) {
 
+            }
         }
     }
 }
 
 void functions::loopUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer>& ServerBase){
+
+    cout << sizeof(ServerBase["127.0.0.1"].ship);
+
     sf::UdpSocket socket;
     sf::IpAddress sender;
     unsigned short senderPort;
     sf::Packet packet;
     bool left, right, forward;
-    for(int i = 0; i < ServerBase.size(); ++i) {
+    for(int i = 0; i < ServerBase.size()-1; ++i) {
         if (socket.receive(packet, sender, senderPort) == sf::Socket::Done) {
             packet >> left >> right >> forward;
             bool crutch = false;

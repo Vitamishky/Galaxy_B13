@@ -65,17 +65,22 @@ void spaceShip::move(float dt) {
     }
 
     for (auto& modul : rocket) {
+
+
         modul.NewAcceleration(make_pair(0, 0));
 
     }
 }
 //&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
 void spaceShip::control() {
+
     bool crutch = false;
     float dfuel = 100000;
     float dair = 1000;
-    for (auto& module : rocket) {
-        if (module.IsController) crutch = true;
+
+    cout << rocket[0].getMasse();
+    for(int i = 0; i < this->rocket.size(); ++i){
+        if (this->rocket[i].IsController) {crutch = true;}
     }
     if (crutch) {
         for (auto& module : rocket) {
