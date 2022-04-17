@@ -139,7 +139,7 @@ void functions::mainUdpServer(int temp, unsigned short port, std::string my_name
 
 void functions::loopUdpServer(unsigned short port, std::map <sf::IpAddress, ServerPlayer>& ServerBase){
 
-    cout << sizeof(ServerBase["127.0.0.1"].ship);
+    ServerBase["127.0.0.1"].ship->control();
 
     sf::UdpSocket socket;
     sf::IpAddress sender;
