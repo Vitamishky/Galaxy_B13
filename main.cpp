@@ -41,10 +41,10 @@ int main()
     drawObjects->drawIcon(window);
 
     //Создание космического корабля
-    MODULE m1("image/cabine.png", 5, 120, 120, true);
-    MODULE m2("image/module2.png",10, 120, 130);
-    MODULE m3("image/module3.png",5, 120, 130, false, true, 1000, 1000);
-    MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 10000, 1000);
+    MODULE m1("image/cabine.png", 120, 120, 5, true);
+    MODULE m2("image/module2.png",120, 130, 20);
+    MODULE m3("image/module3.png",120, 130, 7, false, true, 1000, 1000);
+    MODULE m4("image/module4.png",130, 120, 8, false, false, 0, 0, true, 10000, 1000);
     vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
     spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
 
