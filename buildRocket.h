@@ -10,10 +10,13 @@ private:
 	sf::Texture texREmpty, texRAir;
 	sf::Sprite sprREmpty, sprRAir;
 	float xRightInter, yRightInter;
-	std::map<std::string, std::vector<std::pair<float, float>>> m;
+	std::map<std::string, std::vector<std::vector<float>>> m;
 	int sizeM;
 	float sizeXForSprite, sizeYForSprite;
+	sf::Vector2f spriteScale;
+	sf::FloatRect boundsAir, boundsEmpty, boundsHead, boundsEngine; 
+	std::vector<int> result;
 public:
 	buildRocket();
-	std::string drawBuildRocket(sf::RenderWindow&);
+	std::pair < std::string, std::vector<int>> drawBuildRocket(sf::RenderWindow&);
 };

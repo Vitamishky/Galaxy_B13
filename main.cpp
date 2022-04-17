@@ -38,8 +38,7 @@ int main()
     MODULE m2("image/module2.png",10, 120, 130);
     MODULE m3("image/module3.png",5, 120, 130, false, true, 1000, 1000);
     MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 10000, 1000);
-    vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
-    spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
+    vector<MODULE> masivMODULE;
 
     //Работа с камерой слежения
 
@@ -48,6 +47,7 @@ int main()
     sf::Clock sf_clock;
 
     string nameMenu = "main";
+    std::pair<string, std::vector<int>> para;
 
     while (nameMenu != "go" && nameMenu != "exit") {
         if (nameMenu == "main") {
@@ -55,7 +55,8 @@ int main()
             window.clear();
         }
         if (nameMenu == "start") {
-            nameMenu = buildrocket.drawBuildRocket(window);
+            para = buildrocket.drawBuildRocket(window);
+            nameMenu = para.first;
             //if (nameMenu == "back") {
                 //menu.drawStartMenu(window);
             //}
@@ -70,6 +71,24 @@ int main()
             nameMenu = about->drawAboutMenu(window);
         }
     }
+
+    for (auto& c : para.second) {
+        if (c == 1) {
+            masivMODULE.push_back(m1);
+        }
+        if (c == 2) {
+            masivMODULE.push_back(m2);
+        }
+        if (c == 3) {
+            masivMODULE.push_back(m3);
+        }
+        if (c == 4) {
+            masivMODULE.push_back(m4);
+        }
+    }
+
+    spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
+
     if (nameMenu != "exit") {
         while (window.isOpen()) {
 
