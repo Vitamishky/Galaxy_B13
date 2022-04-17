@@ -1,13 +1,15 @@
 # ninja log v5
-1	1173	6715031502177999	CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.obj	229ff01d22f88b04
-24	1181	6715031502340933	CMakeFiles/Galaxy_B13.dir/Planet.cpp.obj	881174ed9ffd6d25
-21	1183	6715031502228001	CMakeFiles/Galaxy_B13.dir/functions.cpp.obj	3bb875ac8d1db004
+55	1732	6717474217140598	CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.obj	229ff01d22f88b04
 28	1199	6715031502267992	CMakeFiles/Galaxy_B13.dir/camera.cpp.obj	a5e15515988eeb0c
-42	1207	6715031502510981	CMakeFiles/Galaxy_B13.dir/MODULE.cpp.obj	f4c4cee409f2d28
-54	1232	6715031502855872	CMakeFiles/Galaxy_B13.dir/optionsMenu.cpp.obj	9f698685cee56558
-15	1250	6715031503031765	CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.obj	4b0a8cc3f958194f
-33	1252	6715031503061768	CMakeFiles/Galaxy_B13.dir/startMenu.cpp.obj	d03f4ed2db98d15f
-18	1279	6715031503334420	CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.obj	59538d59769b5e9d
-50	1432	6715031504865391	CMakeFiles/Galaxy_B13.dir/main.cpp.obj	d6bc485ab31bf299
-45	1444	6715031504985416	CMakeFiles/Galaxy_B13.dir/drawAll.cpp.obj	cc3a0f00124013c3
-1444	2299	6715031513487270	Galaxy_B13.exe	8c3e64d2c8130152
+62	1763	6717474217220595	CMakeFiles/Galaxy_B13.dir/Planet.cpp.obj	881174ed9ffd6d25
+30	2398	6718341466415929	CMakeFiles/Galaxy_B13.dir/functions.cpp.obj	3bb875ac8d1db004
+36	2520	6718341467638549	CMakeFiles/Galaxy_B13.dir/MODULE.cpp.obj	f4c4cee409f2d28
+41	1874	6717474218596283	CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.obj	4b0a8cc3f958194f
+47	2119	6718341463027691	CMakeFiles/Galaxy_B13.dir/optionsMenu.cpp.obj	9f698685cee56558
+41	2396	6718341466313204	CMakeFiles/Galaxy_B13.dir/startMenu.cpp.obj	d03f4ed2db98d15f
+26	2407	6718341466415929	CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.obj	59538d59769b5e9d
+5	2584	6718341468239546	CMakeFiles/Galaxy_B13.dir/main.cpp.obj	d6bc485ab31bf299
+62	2897	6718341471378288	CMakeFiles/Galaxy_B13.dir/drawAll.cpp.obj	cc3a0f00124013c3
+2897	4187	6718341484050969	Galaxy_B13.exe	8c3e64d2c8130152
+1	244	6718836776111596	build.ninja	28e5816e1a3a3f8a
+17	1414	6717557499813029	CMakeFiles/Galaxy_B13.dir/allSounds.cpp.obj	ffd1d6b0b1393974

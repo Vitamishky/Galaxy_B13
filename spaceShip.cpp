@@ -64,7 +64,7 @@ void spaceShip::move(float dt, vector<Planet>& planets) {
     }
 }
 
-void spaceShip::control() {
+void spaceShip::control(sf::Music* soundEngine, sf::Music* soundTurner) {
     bool crutch = false;
     float dfuel = 1000;
     float dair = 1000;
@@ -75,13 +75,16 @@ void spaceShip::control() {
         for (auto &module: rocket) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && module.Use_Fuel(module.Forward_PotAcceleration()/dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotAcceleration() * sin(angle),
-                                                      module.Forward_PotAcceleration() * cos(angle)));
+                                                  module.Forward_PotAcceleration() * cos(angle)));
+                soundEngine->setVolume(80);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration()/dair)) {
                 module.EditAcceleration(make_pair(module.Side_PotAcceleration()*cos(angle), -module.Side_PotAcceleration()*sin(angle)));
+                soundTurner->setVolume(20);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && module.Use_Air(module.Side_PotAcceleration()/dair)) {
                 module.EditAcceleration(make_pair(-module.Side_PotAcceleration()*cos(angle), module.Side_PotAcceleration()*sin(angle)));
+                soundTurner->setVolume(20);
             }
         }
     }
@@ -104,7 +107,7 @@ float spaceShip::AIR() {
 }
 
 float spaceShip::SPEED() const {
-    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.first);
+    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.second);
 }
 
 void spaceShip::draw(sf::RenderWindow &window) {

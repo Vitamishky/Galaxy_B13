@@ -9,6 +9,25 @@
 
 int main()
 {
+    //Работа с музыкой
+    sf::Music* bgMusic = new sf::Music;
+    bgMusic->openFromFile("sounds/bgMusic.wav");
+    bgMusic->setPlayingOffset(sf::seconds(10));
+    bgMusic->setVolume(25);
+    bgMusic->play();
+    bgMusic->setLoop(true);
+    sf::Music* engineSound = new sf::Music;
+    engineSound->openFromFile("sounds/soundOfEngine.wav");
+    engineSound->setVolume(0);
+    engineSound->play();
+    engineSound->setLoop(true);
+    sf::Music* turnerSound = new sf::Music;
+    turnerSound->openFromFile("sounds/soundOfTurner.wav");
+    turnerSound->setVolume(0);
+    turnerSound->play();
+    turnerSound->setLoop(true);
+
+
     parametrizationScreen screen;
     //Отрисовка окна
     sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
@@ -83,6 +102,22 @@ int main()
             if (event.type == sf::Event::MouseWheelScrolled) {
                 Camera->zoomCamera(event, window);
             }
+            if (event.type == sf::Event::KeyReleased || spaceship.FUEL() == 0) {
+                if (event.key.code == sf::Keyboard::Space) {
+                    engineSound->setVolume(0);
+                 }
+            }
+
+            if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
+                if (event.key.code == sf::Keyboard::Z) {
+                    turnerSound->setVolume(0);
+                }
+            }
+            if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
+                if (event.key.code == sf::Keyboard::X) {
+                    turnerSound->setVolume(0);
+                }
+            }
 
         }
 
@@ -95,9 +130,8 @@ int main()
         for (auto& i : planets)
             i.drawSprite(window);
 
-        spaceship.control();
+        spaceship.control(engineSound, turnerSound);
         spaceship.move(dt, planets);
-
         drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
         drawObjects->drawRightInter(window, Camera->getViewCamera());
         drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);

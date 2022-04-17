@@ -27,7 +27,7 @@ public:
     float FUEL();
     float AIR();
     float SPEED() const;
-    void control();
+    void control(sf::Music*, sf::Music*);
     void draw(sf::RenderWindow&);
 };
 #endif 
