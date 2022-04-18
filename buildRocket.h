@@ -11,7 +11,7 @@ private:
 	sf::Texture texREmpty, texRAir;
 	sf::Sprite sprREmpty, sprRAir;
 	float xRightInter, yRightInter;
-	sf::Sprite play, playWithMouse, back, backWithMouse;
+	sf::Sprite play, playWithMouse, back, backWithMouse, built, builtWithMouse;
 	std::map<std::string, std::vector<std::pair<float, float>>> m;
 	int menuNum;
 	drawAll draw;

@@ -41,6 +41,8 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 	playWithMouse = draw.getSpritePlayWithMouse(window);
 	backWithMouse = draw.getSpriteBackWithMouse(window);
 	back = draw.getSpriteBack(window);
+	built = draw.getSpriteBuilt(window);
+	builtWithMouse = draw.getSpriteBuiltWithMouse(window);
 
 	while (true) {
 		menuNum = 0;
@@ -53,6 +55,9 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 
 		if (sf::IntRect(window.getSize().x * 0.97f - (draw.xAb / 10.0f), window.getSize().y * 0.92f - (draw.xAb / 10.0f), window.getSize().x / 18.0f, window.getSize().y / 10.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 2;
+		}
+		if ((built.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
+			menuNum = 3;
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -109,10 +114,15 @@ std::string buildRocket::drawBuildRocket(sf::RenderWindow& window) {
 
 		window.draw(play);
 
+		window.draw(built);
+
+
 		if (menuNum == 1)
 			window.draw(backWithMouse);
 		if (menuNum == 2)
 			window.draw(playWithMouse);
+		if (menuNum == 3)
+			window.draw(builtWithMouse);
 
 
 		window.draw(sprAirRocket);

@@ -81,6 +81,10 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	buttonBackgroundFull.loadFromFile("image/buttonBackground.png");
 	buttonBackFull.loadFromFile("image/back1.png");
 	buttonBackFull_1.loadFromFile("image/back2.png");
+	buttonPlayFull.loadFromFile("image/play1.png");
+	buttonPlayFull_1.loadFromFile("image/play2.png");
+	buttonBuiltFull.loadFromFile("image/built1.png");
+	buttonBuiltFull_1.loadFromFile("image/built2.png");
 
 	buttonMusic.setTexture(buttonMusicFull);
 	buttonBack.setTexture(buttonBackFull);
@@ -88,8 +92,10 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	buttonBackground.setTexture(buttonBackgroundFull);
 	buttonLayout.setTexture(buttonLayoutFull);
 
-	buttonPlay.setTexture(aboutTextureFull);
-	buttonPlayWithMouse.setTexture(aboutTextureFull_1);
+	buttonPlay.setTexture(buttonPlayFull);
+	buttonPlayWithMouse.setTexture(buttonPlayFull_1);
+	buttonBuilt.setTexture(buttonBuiltFull);
+	buttonBuiltWithMouse.setTexture(buttonBuiltFull_1);
 
 	textMusic3.setFont(font);
 	textMusic2.setFont(font);
@@ -402,24 +408,18 @@ sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
 }
 
 sf::Text drawAll::drawTextMusic1(sf::RenderWindow& window) {
-	//float xText = textMusic1.getGlobalBounds().width;
-	//float yText = textMusic1.getGlobalBounds().height;
 	textMusic1.setFont(font);
 	textMusic1.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.4f);
 	return textMusic1;
 }
 
 sf::Text drawAll::drawTextMusic2(sf::RenderWindow& window) {
-	//float xText = textMusic2.getGlobalBounds().width;
-	//float yText = textMusic2.getGlobalBounds().height;
 	textMusic2.setFont(font);
 	textMusic2.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.5f);
 	return textMusic2;
 }
 
 sf::Text drawAll::drawTextMusic3(sf::RenderWindow& window) {
-	//float xText = textMusic3.getGlobalBounds().width;
-	//float yText = textMusic3.getGlobalBounds().height;
 	textMusic3.setFont(font);
 	textMusic3.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.6f);
 	return textMusic3;
@@ -444,6 +444,18 @@ sf::Sprite drawAll::getSpritePlayWithMouse(sf::RenderWindow& window) {
 	buttonPlayWithMouse.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
 	buttonPlayWithMouse.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
 	return buttonPlayWithMouse;
+}
+
+sf::Sprite drawAll::getSpriteBuilt(sf::RenderWindow& window) {
+	buttonBuilt.setScale(window.getSize().x / (12.0f * buttonBuilt.getGlobalBounds().width), window.getSize().x / (buttonBuilt.getGlobalBounds().height * 18.0f));
+	buttonBuilt.setPosition(0.75f * window.getSize().x, window.getSize().y * 0.92f - (xAb / 10.0f));
+	return buttonBuilt;
+}
+
+sf::Sprite drawAll::getSpriteBuiltWithMouse(sf::RenderWindow& window) {
+	buttonBuiltWithMouse.setScale(window.getSize().x / (12.0f * buttonBuiltWithMouse.getGlobalBounds().width), window.getSize().x / (buttonBuiltWithMouse.getGlobalBounds().height * 18.0f));
+	buttonBuiltWithMouse.setPosition(0.75f * window.getSize().x, window.getSize().y * 0.92f - (xAb / 10.0f));
+	return buttonBuiltWithMouse;
 }
 
 

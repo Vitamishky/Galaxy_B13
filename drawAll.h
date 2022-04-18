@@ -37,8 +37,9 @@ private:
 	sf::Text textMusic1, textMusic2, textMusic3, textLayout;
 
 	//BuildRocket
-	sf::Sprite buttonPlay, buttonPlayWithMouse;
-	sf::Sprite play, playWithMouse;
+	sf::Texture buttonPlayFull, buttonPlayFull_1, buttonBuiltFull, buttonBuiltFull_1;
+	sf::Sprite buttonPlay, buttonPlayWithMouse, buttonBuilt, buttonBuiltWithMouse;
+	sf::Sprite play, playWithMouse, built, builtWithMouse;
 
 public:
 	drawAll();
@@ -82,6 +83,8 @@ public:
 
 	sf::Sprite getSpritePlay(sf::RenderWindow&);
 	sf::Sprite getSpritePlayWithMouse(sf::RenderWindow&);
+	sf::Sprite getSpriteBuilt(sf::RenderWindow&);
+	sf::Sprite getSpriteBuiltWithMouse(sf::RenderWindow&);
 };
 
 #endif
