@@ -16,6 +16,7 @@ set(PROJECT_HEADERS
         aboutMenu.h
         optionsMenu.h
         startMenu.h
+        client.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -30,12 +31,24 @@ set(PROJECT_SOURCES
         aboutMenu.cpp
         optionsMenu.cpp
         startMenu.cpp
+        client.cpp
+        )
 
-
+set(SERVER_SOURCES
+        server.cpp
+        spaceObjects.cpp
+        MODULE.cpp
+        spaceShip.cpp
+        )
+set(SERVER_HEADERS
+        spaceObjects.h
+        MODULE.h
+        spaceShip.h
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(Galaxy_B13 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
+add_executable(Galaxy_Server ${SERVER_SOURCES} ${SERVER_HEADERS})
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR D:/SFML/lib/cmake/SFML)

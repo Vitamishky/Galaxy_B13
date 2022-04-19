@@ -1,5 +1,6 @@
 ﻿#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
 #include "spaceShip.h"
 #include "camera.h"
 #include "drawAll.h"
@@ -8,31 +9,30 @@
 #include "buildRocket.h"
 #include "aboutMenu.h"
 #include "functions.h"
+#include "client.h"
 
-std::map <sf::IpAddress, ServerPlayer> ServerBase;
-std::map <string, spaceShip*> ClientBase;
-
-int main(){
+std::map <string, ClientPlayer> ClientBase;
+int main() {
     std::string client_name;
     std::cout << std::endl << "Enter you name: ";
     std::cin >> client_name;
 
-    char s_c;
-    std::cout << std::endl << "Enter if you want to server (s) or client (c): ";
-    std::cin >> s_c;
+//    char s_c;
+//    std::cout << std::endl << "Enter if you want to server (s) or client (c): ";
+//    std::cin >> s_c;
 
-    parametrizationScreen* screen = new parametrizationScreen;
+    parametrizationScreen *screen = new parametrizationScreen;
 
     //Отрисовка окна
     sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first,
-        screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
+                                          screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
 
-    camera* Camera = new camera(window);
+    camera *Camera = new camera(window);
 
     startMenu menu;
     optionsMenu options;
-    aboutMenu* about = new aboutMenu;
-    drawAll* drawObjects = new drawAll;
+    aboutMenu *about = new aboutMenu;
+    drawAll *drawObjects = new drawAll;
 
     window.setFramerateLimit(30);
 
@@ -43,19 +43,17 @@ int main(){
 
     //Создание космического корабля
     MODULE m1("image/cabine.png", 120, 120, 5, true);
-    MODULE m2("image/module2.png",120, 130, 20);
-    MODULE m3("image/module3.png",120, 130, 7, false, true, 1000, 1000);
-    MODULE m4("image/module4.png",130, 120, 8, false, false, 0, 0, true, 10000, 1000);
-    vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
+    MODULE m2("image/module2.png", 120, 130, 20);
+    MODULE m3("image/module3.png", 120, 130, 7, false, true, 1000, 1000);
+    MODULE m4("image/module4.png", 130, 120, 8, false, false, 0, 0, true, 10000, 1000);
+    vector<MODULE> masivMODULE = {m2, m4, m2, m2, m3, m1};
     spaceShip spaceship = spaceShip(masivMODULE, 800, 150, 45);
 
     sf::IpAddress server;
-    if(s_c == 's') functions::mainUdpServer(1, 50001, client_name, spaceship, ServerBase);
-    else {
-        std::cout << "Enter server IP: ";
-        std::cin >> server;
-        functions::mainUdpClient(server, client_name, spaceship , ClientBase);
-    }
+    std::cout << "Enter server IP: ";
+    std::cin >> server;
+    client::initializeClient(server, client_name, spaceship, ClientBase);
+
 
 
 
@@ -128,8 +126,7 @@ int main(){
 
             spaceship.draw(window);
 
-            if(s_c == 's') functions::loopUdpServer(50001, ServerBase);
-            else functions::loopUdpClient(window, server, ClientBase, 50001);
+            client::loopClient(window, server, ClientBase);
 
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());
