@@ -7,10 +7,20 @@
 #include "optionsMenu.h"
 #include "buildRocket.h"
 #include "aboutMenu.h"
-void runUdpClient(unsigned short port);
 
 int main()
 {
+    sf::Texture tex, tex1, tex2, tex3;
+    vector<sf::Texture> texV;
+    tex.loadFromFile("image/background.jpg");
+    texV.push_back(tex);
+    tex1.loadFromFile("image/backgroundSpace.jpg");
+    texV.push_back(tex1);
+    tex2.loadFromFile("image/backgroundSpace2.jpg");
+    texV.push_back(tex2);
+    tex3.loadFromFile("image/backgroundCat.jpg");
+    texV.push_back(tex3);
+
     std::cout << "Press enter to exit..." << std::endl;
     parametrizationScreen* screen = new parametrizationScreen;
 
@@ -49,9 +59,15 @@ int main()
 
     string nameMenu = "main";
 
+    std::pair<string, vector<int>> para1 = { "back", {0, 0, 5} };
+
     while (nameMenu != "go" && nameMenu != "exit") {
+
+        //para1 = menu.drawStartMenu(window, texV[para1.second[0]]);
+
+
         if (nameMenu == "main") {
-            nameMenu = menu.drawStartMenu(window);
+            nameMenu = menu.drawStartMenu(window, texV[para1.second[0]]);
             window.clear();
         }
         if (nameMenu == "start") {
@@ -61,13 +77,17 @@ int main()
             //}
             //else
                 //nameMenu = "go";
+            window.clear();
         }
         if (nameMenu == "options") {
-            nameMenu = options.drawOptionsMenu(window).first;
+            para1 = options.drawOptionsMenu(window, texV[para1.second[0]]);
+            nameMenu = para1.first;
+            window.clear();
+
         }
         if (nameMenu == "about") {
+            nameMenu = about->drawAboutMenu(window, texV[para1.second[0]]);
             window.clear();
-            nameMenu = about->drawAboutMenu(window);
         }
     }
     if (nameMenu != "exit") {

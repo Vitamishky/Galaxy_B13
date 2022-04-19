@@ -59,7 +59,7 @@ public:
 	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb, xBag, yBag, xMu, yMu, xBack, yBack, xLa, yLa, xBgCat, yBgCat, xBgSpace, yBgSpace, xBgSpace2, yBgSpace2;
 
 
-	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
+	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&, sf::Texture);
 	sf::Sprite getSpriteStart(sf::RenderWindow&);
 	sf::Sprite getSpriteOptions(sf::RenderWindow&);
 	sf::Sprite getSpriteExit(sf::RenderWindow&);

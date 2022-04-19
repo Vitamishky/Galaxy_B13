@@ -9,11 +9,17 @@ startMenu::startMenu() {
 	drawAll draw;
 }
 
-string startMenu::drawStartMenu(sf::RenderWindow& window) {
+string startMenu::drawStartMenu(sf::RenderWindow& window, sf::Texture texBg) {
 	start = draw.getSpriteStart(window);
 	options = draw.getSpriteOptions(window);
 	exit = draw.getSpriteExit(window);
 	about = draw.getSpriteAbout(window);
+	sprite.setTexture(texBg);
+	sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
+	if (sprite.getGlobalBounds().width < window.getSize().x * 0.8f || sprite.getGlobalBounds().width > window.getSize().x * 1.2f)
+		sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
+
+
 
 	//Новые иконки при наведении на кнопки
 	startWithMouse = draw.getSpriteStartWithMouse(window);
@@ -72,7 +78,7 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
 					about.move(0.0f, window.getSize().y / (-48.0f));
 
-					window.draw(draw.getSpriteMenuBackground(window));
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -98,7 +104,7 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
 					about.move(0.0f, window.getSize().y / (-48.0f));
 
-					window.draw(draw.getSpriteMenuBackground(window));
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -109,7 +115,10 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+
+					window.clear();
 				}
+				window.clear();
 				return "options";
 			}
 			if (menuNum == 3) {
@@ -121,6 +130,8 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
 					about.move(0.0f, window.getSize().y / (-48.0f));
 
+					window.draw(sprite);
+
 					window.draw(start);
 
 					window.draw(options);
@@ -130,6 +141,8 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+					
+					window.clear();
 				}
 				window.close();
 				return "exit";
@@ -143,7 +156,7 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
 					about.move(0.0f, window.getSize().y / (-48.0f));
 
-					window.draw(draw.getSpriteMenuBackground(window));
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -154,14 +167,14 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+					window.clear();
 				}
 				return "about";
 			}
 
 		}
 		else {
-
-			window.draw(draw.getSpriteMenuBackground(window));
+			window.draw(sprite);
 
 			window.draw(start);
 

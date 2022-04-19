@@ -50,10 +50,10 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	buttonOptionsFull.loadFromFile("image/options1.png");
 	buttonExitFull.loadFromFile("image/exit1.png");
 	aboutTextureFull.loadFromFile("image/about1.png");
-	menuBackground.loadFromFile("image/background.jpg");
-	menuBackgroundCat.loadFromFile("image/backgroundCat.jpeg");
+	menuBackgroundCat.loadFromFile("image/backgroundCat.jpg");
 	menuBackgroundSpace.loadFromFile("image/backgroundSpace.jpg");
 	menuBackgroundSpace2.loadFromFile("image/backgroundSpace2.jpg");
+	menuBackground.loadFromFile("image/background.jpg");
 
 	buttonStartFull_1.loadFromFile("image/start2.png");
 	buttonOptionsFull_1.loadFromFile("image/options2.png");
@@ -69,7 +69,6 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	buttonOptions.setTexture(buttonOptionsFull);
 	buttonExit.setTexture(buttonExitFull);
 	aboutTexture.setTexture(aboutTextureFull);
-	menuBg.setTexture(menuBackground);
 	menuBgCat.setTexture(menuBackgroundCat);
 	menuBgSpace.setTexture(menuBackgroundSpace);
 	menuBgSpace2.setTexture(menuBackgroundSpace2);
@@ -322,7 +321,8 @@ sf::Sprite drawAll::getSpriteExitWithMouse(sf::RenderWindow& window) {
 	return buttonExitWithMouse;
 }
 
-sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
+sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window, sf::Texture texture) {
+	menuBg.setTexture(texture);
 	menuBg.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
 	return menuBg;
 }

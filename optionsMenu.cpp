@@ -6,15 +6,19 @@
 optionsMenu::optionsMenu() {
 	isMenu = true;
 	menuNum = 0;
-	musicNum = 1;
-	backgroundNum = 1;
+	musicNum = 0;
+	backgroundNum = 0;
 	soundValue = 5;
 	drawAll draw;
 }
 
-std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
+std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::RenderWindow& window, sf::Texture texBg) {
 	std::vector <int> v;
-	background = draw.getSpriteMenuBackground(window);
+	v.push_back(backgroundNum);
+	v.push_back(musicNum);
+	v.push_back(soundValue);
+
+	/*background = draw.getSpriteMenuBackground(window, texBg);*/
 	backWithMouse = draw.getSpriteBackWithMouse(window);
 	music = draw.getSpriteMusic(window);
 	back = draw.getSpriteBack(window);
@@ -24,6 +28,10 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 	changeBg2 = draw.getSpriteBackgroundCat(window);
 	changeBg3 = draw.getSpriteBackgroundSpace(window);
 	changeBg4 = draw.getSpriteBackgroundSpace2(window);
+	sprite.setTexture(texBg);
+	sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
+	if (sprite.getGlobalBounds().width < window.getSize().x * 0.8f || sprite.getGlobalBounds().width > window.getSize().x * 1.2f)
+		sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
 
 	music1 = draw.drawTextMusic1(window);
 	music2 = draw.drawTextMusic2(window);
@@ -93,26 +101,27 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 			if (menuNum == 4) {
 				musicNum = 3;
 			}
-			v[0] = (musicNum);
+			v[1] = musicNum;
+		
 
 			if (menuNum == 5) {
-				backgroundNum = 1;
+				backgroundNum = 0;
 			//основной фон
 			}
 			if (menuNum == 6) {
-				backgroundNum = 2;
+				backgroundNum = 3;
 			// котик
 			}
 			if (menuNum == 7) {
-				backgroundNum = 3;
+				backgroundNum = 1;
 			// космос
 			}
 			if (menuNum == 8) {
-				backgroundNum = 4;
+				backgroundNum = 2;
 			// космос2 (с планетой)
 			}
-			v[1] = (backgroundNum);
-			v[2] = (soundValue);
+			v[0] = backgroundNum;
+			v[2] = soundValue;
 		}
 
 		sf::Event event;
@@ -130,8 +139,17 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 
 		//window.draw(draw.getSpriteMenuBackground(window));
 
-		window.draw(background);
-		
+		//if (backgroundNum == 0)
+		//	window.draw(background);
+		//if (backgroundNum == 1)
+		//	window.draw(background);
+		//if (backgroundNum == 2)
+		//	window.draw(background);
+		//if (backgroundNum == 3)
+		//	window.draw(background);
+
+		window.draw(sprite);
+
 		window.draw(back);
 
 		window.draw(music);
@@ -160,6 +178,8 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 			window.draw(backWithMouse);
 
 		window.display();
+
+		window.clear();
 	}
 	return std::make_pair("main", v); 
 }

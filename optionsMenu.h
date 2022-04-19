@@ -10,10 +10,10 @@ private:
 	int menuNum, musicNum, backgroundNum, soundValue;
 	drawAll draw;
 	sf::Sprite music, back, backWithMouse, background, layout, changeBg, about;
-	sf::Sprite changeBg1, changeBg2, changeBg3, changeBg4;
+	sf::Sprite changeBg1, changeBg2, changeBg3, changeBg4, sprite;
 	sf::Text music1, music2, music3, textLayout;
 public:
 	optionsMenu();
-	std::pair < std::string, std::vector < int>> drawOptionsMenu(sf::RenderWindow&);
+	std::pair < std::string, std::vector < int>> drawOptionsMenu(sf::RenderWindow&, sf::Texture);
 	~optionsMenu();
 };

@@ -7,9 +7,9 @@ class aboutMenu {
 private:
 	int menuNum;
 	sf::Text text;
-	sf::Sprite back, backWithMouse;
+	sf::Sprite back, backWithMouse, sprite;
 	drawAll draw;
 public:
 	aboutMenu();
-	string drawAboutMenu(sf::RenderWindow&);
+	string drawAboutMenu(sf::RenderWindow&, sf::Texture);
 };
