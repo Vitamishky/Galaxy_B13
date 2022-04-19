@@ -5,15 +5,15 @@
 
 using namespace std;
 struct ServerModule {
-    string image;
-    float forward_potForce,side_potForce, Masse, fuel, air;
-    bool IsController, IsTurner, IsEngine;
-    sf::Uint8 width, hight;
+    string image = " ";
+    float forward_potForce = 0,side_potForce = 0, Masse = 0, fuel = 0, air = 0;
+    bool IsController = false, IsTurner= false, IsEngine = false;
+    sf::Uint8 width = 0, hight = 0;
 };
 struct ServerPlayer{
-    float x, y, angel;
-    unsigned short senderPort;
-    std::string client_name;
+    float x= 0, y = 0, angel = 0;
+    unsigned short senderPort = 0;
+    std::string client_name = " ";
     std::vector<ServerModule> modules;
     // float Masse, fuel, air;
 };
@@ -76,7 +76,7 @@ int main() {
 
                 vector<MODULE> modules;
                 for (auto &module: ServerBase[sender].modules) {
-                    MODULE m(module.image, module.hight, module.width, module.Masse, module.IsController,
+                    MODULE m(module.image, module.width, module.hight, module.Masse, module.IsController,
                              module.IsTurner, module.side_potForce, module.air, module.IsEngine,
                              module.forward_potForce,
                              module.fuel);
