@@ -8,7 +8,6 @@ sf::UdpSocket socket;
 
 void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip ship,
                               std::map <string, ClientPlayer> &ClientBase, unsigned short port){
-    socket.setBlocking(false);
     sf::Packet packet;
     packet << 'i';
     packet << client_name << ship.getCoordinates().first << ship.getCoordinates().second
@@ -26,6 +25,7 @@ void client::initializeClient(sf::IpAddress server, const string& client_name, s
     sf::Uint8 n, n1;
     string name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
+        cout << 1 << name;
         packet >> n;
         for (int j = 0; j < n; j++) {
             packet >> name >> ClientBase[name].x >> ClientBase[name].y

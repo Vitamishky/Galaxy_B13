@@ -39,11 +39,13 @@ set(SERVER_SOURCES
         spaceObjects.cpp
         MODULE.cpp
         spaceShip.cpp
+        parametrizationScreen.cpp
         )
 set(SERVER_HEADERS
         spaceObjects.h
         MODULE.h
         spaceShip.h
+        parametrizationScreen.h
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -56,3 +58,4 @@ find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 
 include_directories(D:/SFML/include)
 target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+target_link_libraries(Galaxy_Server sfml-system sfml-window sfml-graphics sfml-audio sfml-network)

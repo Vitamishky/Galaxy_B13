@@ -20,18 +20,16 @@ struct ServerPlayer{
 std::map <sf::IpAddress, ServerPlayer> ServerBase;
 
 int main() {
-    cout <<"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
     sf::UdpSocket socket;
     socket.setBlocking(false);
+    std::string client_name;
+    unsigned short port = 50001;
+    unsigned short senderPort;
     for (;;) {
-        std::string client_name;
-        unsigned short port = 50001;
         // Listen to messages on the specified port
         if (socket.bind(port) != sf::Socket::Done) { return 0; }
-        std::cout << "Server is listening to port: " << port << endl;
 
         sf::IpAddress sender;
-        unsigned short senderPort;
         sf::Packet packet, allPackets;
 
         if (socket.receive(packet, sender, senderPort) == sf::Socket::Done) {
