@@ -1,4 +1,4 @@
-﻿#pragma 
+﻿#pragma
 #ifndef drawAll_hpp
 #define drawAll_hpp
 #include <SFML/Audio.hpp>

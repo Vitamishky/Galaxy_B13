@@ -1,113 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Исходные файлы">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="aboutMenu.cpp" />
+    <ClCompile Include="buildRocket.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="drawAll.cpp" />
+    <ClCompile Include="functions.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="parametrizationScreen.cpp" />
+    <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="spaceObjects.cpp" />
+    <ClCompile Include="spaceShip.cpp" />
+    <ClCompile Include="MODULE.cpp" />
+    <ClCompile Include="optionsMenu.cpp" />
+    <ClCompile Include="startMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="functions.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Planet.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="spaceShip.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="spaceObjects.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="parametrizationScreen.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="drawAll.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="startMenu.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="optionsMenu.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="MODULE.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="aboutMenu.cpp">
-<<<<<<< HEAD
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="buildRocket.cpp">
-      <Filter>Исходные файлы</Filter>
-=======
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="buildRocket.cpp">
-      <Filter>Файлы ресурсов</Filter>
->>>>>>> b8359e8c417be9b67dff3df051019e719c6dd33d
-    </ClCompile>
+    <ClInclude Include="aboutMenu.h" />
+    <ClInclude Include="buildRocket.h" />
+    <ClInclude Include="drawAll.h" />
+    <ClInclude Include="functions.h" />
+    <ClInclude Include="parametrizationScreen.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="Planet.h" />
+    <ClInclude Include="spaceObjects.h" />
+    <ClInclude Include="spaceShip.h" />
+    <ClInclude Include="MODULE.h" />
+    <ClInclude Include="startMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="functions.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Planet.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="parametrizationScreen.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="spaceObjects.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="spaceShip.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="drawAll.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="startMenu.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="optionsMenu.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="MODULE.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="aboutMenu.h">
-<<<<<<< HEAD
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="buildRocket.h">
-      <Filter>Файлы заголовков</Filter>
-=======
-      <Filter>Файлы ресурсов</Filter>
-    </ClInclude>
-    <ClInclude Include="buildRocket.h">
-      <Filter>Файлы ресурсов</Filter>
->>>>>>> b8359e8c417be9b67dff3df051019e719c6dd33d
-    </ClInclude>
   </ItemGroup>
 </Project>

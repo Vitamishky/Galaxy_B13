@@ -299,8 +299,8 @@ sf::Sprite drawAll::getSpriteExitWithMouse(sf::RenderWindow& window) {
 }
 
 sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
-	menuBg.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
-	return menuBg;
+    menuBg.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
+    return menuBg;
 }
 
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {

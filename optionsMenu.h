@@ -14,5 +14,4 @@ private:
 public:
 	optionsMenu();
 	string drawOptionsMenu(sf::RenderWindow&);
-	~optionsMenu();
 };

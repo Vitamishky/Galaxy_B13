@@ -1,17 +1,21 @@
 #include "functions.h"
 #include <cmath>
 
-const float G = 1;
+const float G = 1000;
 
-pair<unsigned int, unsigned int> functions::attraction(const spaceObjects& Slave, const spaceObjects& Master)
+pair<float, float> functions::planetAttraction(const spaceObjects& Slave, const Planet& Master)
 /**
  * @param Slave:  То что получает ускорение
  * @param Master:  То к чеу притягивается тело
  * @return ускорение по x и по y
  */
 {
-    pair<unsigned int, unsigned int> length = make_pair(abs(Slave.getCoordinates().first - Master.getCoordinates().first), abs(Slave.getCoordinates().second - Master.getCoordinates().second));
+    pair<float, float> length = make_pair(Master.getCoordinates().first - Slave.getCoordinates().first, Master.getCoordinates().second - Slave.getCoordinates().second);
     float distances = sqrtf(length.first * length.first + length.second * length.second);
-    float a = float(G * Master.getMasse() / (distances * distances));
-    return make_pair(a * length.first / distances,a * length.second / distances);
+    auto a = float(G * Master.getMasse() / (distances * distances));
+    if (distances > Master.getRadius())
+        return make_pair(a * length.first / distances,a * length.second / distances);
+    else
+        return make_pair(G * Master.getMasse() * length.first / fabs(length.first) / Master.getRadius() / Master.getRadius(),
+                         G * Master.getMasse() * length.first / fabs(length.first) / Master.getRadius() / Master.getRadius());
 }

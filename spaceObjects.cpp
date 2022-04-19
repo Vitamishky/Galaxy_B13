@@ -6,10 +6,14 @@
 
 spaceObjects::spaceObjects() {
     x = y = 0.5f;
-    xSpeed = 5.f / float(screen.getParametrizationScreen().first);
-    ySpeed = 5.f / float(screen.getParametrizationScreen().second);
+    xSpeed = 0.f / float(screen.getParametrizationScreen().first);
+    ySpeed = 0.f / float(screen.getParametrizationScreen().second);
     Width = 128;
     Height = 128;
+    texture.loadFromFile("image/spaceShip.png");
+}
+
+spaceObjects::spaceObjects(float x, float y, float masse, int width, int height): x(x), y(y), Masse(masse), Width(width), Height(height) {
     texture.loadFromFile("image/spaceShip.png");
 }
 

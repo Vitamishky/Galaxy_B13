@@ -22,11 +22,11 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 	aboutWithMouse = draw.getSpriteAboutWithMouse(window);
 
 
-	while (isMenu) {
-		start.setColor(sf::Color::White);
-		options.setColor(sf::Color::White);
-		exit.setColor(sf::Color::White);
-		menuNum = 0;
+    while (isMenu) {
+        start.setColor(sf::Color::White);
+        options.setColor(sf::Color::White);
+        exit.setColor(sf::Color::White);
+        menuNum = 0;
 
 		start.setColor(sf::Color::White);
 		options.setColor(sf::Color::White);
@@ -50,12 +50,12 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 
 		
 
-		sf::Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close(); 
-				isMenu = false;
-			}
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+                isMenu = false;
+            }
 
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
 				window.close(); 

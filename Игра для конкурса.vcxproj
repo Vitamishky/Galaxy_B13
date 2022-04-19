@@ -141,7 +141,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\User\Desktop\мфтишка\конкурс\SFML-2.5.1\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-main.lib;sfml-audio.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -171,7 +171,6 @@
     <ClInclude Include="drawAll.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="MODULE.h" />
-    <ClInclude Include="optionsMenu.h" />
     <ClInclude Include="parametrizationScreen.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="Planet.h" />

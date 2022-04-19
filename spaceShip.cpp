@@ -26,10 +26,11 @@ spaceShip::spaceShip(const vector<MODULE>& rocket, float x, float y) :rocket(roc
     }
 }
 
-void spaceShip::move(float dt) {
+void spaceShip::move(float dt, vector<Planet>& planets) {
     float F_x = 0, F_y = 0;
     float dAngularVelocity = 0;
-    for (const auto& modul : rocket) {
+    for (auto &modul: rocket) {
+        modul.planetAttraction(planets);
         F_x += modul.Acceleration().first * modul.getMasse();
         F_y += modul.Acceleration().second * modul.getMasse();
 
@@ -68,27 +69,30 @@ void spaceShip::move(float dt) {
 
     }
 }
-//&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
-void spaceShip::control() {
+
+void spaceShip::control(sf::Music* soundEngine, sf::Music* soundTurner) {
     bool crutch = false;
-    float dfuel = 100000;
+    float dfuel = 1000;
     float dair = 1000;
-    for (auto& module : rocket) {
-        if (module.IsController) crutch = true;
+    for(auto & module : rocket) {
+        if(module.IsController) crutch = true;
     }
     if (crutch) {
-        for (auto& module : rocket) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && this->Use_Fuel(module.Forward_PotForce()/ dfuel)) {
-                module.EditAcceleration(make_pair(module.Forward_PotForce() * sin(angle)/ module.getMasse()
-                                                  , module.Forward_PotForce() * cos(angle)/ module.getMasse()));
+        for (auto &module: rocket) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && this->Use_Fuel(module.Forward_PotForce() / dfuel)) {
+                module.EditAcceleration(make_pair(module.Forward_PotForce() * sin(angle) / module.getMasse()
+                    , module.Forward_PotForce() * cos(angle) / module.getMasse()));
+                soundEngine->setVolume(80);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
                 module.EditAcceleration(make_pair(module.Side_PotForce() * cos(angle) / module.getMasse(),
-                                                  -module.Side_PotForce() * sin(angle)/ module.getMasse()));
+                    -module.Side_PotForce() * sin(angle) / module.getMasse()));
+                soundTurner->setVolume(20);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
-                module.EditAcceleration(make_pair(-module.Side_PotForce() * cos(angle)/ module.getMasse()
-                                                  , module.Side_PotForce() * sin(angle)/ module.getMasse()));
+                module.EditAcceleration(make_pair(-module.Side_PotForce() * cos(angle) / module.getMasse()
+                    , module.Side_PotForce() * sin(angle) / module.getMasse()));
+                soundTurner->setVolume(20);
             }
         }
     }
@@ -96,7 +100,7 @@ void spaceShip::control() {
 
 float spaceShip::FUEL() {
     float sum_fuel = 0;
-    for (auto& module : rocket) {
+    for (auto &module : rocket) {
         sum_fuel += module.getFuel();
     }
     return sum_fuel;
@@ -104,7 +108,7 @@ float spaceShip::FUEL() {
 
 float spaceShip::AIR() {
     float sum_air = 0;
-    for (auto& module : rocket) {
+    for(auto  &module : rocket) {
         sum_air += module.getAir();
     }
     return sum_air;
@@ -114,7 +118,7 @@ float spaceShip::ANGLE() {
     return angle;
 }
 
-vector<sf::Sprite> spaceShip::getSprite() const{
+vector<sf::Sprite> spaceShip::getSprite() const {
     vector<sf::Sprite> v;
     for (auto& module : rocket) {
         v.push_back(module.getSprite());
@@ -122,12 +126,12 @@ vector<sf::Sprite> spaceShip::getSprite() const{
     return v;
 }
 
-pair<float, float> spaceShip::getCoordinates() const{
+pair<float, float> spaceShip::getCoordinates() const {
     return make_pair(x, y);
 }
 
 float spaceShip::SPEED() const {
-    return sqrtf(velocity.first * velocity.first + velocity.second * velocity.second);
+    return sqrtf(velocity.first*velocity.first + velocity.second*velocity.second);
 }
 
 void spaceShip::draw(sf::RenderWindow& window) {

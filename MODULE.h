@@ -1,8 +1,9 @@
 #ifndef GALAXY_B13_MODULE_H
 #define GALAXY_B13_MODULE_H
 #include "spaceObjects.h"
+#include "Planet.h"
 
-class MODULE : public spaceObjects {
+class MODULE: public spaceObjects{
 private:
     float forward_potForce;
     pair<float, float> acceleration = make_pair(0, 0);
@@ -35,6 +36,7 @@ public:
     float getFuel() const;
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
+    void planetAttraction(vector<Planet>&);
     sf::Sprite getSprite() const;
 };
 

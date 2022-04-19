@@ -1,10 +1,12 @@
 #ifndef spaceShip_hpp
 #define spaceShip_hpp
+#include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdio>
 #include "parametrizationScreen.h"
 #include "MODULE.h"
+#include "Planet.h"
 
 using namespace std;
 
@@ -21,13 +23,13 @@ private:
 
 public:
     spaceShip(const vector<MODULE>& rocket, float, float);
-    void move(float);
+    void move(float, vector<Planet>&);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
     float getMaxFuel() const;
     float getMaxAir() const;
     float getMass() const;
-    void control();
+    void control(sf::Music*, sf::Music*);
     float FUEL();
     float AIR();
     float SPEED() const;
