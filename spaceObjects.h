@@ -12,8 +12,8 @@ class spaceObjects {
 protected:
     parametrizationScreen screen;
     float x, y;
-    float xSpeed=0, ySpeed=0;
-    int Width = 0, Height = 0;
+    float xSpeed = 0, ySpeed = 0;
+    int Width = 10, Height = 10;
     sf::Sprite Sprite;
     sf::Texture texture;
     float angle = 0;

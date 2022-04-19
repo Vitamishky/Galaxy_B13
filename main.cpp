@@ -4,11 +4,21 @@
 #include "camera.h"
 #include "cmath"
 #include "startMenu.h"
-#include "drawAll.h"
-#include "spaceObjects.h"
+#include "optionsMenu.h"
+#include "buildRocket.h"
+#include "aboutMenu.h"
+void runUdpClient(unsigned short port);
 
 int main()
 {
+    std::cout << "Press enter to exit..." << std::endl;
+    parametrizationScreen* screen = new parametrizationScreen;
+
+    //РћС‚СЂРёСЃРѕРІРєР° РѕРєРЅР°
+    sf::RenderWindow window(sf::VideoMode(screen->getParametrizationScreen().first,
+        screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
+
+    camera* Camera = new camera(window);
     //Работа с музыкой
     sf::Music* bgMusic = new sf::Music;
     bgMusic->openFromFile("sounds/bgMusic.wav");
@@ -27,16 +37,11 @@ int main()
     turnerSound->play();
     turnerSound->setLoop(true);
 
-
-    parametrizationScreen screen;
-    //Отрисовка окна
-    sf::RenderWindow window(sf::VideoMode(screen.getParametrizationScreen().first, 
-                                          screen.getParametrizationScreen().second), "Galaxy-B03", sf::Style::Close);
-
-    camera *Camera = new camera(window);
-
-    startMenu *menu = new startMenu();
-    drawAll *drawObjects = new drawAll;
+    startMenu menu;
+    optionsMenu options;
+    aboutMenu* about = new aboutMenu;
+    drawAll* drawObjects = new drawAll;
+    buildRocket buildrocket;
 
     window.setFramerateLimit(30);
 
@@ -45,106 +50,134 @@ int main()
     //Отрисовка иконки
     drawObjects->drawIcon(window);
 
-    //Создание космического корабля
-    MODULE m1(20, 120, 120, true);
-    MODULE m2(1, 120, 130, false, true, 1000, 1000);
-    MODULE m3(10, 130, 120, false, false, 0, 0, true, 1000, 1000);
-    MODULE m4(100, 120, 130);
-    vector<MODULE> masivMODULE = {m1, m2, m3, m4};
-    spaceShip spaceship = spaceShip(masivMODULE);
-
-    //Отрисовка заднего фона
-    sf::Texture textureBg;
-    if (!textureBg.loadFromFile("image/bg.png")) {
-        return EXIT_FAILURE;
-    }
-    float xBg = float(textureBg.getSize().x);
-    float yBg = float(textureBg.getSize().y);
-    sf::Sprite backWall(textureBg);
-    backWall.setScale(float(window.getSize().x) / xBg, float(window.getSize().y) / yBg);
     //Создание планет на карте
     vector<Planet> planets;
     for (int i = 0; i < 8; ++i) {
         Planet planet1 {(float)((rand() % 80000) * pow(-1, rand() / 23)), (float)((rand() % 80000) * pow(-1, rand() / 23)),
-                              (float)(rand() % 255 * 10000), 3000.f};
+                        (float)(rand() % 255 * 10000), 3000.f};
         planets.push_back(planet1);
     }
-    //Работа с камерой слежения
+    //РЎРѕР·РґР°РЅРёРµ РєРѕСЃРјРёС‡РµСЃРєРѕРіРѕ РєРѕСЂР°Р±Р»СЏ
+    MODULE m1("image/cabine.png", 5, 120, 120, true);
+    MODULE m2("image/module2.png",10, 120, 130);
+    MODULE m3("image/module3.png",5, 120, 130, false, true, 1000, 1000);
+    MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 10000, 1000);
+    vector<MODULE> masivMODULE = { m2, m4, m2, m2, m3, m1 };
+    spaceShip spaceship = spaceShip(masivMODULE, 800, 150);
+
+    //Р Р°Р±РѕС‚Р° СЃ РєР°РјРµСЂРѕР№ СЃР»РµР¶РµРЅРёСЏ
+
     Camera->resetView(window);
 
     sf::Clock sf_clock;
 
-    while (window.isOpen()) {
+    string nameMenu = "main";
 
-        sf::Event event{};
-
-        float dt = sf_clock.restart().asSeconds();
-
-        while (window.pollEvent(event)) {
-
-            if (event.type == sf::Event::Closed ||
-            event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-                window.close();
-            }
-
-            if (event.type == sf::Event::MouseMoved) {
-                Camera->moveCamera(float(event.mouseMove.x), float(event.mouseMove.y));
-            }
-
-            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                Camera->lockedCamera(float(event.mouseButton.x), float(event.mouseButton.y));
-            }
-
-            if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
-                Camera->unlockCamera();
-            }
-
-            if (event.type == sf::Event::MouseWheelScrolled) {
-                Camera->zoomCamera(event, window);
-            }
-            if (event.type == sf::Event::KeyReleased || spaceship.FUEL() == 0) {
-                if (event.key.code == sf::Keyboard::Space) {
-                    engineSound->setVolume(0);
-                 }
-            }
-
-            if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
-                if (event.key.code == sf::Keyboard::Z) {
-                    turnerSound->setVolume(0);
-                }
-            }
-            if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
-                if (event.key.code == sf::Keyboard::X) {
-                    turnerSound->setVolume(0);
-                }
-            }
-
+    while (nameMenu != "go" && nameMenu != "exit") {
+        if (nameMenu == "main") {
+            nameMenu = menu.drawStartMenu(window);
+            window.clear();
         }
-
-        drawObjects->drawBg(window, Camera->getViewCamera());
-        window.setView(Camera->getViewCamera());
-
-        window.draw(backWall);
-        //Отрисовка планет
-        spaceship.draw(window);
-        for (auto& i : planets)
-            i.drawSprite(window);
-
-        spaceship.control(engineSound, turnerSound);
-        spaceship.move(dt, planets);
-        drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
-        drawObjects->drawRightInter(window, Camera->getViewCamera());
-        drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
-        drawObjects->drawCompas(window, Camera->getViewCamera());
-        drawObjects->drawArrow(window, Camera->getViewCamera());
-
-        window.display();
-
-        window.clear();
+        if (nameMenu == "start") {
+            nameMenu = buildrocket.drawBuildRocket(window);
+            //if (nameMenu == "back") {
+                //menu.drawStartMenu(window);
+            //}
+            //else
+                //nameMenu = "go";
+        }
+        if (nameMenu == "options") {
+            nameMenu = options.drawOptionsMenu(window);
+        }
+        if (nameMenu == "about") {
+            window.clear();
+            nameMenu = about->drawAboutMenu(window);
+        }
     }
+    if (nameMenu != "exit") {
+        while (window.isOpen()) {
+
+            sf::Event event{};
+
+            float dt = sf_clock.restart().asSeconds();
+
+            while (window.pollEvent(event)) {
+
+                if (event.type == sf::Event::Closed ||
+                    event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                    window.close();
+                }
+
+                if (event.type == sf::Event::MouseMoved) {
+                    Camera->moveCamera(float(event.mouseMove.x), float(event.mouseMove.y));
+                }
+
+                if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+                    Camera->lockedCamera(float(event.mouseButton.x), float(event.mouseButton.y));
+                }
+
+                if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+                    Camera->unlockCamera();
+                }
+
+                if (event.type == sf::Event::KeyReleased || spaceship.FUEL() == 0) {
+                    if (event.key.code == sf::Keyboard::Space) {
+                        engineSound->setVolume(0);
+                    }
+                }
+
+                if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
+                    if (event.key.code == sf::Keyboard::Z) {
+                        turnerSound->setVolume(0);
+                    }
+                }
+                if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
+                    if (event.key.code == sf::Keyboard::X) {
+                        turnerSound->setVolume(0);
+                    }
+                }
+
+                if (event.type == sf::Event::MouseWheelScrolled) {
+                    Camera->zoomCamera(event, window);
+                }
+
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
+                    Camera->backFromShip(window, spaceship);
+                }
+            }
+
+            drawObjects->drawBg(window, Camera->getViewCamera());
+            window.setView(Camera->getViewCamera());
+
+            spaceship.draw(window);
+            //Отрисовка планет
+            spaceship.draw(window);
+            for (auto& i : planets)
+                i.drawSprite(window);
+
+            spaceship.control(engineSound, turnerSound);
+            spaceship.move(dt, planets);
+
+            drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
+            drawObjects->drawRightInter(window, Camera->getViewCamera());
+            drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);
+            drawObjects->drawCompas(window, Camera->getViewCamera(), spaceship);
+            drawObjects->drawArrow(window, Camera->getViewCamera());
+            drawObjects->drawTextAboutAll(window, Camera->getViewCamera(), spaceship);
+
+            window.display();
+
+            window.clear();
+        }
+    }
+
     delete drawObjects;
     delete Camera;
-    delete menu;
+    delete screen;
+    delete about;
+    delete bgMusic;
+    delete engineSound;
+    delete turnerSound;
 
     return EXIT_SUCCESS;
 }

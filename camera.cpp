@@ -30,6 +30,10 @@ void camera::moveCamera(float x, float y) {
     }
 }
 
+void camera::backFromShip(sf::RenderWindow& window, spaceShip ship) {
+    view.setCenter(ship.getCoordinates().first, ship.getCoordinates().second);
+}
+
 sf::View camera::getViewCamera() {
     return view;
 }

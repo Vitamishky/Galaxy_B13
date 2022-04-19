@@ -13,21 +13,29 @@ using namespace std;
 class spaceShip {
 private:
     float cordCentreMass = 0;
-    float Mass = 10;
-    pair<float, float> velocity = make_pair(0,0);
+    pair<float, float> velocity = make_pair(0, 0);
     float angularVelocity = 0;
     float MomentOfInertia = 0;
     float angle = 0;
-    float x = 0, y = 0;
+    float x, y;
+    float maxFuel = 0, maxAir = 0;
     vector<MODULE> rocket;
 
 public:
-    spaceShip(const vector<MODULE> &rocket);
     void move(float, vector<Planet>&);
+    spaceShip(const vector<MODULE>& rocket, float, float);
+    vector<sf::Sprite> getSprite() const;
+    pair<float, float> getCoordinates() const;
+    float getMaxFuel() const;
+    float getMaxAir() const;
+    float getMass() const;
+    void control(sf::Music*, sf::Music*);
     float FUEL();
     float AIR();
     float SPEED() const;
-    void control(sf::Music*, sf::Music*);
+    float ANGLE();
     void draw(sf::RenderWindow&);
+    bool Use_Air(float);
+    bool Use_Fuel(float);
 };
 #endif 

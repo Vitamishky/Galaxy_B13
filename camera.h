@@ -3,9 +3,10 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <stdio.h>
+#include "spaceShip.h"
 
 using namespace std;
+
 
 class camera {
 private:
@@ -21,6 +22,7 @@ public:
     void unlockCamera();
     void moveCamera(float x, float y);
     void zoomCamera(sf::Event, sf::RenderWindow&);
+    void backFromShip(sf::RenderWindow&, spaceShip);
     sf::View getViewCamera();
     sf::View getCoordinatesForView(float x, float y);
 };

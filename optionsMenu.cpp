@@ -1,64 +1,54 @@
 #pragma once
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "drawAll.h"
 #include "optionsMenu.h"
 
 optionsMenu::optionsMenu() {
-    isMenu = true;
-    menuNum = 0;
-    drawAll *draw = new drawAll;
+	isMenu = true;
+	menuNum = 0;
+	drawAll draw;
 }
 
-void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
-    start = draw->getSpritePlay(window);
-    options = draw->getSpriteOptions(window);
-    exit = draw->getSpriteExit(window);
-    about = draw->getSpriteAbout(window);
-    /*
-    vSStartMenu.push_back(start);
-    vSStartMenu.push_back(options);
-    vSStartMenu.push_back(exit);
-    vSOptionsMenu.push_back(about);
-    vSOptionsMenu.push_back(start);
-    vSOptionsMenu.push_back(start);
-    */
-    while (isMenu) {
-        start.setColor(sf::Color::White);
-        options.setColor(sf::Color::White);
-        exit.setColor(sf::Color::White);
-        menuNum = 0;
+string optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
+	background = draw.getSpriteMenuBackground(window);
+	backWithMouse = draw.getSpriteBackWithMouse(window);
+	music = draw.getSpriteMusic(window);
+	back = draw.getSpriteBack(window);
+	layout = draw.getSpriteLayout(window);
+	changeBg = draw.getSpriteBackground(window);
 
-        if (sf::IntRect((window.getSize().x - draw->xPl) / 2, window.getSize().y * 0.45f, draw->xPl, draw->yPl).contains(sf::Mouse::getPosition(window))) {
-            start.setColor(sf::Color::Blue);
-            menuNum = 1;
-        }
-        if (sf::IntRect((window.getSize().x - draw->xOp), window.getSize().y * 0.5f, draw->xOp, draw->yOp).contains(sf::Mouse::getPosition(window))) {
-            options.setColor(sf::Color::Blue);
-            menuNum = 2;
-        }
-        if (sf::IntRect((window.getSize().x - draw->xEx), window.getSize().y * 0.55f, draw->xEx, draw->yEx).contains(sf::Mouse::getPosition(window))) {
-            exit.setColor(sf::Color::Blue);
-            menuNum = 3;
-        }
-        //if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
+	music1 = draw.drawTextMusic1(window);
+	music2 = draw.drawTextMusic2(window);
+	music3 = draw.drawTextMusic3(window);
+	textLayout = draw.drawTextLayout(window);
+	
+	while (isMenu) {
+		music.setColor(sf::Color::White);
+		background.setColor(sf::Color::White);
+		back.setColor(sf::Color::White);
+		layout.setColor(sf::Color::White);
+		menuNum = 0;
 
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            //???? ?????? ??????
-            if (menuNum == 1) {
-                break;
-            }
-            //???? ?????? ??????
-            if (menuNum == 2) {
-                //draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
-                break;
-            }
-            //???? ?????? ??????
-            if (menuNum == 3) {
-                //window.close();
-                break;
-            }
+		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
+			menuNum = 1;
+		}
 
+		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			//Если нажали кнопку
+			if (menuNum == 1) {
+				break;
+			}
+			////Если нажали кнопку
+			//if (menuNum == 2) {
+			//	//draw.moveMenu(window, vSStartMenu, vSOptionsMenu);
+			//	break;
+			//}
+			////Если нажали кнопку
+			//if (menuNum == 3) {
+			//	//window.close();
+			//	break;
+			//}
         }
 
         sf::Event event;
@@ -74,17 +64,31 @@ void optionsMenu::drawOptionsMenu(sf::RenderWindow& window) {
             }
         }
 
-        //window.draw(draw->getSpriteMenuBackground(window));
+		//window.draw(draw.getSpriteMenuBackground(window));
 
-        window.draw(start);
+		window.draw(background);
+		
+		window.draw(back);
 
-        window.draw(options);
+		window.draw(music);
+		
+		window.draw(music1);
 
-        window.draw(exit);
+		window.draw(music2);
 
-        window.draw(about);
+		window.draw(music3);
 
-        window.display();
-    }
+		window.draw(layout);
+		
+		window.draw(textLayout);
+
+		window.draw(changeBg);
+
+		if (menuNum == 1)
+			window.draw(backWithMouse);
+
+		window.display();
+	}
+	return "main";
 }
 optionsMenu::~optionsMenu() {}

@@ -13,6 +13,10 @@ set(PROJECT_HEADERS
         Planet.h
         MODULE.h
         drawAll.h
+        startMenu.h
+        optionsMenu.h
+        aboutMenu.h
+        buildRocket.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -24,7 +28,11 @@ set(PROJECT_SOURCES
         Planet.cpp
         MODULE.cpp
         drawAll.cpp
-        startMenu.cpp startMenu.h optionsMenu.cpp optionsMenu.h)
+        startMenu.cpp
+        optionsMenu.cpp
+        aboutMenu.cpp
+        buildRocket.cpp
+        )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(Galaxy_B13 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
@@ -34,4 +42,5 @@ set(SFML_DIR C:/Users/vladi/Documents/SFML-2.5.1/lib/cmake/SFML)
 find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 
 include_directories(C:/Users/vladi/Documents/SFML-2.5.1/include)
-target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio)
+target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+
