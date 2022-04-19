@@ -14,7 +14,6 @@ struct ClientModule {
 
 struct ClientPlayer{
     float x, y, angle;
-    unsigned short senderPort;
     std::vector<ClientModule> modules;
 //    float Masse, fuel, air;
 };

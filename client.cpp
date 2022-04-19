@@ -3,8 +3,8 @@
 //
 
 #include "client.h"
-sf::UdpSocket socket;
 
+sf::UdpSocket socket;
 
 void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip ship,
                               std::map <string, ClientPlayer> &ClientBase, unsigned short port){
