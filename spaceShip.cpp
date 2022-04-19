@@ -70,7 +70,7 @@ void spaceShip::move(float dt, vector<Planet>& planets) {
 }
 
 //&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
-void spaceShip::control(sf::Music* soundEngine, sf::Music* soundTurner) {
+void spaceShip::control(sounds soundEngine, sounds soundTurner) {
     bool crutch = false;
     float dfuel = 100000;
     float dair = 1000;
@@ -82,17 +82,17 @@ void spaceShip::control(sf::Music* soundEngine, sf::Music* soundTurner) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && this->Use_Fuel(module.Forward_PotForce()/ dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotForce() * sin(angle)/ module.getMasse()
                                                   , module.Forward_PotForce() * cos(angle)/ module.getMasse()));
-                soundEngine->setVolume(80);
+                soundEngine.setVolume(80);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
                 module.EditAcceleration(make_pair(module.Side_PotForce() * cos(angle) / module.getMasse(),
                                                   -module.Side_PotForce() * sin(angle)/ module.getMasse()));
-                soundTurner->setVolume(20);
+                soundTurner.setVolume(20);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
                 module.EditAcceleration(make_pair(-module.Side_PotForce() * cos(angle)/ module.getMasse()
                                                   , module.Side_PotForce() * sin(angle)/ module.getMasse()));
-                soundTurner->setVolume(20);
+                soundTurner.setVolume(20);
             }
         }
     }

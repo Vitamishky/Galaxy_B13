@@ -6,6 +6,7 @@
 #include "startMenu.h"
 #include "optionsMenu.h"
 #include "buildRocket.h"
+#include "sounds.h"
 #include "aboutMenu.h"
 void runUdpClient(unsigned short port);
 
@@ -20,22 +21,12 @@ int main()
 
     camera* Camera = new camera(window);
     //Работа с музыкой
-    sf::Music* bgMusic = new sf::Music;
-    bgMusic->openFromFile("sounds/bgMusic.wav");
-    bgMusic->setPlayingOffset(sf::seconds(10));
-    bgMusic->setVolume(25);
-    bgMusic->play();
-    bgMusic->setLoop(true);
-    sf::Music* engineSound = new sf::Music;
-    engineSound->openFromFile("sounds/soundOfEngine.wav");
-    engineSound->setVolume(0);
-    engineSound->play();
-    engineSound->setLoop(true);
-    sf::Music* turnerSound = new sf::Music;
-    turnerSound->openFromFile("sounds/soundOfTurner.wav");
-    turnerSound->setVolume(0);
-    turnerSound->play();
-    turnerSound->setLoop(true);
+    sounds bgMusic {"sounds/bgMusic1.wav", 80, 15};
+    sounds engineSound {"sounds/soundOfEngine.wav", 0};
+    sounds turnerSound {"sounds/soundOfTurner.wav", 0};
+    bgMusic.play(true);
+    engineSound.play(true);
+    turnerSound.play(true);
 
     startMenu menu;
     optionsMenu options;
@@ -122,18 +113,18 @@ int main()
 
                 if (event.type == sf::Event::KeyReleased || spaceship.FUEL() == 0) {
                     if (event.key.code == sf::Keyboard::Space) {
-                        engineSound->setVolume(0);
+                        engineSound.setVolume(0);
                     }
                 }
 
                 if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
                     if (event.key.code == sf::Keyboard::Z) {
-                        turnerSound->setVolume(0);
+                        turnerSound.setVolume(0);
                     }
                 }
                 if (event.type == sf::Event::KeyReleased || spaceship.AIR() == 0) {
                     if (event.key.code == sf::Keyboard::X) {
-                        turnerSound->setVolume(0);
+                        turnerSound.setVolume(0);
                     }
                 }
 
@@ -175,9 +166,6 @@ int main()
     delete Camera;
     delete screen;
     delete about;
-    delete bgMusic;
-    delete engineSound;
-    delete turnerSound;
 
     return EXIT_SUCCESS;
 }

@@ -7,6 +7,7 @@
 #include "parametrizationScreen.h"
 #include "MODULE.h"
 #include "Planet.h"
+#include "sounds.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ public:
     float getMaxFuel() const;
     float getMaxAir() const;
     float getMass() const;
-    void control(sf::Music*, sf::Music*);
+    void control(sounds, sounds);
     float FUEL();
     float AIR();
     float SPEED() const;
