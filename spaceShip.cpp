@@ -55,20 +55,8 @@ void spaceShip::move(float dt) {
 
     angle += angularVelocity * dt;
 
-    float length = 0;
-    //????????? ???? ???????
     for (auto& i : rocket) {
-        i.newAngle(angle);
-        i.NewCord(x + sin(angle) * (i.getParametrization().first / 2 + length - cordCentreMass),
-            y + cos(angle) * (i.getParametrization().first / 2 + length - cordCentreMass));
-        length += i.getParametrization().first;
-    }
-
-    for (auto& modul : rocket) {
-
-
-        modul.NewAcceleration(make_pair(0, 0));
-
+        i.NewAcceleration(make_pair(0, 0));
     }
 }
 //&& module.Use_Fuel(module.Forward_PotAcceleration() / dfuel
@@ -136,8 +124,14 @@ float spaceShip::SPEED() const {
     return sqrtf(velocity.first * velocity.first + velocity.second * velocity.second);
 }
 
-void spaceShip::draw(sf::RenderWindow& window) {
+void spaceShip::draw(sf::RenderWindow& window) {float length = 0;
+    //????????? ???? ???????
     for (auto& i : rocket) {
+        i.newAngle(angle);
+        i.NewCord(x + sin(angle) * (i.getParametrization().first / 2 + length - cordCentreMass),
+                  y + cos(angle) * (i.getParametrization().first / 2 + length - cordCentreMass));
+        length += i.getParametrization().first;
+
         i.drawSprite(window);
     }
 }

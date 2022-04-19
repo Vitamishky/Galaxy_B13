@@ -124,8 +124,6 @@ int main() {
             drawObjects->drawBg(window, Camera->getViewCamera());
             window.setView(Camera->getViewCamera());
 
-            spaceship.draw(window);
-
             client::loopClient(window, server, ClientBase);
 
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
