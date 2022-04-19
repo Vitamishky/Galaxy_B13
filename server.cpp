@@ -20,9 +20,10 @@ struct ServerPlayer{
 std::map <sf::IpAddress, ServerPlayer> ServerBase;
 
 int main() {
+    cout <<"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+    sf::UdpSocket socket;
+    socket.setBlocking(false);
     for (;;) {
-        sf::UdpSocket socket;
-        socket.setBlocking(false);
         std::string client_name;
         unsigned short port = 50001;
         // Listen to messages on the specified port
@@ -61,11 +62,6 @@ int main() {
                                n;
                     for (auto &module: p.second.modules) {
                         allPackets << module.image << module.width << module.hight;
-                    }
-                }
-                for (auto &g: ServerBase) {
-                    if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
-                        cout << "error";
                     }
                 }
             }
@@ -116,6 +112,12 @@ int main() {
 
                 allPackets << ServerBase[sender].client_name << ServerBase[sender].x <<
                 ServerBase[sender].y << ServerBase[sender].angel;
+            }
+
+            for (auto &g: ServerBase) {
+                if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
+                    cout << "error";
+                }
             }
         }
     }
