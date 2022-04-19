@@ -52,7 +52,7 @@ int main() {
     sf::IpAddress server;
     std::cout << "Enter server IP: ";
     std::cin >> server;
-    client::initializeClient(server, client_name, spaceship, ClientBase);
+    client::initializeClient(server, client_name, spaceship, ClientBase, 50001);
 
 
 
@@ -124,7 +124,7 @@ int main() {
             drawObjects->drawBg(window, Camera->getViewCamera());
             window.setView(Camera->getViewCamera());
 
-            client::loopClient(window, server, ClientBase);
+            client::loopClient(window, server, ClientBase, 50001);
 
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());

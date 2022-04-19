@@ -41,6 +41,7 @@ int main() {
 
             if (typeOfTransfer == 'i') { //Инициализация игрока
                 ServerBase[sender].senderPort = senderPort;
+                cout << "i";
                 packet >> ServerBase[sender].client_name >> ServerBase[sender].x >> ServerBase[sender].y >>
                        ServerBase[sender].angel >> n;
                 vector<ServerModule> modules;
@@ -62,8 +63,14 @@ int main() {
                         allPackets << module.image << module.width << module.hight;
                     }
                 }
+                for (auto &g: ServerBase) {
+                    if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
+                        cout << "error";
+                    }
+                }
             }
             if (typeOfTransfer == 'd') { //перемещение игрока
+                cout << "d";
                 bool left, right, forward;
                 packet >> left >> right >> forward;
                 bool crutch = false;
@@ -110,13 +117,13 @@ int main() {
 
                 allPackets << ServerBase[sender].client_name << ServerBase[sender].x <<
                 ServerBase[sender].y << ServerBase[sender].angel;
-            }
-
-            for (auto &g: ServerBase) {
-                if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
-                    cout << "error";
+                for (auto &g: ServerBase) {
+                    if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
+                        cout << "error";
+                    }
                 }
             }
+
         }
     }
 }

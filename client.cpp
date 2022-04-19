@@ -25,7 +25,6 @@ void client::initializeClient(sf::IpAddress server, const string& client_name, s
     sf::Uint8 n, n1;
     string name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
-        cout << 1 << name;
         packet >> n;
         for (int j = 0; j < n; j++) {
             packet >> name >> ClientBase[name].x >> ClientBase[name].y
