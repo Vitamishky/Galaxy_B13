@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "buildRocket.h"
+#include "drawAll.h"
 
 buildRocket::buildRocket() {
 	texBackground.loadFromFile("image/bg.png");
@@ -9,10 +10,6 @@ buildRocket::buildRocket() {
 	texAirRocket.loadFromFile("image/module3.png");
 	texEngineRocket.loadFromFile("image/module4.png");
 	texEmptyRocket.loadFromFile("image/module2.png");
-	texRAir.loadFromFile("image/module3.png");
-	texREmpty.loadFromFile("image/module2.png");
-	sprRAir.setTexture(texRAir);
-	sprREmpty.setTexture(texREmpty);
 	sprBackground.setTexture(texBackground);
 	sprHeadRocket.setTexture(texHeadRocket);
 	sprAirRocket.setTexture(texAirRocket);
@@ -22,34 +19,59 @@ buildRocket::buildRocket() {
 	sprRightInter.setTexture(texRightInter);
 	xRightInter = sprRightInter.getLocalBounds().width;
 	yRightInter = sprRightInter.getLocalBounds().height;
+	spriteScale = sprAirRocket.getScale();
+	menuNum = 0;
+	drawAll draw;
 }
 
 std::pair<std::string, std::vector<int>> buildRocket::drawBuildRocket(sf::RenderWindow& window) {
+	m.clear();
+	sprRAir = draw.getSpriteRAir(window);
+	sprREmpty = draw.getSpriteREmpty(window);
 	sprBackground.setScale(window.getSize().x / sprBackground.getGlobalBounds().width, window.getSize().y / sprBackground.getGlobalBounds().height);
 	sprRightInter.setScale(window.getSize().x * 0.7f / xRightInter, window.getSize().y / yRightInter);
 	sprRightInter.setPosition(sf::Vector2f(window.getSize().x * 0.7f, 0));
-	sprRAir.setScale(window.getSize().x * 0.12f / sprRAir.getGlobalBounds().width, window.getSize().y * 0.15f / sprRAir.getGlobalBounds().height);
-	sprREmpty.setScale(window.getSize().x * 0.12f / sprREmpty.getGlobalBounds().width, window.getSize().y * 0.15f / sprREmpty.getGlobalBounds().height);
-	sprRAir.setPosition(window.getSize().x * 0.78f, window.getSize().y * 0.25f - sprRAir.getGlobalBounds().height / 2);
-	sprREmpty.setPosition(window.getSize().x * 0.79f, window.getSize().y * 0.75f - sprREmpty.getGlobalBounds().height / 2);
 	sizeXForSprite = (window.getSize().x * 0.7f - sprEngineRocket.getGlobalBounds().width) / 2;
 	sizeYForSprite = window.getSize().y * 0.9f - sprEngineRocket.getGlobalBounds().height;
 	boundsAir = sprAirRocket.getGlobalBounds();
 	boundsEmpty = sprEmptyRocket.getGlobalBounds();
 	boundsEngine = sprEngineRocket.getGlobalBounds();
 	boundsHead = sprHeadRocket.getGlobalBounds();
-	spriteScale = sprAirRocket.getScale();
 	std::vector<float> vHelp1 = { sizeXForSprite, sizeYForSprite, 0.f };
 	m["Engine"].push_back(vHelp1);
 	result.push_back(4);
 	window.setFramerateLimit(3);
+
+	play = draw.getSpritePlay(window);
+	playWithMouse = draw.getSpritePlayWithMouse(window);
+	backWithMouse = draw.getSpriteBackWithMouse(window);
+	back = draw.getSpriteBack(window);
+
 	while (true) {
 		std::vector<float> vHelp2;
 		sizeM = 0;
+		menuNum = 0;
+		
 		sf::Event event;
 		for (auto& c : m) {
 			sizeM += c.second.size();
 		}
+
+		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 18.0f, window.getSize().x / 10.0f).contains(sf::Mouse::getPosition(window))) {
+			menuNum = 1;
+		}
+
+		if (sf::IntRect(window.getSize().x * 0.97f - (draw.xAb / 10.0f), window.getSize().y * 0.92f - (draw.xAb / 10.0f), window.getSize().x / 18.0f, window.getSize().y / 10.0f).contains(sf::Mouse::getPosition(window))) {
+			menuNum = 2;
+		}
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			if (menuNum == 1) {
+				return std::make_pair("main", result);
+			}
+			
+		}
+
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
@@ -140,11 +162,23 @@ std::pair<std::string, std::vector<int>> buildRocket::drawBuildRocket(sf::Render
 			}
 		}
 
+		window.draw(back);
+
+		window.draw(play);
+
+		if (menuNum == 1) {
+			window.draw(backWithMouse);
+		}
+		if (menuNum == 2) {
+			window.draw(playWithMouse);
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+				return std::make_pair("go", result);
+			}
+		}
+		
 		window.display();
-		if (sizeM > 10)
-			break;
+
 		window.clear();
 		
 	}
-	return std::make_pair("go", result);
 }

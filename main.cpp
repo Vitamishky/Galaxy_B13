@@ -10,6 +10,17 @@
 
 int main()
 {
+    sf::Texture tex, tex1, tex2, tex3;
+    vector<sf::Texture> texV;
+    tex.loadFromFile("image/background.jpg");
+    texV.push_back(tex);
+    tex1.loadFromFile("image/backgroundSpace.jpg");
+    texV.push_back(tex1);
+    tex2.loadFromFile("image/backgroundSpace2.jpg");
+    texV.push_back(tex2);
+    tex3.loadFromFile("image/backgroundCat.jpg");
+    texV.push_back(tex3);
+
     bool reved = true;
     //Работа с музыкой
     sf::Music* bgMusic = new sf::Music;
@@ -41,9 +52,9 @@ int main()
     optionsMenu* options = new optionsMenu;
     aboutMenu* about = new aboutMenu;
     drawAll* drawObjects = new drawAll;
-    buildRocket buildrocket;
+    buildRocket* buildrocket = new buildRocket;
 
-    window->setFramerateLimit(100);
+    window->setFramerateLimit(30);
 
     window->setVerticalSyncEnabled(true);
 
@@ -54,7 +65,7 @@ int main()
     MODULE m1("image/cabine.png", 5, 120, 120, true);
     MODULE m2("image/module2.png",10, 120, 130);
     MODULE m3("image/module3.png",5, 120, 130, false, true, 1000, 1000);
-    MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 1000, 1000);
+    MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 10000, 10000);
     vector<MODULE> masivMODULE;
 
     //Создание планет на карте
@@ -75,26 +86,31 @@ int main()
     string nameMenu = "main";
     std::pair<string, std::vector<int>> para;
 
+    std::pair<string, vector<int>> para1 = { "back", {0, 0, 5} };
+
     while (nameMenu != "go" && nameMenu != "exit") {
+
+        //para1 = menu.drawStartMenu(window, texV[para1.second[0]]);
+
+
         if (nameMenu == "main") {
-            nameMenu = menu->drawStartMenu(*window);
+            nameMenu = menu->drawStartMenu(*window, texV[para1.second[0]]);
             window->clear();
         }
         if (nameMenu == "start") {
-            para = buildrocket.drawBuildRocket(*window);
+            para = buildrocket->drawBuildRocket(*window);
+            window->setFramerateLimit(30);
             nameMenu = para.first;
-            //if (nameMenu == "back") {
-                //menu.drawStartMenu(window);
-            //}
-            //else
-                //nameMenu = "go";
+            window->clear();
         }
         if (nameMenu == "options") {
-            nameMenu = options->drawOptionsMenu(*window);
+            para1 = options->drawOptionsMenu(*window, texV[para1.second[0]]);
+            nameMenu = para1.first;
+            window->clear();
         }
         if (nameMenu == "about") {
+            nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
             window->clear();
-            nameMenu = about->drawAboutMenu(*window);
         }
     }
 
@@ -107,6 +123,8 @@ int main()
         }
         if (c == 4) {
             masivMODULE.push_back(m4);
+            nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
+            window->clear();
         }
     }
     masivMODULE.push_back(m1);

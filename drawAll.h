@@ -32,7 +32,24 @@ private:
 	sf::Texture buttonMusicFull, buttonBackFull, buttonBackFull_1, buttonBackgroundFull, buttonLayoutFull;
 	sf::Sprite buttonMusic, buttonBack, buttonBackWithMouse, buttonBackground, buttonLayout;
 	sf::Sprite music, back, background, layout, optionsBg;
+	sf::Texture menuBackgroundCat, menuBackgroundSpace, menuBackgroundSpace2, menuBackgroundMain;
+	sf::Sprite menuBgCat, menuBgSpace, menuBgSpace2, menuBgMain;
 	sf::Text textMusic1, textMusic2, textMusic3, textLayout;
+
+	//BuildRocket
+	sf::Texture buttonPlayFull, buttonPlayFull_1, buttonBuiltFull, buttonBuiltFull_1;
+	sf::Sprite buttonPlay, buttonPlayWithMouse, buttonBuilt, buttonBuiltWithMouse;
+	sf::Sprite play, playWithMouse, built, builtWithMouse;
+
+	sf::Texture finalPicture;
+	sf::Sprite finalMeme;
+
+	sf::Texture texREmpty, texRAir;
+	sf::Sprite sprREmpty, sprRAir;
+	sf::Texture texBackG, texHeadR, texAirR, texEmptyR, texEngineR, texRightI;
+	sf::Sprite sprBackG, sprHeadR, sprAirR, sprEmptyR, sprEngineR, sprRightI;
+
+
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -49,10 +66,9 @@ public:
 	sf::Text drawTextMusic2(sf::RenderWindow&);
 	sf::Text drawTextMusic3(sf::RenderWindow&);
 	sf::Text drawTextLayout(sf::RenderWindow&);
-	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb, xBag, yBag, xMu, yMu, xBack, yBack, xLa, yLa;
+	float xBg, yBg, xSt, ySt, xOp, yOp, xEx, yEx, xAb, yAb, xBag, yBag, xMu, yMu, xBack, yBack, xLa, yLa, xBgCat, yBgCat, xBgSpace, yBgSpace, xBgSpace2, yBgSpace2;
 
-
-	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&);
+	sf::Sprite getSpriteMenuBackground(sf::RenderWindow&, sf::Texture);
 	sf::Sprite getSpriteStart(sf::RenderWindow&);
 	sf::Sprite getSpriteOptions(sf::RenderWindow&);
 	sf::Sprite getSpriteExit(sf::RenderWindow&);
@@ -69,6 +85,24 @@ public:
 	sf::Sprite getSpriteLayout(sf::RenderWindow&);
 	sf::Sprite getSpriteBack(sf::RenderWindow&);
 	sf::Sprite getSpriteBackWithMouse(sf::RenderWindow&);
+	sf::Sprite getSpriteBackgroundCat(sf::RenderWindow&);
+	sf::Sprite getSpriteBackgroundSpace(sf::RenderWindow&);
+	sf::Sprite getSpriteBackgroundSpace2(sf::RenderWindow&);
+	sf::Sprite getSpriteBackgroundMain(sf::RenderWindow&);
+
+	sf::Sprite getSpritePlay(sf::RenderWindow&);
+	sf::Sprite getSpritePlayWithMouse(sf::RenderWindow&);
+	sf::Sprite getSpriteBuilt(sf::RenderWindow&);
+	sf::Sprite getSpriteBuiltWithMouse(sf::RenderWindow&);
+
+	sf::Sprite getSpriteFinal(sf::RenderWindow&);
+	//sprite for buildrocket
+	sf::IntRect rAir, rEmpty, backG, headR, airR, 
+		emptyR, engineR, rightI, butBuild, butStartGo;
+
+	sf::Sprite getSpriteRAir(sf::RenderWindow&);
+	sf::Sprite getSpriteREmpty(sf::RenderWindow&);
+
 };
 
 #endif

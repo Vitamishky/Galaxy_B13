@@ -9,11 +9,17 @@ startMenu::startMenu() {
 	drawAll draw;
 }
 
-string startMenu::drawStartMenu(sf::RenderWindow& window) {
+string startMenu::drawStartMenu(sf::RenderWindow& window, sf::Texture texBg) {
 	start = draw.getSpriteStart(window);
 	options = draw.getSpriteOptions(window);
 	exit = draw.getSpriteExit(window);
 	about = draw.getSpriteAbout(window);
+	sprite.setTexture(texBg);
+	sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
+	if (sprite.getGlobalBounds().width < window.getSize().x * 0.8f || sprite.getGlobalBounds().width > window.getSize().x * 1.2f)
+		sprite.setScale(window.getSize().x / sprite.getGlobalBounds().width, window.getSize().y / sprite.getGlobalBounds().height);
+
+
 
 	//Новые иконки при наведении на кнопки
 	startWithMouse = draw.getSpriteStartWithMouse(window);
@@ -46,8 +52,6 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 		if (sf::IntRect(window.getSize().x * 0.97f - (draw.xAb / 10.0f), window.getSize().y * 0.92f - (draw.xAb / 10.0f), window.getSize().x / 18.0f, window.getSize().x / 18.0f).contains(sf::Mouse::getPosition(window))) {
 			menuNum = 4;
 		}
-		//if (sf::IntRect(window.getSize().x * 0.8f, window.getSize().y * 0.8f, xAb, yAb).contains(sf::Mouse::getPosition(window))) { about.setColor(sf::Color::Blue); }
-
 		
 
         sf::Event event;
@@ -67,11 +71,12 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0.0f, -15.0f);
-					window.draw(draw.getSpriteMenuBackground(window));
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
+
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -82,6 +87,8 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+
+					window.clear();
 				}
 				window.clear();
 				return "start"; 
@@ -90,11 +97,12 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0, -15.f);
-					window.draw(draw.getSpriteMenuBackground(window));
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
+
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -105,18 +113,22 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+
+					window.clear();
 				}
+				window.clear();
 				return "options";
 			}
 			if (menuNum == 3) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0.0f, -15.0f);
-					window.draw(draw.getSpriteMenuBackground(window));
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
+
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -127,6 +139,8 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+					
+					window.clear();
 				}
 				window.close();
 				return "exit";
@@ -135,12 +149,12 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 				for (int i = 0; i < 50; i++) {
 					options.setColor(sf::Color::White);
 
-					start.move(10.f, 10.f);
-					options.move(-10.f, -10.f);
-					exit.move(-10.f, 10.f);
-					about.move(0.0f, -15.0f);
+					start.move(window.getSize().x / 65.f, window.getSize().y / 65.f);
+					options.move(window.getSize().x / (-65.f), window.getSize().y / (-65.f));
+					exit.move(window.getSize().x / (-65.f), window.getSize().y / 65.f);
+					about.move(0.0f, window.getSize().y / (-48.0f));
 
-					window.draw(draw.getSpriteMenuBackground(window));
+					window.draw(sprite);
 
 					window.draw(start);
 
@@ -151,14 +165,14 @@ string startMenu::drawStartMenu(sf::RenderWindow& window) {
 					window.draw(about);
 
 					window.display();
+					window.clear();
 				}
 				return "about";
 			}
 
 		}
 		else {
-
-			window.draw(draw.getSpriteMenuBackground(window));
+			window.draw(sprite);
 
 			window.draw(start);
 

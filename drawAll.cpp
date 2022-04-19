@@ -19,10 +19,10 @@ drawAll::drawAll() {
 	vLText.push_back(text);
 	text.setString("Target distance");
 	vLText.push_back(text);
-	textAbout.setString("Here’s the text we wanted to write to make the player better understand our game, \n\
+	textAbout.setString("Here is the text we wanted to write to make the player better understand our game, \n\
 feel it fully. We would have written a wonderful description of our work on the game. How we found \n\
-mistakes, corrected them. this fleeting and inspiring feeling of creating something new. But no one \n\
-                 told me what to write here, so I decided to write from myself)");
+mistakes, corrected them. This fleeting and inspiring feeling of creating something new. But no one \n\
+                 told me what to write here, so I decided to write from myself :-)");
 	textAbout.setFont(font);
 	for (int i = 0; i < vLText.size(); i++) {
 		vLText[i].setFont(font);
@@ -50,7 +50,12 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonOptionsFull.loadFromFile("image/options1.png");
 	buttonExitFull.loadFromFile("image/exit1.png");
 	aboutTextureFull.loadFromFile("image/about1.png");
+	menuBackgroundCat.loadFromFile("image/backgroundCat.jpg");
+	menuBackgroundSpace.loadFromFile("image/backgroundSpace.jpg");
+	menuBackgroundSpace2.loadFromFile("image/backgroundSpace2.jpg");
 	menuBackground.loadFromFile("image/background.jpg");
+
+	finalPicture.loadFromFile("image/final.jpg");
 
 	buttonStartFull_1.loadFromFile("image/start2.png");
 	buttonOptionsFull_1.loadFromFile("image/options2.png");
@@ -66,7 +71,12 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonOptions.setTexture(buttonOptionsFull);
 	buttonExit.setTexture(buttonExitFull);
 	aboutTexture.setTexture(aboutTextureFull);
-	menuBg.setTexture(menuBackground);
+	menuBgCat.setTexture(menuBackgroundCat);
+	menuBgSpace.setTexture(menuBackgroundSpace);
+	menuBgSpace2.setTexture(menuBackgroundSpace2);
+	menuBgMain.setTexture(menuBackground);
+
+	finalMeme.setTexture(finalPicture);
 
 	//отрисовка настроек
 	buttonLayoutFull.loadFromFile("image/layout.png");
@@ -74,6 +84,10 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonBackgroundFull.loadFromFile("image/buttonBackground.png");
 	buttonBackFull.loadFromFile("image/back1.png");
 	buttonBackFull_1.loadFromFile("image/back2.png");
+	buttonPlayFull.loadFromFile("image/play1.png");
+	buttonPlayFull_1.loadFromFile("image/play2.png");
+	buttonBuiltFull.loadFromFile("image/built1.png");
+	buttonBuiltFull_1.loadFromFile("image/built2.png");
 
 	buttonMusic.setTexture(buttonMusicFull);
 	buttonBack.setTexture(buttonBackFull);
@@ -81,14 +95,19 @@ mistakes, corrected them. this fleeting and inspiring feeling of creating someth
 	buttonBackground.setTexture(buttonBackgroundFull);
 	buttonLayout.setTexture(buttonLayoutFull);
 
+	buttonPlay.setTexture(buttonPlayFull);
+	buttonPlayWithMouse.setTexture(buttonPlayFull_1);
+	buttonBuilt.setTexture(buttonBuiltFull);
+	buttonBuiltWithMouse.setTexture(buttonBuiltFull_1);
+
 	textMusic3.setFont(font);
 	textMusic2.setFont(font);
 	textMusic1.setFont(font);
 	textLayout.setFont(font);
 
-	textMusic1.setString("Name of the first song");
-	textMusic2.setString("Name of the second song");
-	textMusic3.setString("Name of the third song");
+	textMusic1.setString("Interstellar main theme");
+	textMusic2.setString("Green grass - Earthlings :-D");
+	textMusic3.setString("We are the Champions - Queen");
 
 	textLayout.setString("SPACE - acceleration \n\
 B(pressed) - tracking \n\
@@ -109,6 +128,13 @@ mouse 1 - move camera");
 	xAb = aboutTexture.getTextureRect().width;
 	yAb = aboutTexture.getTextureRect().height;
 
+	xBgCat = menuBackgroundCat.getSize().x;
+	yBgCat = menuBackgroundCat.getSize().y;
+	xBgSpace = menuBackgroundSpace.getSize().x;
+	yBgSpace = menuBackgroundSpace.getSize().y;
+	xBgSpace2 = menuBackgroundSpace2.getSize().x;
+	yBgSpace2 = menuBackgroundSpace2.getSize().y;
+
 	xBag = buttonBackground.getTextureRect().width;
 	yBag = buttonBackground.getTextureRect().height;
 	xMu = buttonMusic.getTextureRect().width;
@@ -117,7 +143,17 @@ mouse 1 - move camera");
 	yBack = buttonBack.getTextureRect().height;
 	xLa = buttonLayout.getTextureRect().width;
 	yLa = buttonLayout.getTextureRect().height;
+
+	texRAir.loadFromFile("image/module3.png");
+	texREmpty.loadFromFile("image/module2.png");
+	sprRAir.setTexture(texRAir);
+	sprREmpty.setTexture(texREmpty);
+	rAir = sprRAir.getTextureRect();
+	rEmpty = sprREmpty.getTextureRect();
+	butBuild = buttonBuilt.getTextureRect();
+
 }
+
 
 void drawAll::drawBg(sf::RenderWindow& window, sf::View view) {
 	float vSize_x = 1.5f * view.getSize().x;
@@ -298,9 +334,34 @@ sf::Sprite drawAll::getSpriteExitWithMouse(sf::RenderWindow& window) {
 	return buttonExitWithMouse;
 }
 
-sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window) {
-    menuBg.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
-    return menuBg;
+sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window, sf::Texture texture) {
+	menuBg.setTexture(texture);
+	menuBg.setScale(window.getSize().x / xBg, window.getSize().y / yBg);
+	return menuBg;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundCat(sf::RenderWindow& window) {
+	menuBgCat.setScale(window.getSize().x / (7.5f * xBgCat), window.getSize().y / (7.5f * yBgCat));
+	menuBgCat.setPosition(window.getSize().x * 0.7f - (menuBgCat.getGlobalBounds().width / 5.0f), window.getSize().y * 0.4f);
+	return menuBgCat;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundSpace(sf::RenderWindow& window) {
+	menuBgSpace.setScale(window.getSize().x / (7.5f * xBgSpace), window.getSize().y / (7.5f * yBgSpace));
+	menuBgSpace.setPosition(window.getSize().x * 0.7f - (menuBgSpace.getGlobalBounds().width / 5.0f), window.getSize().y * 0.6f);
+	return menuBgSpace;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundSpace2(sf::RenderWindow& window) {
+	menuBgSpace2.setScale(window.getSize().x / (7.50f * xBgSpace2), window.getSize().y / (7.50f * yBgSpace2));
+	menuBgSpace2.setPosition(window.getSize().x * 0.85f - (menuBgSpace2.getGlobalBounds().width / 7.50f), window.getSize().y * 0.4f);
+	return menuBgSpace2;
+}
+
+sf::Sprite drawAll::getSpriteBackgroundMain(sf::RenderWindow& window) {
+	menuBgMain.setScale(window.getSize().x / (7.5f * xBg), window.getSize().y / (7.5f * yBg));
+	menuBgMain.setPosition(window.getSize().x * 0.85f - (menuBgMain.getGlobalBounds().width / 7.50f), window.getSize().y * 0.6f);
+	return menuBgMain;
 }
 
 sf::Sprite drawAll::getSpriteAbout(sf::RenderWindow& window) {
@@ -347,35 +408,28 @@ sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
 	return buttonLayout;
 }
 
+
+
 sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
 	float xText = textAbout.getGlobalBounds().width;
 	float yText = textAbout.getGlobalBounds().height;
-	textAbout.setScale(window.getSize().x / xText * 0.8f, window.getSize().y / yText * 0.5f);
-	xText = textAbout.getGlobalBounds().width;
-	yText = textAbout.getGlobalBounds().height;
 	textAbout.setPosition((window.getSize().x - xText) / 2, (window.getSize().y - yText) / 2.f);
 	return textAbout;
 }
 
 sf::Text drawAll::drawTextMusic1(sf::RenderWindow& window) {
-	//float xText = textMusic1.getGlobalBounds().width;
-	//float yText = textMusic1.getGlobalBounds().height;
 	textMusic1.setFont(font);
 	textMusic1.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.4f);
 	return textMusic1;
 }
 
 sf::Text drawAll::drawTextMusic2(sf::RenderWindow& window) {
-	//float xText = textMusic2.getGlobalBounds().width;
-	//float yText = textMusic2.getGlobalBounds().height;
 	textMusic2.setFont(font);
 	textMusic2.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.5f);
 	return textMusic2;
 }
 
 sf::Text drawAll::drawTextMusic3(sf::RenderWindow& window) {
-	//float xText = textMusic3.getGlobalBounds().width;
-	//float yText = textMusic3.getGlobalBounds().height;
 	textMusic3.setFont(font);
 	textMusic3.setPosition(window.getSize().x * 0.1f, window.getSize().y * 0.6f);
 	return textMusic3;
@@ -389,6 +443,37 @@ sf::Text drawAll::drawTextLayout(sf::RenderWindow& window) {
 	return textLayout;
 }
 
+//Спрайт для BuildRocket
+sf::Sprite drawAll::getSpritePlay(sf::RenderWindow& window) {
+	buttonPlay.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
+	buttonPlay.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
+	return buttonPlay;
+}
+
+sf::Sprite drawAll::getSpritePlayWithMouse(sf::RenderWindow& window) {
+	buttonPlayWithMouse.setScale(window.getSize().x / (18.0f * xAb), window.getSize().x / (yAb * 18.0f));
+	buttonPlayWithMouse.setPosition(window.getSize().x * 0.97f - (xAb / 10.0f), window.getSize().y * 0.92f - (xAb / 10.0f));
+	return buttonPlayWithMouse;
+}
+
+sf::Sprite drawAll::getSpriteBuilt(sf::RenderWindow& window) {
+	buttonBuilt.setScale(window.getSize().x / (12.0f * butBuild.width), window.getSize().x / (butBuild.height * 18.0f));
+	buttonBuilt.setPosition(0.75f * window.getSize().x, window.getSize().y * 0.92f - (xAb / 10.0f));
+	return buttonBuilt;
+}
+
+sf::Sprite drawAll::getSpriteBuiltWithMouse(sf::RenderWindow& window) {
+	buttonBuiltWithMouse.setScale(window.getSize().x / (12.0f * butBuild.width), window.getSize().x / (butBuild.height * 18.0f));
+	buttonBuiltWithMouse.setPosition(0.75f * window.getSize().x, window.getSize().y * 0.92f - (xAb / 10.0f));
+	return buttonBuiltWithMouse;
+}
+
+sf::Sprite drawAll::getSpriteFinal(sf::RenderWindow& window) {
+	finalMeme.setScale(window.getSize().x / finalMeme.getGlobalBounds().width, window.getSize().y / finalMeme.getGlobalBounds().height);
+	return finalMeme;
+}
+
+
 bool drawAll::collision(sf::RenderWindow& window, spaceShip ship, vector<Planet> planet) {
 	vector<sf::Sprite> sprShip = ship.getSprite();
 	vector<sf::CircleShape> sprPlanet;
@@ -400,4 +485,16 @@ bool drawAll::collision(sf::RenderWindow& window, spaceShip ship, vector<Planet>
 			return sprShip[i].getGlobalBounds().intersects(sprPlanet[j].getGlobalBounds());
 		}
 	}
+}
+
+sf::Sprite drawAll::getSpriteRAir(sf::RenderWindow& window) {
+	sprRAir.setScale(window.getSize().x * 0.12f / rAir.width, window.getSize().y * 0.15f / rAir.height);
+	sprRAir.setPosition(window.getSize().x * 0.78f, window.getSize().y * 0.25f - rAir.height / 2);
+	return sprRAir;
+}
+
+sf::Sprite drawAll::getSpriteREmpty(sf::RenderWindow& window) {
+	sprREmpty.setScale(window.getSize().x * 0.12f / rEmpty.width, window.getSize().y * 0.15f / rEmpty.height);
+	sprREmpty.setPosition(window.getSize().x * 0.79f, window.getSize().y * 0.75f - rEmpty.height / 2);
+	return sprREmpty;
 }
