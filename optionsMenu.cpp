@@ -53,34 +53,34 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 		music2.setFillColor(sf::Color::White);
 		music3.setFillColor(sf::Color::White);
 
-		if (sf::IntRect(window.getSize().x * 0.05f - (draw.xAb / 10.0f), window.getSize().y * 0.88f - (draw.xAb / 10.0f), window.getSize().x / 13.0f, window.getSize().x / 13.0f).contains(sf::Mouse::getPosition(window))) {
+		if ((back.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			menuNum = 1;
 		}
-		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.4f, music1.getGlobalBounds().width + 0.04f, music1.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window))) {
+		if ((music1.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			music1.setFillColor(sf::Color::Blue);
 			menuNum = 2;
 		}
-		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.5f, music2.getGlobalBounds().width + 0.04f, music2.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window))) {
+		if ((music2.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			music2.setFillColor(sf::Color::Blue);
 			menuNum = 3;
 		}
-		if (sf::IntRect(window.getSize().x * 0.1f, window.getSize().y * 0.6f, music3.getGlobalBounds().width + 0.04f, music3.getGlobalBounds().height + 0.04f).contains(sf::Mouse::getPosition(window))) {
+		if ((music3.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			music3.setFillColor(sf::Color::Blue);
 			menuNum = 4;
 		}
-		if (sf::IntRect(window.getSize().x * 0.75f - (draw.xBgCat / 10.0f), window.getSize().y * 0.6f, changeBg3.getGlobalBounds().width, changeBg3.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+		if ((changeBg3.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			changeBg3.setColor(sf::Color::Red);
 			menuNum = 7;
 		}
-		if (sf::IntRect(window.getSize().x * 0.75f - (draw.xBgCat / 10.0f), window.getSize().y * 0.4f, changeBg2.getGlobalBounds().width, changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+		if ((changeBg2.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			changeBg2.setColor(sf::Color::Green);
 			menuNum = 6;
 		}
-		if (sf::IntRect(window.getSize().x * 0.9f - (draw.xBgCat / 10.0f), window.getSize().y * 0.4f, changeBg4.getGlobalBounds().width, changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+		if ((changeBg4.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			changeBg4.setColor(sf::Color::Magenta);
 			menuNum = 8;
 		}
-		if (sf::IntRect(window.getSize().x * 0.9f - (draw.xBgCat / 10.0f), window.getSize().y * 0.6f, changeBg1.getGlobalBounds().width, changeBg2.getGlobalBounds().height).contains(sf::Mouse::getPosition(window))) {
+		if ((changeBg1.getGlobalBounds()).contains(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition().y - 0.04f * window.getSize().y)) {
 			changeBg1.setColor(sf::Color::Yellow);
 			menuNum = 5;
 		}

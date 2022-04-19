@@ -55,6 +55,8 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	menuBackgroundSpace2.loadFromFile("image/backgroundSpace2.jpg");
 	menuBackground.loadFromFile("image/background.jpg");
 
+	finalPicture.loadFromFile("image/final.jpg");
+
 	buttonStartFull_1.loadFromFile("image/start2.png");
 	buttonOptionsFull_1.loadFromFile("image/options2.png");
 	buttonExitFull_1.loadFromFile("image/exit2.png");
@@ -73,6 +75,8 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	menuBgSpace.setTexture(menuBackgroundSpace);
 	menuBgSpace2.setTexture(menuBackgroundSpace2);
 	menuBgMain.setTexture(menuBackground);
+
+	finalMeme.setTexture(finalPicture);
 
 	//отрисовка настроек
 	buttonLayoutFull.loadFromFile("image/layout.png");
@@ -101,9 +105,9 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	textMusic1.setFont(font);
 	textLayout.setFont(font);
 
-	textMusic1.setString("Name of the first song");
-	textMusic2.setString("Name of the second song");
-	textMusic3.setString("Name of the third song");
+	textMusic1.setString("Interstellar main theme");
+	textMusic2.setString("Green grass - Earthlings :-D");
+	textMusic3.setString("We are the Champions - Queen");
 
 	textLayout.setString("SPACE - acceleration \n\
 B(pressed) - tracking \n\
@@ -328,26 +332,26 @@ sf::Sprite drawAll::getSpriteMenuBackground(sf::RenderWindow& window, sf::Textur
 }
 
 sf::Sprite drawAll::getSpriteBackgroundCat(sf::RenderWindow& window) {
-	menuBgCat.setScale(window.getSize().x / (10.0f * xBgCat), window.getSize().y / (10.0f * yBgCat));
-	menuBgCat.setPosition(window.getSize().x * 0.75f - (xBgCat / 10.0f), window.getSize().y * 0.4f);
+	menuBgCat.setScale(window.getSize().x / (7.5f * xBgCat), window.getSize().y / (7.5f * yBgCat));
+	menuBgCat.setPosition(window.getSize().x * 0.7f - (menuBgCat.getGlobalBounds().width / 5.0f), window.getSize().y * 0.4f);
 	return menuBgCat;
 }
 
 sf::Sprite drawAll::getSpriteBackgroundSpace(sf::RenderWindow& window) {
-	menuBgSpace.setScale(window.getSize().x / (10.0f * xBgSpace), window.getSize().y / (10.0f * yBgSpace));
-	menuBgSpace.setPosition(window.getSize().x * 0.75f - (xBgCat / 10.0f), window.getSize().y * 0.6f);
+	menuBgSpace.setScale(window.getSize().x / (7.5f * xBgSpace), window.getSize().y / (7.5f * yBgSpace));
+	menuBgSpace.setPosition(window.getSize().x * 0.7f - (menuBgSpace.getGlobalBounds().width / 5.0f), window.getSize().y * 0.6f);
 	return menuBgSpace;
 }
 
 sf::Sprite drawAll::getSpriteBackgroundSpace2(sf::RenderWindow& window) {
-	menuBgSpace2.setScale(window.getSize().x / (10.0f * xBgSpace2), window.getSize().y / (10.0f * yBgSpace2));
-	menuBgSpace2.setPosition(window.getSize().x * 0.9f - (xBgCat / 10.0f), window.getSize().y * 0.4f);
+	menuBgSpace2.setScale(window.getSize().x / (7.50f * xBgSpace2), window.getSize().y / (7.50f * yBgSpace2));
+	menuBgSpace2.setPosition(window.getSize().x * 0.85f - (menuBgSpace2.getGlobalBounds().width / 7.50f), window.getSize().y * 0.4f);
 	return menuBgSpace2;
 }
 
 sf::Sprite drawAll::getSpriteBackgroundMain(sf::RenderWindow& window) {
-	menuBgMain.setScale(window.getSize().x / (10.0f * xBg), window.getSize().y / (10.0f * yBg));
-	menuBgMain.setPosition(window.getSize().x * 0.9f - (xBgCat / 10.0f), window.getSize().y * 0.6f);
+	menuBgMain.setScale(window.getSize().x / (7.5f * xBg), window.getSize().y / (7.5f * yBg));
+	menuBgMain.setPosition(window.getSize().x * 0.85f - (menuBgMain.getGlobalBounds().width / 7.50f), window.getSize().y * 0.6f);
 	return menuBgMain;
 }
 
@@ -400,7 +404,7 @@ sf::Sprite drawAll::getSpriteLayout(sf::RenderWindow& window) {
 sf::Text drawAll::drawTextAbout(sf::RenderWindow& window) {
 	float xText = textAbout.getGlobalBounds().width;
 	float yText = textAbout.getGlobalBounds().height;
-	textAbout.setScale(window.getSize().x / xText * 0.8f, window.getSize().y / yText * 0.5f);
+	//textAbout.setScale(window.getSize().x / xText * 0.8f, window.getSize().y / yText * 0.5f);
 	xText = textAbout.getGlobalBounds().width;
 	yText = textAbout.getGlobalBounds().height;
 	textAbout.setPosition((window.getSize().x - xText) / 2, (window.getSize().y - yText) / 2.f);
@@ -456,6 +460,11 @@ sf::Sprite drawAll::getSpriteBuiltWithMouse(sf::RenderWindow& window) {
 	buttonBuiltWithMouse.setScale(window.getSize().x / (12.0f * buttonBuiltWithMouse.getGlobalBounds().width), window.getSize().x / (buttonBuiltWithMouse.getGlobalBounds().height * 18.0f));
 	buttonBuiltWithMouse.setPosition(0.75f * window.getSize().x, window.getSize().y * 0.92f - (xAb / 10.0f));
 	return buttonBuiltWithMouse;
+}
+
+sf::Sprite drawAll::getSpriteFinal(sf::RenderWindow& window) {
+	finalMeme.setScale(window.getSize().x / finalMeme.getGlobalBounds().width, window.getSize().y / finalMeme.getGlobalBounds().height);
+	return finalMeme;
 }
 
 

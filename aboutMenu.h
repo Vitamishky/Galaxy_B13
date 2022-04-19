@@ -8,6 +8,7 @@ private:
 	int menuNum;
 	sf::Text text;
 	sf::Sprite back, backWithMouse, sprite;
+	sf::Sprite finalMeme;
 	drawAll draw;
 public:
 	aboutMenu();

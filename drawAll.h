@@ -41,6 +41,9 @@ private:
 	sf::Sprite buttonPlay, buttonPlayWithMouse, buttonBuilt, buttonBuiltWithMouse;
 	sf::Sprite play, playWithMouse, built, builtWithMouse;
 
+	sf::Texture finalPicture;
+	sf::Sprite finalMeme;
+
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -85,6 +88,8 @@ public:
 	sf::Sprite getSpritePlayWithMouse(sf::RenderWindow&);
 	sf::Sprite getSpriteBuilt(sf::RenderWindow&);
 	sf::Sprite getSpriteBuiltWithMouse(sf::RenderWindow&);
+
+	sf::Sprite getSpriteFinal(sf::RenderWindow&);
 };
 
 #endif
