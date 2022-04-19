@@ -54,7 +54,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
     socket.send(packet, server, port);
 
     packet.clear();
-    float x, y, angle;
+
     std::string client_name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
         packet >> client_name >> ClientBase[client_name].x >> ClientBase[client_name].y
@@ -64,7 +64,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
     for (auto &player: ClientBase) {
         vector<MODULE> modules;
         for (auto &module: player.second.modules) {
-            MODULE m(module.image, module.hight, module.width);
+            MODULE m(module.image, module.width, module.hight);
             modules.push_back(m);
         }
         spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
