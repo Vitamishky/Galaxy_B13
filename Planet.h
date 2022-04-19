@@ -11,6 +11,7 @@ public:
     void drawSprite (sf::RenderWindow&) override;
     Planet(float, float, float, float);
     float getRadius() const;
+    sf::CircleShape getSprite();
 };
 
 #endif //GALAXY_B13_PLANET_H

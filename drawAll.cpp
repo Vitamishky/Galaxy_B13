@@ -389,3 +389,15 @@ sf::Text drawAll::drawTextLayout(sf::RenderWindow& window) {
 	return textLayout;
 }
 
+bool drawAll::collision(sf::RenderWindow& window, spaceShip ship, vector<Planet> planet) {
+	vector<sf::Sprite> sprShip = ship.getSprite();
+	vector<sf::CircleShape> sprPlanet;
+	for (int i = 0; i < planet.size(); i++) {
+		sprPlanet.push_back(planet[i].getSprite());
+	}
+	for (int i = 0; i < sprShip.size(); i++) {
+		for (int j = 0; j < sprPlanet.size(); j++) {
+			return sprShip[i].getGlobalBounds().intersects(sprPlanet[j].getGlobalBounds());
+		}
+	}
+}

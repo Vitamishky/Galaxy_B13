@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "MODULE.h"
 #include "spaceShip.h"
-#include "MODULE.h"
+#include "Planet.h"
 
 using namespace std;
 
@@ -42,6 +42,7 @@ public:
 	void drawFuel(sf::RenderWindow&, sf::View, spaceShip);
 	void drawCompas(sf::RenderWindow&, sf::View, spaceShip);
 	void drawArrow(sf::RenderWindow&, sf::View);
+	bool collision(sf::RenderWindow&, spaceShip, vector<Planet>);
 	void drawTextAboutAll(sf::RenderWindow&, sf::View, spaceShip);
 	sf::Text drawTextAbout(sf::RenderWindow&);
 	sf::Text drawTextMusic1(sf::RenderWindow&);
