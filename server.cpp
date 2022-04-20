@@ -24,7 +24,7 @@ int main() {
     socket.setBlocking(false);
     std::string client_name;
     unsigned short port = 50001;
-    unsigned short senderPort;
+    unsigned short senderPort = 50002;
     for (;;) {
         // Listen to messages on the specified port
         if (socket.bind(port) != sf::Socket::Done) { return 0; }
@@ -54,8 +54,8 @@ int main() {
                     modules.push_back(module);
                 }
                 ServerBase[sender].modules = modules;
-
-                allPackets << ServerBase.size();
+                sf::Uint8 ServerSize = ServerBase.size();
+                allPackets << ServerSize;
                 for (auto &p: ServerBase) { //передача данных о внешнем виде всех игроков всем игрокам
                     n = p.second.modules.size();
                     allPackets << p.second.client_name << p.second.x << p.second.y << p.second.angel <<

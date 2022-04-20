@@ -52,7 +52,7 @@ int main() {
     sf::IpAddress server;
     std::cout << "Enter server IP: ";
     std::cin >> server;
-    client::initializeClient(server, client_name, spaceship, ClientBase, 50001);
+    client::initializeClient(server, client_name, spaceship, ClientBase, 50002);
 
 
 

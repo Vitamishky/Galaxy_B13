@@ -1,0 +1,3 @@
+/Users/azamath/Repositories/Galaxy_B13/CMakeFiles/Galaxy_B13.dir
+/Users/azamath/Repositories/Galaxy_B13/CMakeFiles/edit_cache.dir
+/Users/azamath/Repositories/Galaxy_B13/CMakeFiles/rebuild_cache.dir
