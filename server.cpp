@@ -33,13 +33,14 @@ int main() {
         sf::Packet packet, allPackets;
 
         if (socket.receive(packet, sender, senderPort) == sf::Socket::Done) {
-
+            cout << "456";
             //Ќећного объ€влений дл€ дольнейшей работы
             sf::Uint8 n, typeOfTransfer;
 
             packet >> typeOfTransfer;
 
-            if (typeOfTransfer == 'i') { //»нициализаци€ игрока
+            sf::Uint8 typeInit = 1;
+            if (typeOfTransfer == typeInit) { //»нициализаци€ игрока
                 ServerBase[sender].senderPort = senderPort;
                 cout << "i";
                 packet >> ServerBase[sender].client_name >> ServerBase[sender].x >> ServerBase[sender].y >>
@@ -69,7 +70,9 @@ int main() {
                     }
                 }
             }
-            if (typeOfTransfer == 'd') { //перемещение игрока
+
+            sf::Uint8 typeTransfer = 2;
+            if (typeOfTransfer == typeTransfer) { //перемещение игрока
                 cout << "d";
                 bool left, right, forward;
                 packet >> left >> right >> forward;

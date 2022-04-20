@@ -9,7 +9,9 @@ sf::UdpSocket socket;
 void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip ship,
                               std::map <string, ClientPlayer> &ClientBase, unsigned short port){
     sf::Packet packet;
-    packet << 'i';
+
+    sf::Uint8 typeInit = 1;
+    packet << typeInit;
     packet << client_name << ship.getCoordinates().first << ship.getCoordinates().second
            << ship.ANGLE() << ship.getAmountOfModules();
     for (auto &module: ship.rocket) {
@@ -44,7 +46,8 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
     socket.setBlocking(false);
     sf::Packet packet;
 
-    packet << 'd';
+    sf::Uint8 typeTransfer = 2;
+    packet << typeTransfer;
     bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::X),
             right = sf::Keyboard::isKeyPressed(sf::Keyboard::Z),
             forward = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
