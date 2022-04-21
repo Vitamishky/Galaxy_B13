@@ -19,8 +19,7 @@ void client::initializeClient(sf::IpAddress server, const string& client_name, s
            << ship.ANGLE() << AmountOfModules;
     for (auto &module: ship.rocket) {
         sf::Uint8 width = module.getParametrization().first, height = module.getParametrization().second;
-        packet << module.getPlaceOfImage() << width <<
-        height <<module.getMasse() << module.IsController
+        packet << module.getPlaceOfImage() << width << height <<module.getMasse() << module.IsController
         << module.IsTurner << module.Side_PotForce() << module.getAir() << module.IsEngine <<
         module.Forward_PotForce() << module.getFuel();
     }

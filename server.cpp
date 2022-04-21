@@ -68,6 +68,7 @@ int main() {
                             allPackets << module.image << module.width << module.hight;
                         }
                     }
+
                     break;
                 }
                 case typeTransferCS: { //перемещение игрока
@@ -158,12 +159,6 @@ int main() {
                                    << player.second.velocity.second;
                     }
                     break;
-            }
-            sf::Uint8 SizeOfServerBase = ServerBase.size();
-            allPackets << typeTransferSC << SizeOfServerBase;
-            for (auto &player: ServerBase) {
-                allPackets << player.second.client_name << player.second.x << player.second.y
-                           << player.second.angel << player.second.velocity.first << player.second.velocity.second;
             }
             for (auto &g: ServerBase) {
                 if (socket.send(allPackets, g.first, port) != sf::Socket::Done) {

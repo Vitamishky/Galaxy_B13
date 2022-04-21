@@ -22,7 +22,7 @@ public:
     spaceObjects();
     void setPosition(float, float, float);
     pair<float, float> getCoordinates() const;
-    pair<float, float> getParametrization() const;
+    pair<int, int> getParametrization() const;
     void drawSprite(sf::RenderWindow&);
     void newAngle(float);
     float getMasse() const;

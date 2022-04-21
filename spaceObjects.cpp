@@ -16,9 +16,8 @@ pair<float, float> spaceObjects::getCoordinates() const {
     pair<float, float> result = make_pair(x, y);
     return result;
 }
-pair<float, float> spaceObjects::getParametrization() const {
-    pair<float, float> result = make_pair(Width, Height);
-    return result;
+pair<int, int> spaceObjects::getParametrization() const {
+    return make_pair(Width, Height);
 }
 float spaceObjects::getMasse() const {
     return Masse;
