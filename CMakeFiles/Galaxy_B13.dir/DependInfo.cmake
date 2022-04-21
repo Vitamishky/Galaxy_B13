@@ -18,7 +18,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/azamath/Repositories/Galaxy_B13/main.cpp" "CMakeFiles/Galaxy_B13.dir/main.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/main.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/optionsMenu.cpp" "CMakeFiles/Galaxy_B13.dir/optionsMenu.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/optionsMenu.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.cpp" "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o.d"
-  "/Users/azamath/Repositories/Galaxy_B13/server.cpp" "CMakeFiles/Galaxy_B13.dir/server.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/server.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/spaceObjects.cpp" "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/spaceShip.cpp" "CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.o.d"
   "/Users/azamath/Repositories/Galaxy_B13/startMenu.cpp" "CMakeFiles/Galaxy_B13.dir/startMenu.cpp.o" "gcc" "CMakeFiles/Galaxy_B13.dir/startMenu.cpp.o.d"

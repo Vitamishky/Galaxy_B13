@@ -3,37 +3,31 @@ project(Galaxy_B13)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(HEADERS
-        aboutMenu.h
-        buildRocket.h
-        camera.h
-        client.h
+include_directories(camera.h
         drawAll.h
         functions.h
-        MODULE.h
-        optionsMenu.h
         parametrizationScreen.h
-        spaceObjects.h
         spaceShip.h
+        spaceObjects.h
+        MODULE.h
+        aboutMenu.h
+        buildRocket.h
+        optionsMenu.h
         startMenu.h
-        )
+        client.h)
 
 find_package(SFML 2.5.1 COMPONENTS graphics audio REQUIRED)
 
-add_executable(${PROJECT_NAME} ${HEADERS} main.cpp
+add_executable(${PROJECT_NAME} main.cpp
         camera.cpp
         parametrizationScreen.cpp
         spaceObjects.cpp
-        spaceShip.cpp
-        drawAll.cpp
-        functions.cpp
-        MODULE.cpp
-        aboutMenu.cpp
-        buildRocket.cpp
+        spaceShip.cpp drawAll.cpp
+        functions.cpp MODULE.cpp
+        aboutMenu.cpp buildRocket.cpp
         optionsMenu.cpp
         startMenu.cpp
-        client.cpp
-        server.cpp)
-
+        client.cpp)
 
 target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+target_link_libraries(Galaxy_Server sfml-system sfml-window sfml-graphics sfml-audio sfml-network)

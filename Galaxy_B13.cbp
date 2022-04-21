@@ -44,6 +44,18 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/camera.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/drawAll.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/functions.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/buildRocket.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/startMenu.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/client.h"/>
 					<Add directory="/Library/Frameworks/SFML.framework"/>
 				</Compiler>
 				<MakeCommands>
@@ -60,6 +72,18 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/camera.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/drawAll.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/functions.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/MODULE.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/buildRocket.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/startMenu.h"/>
+					<Add directory="/Users/azamath/Repositories/Galaxy_B13/client.h"/>
 					<Add directory="/Library/Frameworks/SFML.framework"/>
 				</Compiler>
 				<MakeCommands>
@@ -125,9 +149,6 @@
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.h">
-			<Option target="Galaxy_B13"/>
-		</Unit>
-		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/server.cpp">
 			<Option target="Galaxy_B13"/>
 		</Unit>
 		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.cpp">

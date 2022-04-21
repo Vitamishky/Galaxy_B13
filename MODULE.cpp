@@ -24,7 +24,7 @@ MODULE::MODULE(string image,
     this->Masse = Masse;
     this->Width = Width;
     this->Height = Height;
-    texture.loadFromFile(image);
+    if(!texture.loadFromFile(image)){}
     Sprite.setTexture(texture);
     fuel = 1000.f;
 }
