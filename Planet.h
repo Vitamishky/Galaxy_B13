@@ -2,16 +2,20 @@
 #define GALAXY_B13_PLANET_H
 #include "spaceObjects.h"
 
-
 class Planet : public spaceObjects{
 protected:
     float radius;
-    sf::Sprite sprite;
-    sf::Texture texture;
+private:
+    sf::CircleShape circle;
+    sf::Texture texCircle;
+    vector<sf::Texture> vTex;
 public:
-    void drawSprite (sf::RenderWindow&) override;
-    Planet(float, float, float, float, std::string);
+    void drawSprite (sf::RenderWindow&);
+    void setTex(int i);
+    Planet(float, float, float, float, int);
     float getRadius() const;
+    sf::CircleShape getSprite();
+    std::pair<float, float> getCenter();
 };
 
 #endif //GALAXY_B13_PLANET_H

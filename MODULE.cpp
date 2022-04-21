@@ -1,6 +1,6 @@
 #include "MODULE.h"
-#include "cmath"
 #include "functions.h"
+#include "cmath"
 
 MODULE::MODULE(string image,
                float Masse,
@@ -88,7 +88,6 @@ void MODULE::planetAttraction(vector<Planet>& planets) {
         acceleration.second += functions::planetAttraction(*this, i).second;
     }
 }
-
 
 sf::Sprite MODULE::getSprite() const{
     return Sprite;

@@ -39,31 +39,21 @@
     <ClCompile Include="drawAll.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-<<<<<<< HEAD
-=======
     <ClCompile Include="startMenu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="optionsMenu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="aboutMenu.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="buildRocket.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
     <ClCompile Include="MODULE.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="aboutMenu.cpp">
-<<<<<<< HEAD
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="buildRocket.cpp">
-      <Filter>Исходные файлы</Filter>
-=======
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="buildRocket.cpp">
-      <Filter>Файлы ресурсов</Filter>
->>>>>>> b8359e8c417be9b67dff3df051019e719c6dd33d
-    </ClCompile>
->>>>>>> 7fdcef90d7ab8cdec372665ea6eccbb474b0e29f
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -90,30 +80,20 @@
     <ClInclude Include="drawAll.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-<<<<<<< HEAD
-=======
     <ClInclude Include="startMenu.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="optionsMenu.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="aboutMenu.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="buildRocket.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
     <ClInclude Include="MODULE.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="aboutMenu.h">
-<<<<<<< HEAD
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="buildRocket.h">
-      <Filter>Файлы заголовков</Filter>
-=======
-      <Filter>Файлы ресурсов</Filter>
-    </ClInclude>
-    <ClInclude Include="buildRocket.h">
-      <Filter>Файлы ресурсов</Filter>
->>>>>>> b8359e8c417be9b67dff3df051019e719c6dd33d
-    </ClInclude>
->>>>>>> 7fdcef90d7ab8cdec372665ea6eccbb474b0e29f
   </ItemGroup>
 </Project>

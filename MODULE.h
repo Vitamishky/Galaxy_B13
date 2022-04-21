@@ -32,11 +32,11 @@ public:
     float Side_PotForce() const;
     bool Use_Fuel(float);
     bool Use_Air(float);
-    void planetAttraction(vector<Planet>& v);
     float getAir() const;
     float getFuel() const;
     void NewCord(float, float);
     void NewAcceleration(pair<float, float>);
+    void planetAttraction(vector<Planet>&);
     sf::Sprite getSprite() const;
 };
 

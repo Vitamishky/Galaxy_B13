@@ -7,7 +7,6 @@
 #include "parametrizationScreen.h"
 #include "MODULE.h"
 #include "Planet.h"
-#include "sounds.h"
 
 using namespace std;
 
@@ -23,14 +22,14 @@ private:
     vector<MODULE> rocket;
 
 public:
-    void move(float, vector<Planet>&);
     spaceShip(const vector<MODULE>& rocket, float, float);
+    void move(float, vector<Planet>&);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
     float getMaxFuel() const;
     float getMaxAir() const;
     float getMass() const;
-    void control(sounds, sounds);
+    void control(sf::Music*, sf::Music*);
     float FUEL();
     float AIR();
     float SPEED() const;
