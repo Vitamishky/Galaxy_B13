@@ -21,10 +21,10 @@ struct ClientPlayer{
 
 class client {
 public:
-    static void initializeClient(sf::IpAddress server, const std::string& name, spaceShip ship,
+    static void initializeClient(sf::IpAddress server, const std::string& name, spaceShip &ship,
                                  std::map <string, ClientPlayer> &ClientBase, unsigned short port = 50001);
 
-    static void loopClient(sf::RenderWindow &window, sf::IpAddress server,
+    static void loopClient(sf::RenderWindow &window, sf::IpAddress server, spaceShip &ship, const string& client_name,
                            std::map <string, ClientPlayer> &ClientBase, unsigned short port=50001);
 
 };

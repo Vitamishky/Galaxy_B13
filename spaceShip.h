@@ -23,6 +23,9 @@ public:
     void move(float);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
+    pair<float, float> getVelocity() const;
+    float getAngularVelocity() const;
+    void newRocket(spaceShip);
     void newCoordinate(float, float, float);
     float getMaxFuel() const;
     float getMaxAir() const;

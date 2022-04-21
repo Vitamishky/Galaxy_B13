@@ -179,3 +179,22 @@ void spaceShip::newCoordinate(float X, float Y, float A) {
 int spaceShip::getAmountOfModules() const{
     return rocket.size();
 }
+
+pair<float, float> spaceShip::getVelocity() const {
+    return this->velocity;
+}
+
+float spaceShip::getAngularVelocity() const {
+    return this->angularVelocity;
+}
+
+void spaceShip::newRocket(spaceShip NewRocket) {
+    this->cordCentreMass = NewRocket.cordCentreMass;
+    this->velocity = NewRocket.velocity;
+    this->angularVelocity = NewRocket.angularVelocity;
+    this->MomentOfInertia = NewRocket.MomentOfInertia;
+    this->angle = NewRocket.angle;
+    this->x = NewRocket.x;
+    this->y = NewRocket.y;
+    this->rocket = NewRocket.rocket;
+}

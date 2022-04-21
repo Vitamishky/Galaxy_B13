@@ -12,8 +12,8 @@ private:
     string image;
 public:
     MODULE(string image = "image/chert.jpg",
-            int Width = 10,
-            int Height = 10,
+            int Width = 100,
+            int Height = 100,
            float Masse = 100,
             bool IsController = false,
             bool IsTurner = false,

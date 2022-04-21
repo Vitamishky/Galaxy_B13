@@ -37,20 +37,22 @@ set(PROJECT_SOURCES
 set(SERVER_SOURCES
         server.cpp
         spaceObjects.cpp
-        MODULE.cpp
         spaceShip.cpp
         parametrizationScreen.cpp
+        functions.cpp
+        MODULE.cpp
         )
 set(SERVER_HEADERS
         spaceObjects.h
-        MODULE.h
         spaceShip.h
         parametrizationScreen.h
+        functions.h
+        MODULE.h
         )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(Galaxy_B13 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
-add_executable(Galaxy_Server ${SERVER_SOURCES} ${SERVER_HEADERS})
+add_executable(Galaxy_Server ${SERVER_SOURCES} ${PROJECT_HEADERS})
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR D:/SFML/lib/cmake/SFML)

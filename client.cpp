@@ -3,84 +3,94 @@
 //
 
 #include "client.h"
+#include <SFML/OpenGL.hpp>
 
+const sf::Uint8 typeInitCS = 1, typeTransferCS = 2, typeInitSC = 3, typeTransferSC = 4;
 
-void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip ship,
+void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip &ship,
                               std::map <string, ClientPlayer> &ClientBase, unsigned short port){
     sf::UdpSocket socket;
     sf::Packet packet;
 
     socket.bind(50002);
-
-    sf::Uint8 typeInit = 1;
-    packet << typeInit;
+    packet << typeInitCS;
+    sf::Uint8 AmountOfModules = ship.getAmountOfModules();
     packet << client_name << ship.getCoordinates().first << ship.getCoordinates().second
-           << ship.ANGLE() << ship.getAmountOfModules();
+           << ship.ANGLE() << AmountOfModules;
     for (auto &module: ship.rocket) {
-        packet << module.getPlaceOfImage() << module.getParametrization().first <<
-        module.getParametrization().second <<module.getMasse() << module.IsController
+        sf::Uint8 width = module.getParametrization().first, height = module.getParametrization().second;
+        packet << module.getPlaceOfImage() << width <<
+        height <<module.getMasse() << module.IsController
         << module.IsTurner << module.Side_PotForce() << module.getAir() << module.IsEngine <<
         module.Forward_PotForce() << module.getFuel();
     }
-    if(socket.send(packet, server, port) == sf::Socket::Done){
-        cout << "Send"<< endl;
-    }
-
-    packet.clear();
-    spaceObjects s;
-    sf::Uint8 n, n1;
-    string name;
-    cout << "Initializing..." << endl;
-    if (socket.receive(packet, server, port) == sf::Socket::Done) {
-        cout << "Prineal";
-        packet >> n;
-        for (int j = 0; j < n; j++) {
-            packet >> name >> ClientBase[name].x >> ClientBase[name].y
-            >> ClientBase[name].angle >> n1;
-            vector<ClientModule> modules;
-            for (int i = 0; i < n1; ++i) {
-                ClientModule M;
-                packet >> M.image >> M.width >> M.hight;
-                modules.push_back(M);
-            }
-            ClientBase[name].modules = modules;
-        }
-    } else {
-        cout << "Ne prineal" << endl;
+    if(socket.send(packet, server, port) != sf::Socket::Done){
+        cout << "error_5"<< endl;
     }
 }
-void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
+void client::loopClient(sf::RenderWindow &window, sf::IpAddress server, spaceShip &ourRocket, const string& OurName,
                         map <string, ClientPlayer>& ClientBase, unsigned short port) {
     sf::UdpSocket socket;
     socket.bind(50002);
     socket.setBlocking(false);
     sf::Packet packet;
 
-    sf::Uint8 typeTransfer = 2;
-    packet << typeTransfer;
-    bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::X),
-            right = sf::Keyboard::isKeyPressed(sf::Keyboard::Z),
-            forward = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
-
-    packet << left << right << forward;
-    socket.send(packet, server, port);
-
-    packet.clear();
 
     std::string client_name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
-        cout << "Prineal.2";
-        packet >> client_name >> ClientBase[client_name].x >> ClientBase[client_name].y
-               >> ClientBase[client_name].angle;
-    }
+        cout << "<<" << endl;
+        sf::Uint8 typeOfTransfer, SizeOfServerBase, n1;
+        string name;
+        packet >> typeOfTransfer;
+        switch (typeOfTransfer) {
+            case typeTransferSC:
+                cout << "Prineal 1" << endl;
+                packet >> SizeOfServerBase;
+                for(int i=0; i < SizeOfServerBase; i++) {
+                    packet >> client_name >> ClientBase[client_name].x >> ClientBase[client_name].y
+                           >> ClientBase[client_name].angle;
 
-    for (auto &player: ClientBase) {
-        vector<MODULE> modules;
-        for (auto &module: player.second.modules) {
-            MODULE m(module.image, module.width, module.hight);
-            modules.push_back(m);
+                    for (auto &player: ClientBase) {
+                        vector<MODULE> modules;
+                        for (auto &module: player.second.modules) {
+                            MODULE m(module.image, module.width, module.hight);
+                            modules.push_back(m);
+                        }
+                        spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
+
+                        if(client_name == OurName){
+                            ourRocket.newRocket(ship);
+                        }
+                        ship.draw(window);
+                    }
+                }
+                break;
+            case typeInitSC:
+                cout << "Prineal 2";
+                packet >> SizeOfServerBase;
+                for (int j = 0; j < SizeOfServerBase; j++) {
+                    packet >> name >> ClientBase[name].x >> ClientBase[name].y
+                           >> ClientBase[name].angle >> n1;
+                    vector<ClientModule> modules;
+                    for (int i = 0; i < n1; ++i) {
+                        ClientModule M;
+                        packet >> M.image >> M.width >> M.hight;
+                        modules.push_back(M);
+                    }
+                    ClientBase[name].modules = modules;
+                }
+                break;
+            default:
+                cout << "Ne prineal";
+                break;
         }
-        spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
-        ship.draw(window);
+
+        packet.clear();
+
+        bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::X),
+                right = sf::Keyboard::isKeyPressed(sf::Keyboard::Z),
+                forward = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+        packet << typeTransferCS << left << right << forward;
+        socket.send(packet, server, port);
     }
 }
