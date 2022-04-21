@@ -12,7 +12,9 @@
 #include "client.h"
 
 std::map <string, ClientPlayer> ClientBase;
+
 int main() {
+    sf::UdpSocket socket;
     std::string client_name;
     std::cout << std::endl << "Enter you name: ";
     std::cin >> client_name;
@@ -52,7 +54,7 @@ int main() {
     sf::IpAddress server;
     std::cout << "Enter server IP: ";
     std::cin >> server;
-    client::initializeClient(server, client_name, spaceship, ClientBase, 50001);
+    client::initializeClient(socket, server, client_name, spaceship, ClientBase, 50001);
 
 
 
@@ -124,7 +126,7 @@ int main() {
             drawObjects->drawBg(window, Camera->getViewCamera());
             window.setView(Camera->getViewCamera());
 
-            client::loopClient(window, server, spaceship, client_name, ClientBase, 50001);
+            client::loopClient(socket, window, server, spaceship, client_name, ClientBase, 50001);
 
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());

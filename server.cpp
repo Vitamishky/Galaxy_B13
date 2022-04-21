@@ -17,16 +17,18 @@ struct ServerPlayer{
     pair<float, float> velocity = make_pair(0, 0);
     float angularVelocity = 0;
     float Masse, fuel, air;
+    unsigned short port = 50002;
 };
 std::map <sf::IpAddress, ServerPlayer> ServerBase;
-unsigned short port = 50002;
-unsigned short serverPort = 50001;
+
 const float dt = 0.005;
 
 int main() {
     sf::UdpSocket socket;
     socket.setBlocking(false);
     std::string client_name;
+    unsigned short port;
+    unsigned short serverPort = 50001;
     cout << "Start" << endl;
 
     const sf::Uint8 typeInitCS = 1, typeTransferCS = 2, typeInitSC = 3, typeTransferSC = 4;
@@ -38,6 +40,7 @@ int main() {
 
         if (socket.receive(packet, sender, port) == sf::Socket::Done) {
             cout << "Prineal: ";
+            ServerBase[sender].port = port;
             //Ќећного объ€влений дл€ дальнейшей работы
             sf::Uint8 n, typeOfTransfer;
 
@@ -56,8 +59,6 @@ int main() {
                                module.IsEngine >> module.forward_potForce >> module.fuel;
                         modules.push_back(module);
                     }
-                    ServerBase[sender].modules = modules;
-
                     allPackets << typeInitSC;
                     sf::Uint8 ServerSize = ServerBase.size();
                     allPackets << ServerSize;
@@ -161,8 +162,8 @@ int main() {
                     break;
             }
             for (auto &g: ServerBase) {
-                if (socket.send(allPackets, g.first, port) != sf::Socket::Done) {
-                    cout << "error";
+                if (socket.send(allPackets, g.first, g.second.port) == sf::Socket::Done) {
+                    cout << allPackets;
                 }
             }
         }

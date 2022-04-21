@@ -3,13 +3,11 @@
 //
 
 #include "client.h"
-#include <SFML/OpenGL.hpp>
 
 const sf::Uint8 typeInitCS = 1, typeTransferCS = 2, typeInitSC = 3, typeTransferSC = 4;
 
-void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip &ship,
+void client::initializeClient(sf::UdpSocket &socket, sf::IpAddress server, const string& client_name, spaceShip &ship,
                               std::map <string, ClientPlayer> &ClientBase, unsigned short port){
-    sf::UdpSocket socket;
     sf::Packet packet;
 
     socket.bind(50002);
@@ -27,13 +25,11 @@ void client::initializeClient(sf::IpAddress server, const string& client_name, s
         cout << "error_5"<< endl;
     }
 }
-void client::loopClient(sf::RenderWindow &window, sf::IpAddress server, spaceShip &ourRocket, const string& OurName,
+void client::loopClient(sf::UdpSocket &socket, sf::RenderWindow &window, sf::IpAddress server, spaceShip &ourRocket, const string& OurName,
                         map <string, ClientPlayer>& ClientBase, unsigned short port) {
-    sf::UdpSocket socket;
-    socket.bind(50002);
+
     socket.setBlocking(false);
     sf::Packet packet;
-
 
     std::string client_name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
@@ -47,7 +43,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server, spaceShi
                 packet >> SizeOfServerBase;
                 for(int i=0; i < SizeOfServerBase; i++) {
                     packet >> client_name >> ClientBase[client_name].x >> ClientBase[client_name].y
-                           >> ClientBase[client_name].angle;
+                           >> ClientBase[client_name].angle >> ClientBase[client_name].velocity.first >> ClientBase[client_name].velocity.second;
 
                     for (auto &player: ClientBase) {
                         vector<MODULE> modules;
@@ -64,7 +60,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server, spaceShi
                     }
                 }
                 break;
-            case typeInitSC:
+            case typeInitSC: {
                 cout << "Prineal 2";
                 packet >> SizeOfServerBase;
                 for (int j = 0; j < SizeOfServerBase; j++) {
@@ -79,6 +75,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server, spaceShi
                     ClientBase[name].modules = modules;
                 }
                 break;
+            }
             default:
                 cout << "Ne prineal";
                 break;
