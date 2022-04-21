@@ -32,8 +32,8 @@ add_executable(${PROJECT_NAME} ${HEADERS} main.cpp
         buildRocket.cpp
         optionsMenu.cpp
         startMenu.cpp
-        client.cpp)
+        client.cpp
+        server.cpp)
 
 
 target_link_libraries(Galaxy_B13 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
-target_link_libraries(Galaxy_Server sfml-system sfml-window sfml-graphics sfml-audio sfml-network)

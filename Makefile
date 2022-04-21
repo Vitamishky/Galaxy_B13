@@ -369,6 +369,30 @@ parametrizationScreen.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.s
 .PHONY : parametrizationScreen.cpp.s
 
+server.o: server.cpp.o
+.PHONY : server.o
+
+# target to build an object file
+server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/server.cpp.o
+.PHONY : server.cpp.o
+
+server.i: server.cpp.i
+.PHONY : server.i
+
+# target to preprocess a source file
+server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/server.cpp.i
+.PHONY : server.cpp.i
+
+server.s: server.cpp.s
+.PHONY : server.s
+
+# target to generate assembly for a file
+server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/server.cpp.s
+.PHONY : server.cpp.s
+
 spaceObjects.o: spaceObjects.cpp.o
 .PHONY : spaceObjects.o
 
@@ -480,6 +504,9 @@ help:
 	@echo "... parametrizationScreen.o"
 	@echo "... parametrizationScreen.i"
 	@echo "... parametrizationScreen.s"
+	@echo "... server.o"
+	@echo "... server.i"
+	@echo "... server.s"
 	@echo "... spaceObjects.o"
 	@echo "... spaceObjects.i"
 	@echo "... spaceObjects.s"

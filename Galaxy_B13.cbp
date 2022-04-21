@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Galaxy_B13"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\Library\;CMake Files\..\..\..\..\Library\Frameworks\;CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\;CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\;CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\CMake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/azamath/Repositories/Galaxy_B13"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/azamath/Repositories/Galaxy_B13"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/azamath/Repositories/Galaxy_B13"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Galaxy_B13">
+				<Option output="/Users/azamath/Repositories/Galaxy_B13/Galaxy_B13" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/azamath/Repositories/Galaxy_B13"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Frameworks/SFML.framework"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 Galaxy_B13"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Galaxy_B13/fast">
+				<Option output="/Users/azamath/Repositories/Galaxy_B13/Galaxy_B13" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/azamath/Repositories/Galaxy_B13"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Frameworks/SFML.framework"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 Galaxy_B13/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/Users/azamath/Repositories/Galaxy_B13/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/MODULE.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/MODULE.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/aboutMenu.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/buildRocket.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/buildRocket.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/camera.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/camera.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/client.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/client.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/drawAll.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/drawAll.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/functions.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/functions.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/main.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/optionsMenu.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/parametrizationScreen.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/server.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/spaceObjects.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/spaceShip.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/spaceShip.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/startMenu.cpp">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/startMenu.h">
+			<Option target="Galaxy_B13"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/../../../../Library/Frameworks/SFML.framework/Resources/CMake/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\CMake\"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/../../../../Library/Frameworks/SFML.framework/Resources/CMake/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\CMake\"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/../../../../Library/Frameworks/SFML.framework/Resources/CMake/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\CMake\"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/../../../../Library/Frameworks/SFML.framework/Resources/CMake/SFMLSharedTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\CMake\"/>
+		</Unit>
+		<Unit filename="/Users/azamath/Repositories/Galaxy_B13/../../../../Library/Frameworks/SFML.framework/Resources/CMake/SFMLSharedTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Library\Frameworks\SFML.framework\Resources\CMake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

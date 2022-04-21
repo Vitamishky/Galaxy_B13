@@ -23,26 +23,24 @@ int main() {
     sf::UdpSocket socket;
     socket.setBlocking(false);
     std::string client_name;
-    unsigned short port = 50001;
-    unsigned short senderPort = 50002;
+    unsigned short port = 50002;
+    unsigned short serverPort = 50001;
+    // Listen to messages on the specified port
+    if (socket.bind(serverPort) != sf::Socket::Done) { return 0; }
     for (;;) {
-        // Listen to messages on the specified port
-        if (socket.bind(port) != sf::Socket::Done) { return 0; }
-
         sf::IpAddress sender;
         sf::Packet packet, allPackets;
 
-        if (socket.receive(packet, sender, senderPort) == sf::Socket::Done) {
-            cout << "456";
-            //Ќећного объ€влений дл€ дольнейшей работы
+        if (socket.receive(packet, sender, port) == sf::Socket::Done) {
+            cout << "Prineal: ";
+            //Ќећного объ€влений дл€ дальнейшей работы
             sf::Uint8 n, typeOfTransfer;
 
             packet >> typeOfTransfer;
 
             sf::Uint8 typeInit = 1;
             if (typeOfTransfer == typeInit) { //»нициализаци€ игрока
-                ServerBase[sender].senderPort = senderPort;
-                cout << "i";
+                cout << "initalizating";
                 packet >> ServerBase[sender].client_name >> ServerBase[sender].x >> ServerBase[sender].y >>
                        ServerBase[sender].angel >> n;
                 vector<ServerModule> modules;
@@ -54,6 +52,7 @@ int main() {
                     modules.push_back(module);
                 }
                 ServerBase[sender].modules = modules;
+
                 sf::Uint8 ServerSize = ServerBase.size();
                 allPackets << ServerSize;
                 for (auto &p: ServerBase) { //передача данных о внешнем виде всех игроков всем игрокам
@@ -65,7 +64,7 @@ int main() {
                     }
                 }
                 for (auto &g: ServerBase) {
-                    if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
+                    if (socket.send(allPackets, g.first, port) != sf::Socket::Done) {
                         cout << "error";
                     }
                 }
@@ -73,7 +72,7 @@ int main() {
 
             sf::Uint8 typeTransfer = 2;
             if (typeOfTransfer == typeTransfer) { //перемещение игрока
-                cout << "d";
+                cout << "move" << endl;
                 bool left, right, forward;
                 packet >> left >> right >> forward;
                 bool crutch = false;
@@ -121,12 +120,12 @@ int main() {
                 allPackets << ServerBase[sender].client_name << ServerBase[sender].x <<
                 ServerBase[sender].y << ServerBase[sender].angel;
                 for (auto &g: ServerBase) {
-                    if (socket.send(allPackets, g.first, g.second.senderPort) != sf::Socket::Done) {
+                    if (socket.send(allPackets, g.first, port) != sf::Socket::Done) {
                         cout << "error";
                     }
                 }
             }
-
+        } else{
         }
     }
 }

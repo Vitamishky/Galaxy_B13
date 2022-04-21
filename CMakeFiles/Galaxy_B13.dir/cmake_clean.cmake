@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Galaxy_B13.dir/optionsMenu.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o"
   "CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.o.d"
+  "CMakeFiles/Galaxy_B13.dir/server.cpp.o"
+  "CMakeFiles/Galaxy_B13.dir/server.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o"
   "CMakeFiles/Galaxy_B13.dir/spaceObjects.cpp.o.d"
   "CMakeFiles/Galaxy_B13.dir/spaceShip.cpp.o"

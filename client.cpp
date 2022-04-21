@@ -3,13 +3,15 @@
 //
 
 #include "client.h"
-
-
+#include <SFML/OpenGL.hpp>
 
 void client::initializeClient(sf::IpAddress server, const string& client_name, spaceShip ship,
                               std::map <string, ClientPlayer> &ClientBase, unsigned short port){
-    sf::Packet packet;
     sf::UdpSocket socket;
+    sf::Packet packet;
+
+    socket.bind(50002);
+
     sf::Uint8 typeInit = 1;
     packet << typeInit;
     packet << client_name << ship.getCoordinates().first << ship.getCoordinates().second
@@ -20,13 +22,17 @@ void client::initializeClient(sf::IpAddress server, const string& client_name, s
         << module.IsTurner << module.Side_PotForce() << module.getAir() << module.IsEngine <<
         module.Forward_PotForce() << module.getFuel();
     }
-    socket.send(packet, server, port);
+    if(socket.send(packet, server, port) == sf::Socket::Done){
+        cout << "Send"<< endl;
+    }
 
     packet.clear();
     spaceObjects s;
     sf::Uint8 n, n1;
     string name;
+    cout << "Initializing..." << endl;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
+        cout << "Prineal";
         packet >> n;
         for (int j = 0; j < n; j++) {
             packet >> name >> ClientBase[name].x >> ClientBase[name].y
@@ -39,11 +45,14 @@ void client::initializeClient(sf::IpAddress server, const string& client_name, s
             }
             ClientBase[name].modules = modules;
         }
+    } else {
+        cout << "Ne prineal" << endl;
     }
 }
 void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
                         map <string, ClientPlayer>& ClientBase, unsigned short port) {
     sf::UdpSocket socket;
+    socket.bind(50002);
     socket.setBlocking(false);
     sf::Packet packet;
 
@@ -60,6 +69,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
 
     std::string client_name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
+        cout << "Prineal.2";
         packet >> client_name >> ClientBase[client_name].x >> ClientBase[client_name].y
                >> ClientBase[client_name].angle;
     }
@@ -71,6 +81,7 @@ void client::loopClient(sf::RenderWindow &window, sf::IpAddress server,
             modules.push_back(m);
         }
         spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
+
         ship.draw(window);
     }
 }
