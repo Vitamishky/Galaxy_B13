@@ -10,17 +10,17 @@
 
 int main()
 {
-    sf::Texture tex, tex1, tex2, tex3;
+    sf::Texture tex4, tex1, tex2, tex3;
     vector<sf::Texture> texV;
-    tex.loadFromFile("image/background.jpg");
-    texV.push_back(tex);
+    tex4.loadFromFile("image/background.jpg");
+    texV.push_back(tex4);
     tex1.loadFromFile("image/backgroundSpace.jpg");
     texV.push_back(tex1);
     tex2.loadFromFile("image/backgroundSpace2.jpg");
     texV.push_back(tex2);
     tex3.loadFromFile("image/backgroundCat.jpg");
     texV.push_back(tex3);
-
+    float targetDistance;
     bool reved = true;
     //Работа с музыкой
     sf::Music* bgMusic = new sf::Music;
@@ -62,19 +62,37 @@ int main()
     drawObjects->drawIcon(*window);
 
     //Создание космического корабля
-    MODULE m1("image/cabine.png", 5, 120, 120, true);
-    MODULE m2("image/module2.png",10, 120, 130);
-    MODULE m3("image/module3.png",5, 120, 130, false, true, 1000, 1000);
-    MODULE m4("image/module4.png",10, 130, 120, false, false, 0, 0, true, 10000, 10000);
+    MODULE m1("image/cabine.png", 2, 120, 120, true);
+    MODULE m2("image/module2.png", 10, 120, 130);
+    MODULE m3("image/module3.png", 2, 120, 130, false, true, 1000, 1000);
+    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 100000, 10000);
     vector<MODULE> masivMODULE;
 
     //Создание планет на карте
+    sf::Texture tex;
+    vector<sf::Texture> texPlanet;
+    tex.loadFromFile("image/start1.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
+    tex.loadFromFile("image/air.png");
+    texPlanet.push_back(tex);
     vector<Planet> *planets = new vector<Planet>;
     vector<sf::CircleShape> sprPlanet;
     for (int i = 0; i < 8; ++i) {
         Planet* planet1 = new Planet{(float)((rand() % 80000) * pow(-1, rand() / 23)), (float)((rand() % 80000) * pow(-1, rand() / 23)),
                               (float)(rand() % 255 * 10000), 3000.f};
-        sprPlanet.push_back(planet1->getSprite());
+        planet1->setTex(texPlanet[i]);
         planets->push_back(*planet1);
     }
     //Работа с камерой слежения
@@ -89,10 +107,6 @@ int main()
     std::pair<string, vector<int>> para1 = { "back", {0, 0, 5} };
 
     while (nameMenu != "go" && nameMenu != "exit") {
-
-        //para1 = menu.drawStartMenu(window, texV[para1.second[0]]);
-
-
         if (nameMenu == "main") {
             nameMenu = menu->drawStartMenu(*window, texV[para1.second[0]]);
             window->clear();
@@ -123,8 +137,6 @@ int main()
         }
         if (c == 4) {
             masivMODULE.push_back(m4);
-            nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
-            window->clear();
         }
     }
     masivMODULE.push_back(m1);
@@ -132,7 +144,6 @@ int main()
 
     if (nameMenu != "exit") {
         while (window->isOpen()) {
-
             sf::Event event{};
 
             float dt = sf_clock.restart().asSeconds();
@@ -156,76 +167,84 @@ int main()
                     Camera->unlockCamera();
                 }
 
-            if (event.type == sf::Event::MouseWheelScrolled) {
-                Camera->zoomCamera(event, *window);
-            }
-            if (event.type == sf::Event::KeyReleased || spaceship->FUEL() == 0) {
-                if (event.key.code == sf::Keyboard::Space) {
-                    engineSound->setVolume(0);
-                 }
-            }
+                if (event.type == sf::Event::MouseWheelScrolled) {
+                    Camera->zoomCamera(event, *window);
+                }
+                if (event.type == sf::Event::KeyReleased || spaceship->FUEL() == 0) {
+                    if (event.key.code == sf::Keyboard::Space) {
+                        engineSound->setVolume(0);
+                    }
+                }
 
-            if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
-                if (event.key.code == sf::Keyboard::Z) {
-                    turnerSound->setVolume(0);
+                if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
+                    if (event.key.code == sf::Keyboard::Z) {
+                        turnerSound->setVolume(0);
+                    }
                 }
-            }
-            if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
-                if (event.key.code == sf::Keyboard::X) {
-                    turnerSound->setVolume(0);
+                if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
+                    if (event.key.code == sf::Keyboard::X) {
+                        turnerSound->setVolume(0);
+                    }
                 }
-            }
 
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
                     Camera->backFromShip(*window, *spaceship);
                 }
             }
-        
-            
-        drawObjects->drawBg(*window, Camera->getViewCamera());
-        window->setView(Camera->getViewCamera());
-        //Отрисовка планет
-        
-        for (auto& i : *planets)
-            i.drawSprite(*window);
-        spaceship->getSprite();
-        
-        for (int i = 0; i < spaceship->getSprite().size(); i++) {
-            for (int j = 0; j < sprPlanet.size(); j++) {
-                if (spaceship->getSprite()[i].getGlobalBounds().intersects(sprPlanet[j].getGlobalBounds())) {
-                    reved = false;
-                }
-               
+            targetDistance = sqrt((spaceship->getCoordinates().first - planets[0][0].getCenter().first) * (spaceship->getCoordinates().first - planets[0][0].getCenter().first) + 
+                (spaceship->getCoordinates().second - planets[0][0].getCenter().second) * (spaceship->getCoordinates().second - planets[0][0].getCenter().second));
+            drawObjects->drawBg(*window, Camera->getViewCamera());
+            window->setView(Camera->getViewCamera());
+            //Отрисовка планет
+            for (auto& i : *planets) {
+                i.drawSprite(*window);
             }
-        }
-        if (reved) {
-            spaceship->draw(*window);
-            spaceship->control(engineSound, turnerSound);
-            spaceship->move(dt, *planets);
-        }
-        drawObjects->drawLeftInter(*window, Camera->getViewCamera(), *spaceship);
-        drawObjects->drawRightInter(*window, Camera->getViewCamera());
-        drawObjects->drawFuel(*window, Camera->getViewCamera(), *spaceship);
-        drawObjects->drawCompas(*window, Camera->getViewCamera(), *spaceship);
-        drawObjects->drawArrow(*window, Camera->getViewCamera());
-        drawObjects->drawTextAboutAll(*window, Camera->getViewCamera(), *spaceship);
-        
+            for (int i = 0; i < spaceship->getSprite().size(); i++) {
+                for (int j = 0; j < sprPlanet.size(); j++) {
+                    if (spaceship->getSprite()[i].getGlobalBounds().intersects(sprPlanet[j].getGlobalBounds())) {
+                        reved = false;
+                    }
+                }
+            }
+            if (reved) {
+                spaceship->draw(*window);
+                spaceship->control(engineSound, turnerSound);
+                spaceship->move(dt, *planets);
+            }
+            else {
+                for (int i = 0; i < 100; i++) {
+                    drawObjects->getSpriteFinal(*window, Camera->getViewCamera());
+                    window->display();
+                    window->clear();
+                }
+                window->close();
+            }
+            if (targetDistance < planets[0][0].getRadius() * 1.4f) {
+                
+            }
+            drawObjects->drawLeftInter(*window, Camera->getViewCamera(), *spaceship, targetDistance);
+            drawObjects->drawRightInter(*window, Camera->getViewCamera());
+            drawObjects->drawFuel(*window, Camera->getViewCamera(), *spaceship);
+            drawObjects->drawCompas(*window, Camera->getViewCamera(), *spaceship);
+            drawObjects->drawArrow(*window, Camera->getViewCamera());
+            drawObjects->drawTextAboutAll(*window, Camera->getViewCamera(), *spaceship, *planets);
 
-        window->display();
+            window->display();
 
-        window->clear();
+            window->clear();
         }
-        delete drawObjects;
-        delete Camera;
-        delete screen;
-        delete about;
-        delete bgMusic;
-        delete engineSound;
-        delete turnerSound;
-        delete window;
-        delete options;
-        delete menu;
-        delete planets;
+
     }
+    delete drawObjects;
+    delete Camera;
+    delete screen;
+    delete about;
+    delete bgMusic;
+    delete engineSound;
+    delete turnerSound;
+    delete window;
+    delete options;
+    delete menu;
+    delete planets;
     return EXIT_SUCCESS;
 }

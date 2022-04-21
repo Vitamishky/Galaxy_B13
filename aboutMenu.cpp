@@ -7,7 +7,6 @@ aboutMenu::aboutMenu() {
 }
 
 string aboutMenu::drawAboutMenu(sf::RenderWindow& window, sf::Texture texBg) {
-	finalMeme = draw.getSpriteFinal(window);
 	text = draw.drawTextAbout(window);
 	back = draw.getSpriteBack(window);
 	backWithMouse = draw.getSpriteBackWithMouse(window);
@@ -47,7 +46,6 @@ string aboutMenu::drawAboutMenu(sf::RenderWindow& window, sf::Texture texBg) {
 
 		if (menuNum == 1) {
 			window.draw(backWithMouse);
-			window.draw(finalMeme);
 		}
 
 		window.display();

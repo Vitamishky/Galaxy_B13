@@ -45,6 +45,14 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	sprFuelPanel.setTexture(texFuelPanel);
 	texAirPanel.loadFromFile("image/air.png");
 	sprAirPanel.setTexture(texAirPanel);
+	texShapeShip.loadFromFile("image/start1.png");
+	texEmptyPlanet.loadFromFile("image/empty_planet.png");
+	texNotEmptyPlanet.loadFromFile("image/kerbals.png");
+	texSpace.loadFromFile("image/bg.png");
+	shapeEmptyPlanet.setTexture(&texEmptyPlanet);
+	shapeRocket.setTexture(&texShapeShip);
+	shapeNotEmptyPlanet.setTexture(&texNotEmptyPlanet);
+	shapeSpace.setTexture(&texSpace);
 	//отрисовка главного меню
 	buttonStartFull.loadFromFile("image/start1.png");
 	buttonOptionsFull.loadFromFile("image/options1.png");
@@ -151,7 +159,7 @@ mouse 1 - move camera");
 	rAir = sprRAir.getTextureRect();
 	rEmpty = sprREmpty.getTextureRect();
 	butBuild = buttonBuilt.getTextureRect();
-
+	finalBounds = finalMeme.getGlobalBounds();
 }
 
 
@@ -169,7 +177,7 @@ void drawAll::drawIcon(sf::RenderWindow& window) {
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
-void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip ship) {
+void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip ship, float distance) {
 	float vSize_x = 0.15f * view.getSize().x;
 	float vSize_y = 0.8f * view.getSize().y;
 	float xLeftInter = sprLeftInter.getLocalBounds().width;
@@ -208,22 +216,37 @@ void drawAll::drawLeftInter(sf::RenderWindow& window, sf::View view, spaceShip s
 		vLText[i].setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * (0.15f + i * 0.12f));
 		window.draw(vLText[i]);
 	}
-
+	textDistance.setString(to_string(distance));
+	textDistance.setFont(font);
+	textDistance.setScale(vSize_x * 4.f / xLeftInter, vSize_y * 3.f / yLeftInter);
+	textDistance.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 + vSize_y * 0.7f);
+	window.draw(textDistance);
 }
 
-void drawAll::drawTextAboutAll(sf::RenderWindow& window, sf::View view, spaceShip ship) {
+void drawAll::drawTextAboutAll(sf::RenderWindow& window, sf::View view, spaceShip ship, vector<Planet> planets) {
 	float vSize_x = 0.15f * view.getSize().x;
 	float vSize_y = 0.8f * view.getSize().y;
 	float xRightInter = sprRightInter.getLocalBounds().width;
 	float yRightInter = sprRightInter.getLocalBounds().height;
+	float shapeBounds = view.getSize().x * 0.06f;
 	sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 	sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
-	if (ship.getSprite()[0].getGlobalBounds().contains(pos.x, pos.y) ||
-		ship.getSprite()[1].getGlobalBounds().contains(pos.x, pos.y) ||
-		ship.getSprite()[2].getGlobalBounds().contains(pos.x, pos.y) ||
-		ship.getSprite()[3].getGlobalBounds().contains(pos.x, pos.y)) {
-		textSpace.setString(\
-			"This is our ship, our home. We used to \n\
+	shapeEmptyPlanet.setRadius(shapeBounds);
+	shapeEmptyPlanet.setPosition(view.getCenter().x + view.getSize().x * 0.36f, view.getCenter().y - view.getSize().y * 0.38f);
+	shapeRocket.setRadius(shapeBounds);
+	shapeRocket.setPosition(view.getCenter().x + view.getSize().x * 0.36f, view.getCenter().y - view.getSize().y * 0.38f);
+	shapeNotEmptyPlanet.setRadius(shapeBounds);
+	shapeNotEmptyPlanet.setPosition(view.getCenter().x + view.getSize().x * 0.36f, view.getCenter().y - view.getSize().y * 0.38f);
+	shapeSpace.setRadius(shapeBounds);
+	shapeSpace.setPosition(view.getCenter().x + view.getSize().x * 0.36f, view.getCenter().y - view.getSize().y * 0.38f);
+	textSpace.setFont(font);
+	textSpace.setScale(vSize_x * 1.88f / xRightInter, vSize_y * 2.f / yRightInter);
+	textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.08f);
+	int trig = 1;
+	for (auto& c : ship.getSprite()) {
+		if (c.getGlobalBounds().contains(pos.x, pos.y)) {
+			textSpace.setString(\
+				"This is our ship, our home. We used to \n\
 fly in weightlessness, eat from a tube \n\
 and look at the stars from the porthole. \n\
 Our captain, John, likes to cook, so \n\
@@ -232,10 +255,48 @@ We`re a spaceship, not a missile. But \n\
 we respect him, because no one but him \n\
 could have built a rocket like that in \n\
 a month from improvesed materials");
+			window.draw(shapeRocket);
+			trig = 0;
+		}
 	}
-	else {
-		textSpace.setString(\
-			"An open and violent space that`s been \n\
+	if (trig != 0) {
+		if (planets[0].getSprite().getGlobalBounds().contains(pos.x, pos.y)) {
+			textSpace.setString(\
+				"And this is already a populated planet. \n\
+According to our data, which is certainly \n\
+confirmed, this race has spaceships. \n\
+They also live in three-dimensional \n\
+space. Our captain said we need to get \n\
+to this planet. I don`t know why, maybe \n\
+he wants to feed them cookies. Or can \n\
+colonize, he likes to do it, not for \n\
+nothing he targets for days instead of \n\
+running the ship, playing civilization");
+			textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.05f);
+			window.draw(shapeNotEmptyPlanet);
+		}
+		else if (planets[1].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
+			planets[2].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
+			planets[3].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
+			planets[4].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
+			planets[5].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
+			planets[6].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
+			planets[7].getSprite().getGlobalBounds().contains(pos.x, pos.y)) {
+			textSpace.setString(\
+				"And this is another planet. There is no \n\
+life on it, nor is there a desire to \n\
+approach it. Radiation, rocks, and sand. \n\
+Well, better to stay on the ship. No, I`m \n\
+serious, it`s gonna kill you. Of \n\
+course, right now, dear player, you want \n\
+to visit this planet. Why listen to the \n\
+man who made this game? And don`t tell \n\
+me I didn`t warn you.");
+			window.draw(shapeEmptyPlanet);
+		}
+		else {
+			textSpace.setString(\
+				"An open and violent space that`s been \n\
 around me for months. It seems like \n\
 just yesterday I was home, and now \n\
 I`m rushing into the unknown. What`s \n\
@@ -243,10 +304,10 @@ next? Victory? Defeat? Now it`s \n\
 up to you, my friend. Don`t let me down. \n\
 People from Earth, from our ship, and I \n\
 believe in you");
+			window.draw(shapeSpace);
+		}
+		
 	}
-	textSpace.setFont(font);
-	textSpace.setScale(vSize_x * 1.88f / xRightInter, vSize_y * 2.f / yRightInter);
-	textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.08f);
 	window.draw(textSpace);
 }
 
@@ -468,23 +529,10 @@ sf::Sprite drawAll::getSpriteBuiltWithMouse(sf::RenderWindow& window) {
 	return buttonBuiltWithMouse;
 }
 
-sf::Sprite drawAll::getSpriteFinal(sf::RenderWindow& window) {
-	finalMeme.setScale(window.getSize().x / finalMeme.getGlobalBounds().width, window.getSize().y / finalMeme.getGlobalBounds().height);
-	return finalMeme;
-}
-
-
-bool drawAll::collision(sf::RenderWindow& window, spaceShip ship, vector<Planet> planet) {
-	vector<sf::Sprite> sprShip = ship.getSprite();
-	vector<sf::CircleShape> sprPlanet;
-	for (int i = 0; i < planet.size(); i++) {
-		sprPlanet.push_back(planet[i].getSprite());
-	}
-	for (int i = 0; i < sprShip.size(); i++) {
-		for (int j = 0; j < sprPlanet.size(); j++) {
-			return sprShip[i].getGlobalBounds().intersects(sprPlanet[j].getGlobalBounds());
-		}
-	}
+void drawAll::getSpriteFinal(sf::RenderWindow& window, sf::View view) {
+	finalMeme.setScale(view.getSize().x / finalBounds.width, view.getSize().y / finalBounds.height);
+	finalMeme.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
+	window.draw(finalMeme);
 }
 
 sf::Sprite drawAll::getSpriteRAir(sf::RenderWindow& window) {
