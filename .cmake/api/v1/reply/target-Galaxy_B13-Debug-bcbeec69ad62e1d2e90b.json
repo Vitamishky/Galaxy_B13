@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 38,
+				"line" : 39,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 45,
+				"line" : 46,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 44,
+				"line" : 45,
 				"parent" : 0
 			}
 		]
@@ -337,11 +337,6 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "sounds.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
 			"path" : "spaceObjects.h",
 			"sourceGroupIndex" : 1
 		},
@@ -398,6 +393,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "buildRocket.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "sounds.h",
 			"sourceGroupIndex" : 1
 		}
 	],

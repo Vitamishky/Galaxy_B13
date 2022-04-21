@@ -43,9 +43,28 @@ int main()
 
     //Создание планет на карте
     vector<Planet> planets;
+    srand(time(nullptr));
+    std::string str = "image/planet1.png";
     for (int i = 0; i < 8; ++i) {
-        Planet planet1 {(float)((rand() % 80000) * pow(-1, rand() / 23)), (float)((rand() % 80000) * pow(-1, rand() / 23)),
-                        (float)(rand() % 255 * 10000), 3000.f};
+        float tempX;
+        float tempY;
+        float r;
+        bool b = true;
+        while (b) {
+            int temp = 0;
+            tempX = (float) ((rand() % 800000) * pow(-1, rand() / 23));
+            tempY = (float) ((rand() % 800000) * pow(-1, rand() / 23));
+            r = rand() % 6000 + 2000;
+            for (int j = 0; j < i; j++) {
+                if (sqrtf((planets[j].getCoordinates().first - tempX) * (planets[j].getCoordinates().first - tempX)
+                + (planets[j].getCoordinates().second - tempY) * (planets[j].getCoordinates().second - tempY))
+                > 3 * (planets[j].getRadius() + r))
+                    temp++;
+            }
+            if (temp == i)
+                b = false;
+        }
+        Planet planet1{tempX, tempY, (float) (rand() % 255 * 10000), r, str};
         planets.push_back(planet1);
     }
     //РЎРѕР·РґР°РЅРёРµ РєРѕСЃРјРёС‡РµСЃРєРѕРіРѕ РєРѕСЂР°Р±Р»СЏ

@@ -6,10 +6,11 @@
 class Planet : public spaceObjects{
 protected:
     float radius;
-    sf::CircleShape circle;
+    sf::Sprite sprite;
+    sf::Texture texture;
 public:
     void drawSprite (sf::RenderWindow&) override;
-    Planet(float, float, float, float);
+    Planet(float, float, float, float, std::string);
     float getRadius() const;
 };
 

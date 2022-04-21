@@ -17,6 +17,7 @@ set(PROJECT_HEADERS
         optionsMenu.h
         aboutMenu.h
         buildRocket.h
+        sounds.h
         )
 set(PROJECT_SOURCES
         main.cpp
@@ -32,7 +33,7 @@ set(PROJECT_SOURCES
         optionsMenu.cpp
         aboutMenu.cpp
         buildRocket.cpp
-        sounds.cpp sounds.h)
+        sounds.cpp )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(Galaxy_B13 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
