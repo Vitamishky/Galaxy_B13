@@ -26,14 +26,13 @@ void client::initializeClient(sf::UdpSocket &socket, sf::IpAddress server, const
     }
 }
 void client::loopClient(sf::UdpSocket &socket, sf::RenderWindow &window, sf::IpAddress server, spaceShip &ourRocket, const string& OurName,
-                        map <string, ClientPlayer>& ClientBase, unsigned short port) {
+                        map <string, ClientPlayer>& ClientBase, sf::Event event, unsigned short port) {
 
     socket.setBlocking(false);
     sf::Packet packet;
 
     std::string client_name;
     if (socket.receive(packet, server, port) == sf::Socket::Done) {
-        cout << "<<" << endl;
         sf::Uint8 typeOfTransfer, SizeOfServerBase, n1;
         string name;
         packet >> typeOfTransfer;
@@ -41,32 +40,40 @@ void client::loopClient(sf::UdpSocket &socket, sf::RenderWindow &window, sf::IpA
             case typeTransferSC:
                 cout << "Prineal 1" << endl;
                 packet >> SizeOfServerBase;
-                for(int i=0; i < SizeOfServerBase; i++) {
+                for (int i = 0; i < int(SizeOfServerBase); i++) {
                     packet >> client_name >> ClientBase[client_name].x >> ClientBase[client_name].y
-                           >> ClientBase[client_name].angle >> ClientBase[client_name].velocity.first >> ClientBase[client_name].velocity.second;
+                           >> ClientBase[client_name].angle >> ClientBase[client_name].velocity.first
+                           >> ClientBase[client_name].velocity.second >> ClientBase[client_name].angularVelocity
+                           >> ClientBase[client_name].Masse >> ClientBase[client_name].fuel >> ClientBase[client_name].air;
 
                     for (auto &player: ClientBase) {
-                        vector<MODULE> modules;
-                        for (auto &module: player.second.modules) {
-                            MODULE m(module.image, module.width, module.hight);
-                            modules.push_back(m);
-                        }
-                        spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
+                        if(player.first != OurName)
+                        {
+                            vector<MODULE> modules;
+                            for (auto &module: player.second.modules) {
+                                MODULE m(module.image, module.width, module.hight, ClientBase[client_name].Masse/player.second.modules.size(),
+                                         0,0,0,ClientBase[client_name].air/player.second.modules.size(),0,0,ClientBase[client_name].fuel/player.second.modules.size());
+                                modules.push_back(m);
+                            }
+                            spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
 
-                        if(client_name == OurName){
-                            ourRocket.newRocket(ship);
+                            if (client_name == OurName) {
+                                ourRocket.newRocket(ship);
+                            }
+                            ship.draw(window);
                         }
-                        ship.draw(window);
                     }
                 }
                 break;
             case typeInitSC: {
                 cout << "Prineal 2";
                 packet >> SizeOfServerBase;
-                for (int j = 0; j < SizeOfServerBase; j++) {
+                cout << int(SizeOfServerBase);
+                for (int j = 0; j < int(SizeOfServerBase); j++) {
                     packet >> name >> ClientBase[name].x >> ClientBase[name].y
                            >> ClientBase[name].angle >> n1;
                     vector<ClientModule> modules;
+                    cout << n1;
                     for (int i = 0; i < n1; ++i) {
                         ClientModule M;
                         packet >> M.image >> M.width >> M.hight;
@@ -82,11 +89,36 @@ void client::loopClient(sf::UdpSocket &socket, sf::RenderWindow &window, sf::IpA
         }
 
         packet.clear();
+        bool left = false, right = false, forward = false;
+        while(window.pollEvent(event)) {
+            if(event.type == sf::Event::KeyPressed &&
+                    event.key.code == sf::Keyboard::X)
+                left = true;
+            if(event.type == sf::Event::KeyPressed &&
+                     event.key.code == sf::Keyboard::Z)
+                right = true;
+            if (event.type == sf::Event::KeyPressed &&
+                       event.key.code == sf::Keyboard::Space){
+                forward = true;
+            }
+        }
 
-        bool left = sf::Keyboard::isKeyPressed(sf::Keyboard::X),
-                right = sf::Keyboard::isKeyPressed(sf::Keyboard::Z),
-                forward = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+
+
         packet << typeTransferCS << left << right << forward;
         socket.send(packet, server, port);
+    } else {
+        for (auto &player: ClientBase) {
+            if(player.first != OurName) {
+                vector<MODULE> modules;
+                for (auto &module: player.second.modules) {
+                    MODULE m(module.image, module.width, module.hight);
+                    modules.push_back(m);
+                }
+                spaceShip ship(modules, player.second.x, player.second.y, player.second.angle);
+
+                ship.draw(window);
+            }
+        }
     }
 }

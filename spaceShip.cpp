@@ -198,3 +198,9 @@ void spaceShip::newRocket(spaceShip NewRocket) {
     this->y = NewRocket.y;
     this->rocket = NewRocket.rocket;
 }
+
+void spaceShip::newVelocity(float Vx, float Vy, float Va) {
+    this->velocity.first = Vx;
+    this->velocity.second = Vy;
+    this->angularVelocity = Va;
+}

@@ -15,10 +15,7 @@ std::map <string, ClientPlayer> ClientBase;
 
 int main() {
     sf::UdpSocket socket;
-    std::string client_name;
-    std::cout << std::endl << "Enter you name: ";
-    std::cin >> client_name;
-
+    std::string client_name = "MAX";
 //    char s_c;
 //    std::cout << std::endl << "Enter if you want to server (s) or client (c): ";
 //    std::cin >> s_c;
@@ -47,13 +44,11 @@ int main() {
     MODULE m1("image/cabine.png", 120, 120, 5, true);
     MODULE m2("image/module2.png", 120, 130, 20);
     MODULE m3("image/module3.png", 120, 130, 7, false, true, 1000, 1000);
-    MODULE m4("image/module4.png", 130, 120, 8, false, false, 0, 0, true, 10000, 1000);
+    MODULE m4("image/module4.png", 130, 120, 8, false, false, 0, 0, true, 9999999, 1000);
     vector<MODULE> masivMODULE = {m2, m4, m2, m2, m3, m1};
     spaceShip spaceship = spaceShip(masivMODULE, 800, 150, 45);
 
-    sf::IpAddress server;
-    std::cout << "Enter server IP: ";
-    std::cin >> server;
+    sf::IpAddress server = "localhost";
     client::initializeClient(socket, server, client_name, spaceship, ClientBase, 50001);
 
 
@@ -65,7 +60,7 @@ int main() {
 
     sf::Clock sf_clock;
 
-    string nameMenu = "main";
+    string nameMenu = "go";
 
     while (nameMenu != "go" && nameMenu != "exit") {
         if (nameMenu == "main") {
@@ -126,8 +121,8 @@ int main() {
             drawObjects->drawBg(window, Camera->getViewCamera());
             window.setView(Camera->getViewCamera());
 
-            client::loopClient(socket, window, server, spaceship, client_name, ClientBase, 50001);
-
+            client::loopClient(socket, window, server, spaceship, client_name, ClientBase, event, 50001);
+            spaceship.draw(window);
             drawObjects->drawLeftInter(window, Camera->getViewCamera(), spaceship);
             drawObjects->drawRightInter(window, Camera->getViewCamera());
             drawObjects->drawFuel(window, Camera->getViewCamera(), spaceship);

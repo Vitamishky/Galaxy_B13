@@ -16,6 +16,7 @@ struct ClientPlayer{
     float x, y, angle;
     std::vector<ClientModule> modules;
     pair<float, float> velocity;
+    float angularVelocity;
     float Masse, fuel, air;
 };
 
@@ -26,7 +27,7 @@ public:
                                  std::map <string, ClientPlayer> &ClientBase, unsigned short port = 50001);
 
     static void loopClient(sf::UdpSocket &socket, sf::RenderWindow &window, sf::IpAddress server, spaceShip &ship, const string& client_name,
-                           std::map <string, ClientPlayer> &ClientBase, unsigned short port=50001);
+                           std::map <string, ClientPlayer> &ClientBase, sf::Event event, unsigned short port=50001);
 
 };
 

@@ -15,8 +15,9 @@ struct ServerPlayer{
     std::string client_name = " ";
     std::vector<ServerModule> modules;
     pair<float, float> velocity = make_pair(0, 0);
-    float angularVelocity = 0;
+    float angularVelocity;
     float Masse, fuel, air;
+    bool left, right, forward;
     unsigned short port = 50002;
 };
 std::map <sf::IpAddress, ServerPlayer> ServerBase;
@@ -59,6 +60,8 @@ int main() {
                                module.IsEngine >> module.forward_potForce >> module.fuel;
                         modules.push_back(module);
                     }
+                    ServerBase[sender].modules = modules;
+
                     allPackets << typeInitSC;
                     sf::Uint8 ServerSize = ServerBase.size();
                     allPackets << ServerSize;
@@ -74,9 +77,7 @@ int main() {
                 }
                 case typeTransferCS: { //перемещение игрока
                     cout << "move" << endl;
-                    bool left, right, forward;
-                    packet >> left >> right >> forward;
-                    cout << left << right << forward << endl;
+                    packet >> ServerBase[sender].left >> ServerBase[sender].right >> ServerBase[sender].forward;
                     bool crutch = false;
                     float dfuel = 100000;
                     float dair = 1000;
@@ -95,22 +96,25 @@ int main() {
                             modules.push_back(m);
                         }
                         spaceShip ship(modules, ServerBase[sender].x, ServerBase[sender].y, ServerBase[sender].angel);
+                        ship.newVelocity(player.second.velocity.first, player.second.velocity.second, player.second.angularVelocity);
 
 
                         if (crutch) {
                             for (auto &module: ship.rocket) {
-                                if (forward && module.IsEngine &&
+                                if (ServerBase[sender].forward && module.IsEngine &&
                                     ship.Use_Fuel(module.Forward_PotForce() / dfuel)) {
                                     module.EditAcceleration(make_pair(
                                             module.Forward_PotForce() * sin(ship.ANGLE()) / module.getMasse(),
                                             module.Forward_PotForce() * cos(ship.ANGLE()) / module.getMasse()));
                                 }
-                                if (left && module.IsTurner && ship.Use_Air(module.Side_PotForce() / dair)) {
+                                if (ServerBase[sender].left && module.IsTurner &&
+                                    ship.Use_Air(module.Side_PotForce() / dair)) {
                                     module.EditAcceleration(make_pair(
                                             module.Side_PotForce() * cos(ship.ANGLE()) / module.getMasse(),
                                             -module.Side_PotForce() * sin(ship.ANGLE()) / module.getMasse()));
                                 }
-                                if (right && module.IsTurner && ship.Use_Air(module.Side_PotForce() / dair)) {
+                                if (ServerBase[sender].right && module.IsTurner &&
+                                    ship.Use_Air(module.Side_PotForce() / dair)) {
                                     module.EditAcceleration(make_pair(
                                             -module.Side_PotForce() * cos(ship.ANGLE()) / module.getMasse(),
                                             module.Side_PotForce() * sin(ship.ANGLE()) / module.getMasse()));
@@ -118,6 +122,9 @@ int main() {
                             }
                         }
                         ship.move(dt);
+                        player.second.x = ship.getCoordinates().first;
+                        player.second.y = ship.getCoordinates().second;
+                        player.second.angel = ship.ANGLE();
                         player.second.velocity = ship.getVelocity();
                         player.second.angularVelocity = ship.getAngularVelocity();
                         player.second.Masse = ship.getMass();
@@ -133,38 +140,73 @@ int main() {
                     }
                     break;
                 }
-                default:
-                    for (auto &player: ServerBase) {
-                        vector<MODULE> modules;
-                        for (auto &module: ServerBase[sender].modules) {
-                            MODULE m(module.image, module.width, module.hight, module.Masse, module.IsController,
-                                     module.IsTurner, module.side_potForce, module.air, module.IsEngine,
-                                     module.forward_potForce,
-                                     module.fuel);
-                            modules.push_back(m);
-                        }
-                        spaceShip ship(modules, ServerBase[sender].x, ServerBase[sender].y, ServerBase[sender].angel);
-
-                        ship.move(dt);
-                        player.second.velocity = ship.getVelocity();
-                        player.second.angularVelocity = ship.getAngularVelocity();
-                        player.second.Masse = ship.getMass();
-                        player.second.fuel = ship.FUEL();
-                        player.second.air = ship.AIR();
-                    }
-                    sf::Uint8 SizeOfServerBase = ServerBase.size();
-                    allPackets << typeTransferSC << SizeOfServerBase;
-                    for (auto &player: ServerBase) {
-                        allPackets << player.second.client_name << player.second.x << player.second.y
-                                   << player.second.angel << player.second.velocity.first
-                                   << player.second.velocity.second;
-                    }
-                    break;
             }
             for (auto &g: ServerBase) {
                 if (socket.send(allPackets, g.first, g.second.port) == sf::Socket::Done) {
-                    cout << allPackets;
                 }
+            }
+        } else {
+            bool crutch = false;
+            float dfuel = 100000;
+            float dair = 1000;
+
+            for(auto &player: ServerBase) {
+                for (auto &module: player.second.modules) {
+                    if (module.IsController) crutch = true;
+                }
+            }
+
+            for (auto &player: ServerBase) {
+                vector<MODULE> modules;
+                for (auto &module: player.second.modules) {
+                    MODULE m(module.image, module.width, module.hight, module.Masse, module.IsController,
+                             module.IsTurner, module.side_potForce, module.air, module.IsEngine,
+                             module.forward_potForce,
+                             module.fuel);
+                    modules.push_back(m);
+                }
+                spaceShip ship(modules, ServerBase[sender].x, ServerBase[sender].y, ServerBase[sender].angel);
+                ship.newVelocity(player.second.velocity.first, player.second.velocity.second, player.second.angularVelocity);
+                cout << ship.getMass();
+                if (crutch) {
+                    for (auto &module: ship.rocket) {
+                        if (ServerBase[sender].forward && module.IsEngine &&
+                            ship.Use_Fuel(module.Forward_PotForce() / dfuel)) {
+                            cout << "Yes<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+                            module.EditAcceleration(make_pair(
+                                    module.Forward_PotForce() * sin(ship.ANGLE()) / module.getMasse(),
+                                    module.Forward_PotForce() * cos(ship.ANGLE()) / module.getMasse()));
+                        }
+                        if (ServerBase[sender].left && module.IsTurner && ship.Use_Air(module.Side_PotForce() / dair)) {
+                            module.EditAcceleration(make_pair(
+                                    module.Side_PotForce() * cos(ship.ANGLE()) / module.getMasse(),
+                                    -module.Side_PotForce() * sin(ship.ANGLE()) / module.getMasse()));
+                        }
+                        if (ServerBase[sender].right && module.IsTurner &&
+                            ship.Use_Air(module.Side_PotForce() / dair)) {
+                            module.EditAcceleration(make_pair(
+                                    -module.Side_PotForce() * cos(ship.ANGLE()) / module.getMasse(),
+                                    module.Side_PotForce() * sin(ship.ANGLE()) / module.getMasse()));
+                        }
+                    }
+                }
+                ship.move(dt);
+                player.second.x = ship.getCoordinates().first;
+                player.second.y = ship.getCoordinates().second;
+                player.second.angel = ship.ANGLE();
+                player.second.velocity = ship.getVelocity();
+                player.second.angularVelocity = ship.getAngularVelocity();
+                player.second.Masse = ship.getMass();
+                player.second.fuel = ship.FUEL();
+                player.second.air = ship.AIR();
+            }
+            sf::Uint8 SizeOfServerBase = ServerBase.size();
+            allPackets << typeTransferSC << SizeOfServerBase;
+            for (auto &player: ServerBase) {
+                allPackets << player.second.client_name << player.second.x << player.second.y
+                           << player.second.angel << player.second.velocity.first
+                           << player.second.velocity.second << player.second.angularVelocity
+                           << player.second.Masse << player.second.fuel << player.second.air;
             }
         }
     }

@@ -27,6 +27,7 @@ public:
     float getAngularVelocity() const;
     void newRocket(spaceShip);
     void newCoordinate(float, float, float);
+    void newVelocity(float, float, float);
     float getMaxFuel() const;
     float getMaxAir() const;
     float getMass() const;
