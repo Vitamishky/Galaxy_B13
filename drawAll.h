@@ -42,16 +42,14 @@ private:
 	sf::Sprite buttonPlay, buttonPlayWithMouse, buttonBuilt, buttonBuiltWithMouse;
 	sf::Sprite play, playWithMouse, built, builtWithMouse;
 
-	sf::Texture finalPicture;
-	sf::Sprite finalMeme;
-	sf::FloatRect finalBounds;
+	sf::Texture finalPicture, texfinalDied, texfinalWin;
+	sf::Sprite finalMeme, finalDied, finalWin;
+	sf::FloatRect finalBounds, finalWinBounds, finalDiedBounds;
 
 	sf::Texture texREmpty, texRAir;
 	sf::Sprite sprREmpty, sprRAir;
 	sf::Texture texBackG, texHeadR, texAirR, texEmptyR, texEngineR, texRightI;
 	sf::Sprite sprBackG, sprHeadR, sprAirR, sprEmptyR, sprEngineR, sprRightI;
-
-
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
@@ -97,13 +95,14 @@ public:
 	sf::Sprite getSpriteBuiltWithMouse(sf::RenderWindow&);
 
 	void getSpriteFinal(sf::RenderWindow&, sf::View);
+	void getSpriteFinalDied(sf::RenderWindow&, sf::View);
+	void getSpriteFinalWin(sf::RenderWindow&, sf::View);
 	//sprite for buildrocket
 	sf::IntRect rAir, rEmpty, backG, headR, airR, 
 		emptyR, engineR, rightI, butBuild, butStartGo;
 
 	sf::Sprite getSpriteRAir(sf::RenderWindow&);
 	sf::Sprite getSpriteREmpty(sf::RenderWindow&);
-
 };
 
 #endif

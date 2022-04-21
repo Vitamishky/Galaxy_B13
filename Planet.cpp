@@ -1,22 +1,22 @@
 #include "Planet.h"
 #include "spaceObjects.h"
 
-Planet::Planet(float x, float y, float masse, float r): spaceObjects(x, y, masse, 0, 0) {
+Planet::Planet(float x, float y, float masse, float r, int i) : spaceObjects(x, y, masse, 0, 0) {
     radius = r;
     circle.setRadius(radius);
     circle.setOrigin(radius, radius);
     circle.setPosition(x, y);
-    circle.setTexture(&texCircle);
-    //sf::Color color {masse, masse, masse, 255};
-    //circle.setFillColor(sf::Color::Red);
+    for (int i = 0; i < 10; i++) {
+        sf::Texture tex;
+        string s = "image/planet" + to_string(i + 1) + ".png";
+        tex.loadFromFile(s);
+        vTex.push_back(tex);
+    }
+    circle.setTexture(&vTex[i % 10]);
 };
 
 void Planet::drawSprite(sf::RenderWindow& window) {
     window.draw(circle);
-}
-
-void Planet::setTex(sf::Texture tex) {
-    texCircle = tex;
 }
 
 float Planet::getRadius() const {

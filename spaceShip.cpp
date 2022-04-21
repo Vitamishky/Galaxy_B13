@@ -11,8 +11,8 @@ spaceShip::spaceShip(const vector<MODULE>& rocket, float x, float y) :rocket(roc
     for (const auto& module : rocket) {
         cordCentreMass += module.getMasse() * (module.getParametrization().second / 2 + length);
         length += module.getParametrization().second;
-        maxFuel += module.getFuel() + 10000;
-        maxAir += module.getAir() + 10000;
+        maxFuel += module.getFuel();
+        maxAir += module.getAir();
     }
     length = 0;
     cordCentreMass /= getMass();
@@ -72,8 +72,8 @@ void spaceShip::move(float dt, vector<Planet>& planets) {
 
 void spaceShip::control(sf::Music* soundEngine, sf::Music* soundTurner) {
     bool crutch = false;
-    float dfuel = 1000000;
-    float dair = 100000;
+    float dfuel = 1000;
+    float dair = 1000;
     for(auto & module : rocket) {
         if(module.IsController) crutch = true;
     }

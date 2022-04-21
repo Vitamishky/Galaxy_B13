@@ -64,6 +64,8 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	menuBackground.loadFromFile("image/background.jpg");
 
 	finalPicture.loadFromFile("image/final.jpg");
+	texfinalDied.loadFromFile("image/1234.png");
+	texfinalWin.loadFromFile("image/win.jpg");
 
 	buttonStartFull_1.loadFromFile("image/start2.png");
 	buttonOptionsFull_1.loadFromFile("image/options2.png");
@@ -85,6 +87,8 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	menuBgMain.setTexture(menuBackground);
 
 	finalMeme.setTexture(finalPicture);
+	finalDied.setTexture(texfinalDied);
+	finalWin.setTexture(texfinalWin);
 
 	//отрисовка настроек
 	buttonLayoutFull.loadFromFile("image/layout.png");
@@ -160,6 +164,8 @@ mouse 1 - move camera");
 	rEmpty = sprREmpty.getTextureRect();
 	butBuild = buttonBuilt.getTextureRect();
 	finalBounds = finalMeme.getGlobalBounds();
+	finalDiedBounds = finalDied.getGlobalBounds();
+	finalWinBounds = finalWin.getGlobalBounds();
 }
 
 
@@ -243,6 +249,7 @@ void drawAll::drawTextAboutAll(sf::RenderWindow& window, sf::View view, spaceShi
 	textSpace.setScale(vSize_x * 1.88f / xRightInter, vSize_y * 2.f / yRightInter);
 	textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.08f);
 	int trig = 1;
+	int trig2 = 1;
 	for (auto& c : ship.getSprite()) {
 		if (c.getGlobalBounds().contains(pos.x, pos.y)) {
 			textSpace.setString(\
@@ -259,10 +266,28 @@ a month from improvesed materials");
 			trig = 0;
 		}
 	}
+
 	if (trig != 0) {
-		if (planets[0].getSprite().getGlobalBounds().contains(pos.x, pos.y)) {
-			textSpace.setString(\
-				"And this is already a populated planet. \n\
+		for (auto& c : planets) {
+			if (c.getSprite().getGlobalBounds().contains(pos.x, pos.y) && !planets[0].getSprite().getGlobalBounds().contains(pos.x, pos.y)) {
+				textSpace.setString(\
+					"And this is another planet. There is no \n\
+life on it, nor is there a desire to \n\
+approach it. Radiation, rocks, and sand. \n\
+Well, better to stay on the ship. No, I`m \n\
+serious, it`s gonna kill you. Of \n\
+course, right now, dear player, you want \n\
+to visit this planet. Why listen to the \n\
+man who made this game? And don`t tell \n\
+me I didn`t warn you.");
+				window.draw(shapeEmptyPlanet);
+				trig2 = 0;
+			}
+		}
+		if (trig2 != 0) {
+			if (planets[0].getSprite().getGlobalBounds().contains(pos.x, pos.y)) {
+				textSpace.setString(\
+					"And this is already a populated planet. \n\
 According to our data, which is certainly \n\
 confirmed, this race has spaceships. \n\
 They also live in three-dimensional \n\
@@ -272,31 +297,12 @@ he wants to feed them cookies. Or can \n\
 colonize, he likes to do it, not for \n\
 nothing he targets for days instead of \n\
 running the ship, playing civilization");
-			textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.05f);
-			window.draw(shapeNotEmptyPlanet);
-		}
-		else if (planets[1].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
-			planets[2].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
-			planets[3].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
-			planets[4].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
-			planets[5].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
-			planets[6].getSprite().getGlobalBounds().contains(pos.x, pos.y) ||
-			planets[7].getSprite().getGlobalBounds().contains(pos.x, pos.y)) {
-			textSpace.setString(\
-				"And this is another planet. There is no \n\
-life on it, nor is there a desire to \n\
-approach it. Radiation, rocks, and sand. \n\
-Well, better to stay on the ship. No, I`m \n\
-serious, it`s gonna kill you. Of \n\
-course, right now, dear player, you want \n\
-to visit this planet. Why listen to the \n\
-man who made this game? And don`t tell \n\
-me I didn`t warn you.");
-			window.draw(shapeEmptyPlanet);
-		}
-		else {
-			textSpace.setString(\
-				"An open and violent space that`s been \n\
+				textSpace.setPosition(view.getCenter().x + view.getSize().x * 0.355f, view.getCenter().y + view.getSize().y * 0.05f);
+				window.draw(shapeNotEmptyPlanet);
+			}
+			else {
+				textSpace.setString(\
+					"An open and violent space that`s been \n\
 around me for months. It seems like \n\
 just yesterday I was home, and now \n\
 I`m rushing into the unknown. What`s \n\
@@ -304,7 +310,8 @@ next? Victory? Defeat? Now it`s \n\
 up to you, my friend. Don`t let me down. \n\
 People from Earth, from our ship, and I \n\
 believe in you");
-			window.draw(shapeSpace);
+				window.draw(shapeSpace);
+			}
 		}
 		
 	}
@@ -545,4 +552,16 @@ sf::Sprite drawAll::getSpriteREmpty(sf::RenderWindow& window) {
 	sprREmpty.setScale(window.getSize().x * 0.12f / rEmpty.width, window.getSize().y * 0.15f / rEmpty.height);
 	sprREmpty.setPosition(window.getSize().x * 0.79f, window.getSize().y * 0.75f - rEmpty.height / 2);
 	return sprREmpty;
+}
+
+void drawAll::getSpriteFinalDied(sf::RenderWindow& window, sf::View view) {
+	finalDied.setScale(view.getSize().x / finalDiedBounds.width, view.getSize().y / finalDiedBounds.height * 0.2f);
+	finalDied.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y * 0.9f);
+	window.draw(finalDied);
+}
+
+void drawAll::getSpriteFinalWin(sf::RenderWindow& window, sf::View view) {
+	finalWin.setScale(view.getSize().x / finalWinBounds.width, view.getSize().y / finalWinBounds.height);
+	finalWin.setPosition(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
+	window.draw(finalWin);
 }

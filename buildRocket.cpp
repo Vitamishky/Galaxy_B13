@@ -77,13 +77,6 @@ std::pair<std::string, std::vector<int>> buildRocket::drawBuildRocket(sf::Render
 				window.close();
 				break;
 			}
-
-			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-				window.close();
-				break;
-			}
-
-
 		}
 		window.draw(sprBackground);
 

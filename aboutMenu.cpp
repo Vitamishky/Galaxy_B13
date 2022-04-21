@@ -32,11 +32,6 @@ string aboutMenu::drawAboutMenu(sf::RenderWindow& window, sf::Texture texBg) {
 				window.close();
 				break;
 			}
-
-			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-				window.close();
-				break;
-			}
 		}
 		window.draw(sprite);
 

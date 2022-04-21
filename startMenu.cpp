@@ -60,11 +60,6 @@ string startMenu::drawStartMenu(sf::RenderWindow& window, sf::Texture texBg) {
                 window.close();
                 isMenu = false;
             }
-
-			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-				window.close(); 
-				isMenu = false;
-			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			if (menuNum == 1) {

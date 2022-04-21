@@ -65,34 +65,17 @@ int main()
     MODULE m1("image/cabine.png", 2, 120, 120, true);
     MODULE m2("image/module2.png", 10, 120, 130);
     MODULE m3("image/module3.png", 2, 120, 130, false, true, 1000, 1000);
-    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 100000, 10000);
+    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 1000, 1000);
     vector<MODULE> masivMODULE;
 
     //Создание планет на карте
-    sf::Texture tex;
-    vector<sf::Texture> texPlanet;
-    tex.loadFromFile("image/start1.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
-    tex.loadFromFile("image/air.png");
-    texPlanet.push_back(tex);
     vector<Planet> *planets = new vector<Planet>;
     vector<sf::CircleShape> sprPlanet;
-    for (int i = 0; i < 8; ++i) {
+    
+    for (int i = 0; i < 10; ++i) {
         Planet* planet1 = new Planet{(float)((rand() % 80000) * pow(-1, rand() / 23)), (float)((rand() % 80000) * pow(-1, rand() / 23)),
-                              (float)(rand() % 255 * 10000), 3000.f};
-        planet1->setTex(texPlanet[i]);
+                              (float)(rand() % 255 * 10000), 3000.f, i};
+        sprPlanet.push_back(planet1->getSprite());
         planets->push_back(*planet1);
     }
     //Работа с камерой слежения
@@ -100,12 +83,10 @@ int main()
     Camera->resetView(*window);
 
     sf::Clock sf_clock;
-
+    //Переключение меню
     string nameMenu = "main";
     std::pair<string, std::vector<int>> para;
-
     std::pair<string, vector<int>> para1 = { "back", {0, 0, 5} };
-
     while (nameMenu != "go" && nameMenu != "exit") {
         if (nameMenu == "main") {
             nameMenu = menu->drawStartMenu(*window, texV[para1.second[0]]);
@@ -150,8 +131,7 @@ int main()
 
             while (window->pollEvent(event)) {
 
-                if (event.type == sf::Event::Closed ||
-                    event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                if (event.type == sf::Event::Closed) {
                     window->close();
                 }
 
@@ -175,18 +155,11 @@ int main()
                         engineSound->setVolume(0);
                     }
                 }
-
                 if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
-                    if (event.key.code == sf::Keyboard::Z) {
+                    if (event.key.code == sf::Keyboard::Z || event.key.code == sf::Keyboard::X) {
                         turnerSound->setVolume(0);
                     }
                 }
-                if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
-                    if (event.key.code == sf::Keyboard::X) {
-                        turnerSound->setVolume(0);
-                    }
-                }
-
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
                     Camera->backFromShip(*window, *spaceship);
                 }
@@ -214,13 +187,19 @@ int main()
             else {
                 for (int i = 0; i < 100; i++) {
                     drawObjects->getSpriteFinal(*window, Camera->getViewCamera());
+                    drawObjects->getSpriteFinalDied(*window, Camera->getViewCamera());
                     window->display();
                     window->clear();
                 }
                 window->close();
             }
             if (targetDistance < planets[0][0].getRadius() * 1.4f) {
-                
+                for (int i = 0; i < 100; i++) {
+                    drawObjects->getSpriteFinalWin(*window, Camera->getViewCamera());
+                    window->display();
+                    window->clear();
+                }
+                window->close();
             }
             drawObjects->drawLeftInter(*window, Camera->getViewCamera(), *spaceship, targetDistance);
             drawObjects->drawRightInter(*window, Camera->getViewCamera());
