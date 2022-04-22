@@ -122,7 +122,8 @@ int main() {
                             }
                         }
                         ship.move(dt);
-                        player.second.x = ship.getCoordinates().first;
+//                        player.second.x = ship.getCoordinates().first;
+                        player.second.x += 100;
                         player.second.y = ship.getCoordinates().second;
                         player.second.angel = ship.ANGLE();
                         player.second.velocity = ship.getVelocity();
@@ -172,7 +173,7 @@ int main() {
                     for (auto &module: ship.rocket) {
                         if (ServerBase[sender].forward && module.IsEngine &&
                             ship.Use_Fuel(module.Forward_PotForce() / dfuel)) {
-                            cout << "Yes<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+                            cout << "Yes<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
                             module.EditAcceleration(make_pair(
                                     module.Forward_PotForce() * sin(ship.ANGLE()) / module.getMasse(),
                                     module.Forward_PotForce() * cos(ship.ANGLE()) / module.getMasse()));
