@@ -24,6 +24,4 @@ void sounds::play(bool b) {
 }
 
 
-sounds::~sounds() {
-    delete mus;
-}
+sounds::~sounds() {}

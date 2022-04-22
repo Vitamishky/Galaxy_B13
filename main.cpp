@@ -7,6 +7,7 @@
 #include "optionsMenu.h"
 #include "buildRocket.h"
 #include "aboutMenu.h"
+#include "sounds.h"
 
 int main()
 {
@@ -23,22 +24,12 @@ int main()
     float targetDistance;
     bool reved = true;
     //Работа с музыкой
-    sf::Music* bgMusic = new sf::Music;
-    bgMusic->openFromFile("sounds/bgMusic.wav");
-    bgMusic->setPlayingOffset(sf::seconds(10));
-    bgMusic->setVolume(100);
-    bgMusic->play();
-    bgMusic->setLoop(true);
-    sf::Music* engineSound = new sf::Music;
-    engineSound->openFromFile("sounds/soundOfEngine.wav");
-    engineSound->setVolume(0);
-    engineSound->play();
-    engineSound->setLoop(true);
-    sf::Music* turnerSound = new sf::Music;
-    turnerSound->openFromFile("sounds/soundOfTurner.wav");
-    turnerSound->setVolume(0);
-    turnerSound->play();
-    turnerSound->setLoop(true);
+    sounds bgMusic {"sounds/bgMusic1.wav", 80, 15};
+    sounds engineSound {"sounds/soundOfEngine.wav", 0};
+    sounds turnerSound {"sounds/soundOfTurner.wav", 0};
+    bgMusic.play(true);
+    engineSound.play(true);
+    turnerSound.play(true);
 
 
     parametrizationScreen* screen = new parametrizationScreen;
@@ -71,13 +62,41 @@ int main()
     //Создание планет на карте
     vector<Planet> *planets = new vector<Planet>;
     vector<sf::CircleShape> sprPlanet;
-    
-    for (int i = 0; i < 10; ++i) {
-        Planet* planet1 = new Planet{(float)((rand() % 80000) * pow(-1, rand() / 23)), (float)((rand() % 80000) * pow(-1, rand() / 23)),
-                              (float)(rand() % 255 * 10000), 3000.f, i};
+    srand(time(nullptr));
+    for (int i = 0; i < 8; ++i) {
+        float tempX;
+        float tempY;
+        float r;
+        bool b = true;
+        while (b) {
+            int temp = 0;
+            tempX = (float) ((rand() % 800000) * pow(-1, rand() / 23));
+            tempY = (float) ((rand() % 800000) * pow(-1, rand() / 23));
+            r = rand() % 6000 + 2000;
+            for (int j = 0; j < i; j++) {
+                if (sqrtf(((*planets)[j].getCenter().first - tempX) * ((*planets)[j].getCenter().first - tempX)
+                          + ((*planets)[j].getCenter().second - tempY) * ((*planets)[j].getCenter().second - tempY))
+                    > 3 * ((*planets)[j].getRadius() + r))
+                    temp++;
+            }
+            if (temp == i)
+                b = false;
+        }
+        Planet* planet1 = new Planet{tempX, tempY, (float) (rand() % 255 * 10000), r, rand() % 10};
         sprPlanet.push_back(planet1->getSprite());
         planets->push_back(*planet1);
     }
+    float max = 0;
+    int maxInd = -1;
+    for (int i = 0; i < (*planets).size(); i++) {
+        if (sqrtf((*planets)[i].getCenter().first * (*planets)[i].getCenter().first
+        + (*planets)[i].getCenter().second * (*planets)[i].getCenter().second) > max) {
+            max = sqrtf((*planets)[i].getCenter().first * (*planets)[i].getCenter().first
+                        + (*planets)[i].getCenter().second * (*planets)[i].getCenter().second);
+            maxInd = i;
+        }
+    }
+    std::swap((*planets)[maxInd], (*planets)[0]);
     //Работа с камерой слежения
 
     Camera->resetView(*window);
@@ -101,6 +120,7 @@ int main()
         if (nameMenu == "options") {
             para1 = options->drawOptionsMenu(*window, texV[para1.second[0]]);
             nameMenu = para1.first;
+            //
             window->clear();
         }
         if (nameMenu == "about") {
@@ -108,7 +128,7 @@ int main()
             window->clear();
         }
     }
-
+//
     for (auto& c : para.second) {
         if (c == 2) {
             masivMODULE.push_back(m2);
@@ -152,12 +172,12 @@ int main()
                 }
                 if (event.type == sf::Event::KeyReleased || spaceship->FUEL() == 0) {
                     if (event.key.code == sf::Keyboard::Space) {
-                        engineSound->setVolume(0);
+                        engineSound.setVolume(0);
                     }
                 }
                 if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
                     if (event.key.code == sf::Keyboard::Z || event.key.code == sf::Keyboard::X) {
-                        turnerSound->setVolume(0);
+                        turnerSound.setVolume(0);
                     }
                 }
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
@@ -218,12 +238,8 @@ int main()
     delete Camera;
     delete screen;
     delete about;
-    delete bgMusic;
-    delete engineSound;
-    delete turnerSound;
     delete window;
     delete options;
     delete menu;
-    delete planets;
     return EXIT_SUCCESS;
 }
