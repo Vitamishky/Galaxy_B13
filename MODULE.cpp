@@ -12,15 +12,15 @@ MODULE::MODULE(string image,
                bool IsEngine,
                float Forward_PotForce,
                float fuel
-               ): forward_potForce(Forward_PotForce),
-               side_potForce(Side_PotForce),
-               air(Air),
-               IsTurner(IsTurner),
-               IsController(IsController),
-               IsEngine(IsEngine),
-               fuel(fuel),
-               image(image)
-               {
+): forward_potForce(Forward_PotForce),
+   side_potForce(Side_PotForce),
+   air(Air),
+   IsTurner(IsTurner),
+   IsController(IsController),
+   IsEngine(IsEngine),
+   fuel(fuel),
+   image(image)
+{
     this->Masse = Masse;
     this->Width = Width;
     this->Height = Height;

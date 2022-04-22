@@ -153,6 +153,30 @@ MODULE.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/MODULE.cpp.s
 .PHONY : MODULE.cpp.s
 
+Planet.o: Planet.cpp.o
+.PHONY : Planet.o
+
+# target to build an object file
+Planet.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/Planet.cpp.o
+.PHONY : Planet.cpp.o
+
+Planet.i: Planet.cpp.i
+.PHONY : Planet.i
+
+# target to preprocess a source file
+Planet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/Planet.cpp.i
+.PHONY : Planet.cpp.i
+
+Planet.s: Planet.cpp.s
+.PHONY : Planet.s
+
+# target to generate assembly for a file
+Planet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/Planet.cpp.s
+.PHONY : Planet.cpp.s
+
 aboutMenu.o: aboutMenu.cpp.o
 .PHONY : aboutMenu.o
 
@@ -224,30 +248,6 @@ camera.s: camera.cpp.s
 camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/camera.cpp.s
 .PHONY : camera.cpp.s
-
-client.o: client.cpp.o
-.PHONY : client.o
-
-# target to build an object file
-client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/client.cpp.o
-.PHONY : client.cpp.o
-
-client.i: client.cpp.i
-.PHONY : client.i
-
-# target to preprocess a source file
-client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/client.cpp.i
-.PHONY : client.cpp.i
-
-client.s: client.cpp.s
-.PHONY : client.s
-
-# target to generate assembly for a file
-client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/client.cpp.s
-.PHONY : client.cpp.s
 
 drawAll.o: drawAll.cpp.o
 .PHONY : drawAll.o
@@ -369,6 +369,30 @@ parametrizationScreen.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/parametrizationScreen.cpp.s
 .PHONY : parametrizationScreen.cpp.s
 
+sounds.o: sounds.cpp.o
+.PHONY : sounds.o
+
+# target to build an object file
+sounds.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/sounds.cpp.o
+.PHONY : sounds.cpp.o
+
+sounds.i: sounds.cpp.i
+.PHONY : sounds.i
+
+# target to preprocess a source file
+sounds.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/sounds.cpp.i
+.PHONY : sounds.cpp.i
+
+sounds.s: sounds.cpp.s
+.PHONY : sounds.s
+
+# target to generate assembly for a file
+sounds.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Galaxy_B13.dir/build.make CMakeFiles/Galaxy_B13.dir/sounds.cpp.s
+.PHONY : sounds.cpp.s
+
 spaceObjects.o: spaceObjects.cpp.o
 .PHONY : spaceObjects.o
 
@@ -453,6 +477,9 @@ help:
 	@echo "... MODULE.o"
 	@echo "... MODULE.i"
 	@echo "... MODULE.s"
+	@echo "... Planet.o"
+	@echo "... Planet.i"
+	@echo "... Planet.s"
 	@echo "... aboutMenu.o"
 	@echo "... aboutMenu.i"
 	@echo "... aboutMenu.s"
@@ -462,9 +489,6 @@ help:
 	@echo "... camera.o"
 	@echo "... camera.i"
 	@echo "... camera.s"
-	@echo "... client.o"
-	@echo "... client.i"
-	@echo "... client.s"
 	@echo "... drawAll.o"
 	@echo "... drawAll.i"
 	@echo "... drawAll.s"
@@ -480,6 +504,9 @@ help:
 	@echo "... parametrizationScreen.o"
 	@echo "... parametrizationScreen.i"
 	@echo "... parametrizationScreen.s"
+	@echo "... sounds.o"
+	@echo "... sounds.i"
+	@echo "... sounds.s"
 	@echo "... spaceObjects.o"
 	@echo "... spaceObjects.i"
 	@echo "... spaceObjects.s"

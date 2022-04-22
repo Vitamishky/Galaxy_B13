@@ -5,10 +5,12 @@
 
 class aboutMenu {
 private:
+	int menuNum;
 	sf::Text text;
+	sf::Sprite back, backWithMouse, sprite;
+	sf::Sprite finalMeme;
 	drawAll draw;
 public:
 	aboutMenu();
-
-    [[noreturn]] string drawAboutMenu(sf::RenderWindow&);
+	string drawAboutMenu(sf::RenderWindow&, sf::Texture);
 };

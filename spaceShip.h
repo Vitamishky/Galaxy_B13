@@ -1,10 +1,13 @@
 #ifndef spaceShip_hpp
 #define spaceShip_hpp
+#include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdio>
 #include "parametrizationScreen.h"
 #include "MODULE.h"
+#include "Planet.h"
+#include "sounds.h"
 
 using namespace std;
 
@@ -17,20 +20,17 @@ private:
     float angle = 0;
     float x, y;
     float maxFuel = 0, maxAir = 0;
-public:
     vector<MODULE> rocket;
-    spaceShip(const vector<MODULE>& rocket, float, float, float);
-    void move(float);
+
+public:
+    spaceShip(const vector<MODULE>& rocket, float, float);
+    void move(float, vector<Planet>&);
     vector<sf::Sprite> getSprite() const;
     pair<float, float> getCoordinates() const;
-    pair<float, float> getVelocity() const;
-    float getAngularVelocity() const;
-    void newRocket(spaceShip);
-    void newCoordinate(float, float, float);
     float getMaxFuel() const;
     float getMaxAir() const;
     float getMass() const;
-    void control();
+    void control(sounds, sounds);
     float FUEL();
     float AIR();
     float SPEED() const;
@@ -38,6 +38,5 @@ public:
     void draw(sf::RenderWindow&);
     bool Use_Air(float);
     bool Use_Fuel(float);
-    int getAmountOfModules() const;
 };
 #endif 

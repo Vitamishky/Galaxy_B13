@@ -1,14 +1,19 @@
-
+#define _USE_MATH_DEFINES
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "spaceObjects.h"
 #include "cmath"
 
 spaceObjects::spaceObjects() {
-    xSpeed = 5.f / float(screen.getParametrizationScreen().first);
-    ySpeed = 5.f / float(screen.getParametrizationScreen().second);
+    x = y = 0.5f;
+    xSpeed = 0.f / float(screen.getParametrizationScreen().first);
+    ySpeed = 0.f / float(screen.getParametrizationScreen().second);
     Width = 128;
     Height = 128;
+    texture.loadFromFile("image/spaceShip.png");
+}
+
+spaceObjects::spaceObjects(float x, float y, float masse, int width, int height): x(x), y(y), Masse(masse), Width(width), Height(height) {
     texture.loadFromFile("image/spaceShip.png");
 }
 
@@ -16,8 +21,9 @@ pair<float, float> spaceObjects::getCoordinates() const {
     pair<float, float> result = make_pair(x, y);
     return result;
 }
-pair<int, int> spaceObjects::getParametrization() const {
-    return make_pair(Width, Height);
+pair<float, float> spaceObjects::getParametrization() const {
+    pair<float, float> result = make_pair(Width, Height);
+    return result;
 }
 float spaceObjects::getMasse() const {
     return Masse;
@@ -35,10 +41,4 @@ void spaceObjects::drawSprite(sf::RenderWindow& window) {
 
 void spaceObjects::newAngle(float injection){
     this->angle = injection;
-}
-
-void spaceObjects::setPosition(float x, float y, float angel){
-    this->x = x;
-    this->y = y;
-    this->angle = angel;
 }

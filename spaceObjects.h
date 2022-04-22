@@ -20,10 +20,10 @@ protected:
     float Masse;
 public:
     spaceObjects();
-    void setPosition(float, float, float);
+    spaceObjects(float, float, float, int, int);
     pair<float, float> getCoordinates() const;
-    pair<int, int> getParametrization() const;
-    void drawSprite(sf::RenderWindow&);
+    pair<float, float> getParametrization() const;
+    virtual void drawSprite(sf::RenderWindow&);
     void newAngle(float);
     float getMasse() const;
 };

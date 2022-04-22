@@ -7,11 +7,14 @@
 class optionsMenu {
 private:
 	bool isMenu;
-	int menuNum;
+	int menuNum, musicNum, backgroundNum, soundValue;
 	drawAll draw;
-	sf::Sprite settings, music, back, background, layout, optionsBg, about;
+	sf::Sprite music, back, backWithMouse, background, layout, changeBg, about;
+	sf::Sprite changeBg1, changeBg2, changeBg3, changeBg4, sprite;
+	sf::Text music1, music2, music3, textLayout;
 public:
 	optionsMenu();
-	void drawOptionsMenu(sf::RenderWindow&);
+	string drawOptionsMenu(sf::RenderWindow&);
+	std::pair < std::string, std::vector < int>> drawOptionsMenu(sf::RenderWindow&, sf::Texture);
 	~optionsMenu();
 };

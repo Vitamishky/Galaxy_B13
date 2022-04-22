@@ -12,16 +12,16 @@ private:
     string image;
 public:
     MODULE(string image = "image/chert.jpg",
-            int Width = 100,
-            int Height = 100,
+           int Width = 100,
+           int Height = 100,
            float Masse = 100,
-            bool IsController = false,
-            bool IsTurner = false,
-            float Side_PotForce = 0,
-            float Air = 0,
-            bool IsEngine = false,
-            float Forward_PotForce = 0,
-            float fuel = 0
+           bool IsController = false,
+           bool IsTurner = false,
+           float Side_PotForce = 0,
+           float Air = 0,
+           bool IsEngine = false,
+           float Forward_PotForce = 0,
+           float fuel = 0
     );
     bool IsController;
     bool IsEngine;
