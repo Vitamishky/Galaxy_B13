@@ -12,7 +12,9 @@
 #include "client.h"
 
 std::map <string, ClientPlayer> ClientBase;
+
 int main() {
+    sf::UdpSocket socket;
     std::string client_name;
     std::cout << std::endl << "Enter you name: ";
     std::cin >> client_name;
@@ -52,7 +54,7 @@ int main() {
     sf::IpAddress server;
     std::cout << "Enter server IP: ";
     std::cin >> server;
-    client::initializeClient(server, client_name, spaceship, ClientBase, 50002);
+    client::initializeClient(server, client_name, spaceship, ClientBase, 50001);
 
 
 
