@@ -28,8 +28,9 @@ int main()
     sf::SoundBuffer buffer, buffer1;
     buffer.loadFromFile("sounds/avto.wav");
     finalWinSound.setBuffer(buffer);
-    buffer1.loadFromFile("sound/died.wav");
+    buffer1.loadFromFile("sounds/died.wav");
     finalDiedSound.setBuffer(buffer1);
+    finalDiedSound.setPlayingOffset(sf::seconds(0.5));
     int backgroundSongNumber = 0;
     sounds bgMusic {backgroundSongNumber};
     sounds engineSound {"sounds/soundOfEngine.wav", 0};
@@ -60,16 +61,16 @@ int main()
 
     //Создание космического корабля
     MODULE m1("image/cabine.png", 2, 120, 120, true);
-    MODULE m2("image/module2.png", 10, 120, 130);
+    MODULE m2("image/module2.png", 10, 120, 130, false, false, 0, 450, false, 0, 450);
     MODULE m3("image/module3.png", 2, 120, 130, false, true, 1500, 500);
-    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 2200, 450);
+    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 2200, 0);
     vector<MODULE> masivMODULE;
 
     //Создание планет на карте
     vector<Planet> *planets = new vector<Planet>;
     vector<sf::CircleShape> sprPlanet;
     srand(time(nullptr));
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < 10; ++i) {
         float tempX;
         float tempY;
         float r;
@@ -158,6 +159,12 @@ int main()
             float dt = sf_clock.restart().asSeconds();
 
             while (window->pollEvent(event)) {
+                if (spaceship->FUEL() == 0) {
+                    engineSound.setVolume(0);
+                }
+                if (spaceship->AIR() == 0) {
+                    turnerSound.setVolume(0);
+                }
 
                 if (event.type == sf::Event::Closed) {
                     window->close();
@@ -182,15 +189,11 @@ int main()
                     if (event.key.code == sf::Keyboard::Space) {
                         engineSound.setVolume(0);
                     }
-                    else
-                        engineSound.setVolume(0);
                 }
                 if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
                     if (event.key.code == sf::Keyboard::Z || event.key.code == sf::Keyboard::X) {
                         turnerSound.setVolume(0);
                     }
-                    else
-                        turnerSound.setVolume(0);
                 }
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
                     Camera->backFromShip(*window, *spaceship);
@@ -218,6 +221,8 @@ int main()
             }
             else {
                 bgMusic.play(false);
+                engineSound.setVolume(0);
+                turnerSound.setVolume(0);
                 finalDiedSound.play();
                 for (int i = 0; i < 100; i++) {
                     drawObjects->getSpriteFinal(*window, Camera->getViewCamera());
@@ -229,6 +234,8 @@ int main()
             }
             if (targetDistance < planets[0][0].getRadius() * 1.4f) {
                 bgMusic.play(false);
+                engineSound.setVolume(0);
+                turnerSound.setVolume(0);
                 finalWinSound.play();
                 for (int i = 0; i < 100; i++) {
                     drawObjects->getSpriteFinalWin(*window, Camera->getViewCamera());

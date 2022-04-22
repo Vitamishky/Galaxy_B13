@@ -5,15 +5,15 @@ sounds::sounds(int num) {
     if (num == 0) {
         mus->openFromFile("sounds/Interstellar.wav");
         mus->setPlayingOffset(sf::seconds(20));
-        mus->setVolume(20);
+        mus->setVolume(23);
     }
     if (num == 1) {
         mus->openFromFile("sounds/trava.wav");
-        mus->setVolume(5);
+        mus->setVolume(4);
     }
     if (num == 2) {
         mus->openFromFile("sounds/champs.wav");
-        mus->setVolume(7);
+        mus->setVolume(5);
     }
     mus->setLoop(true);
 }
