@@ -23,12 +23,12 @@ int main()
     texV.push_back(tex3);
     float targetDistance;
     bool reved = true;
-    //Работа с музыкой
+    //?????? ? ???????
     sf::Sound finalWinSound, finalDiedSound;
     sf::SoundBuffer buffer, buffer1;
     buffer.loadFromFile("sounds/avto.wav");
     finalWinSound.setBuffer(buffer);
-    buffer1.loadFromFile("sound/died.wav");
+    buffer1.loadFromFile("sounds/died.wav");
     finalDiedSound.setBuffer(buffer1);
     int backgroundSongNumber = 0;
     sounds bgMusic {backgroundSongNumber};
@@ -40,9 +40,9 @@ int main()
 
 
     parametrizationScreen* screen = new parametrizationScreen;
-    //Отрисовка окна
+    //????????? ????
     sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(screen->getParametrizationScreen().first,
-        screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
+                                                                  screen->getParametrizationScreen().second), "Galaxy B13", sf::Style::Close);
 
     camera* Camera = new camera(*window);
 
@@ -55,17 +55,17 @@ int main()
     window->setFramerateLimit(30);
     window->setVerticalSyncEnabled(true);
 
-    //Отрисовка иконки
+    //????????? ??????
     drawObjects->drawIcon(*window);
 
-    //Создание космического корабля
+    //???????? ???????????? ???????
     MODULE m1("image/cabine.png", 2, 120, 120, true);
     MODULE m2("image/module2.png", 10, 120, 130);
     MODULE m3("image/module3.png", 2, 120, 130, false, true, 1500, 500);
     MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 2200, 450);
     vector<MODULE> masivMODULE;
 
-    //Создание планет на карте
+    //???????? ?????? ?? ?????
     vector<Planet> *planets = new vector<Planet>;
     vector<sf::CircleShape> sprPlanet;
     srand(time(nullptr));
@@ -96,19 +96,19 @@ int main()
     int maxInd = 0;
     for (int i = 0; i < (*planets).size(); i++) {
         if (sqrtf((*planets)[i].getCenter().first * (*planets)[i].getCenter().first
-        + (*planets)[i].getCenter().second * (*planets)[i].getCenter().second) > max) {
+                  + (*planets)[i].getCenter().second * (*planets)[i].getCenter().second) > max) {
             max = sqrtf((*planets)[i].getCenter().first * (*planets)[i].getCenter().first
                         + (*planets)[i].getCenter().second * (*planets)[i].getCenter().second);
             maxInd = i;
         }
     }
     std::swap((*planets)[maxInd], (*planets)[0]);
-    //Работа с камерой слежения
+    //?????? ? ??????? ????????
 
     Camera->resetView(*window);
 
     sf::Clock sf_clock;
-    //Переключение меню
+    //???????????? ????
     string nameMenu = "main";
     std::pair<string, std::vector<int>> para;
     std::pair<string, vector<int>> para1 = { "back", {0, 0, 5} };
@@ -197,10 +197,10 @@ int main()
                 }
             }
             targetDistance = sqrt((spaceship->getCoordinates().first - planets[0][0].getCenter().first) * (spaceship->getCoordinates().first - planets[0][0].getCenter().first) +
-                (spaceship->getCoordinates().second - planets[0][0].getCenter().second) * (spaceship->getCoordinates().second - planets[0][0].getCenter().second));
+                                  (spaceship->getCoordinates().second - planets[0][0].getCenter().second) * (spaceship->getCoordinates().second - planets[0][0].getCenter().second));
             drawObjects->drawBg(*window, Camera->getViewCamera());
             window->setView(Camera->getViewCamera());
-            //Отрисовка планет
+            //????????? ??????
             for (auto& i : *planets) {
                 i.drawSprite(*window);
             }

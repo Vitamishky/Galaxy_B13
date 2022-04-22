@@ -18,7 +18,7 @@ spaceShip::spaceShip(const vector<MODULE>& rocket, float x, float y) :rocket(roc
     cordCentreMass /= getMass();
     for (const auto& module : rocket) {
         MomentOfInertia += (module.getMasse() * (module.getParametrization().second / 2 + length - cordCentreMass) *
-            (module.getParametrization().second / 2 + length - cordCentreMass)) / 3;
+                            (module.getParametrization().second / 2 + length - cordCentreMass)) / 3;
         length += module.getParametrization().second;
 
 
@@ -30,6 +30,7 @@ void spaceShip::move(float dt, vector<Planet>& planets) {
     float F_x = 0, F_y = 0;
     float dAngularVelocity = 0;
     for (auto &modul: rocket) {
+        modul.planetAttraction(planets);
         F_x += modul.Acceleration().first * modul.getMasse();
         F_y += modul.Acceleration().second * modul.getMasse();
 
@@ -38,8 +39,8 @@ void spaceShip::move(float dt, vector<Planet>& planets) {
 
         float length = 0;
         dAngularVelocity += modul.getMasse() * a_bokovoie *
-            (modul.getParametrization().second / 2 + length - cordCentreMass) * dt
-            / MomentOfInertia;
+                            (modul.getParametrization().second / 2 + length - cordCentreMass) * dt
+                            / MomentOfInertia;
         length += modul.getParametrization().second;
     }
 
@@ -59,7 +60,7 @@ void spaceShip::move(float dt, vector<Planet>& planets) {
     for (auto& i : rocket) {
         i.newAngle(angle);
         i.NewCord(x + sin(angle) * (i.getParametrization().first / 2 + length - cordCentreMass),
-            y + cos(angle) * (i.getParametrization().first / 2 + length - cordCentreMass));
+                  y + cos(angle) * (i.getParametrization().first / 2 + length - cordCentreMass));
         length += i.getParametrization().first;
     }
 
@@ -80,17 +81,17 @@ void spaceShip::control(sounds soundEngine, sounds soundTurner) {
         for (auto &module: rocket) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && module.IsEngine && this->Use_Fuel(module.Forward_PotForce() / dfuel)) {
                 module.EditAcceleration(make_pair(module.Forward_PotForce() * sin(angle) / module.getMasse()
-                    , module.Forward_PotForce() * cos(angle) / module.getMasse()));
+                        , module.Forward_PotForce() * cos(angle) / module.getMasse()));
                 soundEngine.setVolume(80);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
                 module.EditAcceleration(make_pair(module.Side_PotForce() * cos(angle) / module.getMasse(),
-                    -module.Side_PotForce() * sin(angle) / module.getMasse()));
+                                                  -module.Side_PotForce() * sin(angle) / module.getMasse()));
                 soundTurner.setVolume(20);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && module.IsTurner && this->Use_Air(module.Side_PotForce() / dair)) {
                 module.EditAcceleration(make_pair(-module.Side_PotForce() * cos(angle) / module.getMasse()
-                    , module.Side_PotForce() * sin(angle) / module.getMasse()));
+                        , module.Side_PotForce() * sin(angle) / module.getMasse()));
                 soundTurner.setVolume(20);
             }
         }

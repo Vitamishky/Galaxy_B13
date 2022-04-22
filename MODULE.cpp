@@ -1,10 +1,11 @@
 #include "MODULE.h"
+#include "functions.h"
 #include "cmath"
 
 MODULE::MODULE(string image,
+               float Masse,
                int Width,
                int Height,
-               float Masse,
                bool IsController,
                bool IsTurner,
                float Side_PotForce,
@@ -18,18 +19,16 @@ MODULE::MODULE(string image,
    IsTurner(IsTurner),
    IsController(IsController),
    IsEngine(IsEngine),
-   fuel(fuel),
-   image(image)
-{
+   fuel(fuel){
     this->Masse = Masse;
     this->Width = Width;
     this->Height = Height;
-    if(!texture.loadFromFile(image)){}
+    texture.loadFromFile(image);
     Sprite.setTexture(texture);
-    fuel = 1000.f;
 }
 
-pair<float, float> MODULE::Acceleration() const {
+
+pair<float,float> MODULE::Acceleration() const{
     return acceleration;
 }
 
@@ -42,19 +41,19 @@ float MODULE::Forward_PotForce() const {
     return forward_potForce;
 }
 
-bool MODULE::Use_Fuel(float dFuel) {
-    if (fuel > 0) {
+bool MODULE::Use_Fuel(float dFuel){
+    if(fuel > 0) {
         fuel -= dFuel;
-        if (fuel < 0) fuel = 0;
+        if(fuel < 0) fuel = 0;
         return true;
     }
     return false;
 }
 
 bool MODULE::Use_Air(float dAir) {
-    if (air > 0) {
+    if(air > 0) {
         air -= dAir;
-        if (air < 0) air = 0;
+        if(air < 0) air = 0;
         return true;
     }
     return false;
@@ -72,25 +71,24 @@ float MODULE::Side_PotForce() const {
     return side_potForce;
 }
 
-void MODULE::NewCord(float x, float y) {
+void MODULE::NewCord(float x, float y){
     this->x = x;
     this->y = y;
 }
 
 void MODULE::NewAcceleration(pair<float, float> Na) {
-    acceleration.first = Na.first;
-    acceleration.second = Na.second;
+    acceleration.first=Na.first;
+    acceleration.second=Na.second;
 
+}
+
+void MODULE::planetAttraction(vector<Planet>& planets) {
+    for (auto& i : planets) {
+        acceleration.first += functions::planetAttraction(*this, i).first;
+        acceleration.second += functions::planetAttraction(*this, i).second;
+    }
 }
 
 sf::Sprite MODULE::getSprite() const{
     return Sprite;
-}
-
-string MODULE::getPlaceOfImage() const {
-    return image;
-}
-
-float MODULE::getMasse() const {
-    return Masse;
 }
