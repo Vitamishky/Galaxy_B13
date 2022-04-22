@@ -154,6 +154,10 @@ int main()
 
     if (nameMenu != "exit") {
         while (window->isOpen()) {
+            if (spaceship->AIR() == 0)
+                turnerSound.setVolume(0);
+            if (spaceship->FUEL() == 0)
+                engineSound.setVolume(0);
             sf::Event event{};
 
             float dt = sf_clock.restart().asSeconds();
