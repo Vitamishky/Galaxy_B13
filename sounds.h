@@ -7,7 +7,8 @@ class sounds {
 private:
     sf::Music* mus;
 public:
-    sounds(std::string, float, float);
+    sounds(int);
+    void changeMusic(int);
     sounds(std::string, float);
     void play(bool);
     void setVolume(float);

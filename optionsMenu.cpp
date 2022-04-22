@@ -92,14 +92,14 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 			}
 			//Если нажали кнопку
 			if (menuNum == 2) {
-				musicNum = 1;
+				musicNum = 0;
 			}
 			//Если нажали кнопку
 			if (menuNum == 3) {
-				musicNum = 2;
+				musicNum = 1;
 			}
 			if (menuNum == 4) {
-				musicNum = 3;
+				musicNum = 2;
 			}
 			v[1] = musicNum;
 		

@@ -45,10 +45,10 @@ mistakes, corrected them. This fleeting and inspiring feeling of creating someth
 	sprFuelPanel.setTexture(texFuelPanel);
 	texAirPanel.loadFromFile("image/air.png");
 	sprAirPanel.setTexture(texAirPanel);
-	texShapeShip.loadFromFile("image/start1.png");
+	texShapeShip.loadFromFile("image/astronaut.png");
 	texEmptyPlanet.loadFromFile("image/empty_planet.png");
 	texNotEmptyPlanet.loadFromFile("image/kerbals.png");
-	texSpace.loadFromFile("image/bg.png");
+	texSpace.loadFromFile("image/space_circle.png");
 	shapeEmptyPlanet.setTexture(&texEmptyPlanet);
 	shapeRocket.setTexture(&texShapeShip);
 	shapeNotEmptyPlanet.setTexture(&texNotEmptyPlanet);

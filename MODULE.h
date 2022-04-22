@@ -12,7 +12,7 @@ private:
     float air;
 public:
     MODULE(string image = "image/chert.jpg",
-           float Masse = 100,
+           float Masse = 80,
             int Width = 10,
             int Height = 10,
             bool IsController = false,

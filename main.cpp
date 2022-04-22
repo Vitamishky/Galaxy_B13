@@ -24,7 +24,14 @@ int main()
     float targetDistance;
     bool reved = true;
     //Работа с музыкой
-    sounds bgMusic {"sounds/bgMusic1.wav", 80, 15};
+    sf::Sound finalWinSound, finalDiedSound;
+    sf::SoundBuffer buffer, buffer1;
+    buffer.loadFromFile("sounds/avto.wav");
+    finalWinSound.setBuffer(buffer);
+    buffer1.loadFromFile("sound/died.wav");
+    finalDiedSound.setBuffer(buffer1);
+    int backgroundSongNumber = 0;
+    sounds bgMusic {backgroundSongNumber};
     sounds engineSound {"sounds/soundOfEngine.wav", 0};
     sounds turnerSound {"sounds/soundOfTurner.wav", 0};
     bgMusic.play(true);
@@ -46,7 +53,6 @@ int main()
     buildRocket* buildrocket = new buildRocket;
 
     window->setFramerateLimit(30);
-
     window->setVerticalSyncEnabled(true);
 
     //Отрисовка иконки
@@ -55,8 +61,8 @@ int main()
     //Создание космического корабля
     MODULE m1("image/cabine.png", 2, 120, 120, true);
     MODULE m2("image/module2.png", 10, 120, 130);
-    MODULE m3("image/module3.png", 2, 120, 130, false, true, 1000, 1000);
-    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 1000, 1000);
+    MODULE m3("image/module3.png", 2, 120, 130, false, true, 1500, 500);
+    MODULE m4("image/module4.png", 4, 130, 120, false, false, 0, 0, true, 2200, 450);
     vector<MODULE> masivMODULE;
 
     //Создание планет на карте
@@ -87,7 +93,7 @@ int main()
         planets->push_back(*planet1);
     }
     float max = 0;
-    int maxInd = -1;
+    int maxInd = 0;
     for (int i = 0; i < (*planets).size(); i++) {
         if (sqrtf((*planets)[i].getCenter().first * (*planets)[i].getCenter().first
         + (*planets)[i].getCenter().second * (*planets)[i].getCenter().second) > max) {
@@ -120,15 +126,17 @@ int main()
         if (nameMenu == "options") {
             para1 = options->drawOptionsMenu(*window, texV[para1.second[0]]);
             nameMenu = para1.first;
-            //
             window->clear();
         }
         if (nameMenu == "about") {
             nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
             window->clear();
         }
+        if (para1.second[1] != backgroundSongNumber) {
+            bgMusic.changeMusic(para1.second[1]);
+            backgroundSongNumber = para1.second[1];
+        }
     }
-//
     for (auto& c : para.second) {
         if (c == 2) {
             masivMODULE.push_back(m2);
@@ -174,11 +182,15 @@ int main()
                     if (event.key.code == sf::Keyboard::Space) {
                         engineSound.setVolume(0);
                     }
+                    else
+                        engineSound.setVolume(0);
                 }
                 if (event.type == sf::Event::KeyReleased || spaceship->AIR() == 0) {
                     if (event.key.code == sf::Keyboard::Z || event.key.code == sf::Keyboard::X) {
                         turnerSound.setVolume(0);
                     }
+                    else
+                        turnerSound.setVolume(0);
                 }
                 if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
                     Camera->backFromShip(*window, *spaceship);
@@ -205,6 +217,8 @@ int main()
                 spaceship->move(dt, *planets);
             }
             else {
+                bgMusic.play(false);
+                finalDiedSound.play();
                 for (int i = 0; i < 100; i++) {
                     drawObjects->getSpriteFinal(*window, Camera->getViewCamera());
                     drawObjects->getSpriteFinalDied(*window, Camera->getViewCamera());
@@ -214,6 +228,8 @@ int main()
                 window->close();
             }
             if (targetDistance < planets[0][0].getRadius() * 1.4f) {
+                bgMusic.play(false);
+                finalWinSound.play();
                 for (int i = 0; i < 100; i++) {
                     drawObjects->getSpriteFinalWin(*window, Camera->getViewCamera());
                     window->display();
