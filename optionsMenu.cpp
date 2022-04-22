@@ -125,18 +125,12 @@ std::pair < std::string, std::vector <int>> optionsMenu::drawOptionsMenu(sf::Ren
 		}
 
         sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-                isMenu = false;
-            }
-
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-                window.close();
-                isMenu = false;
-            }
-        }
-
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				window.close();
+				isMenu = false;
+			}
+		}
 		//window.draw(draw.getSpriteMenuBackground(window));
 
 		//if (backgroundNum == 0)

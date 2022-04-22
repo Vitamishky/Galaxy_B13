@@ -7,7 +7,6 @@ aboutMenu::aboutMenu() {
 }
 
 string aboutMenu::drawAboutMenu(sf::RenderWindow& window, sf::Texture texBg) {
-	finalMeme = draw.getSpriteFinal(window);
 	text = draw.drawTextAbout(window);
 	back = draw.getSpriteBack(window);
 	backWithMouse = draw.getSpriteBackWithMouse(window);
@@ -33,11 +32,6 @@ string aboutMenu::drawAboutMenu(sf::RenderWindow& window, sf::Texture texBg) {
 				window.close();
 				break;
 			}
-
-			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-				window.close();
-				break;
-			}
 		}
 		window.draw(sprite);
 
@@ -47,7 +41,6 @@ string aboutMenu::drawAboutMenu(sf::RenderWindow& window, sf::Texture texBg) {
 
 		if (menuNum == 1) {
 			window.draw(backWithMouse);
-			window.draw(finalMeme);
 		}
 
 		window.display();

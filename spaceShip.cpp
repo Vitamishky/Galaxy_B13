@@ -161,7 +161,7 @@ bool spaceShip::Use_Fuel(float dFuel) {
 float spaceShip::getMass() const{
     float Mass = 0;
     for (auto & i : rocket) {
-        Mass += i.getMasse() + 0.5 *  i.getFuel() + 0.1 * i.getAir();
+        Mass += i.getMasse() + 0.5 * i.getFuel() + 0.1 * i.getAir();
     }
     return Mass;
 }

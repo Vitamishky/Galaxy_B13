@@ -23,7 +23,8 @@ private:
 	//Îòðèñîâêà èíòåðôåéñà
 	sf::Texture texLeftInter, texRightInter, texFuel, texCompasRadar, texArrow;
 	sf::Sprite sprLeftInter, sprRightInter, sprFuel, sprArrow;
-	sf::CircleShape shapeCompas;
+	sf::Texture texEmptyPlanet, texNotEmptyPlanet, texSpace, texShapeShip;
+	sf::CircleShape shapeCompas, shapeEmptyPlanet, shapeRocket, shapeNotEmptyPlanet, shapeSpace;
 	//Ñòàðòîâîãî ìåíþ
 	sf::Texture buttonStartFull, buttonOptionsFull, buttonExitFull, aboutTextureFull, buttonStartFull_1, buttonOptionsFull_1, buttonExitFull_1, aboutTextureFull_1, menuBackground;
 	sf::Sprite buttonStart, buttonOptions, buttonExit, aboutTexture, buttonStartWithMouse, buttonOptionsWithMouse, buttonExitWithMouse, aboutTextureWithMouse;
@@ -34,33 +35,31 @@ private:
 	sf::Sprite music, back, background, layout, optionsBg;
 	sf::Texture menuBackgroundCat, menuBackgroundSpace, menuBackgroundSpace2, menuBackgroundMain;
 	sf::Sprite menuBgCat, menuBgSpace, menuBgSpace2, menuBgMain;
-	sf::Text textMusic1, textMusic2, textMusic3, textLayout;
+	sf::Text textMusic1, textMusic2, textMusic3, textLayout, textDistance;
 
 	//BuildRocket
 	sf::Texture buttonPlayFull, buttonPlayFull_1, buttonBuiltFull, buttonBuiltFull_1;
 	sf::Sprite buttonPlay, buttonPlayWithMouse, buttonBuilt, buttonBuiltWithMouse;
 	sf::Sprite play, playWithMouse, built, builtWithMouse;
 
-	sf::Texture finalPicture;
-	sf::Sprite finalMeme;
+	sf::Texture finalPicture, texfinalDied, texfinalWin;
+	sf::Sprite finalMeme, finalDied, finalWin;
+	sf::FloatRect finalBounds, finalWinBounds, finalDiedBounds;
 
 	sf::Texture texREmpty, texRAir;
 	sf::Sprite sprREmpty, sprRAir;
 	sf::Texture texBackG, texHeadR, texAirR, texEmptyR, texEngineR, texRightI;
 	sf::Sprite sprBackG, sprHeadR, sprAirR, sprEmptyR, sprEngineR, sprRightI;
-
-
 public:
 	drawAll();
 	void drawBg(sf::RenderWindow&, sf::View);
 	void drawIcon(sf::RenderWindow&);
-	void drawLeftInter(sf::RenderWindow&, sf::View, spaceShip);
+	void drawLeftInter(sf::RenderWindow&, sf::View, spaceShip, float);
 	void drawRightInter(sf::RenderWindow&, sf::View);
 	void drawFuel(sf::RenderWindow&, sf::View, spaceShip);
 	void drawCompas(sf::RenderWindow&, sf::View, spaceShip);
 	void drawArrow(sf::RenderWindow&, sf::View);
-	bool collision(sf::RenderWindow&, spaceShip, vector<Planet>);
-	void drawTextAboutAll(sf::RenderWindow&, sf::View, spaceShip);
+	void drawTextAboutAll(sf::RenderWindow&, sf::View, spaceShip, vector<Planet>);
 	sf::Text drawTextAbout(sf::RenderWindow&);
 	sf::Text drawTextMusic1(sf::RenderWindow&);
 	sf::Text drawTextMusic2(sf::RenderWindow&);
@@ -95,14 +94,15 @@ public:
 	sf::Sprite getSpriteBuilt(sf::RenderWindow&);
 	sf::Sprite getSpriteBuiltWithMouse(sf::RenderWindow&);
 
-	sf::Sprite getSpriteFinal(sf::RenderWindow&);
+	void getSpriteFinal(sf::RenderWindow&, sf::View);
+	void getSpriteFinalDied(sf::RenderWindow&, sf::View);
+	void getSpriteFinalWin(sf::RenderWindow&, sf::View);
 	//sprite for buildrocket
 	sf::IntRect rAir, rEmpty, backG, headR, airR, 
 		emptyR, engineR, rightI, butBuild, butStartGo;
 
 	sf::Sprite getSpriteRAir(sf::RenderWindow&);
 	sf::Sprite getSpriteREmpty(sf::RenderWindow&);
-
 };
 
 #endif
