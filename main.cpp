@@ -103,13 +103,14 @@ int main()
             nameMenu = para.first;
             window->clear();
         }
+
+        if (nameMenu == "about") {
+            nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
+            window->clear();
+        }       
         if (nameMenu == "options") {
             para1 = options->drawOptionsMenu(*window, texV[para1.second[0]]);
             nameMenu = para1.first;
-            window->clear();
-        }
-        if (nameMenu == "about") {
-            nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
             window->clear();
         }
     }
@@ -123,10 +124,9 @@ int main()
         }
         if (c == 4) {
             masivMODULE.push_back(m4);
-            nameMenu = about->drawAboutMenu(*window, texV[para1.second[0]]);
-            window->clear();
         }
     }
+
     masivMODULE.push_back(m1);
     spaceShip* spaceship = new spaceShip(masivMODULE, 800, 150);
 

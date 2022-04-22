@@ -20,6 +20,7 @@ private:
 	std::vector<int> result;
 	int menuNum;
 	drawAll draw;
+	std::vector<float> vHelp1, vHelp2;
 public:
 	buildRocket();
 	std::pair < std::string, std::vector<int>> drawBuildRocket(sf::RenderWindow&);
